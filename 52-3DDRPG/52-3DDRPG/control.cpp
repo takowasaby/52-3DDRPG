@@ -12,7 +12,6 @@ void Control_c::All() {
 
 	fps.Update();	//更新
 	fps.Draw();		//fps表示
-	fps.Wait();		//待機
 
 	switch (mode) {
 	case event:
@@ -50,7 +49,7 @@ void Control_c::All() {
 		break;
 
 	case game:
-		switch (event_scene) {
+		switch (game_scene) {
 		case dungeon:
 			//ダンジョン探索
 			break;
@@ -66,4 +65,6 @@ void Control_c::All() {
 		}
 		break;
 	}
+
+	fps.Wait();		//待機
 }
