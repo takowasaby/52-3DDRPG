@@ -152,12 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="control.cpp" />
+    <ClCompile Include="dungeon.cpp" />
     <ClCompile Include="fps.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="control.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="dungeon.h" />
     <ClInclude Include="fps.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
