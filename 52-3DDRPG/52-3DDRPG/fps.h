@@ -1,7 +1,5 @@
 #pragma once
 
-#include "define.h"
-
 class Fps_c {
 	int mStartTime;         //測定開始時刻
 	int mCount;             //カウンタ

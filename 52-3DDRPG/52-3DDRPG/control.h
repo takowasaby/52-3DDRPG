@@ -1,7 +1,5 @@
 #pragma once
 
-#include "fps.h"
-
 class Control_c {
 private:
 	int mode = 0;
