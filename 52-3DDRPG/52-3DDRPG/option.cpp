@@ -1,4 +1,4 @@
-#include "option.h"
+#include "define.h"
 
 void option_c::Ini()
 {
