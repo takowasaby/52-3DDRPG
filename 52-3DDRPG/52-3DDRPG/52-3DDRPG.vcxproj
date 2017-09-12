@@ -152,17 +152,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="control.cpp" />
+    <ClCompile Include="data.cpp" />
     <ClCompile Include="dungeon.cpp" />
+    <ClCompile Include="ECharaData.cpp" />
+    <ClCompile Include="EDrawSetting.cpp" />
+    <ClCompile Include="EQueueData.cpp" />
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="fps.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="data.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="control.h" />
+    <ClInclude Include="data.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="dungeon.h" />
+    <ClInclude Include="ECharaData.h" />
+    <ClInclude Include="EDrawSetting.h" />
+    <ClInclude Include="EQueueData.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="fps.h" />
-    <ClInclude Include="data.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

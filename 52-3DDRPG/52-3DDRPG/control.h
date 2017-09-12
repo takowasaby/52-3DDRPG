@@ -1,10 +1,14 @@
 #pragma once
 
+class Fps_c;
+class Event_c;
+
 class Control_c {
 private:
 	int mode = 0;
 	int event_scene, title_scene, game_scene = 0;
-	Fps_c fps;
+	Fps_c* fps;
+	Event_c* events;
 public:
 	Control_c();		//コンストラクタ
 	~Control_c();		//デストラクタ

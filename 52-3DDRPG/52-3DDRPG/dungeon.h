@@ -21,9 +21,4 @@ public:
 	~Dungeon_c();
 	void DataLoad(int scenario, int stage);
 	void WallSet();
-	void GraphLoad();
-	void BackDraw();
-	void UIDraw();
-	void MessageDaraw();
-	void 
 };
