@@ -36,8 +36,12 @@ void Control_c::All() {
 		case scenario: 
 			//シナリオ選択画面
 			break;
-		case start:
+		case start: /*{
 			//タイトル画面
+			Title_c Title;
+			Title.TitleScreen();
+			delete &Title;
+			}*/
 			break;
 		case save_load:
 			//セーブ・ロード

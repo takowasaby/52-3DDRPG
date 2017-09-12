@@ -1,7 +1,5 @@
 #include "define.h"
 
-char Key[256];
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
 	ChangeWindowMode(option.WinMode);//ウィンドウモードで描画
