@@ -2,15 +2,19 @@
 
 void option_c::Ini()
 {
-
+	//BGMの音量
+	//SEの音量
+	//キーコンフィグ
+	//戦闘モード
+	//ウィンドウモード
 }
 
 void option_c::main()
 {
-	backdraw();
-	itemdraw();
-	configdraw();
-	cursol();
+	backdraw();	//背景描写
+	itemdraw();	//項目描写
+	configdraw();	//設定描写
+	cursol();	//カーソル
 }
 
 void option_c::backdraw()
