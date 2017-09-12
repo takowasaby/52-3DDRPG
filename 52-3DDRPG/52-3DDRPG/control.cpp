@@ -10,20 +10,20 @@ Control_c::~Control_c()
 
 void Control_c::All() {
 
-	fps.Update();	//XV
-	fps.Draw();		//fps•\¦
+	fps.Update();	//æ›´æ–°
+	fps.Draw();		//fpsè¡¨ç¤º
 
 	switch (mode) {
 	case event:
 		switch (event_scene) {
 		case conversation:
-			//—§‚¿ŠG‰ï˜b
+			//ç«‹ã¡çµµä¼šè©±
 			break;
 		case opening:
-			//ƒI[ƒvƒjƒ“ƒO
+			//ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°
 			break;
 		case ending:
-			//ƒGƒ“ƒfƒBƒ“ƒO
+			//ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°
 			break;
 		}
 		break;
@@ -31,19 +31,20 @@ void Control_c::All() {
 	case title:
 		switch (title_scene) {
 		case gameover:
-			//ƒQ[ƒ€ƒI[ƒo[
+			//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
 			break;
 		case scenario: 
-			//ƒVƒiƒŠƒI‘I‘ğ‰æ–Ê
+			//ã‚·ãƒŠãƒªã‚ªé¸æŠç”»é¢
 			break;
 		case start:
-			//ƒ^ƒCƒgƒ‹‰æ–Ê
+			//ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
 			break;
 		case save_load:
-			//ƒZ[ƒuEƒ[ƒh
+			//ã‚»ãƒ¼ãƒ–ãƒ»ãƒ­ãƒ¼ãƒ‰
 			break;
 		case option:
-			//ƒIƒvƒVƒ‡ƒ“
+			//ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+			option.main();
 			break;
 		}
 		break;
@@ -51,20 +52,20 @@ void Control_c::All() {
 	case game:
 		switch (game_scene) {
 		case dungeon:
-			//ƒ_ƒ“ƒWƒ‡ƒ“’Tõ
+			//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æ¢ç´¢
 			break;
 		case room:
-			//•”‰®’Tõ
+			//éƒ¨å±‹æ¢ç´¢
 			break;
 		case battle:
-			//ƒoƒgƒ‹
+			//ãƒãƒˆãƒ«
 			break;
 		case menu:
-			//ƒƒjƒ…[
+			//ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 			break;
 		}
 		break;
 	}
 
-	fps.Wait();		//‘Ò‹@
+	fps.Wait();		//å¾…æ©Ÿ
 }
