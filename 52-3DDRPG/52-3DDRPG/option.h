@@ -1,5 +1,4 @@
 #pragma once
-#include "Dxlib.h"
 
 class option_c {
 private:
