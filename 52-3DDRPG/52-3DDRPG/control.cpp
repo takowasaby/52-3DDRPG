@@ -1,17 +1,15 @@
 #include"define.h"
 
-Control_c::Control_c()
-{
+Control_c::Control_c() {
 }
 
-Control_c::~Control_c()
-{
+Control_c::~Control_c() {
 }
 
 void Control_c::All() {
 
 	fps.Update();	//更新
-	fps.Draw();		//fps表示
+	fps.Draw();	//fps表示
 
 	switch (mode) {
 	case event:
