@@ -8,6 +8,20 @@ Dungeon_c::~Dungeon_c()
 {
 }
 
+void Dungeon_c::DungeonAll()
+{
+	mscenario = data.GetScenario();
+	mstage = 0; //date.GetStage();
+	DataLoad(mscenario, mstage);
+	WallSet();
+	GraphLoad(mscenario, mstage);
+	BackDraw();
+	WallDraw();
+	UIDraw();
+	MessageDraw();
+	WaitKey();
+}
+
 void Dungeon_c::DataLoad(int scenario, int stage)
 {
 	sprintf_s(fname, "%d_%d", scenario, stage);
@@ -113,4 +127,24 @@ void Dungeon_c::WallSet()
 			}
 		}
 	}
+}
+
+void Dungeon_c::GraphLoad(int scenario, int stage)
+{
+}
+
+void Dungeon_c::BackDraw()
+{
+}
+
+void Dungeon_c::UIDraw()
+{
+}
+
+void Dungeon_c::MessageDraw()
+{
+}
+
+void Dungeon_c::WaitKey()
+{
 }
