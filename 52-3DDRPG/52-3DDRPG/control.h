@@ -3,6 +3,7 @@
 class Fps_c;
 class Event_c;
 
+
 class Control_c {
 private:
 	int mode = 0;

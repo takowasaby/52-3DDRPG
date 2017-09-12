@@ -1,5 +1,6 @@
 #include"define.h"
 
+
 Control_c::Control_c()
 {
 	events = new Event_c;
