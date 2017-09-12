@@ -6,3 +6,4 @@
 #include "dungeon.h"
 #include "data.h"
 #include <math.h>
+#include "option.h"
