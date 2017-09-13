@@ -8,6 +8,7 @@ void option_c::Ini()
 	//戦闘モード0-3
 	//ウィンドウモードtrue or false
 	//背景画像、カーソル画像読み込み
+	//SE読み込み
 }
 
 void option_c::main()
@@ -31,6 +32,7 @@ void option_c::itemdraw()
 	DrawFormatString(40, 130, GetColor(255, 255, 255), "KeyConfig");
 	DrawFormatString(40, 170, GetColor(255, 255, 255), "BattleMode");
 	DrawFormatString(40, 210, GetColor(255, 255, 255), "WindowMode");
+	DrawFormatString(40,250,GetColor(255,255,255),"Title");
 }
 
 void option_c::configdraw()

@@ -3,6 +3,7 @@
 class option_c {
 private:
 	int BGMVol, SEVol, BattleType, KeyConfig;
+	int cursor_posi = 50;
 public:
 	bool WinMode;
 	void Ini();

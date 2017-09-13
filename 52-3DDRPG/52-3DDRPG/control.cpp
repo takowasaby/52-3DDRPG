@@ -46,7 +46,11 @@ void Control_c::All() {
 			break;
 		case option:
 			//オプション
+			/*
+			option_c option;
 			option.main();
+			delete &option;
+			*/
 			break;
 		}
 		break;
