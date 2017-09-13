@@ -15,7 +15,7 @@ void option_c::main()
 	backdraw();	//背景描写
 	itemdraw();	//項目描写
 	configdraw();	//設定描写
-	cursol();	//カーソル
+	cursor();	//カーソル
 }
 
 void option_c::backdraw()
@@ -37,7 +37,7 @@ void option_c::configdraw()
 {
 }
 
-void option_c::cursol()
+void option_c::cursor()
 {
 }
 
