@@ -60,10 +60,7 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 	}
 EXFILE:
 	FileRead_close(mfp);
-}
 
-void Dungeon_c::WallSet()
-{
 	for (i = 0; i < MAP_SIZE_X - 1; i++) {
 		for (j = 0; j < MAP_SIZE_Y; j++) {
 			switch (wallData[i][j].type) {
@@ -131,6 +128,7 @@ void Dungeon_c::WallSet()
 
 void Dungeon_c::GraphLoad(int scenario, int stage)
 {
+
 }
 
 void Dungeon_c::BackDraw()
