@@ -7,5 +7,6 @@
 #include "data.h"
 #include "title.h"
 #include "common.h"
+#include "menu.h"
 #include <math.h>
 #include "option.h"
