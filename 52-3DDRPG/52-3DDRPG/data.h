@@ -50,6 +50,7 @@ private:
 	};
 	
 	struct Character_t {
+		int flag;
 		const int HPMAX, MPMAX, STR, VIT, AGI, INT;
 		int HP, MP;
 		char name[NAME_SIZE];
@@ -60,6 +61,12 @@ private:
 public:
 	Data_c();		//コンストラクタ
 	~Data_c();		//デストラクタ
+
+	void LoadAll(int scenario);
+	void ItemLoad(int scenario);
+	void SoubiLoad(int scenario);
+	void SkillLoad(int scenario);
+	void CharacterLoad(int scenario);
 
 	int GetScenario();
 	int GetDungeonX();

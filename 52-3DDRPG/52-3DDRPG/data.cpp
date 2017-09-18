@@ -8,6 +8,30 @@ Data_c::~Data_c()
 {
 }
 
+void Data_c::LoadAll(int scenario)
+{
+	ItemLoad(scenario);
+	SoubiLoad(scenario);
+	SkillLoad(scenario);
+	CharacterLoad(scenario);
+}
+
+void Data_c::ItemLoad(int scenario)
+{
+}
+
+void Data_c::SoubiLoad(int scenario)
+{
+}
+
+void Data_c::SkillLoad(int scenario)
+{
+}
+
+void Data_c::CharacterLoad(int scenario)
+{
+}
+
 int Data_c::GetScenario()
 {
 	return scenario;
