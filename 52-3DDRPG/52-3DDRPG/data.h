@@ -17,10 +17,36 @@ private:
 //	int itemFlag[SCENARIO_SIZE][ITEM_TYPE_SIZE][ITEM_SIZE];
 
 	struct Skill_t {
+		int num;				//スキル固有の数字
+		char name[64];			//スキルの名前
+		int MP;					//スキルの消費MP
+		int effect;				//スキルの効果(0:HP回復、1:MP回復、2:STR上昇、3:VIT上昇、4:AGI上昇、5:INT上昇、6:ダメージ)
+		int status;				//スキルの効果に依存されるステータス
+		int magnification;		//スキル効果のステータス依存の倍率
+		int area;				//スキル効果の範囲(0:単体、1:全体)
+		char explain[64];		//スキルの説明文
 	};
 
 	struct Item_t {
-		int flag;
+		int flag;				//アイテムを所持している個数
+		int num;				//アイテム固有の数字
+		char name[64];			//アイテムの名前
+		int type;				//アイテムの種類(0:消耗品、1:だいじなもの)
+		int effect1, effect2;	//アイテムの効果(0:HP回復、1:MP回復、2:STR上昇、3:VIT上昇、4:AGI上昇、5:INT上昇、6:ダメージ)
+		int point1, point2;		//アイテム効果の固定値
+		int area1, area2;		//アイテム効果の範囲(0:単体、1:全体)
+		char explain[64];		//アイテムの説明文
+	};
+
+	struct Soubi_t {
+		int flag;				//装備を所持している個数
+		int num;				//装備固有の数字
+		char name[64];			//装備の名前
+		int type;				//装備の種類(0:武器、1:アクセサリー)
+		int effect;				//装備の効果(0:HP上昇、1:MP上昇、2:STR上昇、3:VIT上昇、4:AGI上昇、5:INT上昇)
+		int point;				//装備効果の固定値
+		int area;				//武器の攻撃範囲(0:単体、1:全体)
+		char explain[64];		//装備の説明文
 	};
 	
 	struct Character_t {
