@@ -17,7 +17,13 @@ private:
 	};
 	WallData_t wallData[MAP_SIZE_X][MAP_SIZE_Y];
 
-	Data_c data;
+
+
+
+	//Data_c data;
+
+
+
 
 public:
 	Dungeon_c();

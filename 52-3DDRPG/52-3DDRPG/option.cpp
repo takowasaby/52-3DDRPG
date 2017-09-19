@@ -42,18 +42,14 @@ void Option_c::ItemDraw()
 
 void Option_c::CursorDraw()
 {
-	DrawFormatString(40,Cursor,GetColor(255,255,255),"→");
+	DrawFormatString(40, Cursor, GetColor(255, 255, 255), "->");
 
-	UpdateKey();
+	//UpdateKey();
 	if (Key[KEY_INPUT_DOWN] == 1) {
-		if (Cursor != 210) {
-			Cursor += 40;
-		}
+			if(Cursor != 210) Cursor += 40;
 	}
-	else if (Key[KEY_INPUT_UP] == 1) {
-		if (Cursor != 50) {
-			Cursor -= 40; 
-		}
+	if (Key[KEY_INPUT_UP] == 1) {
+			if(Cursor != 50) Cursor -= 40;
 	}
 
 	if (Key[KEY_INPUT_RIGHT] == 1) {

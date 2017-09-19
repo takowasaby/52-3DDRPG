@@ -1,3 +1,6 @@
+/*
+
+
 #include "define.h"
 
 Title_c::Title_c() {
@@ -48,3 +51,6 @@ void Title_c::TitleScreen() {
 		if (ProcessMessage() == -1) break;
 	}
 }
+
+
+*/

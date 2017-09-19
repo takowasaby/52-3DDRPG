@@ -1,3 +1,6 @@
+/*
+
+
 #include "define.h"
 
 Fps_c::Fps_c()
@@ -39,3 +42,7 @@ void Fps_c::Wait()
 		Sleep(waitTime);	//‘Ò‹@
 	}
 }
+
+
+
+*/

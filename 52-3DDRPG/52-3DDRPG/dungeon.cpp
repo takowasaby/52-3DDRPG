@@ -10,7 +10,13 @@ Dungeon_c::~Dungeon_c()
 
 void Dungeon_c::DungeonAll()
 {
-	mscenario = data.GetScenario();
+
+
+
+	//mscenario = data.GetScenario();
+	
+	
+	
 	mstage = 0; //date.GetStage();
 	DataLoad(mscenario, mstage);
 	WallSet();

@@ -1,3 +1,6 @@
+/*
+
+
 #pragma once
 
 class Fps_c {
@@ -17,3 +20,7 @@ public:
 
 	void Wait();
 };
+
+
+
+*/
