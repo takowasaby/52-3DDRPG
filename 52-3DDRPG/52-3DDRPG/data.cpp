@@ -3,10 +3,11 @@
 Data_c::Data_c()
 {
 }
-
 Data_c::~Data_c()
 {
 }
+
+
 
 void Data_c::LoadAll(int scenario)
 {
@@ -15,7 +16,6 @@ void Data_c::LoadAll(int scenario)
 	SkillLoad(scenario);
 	CharacterLoad(scenario);
 }
-
 void Data_c::ItemLoad(int scenario)
 {
 	int n, num, i, fp;
@@ -70,7 +70,6 @@ void Data_c::ItemLoad(int scenario)
 EXFILE:
 	FileRead_close(fp);
 }
-
 void Data_c::SoubiLoad(int scenario)
 {
 	int n, num, i, fp;
@@ -123,7 +122,6 @@ void Data_c::SoubiLoad(int scenario)
 EXFILE:
 	FileRead_close(fp);
 }
-
 void Data_c::SkillLoad(int scenario)
 {
 	int n, num, i, fp;
@@ -177,7 +175,6 @@ void Data_c::SkillLoad(int scenario)
 EXFILE:
 	FileRead_close(fp);
 }
-
 void Data_c::CharacterLoad(int scenario)
 {
 	int n, num, i, fp;
@@ -230,110 +227,257 @@ void Data_c::CharacterLoad(int scenario)
 	}
 EXFILE:
 	FileRead_close(fp);
+
+	char gname[64];
+
+	for (int i = 0;i < CHARACTER_SIZE;i++) {
+		sprintf_s(gname, "resource/%d_chara%d.png", scenario,i);
+		character[i].Image = LoadGraph(gname);
+	}
 }
+
+
 
 int Data_c::GetItemFlag(int num)
 {
-	return 0;
+	return item[num].flag;
 }
-
 int Data_c::GetSoubiFlag(int num)
 {
-	return 0;
+	return soubi[num].flag;
 }
-
-int Data_c::GetSkillFlag(int num)
-{
-	return 0;
-}
-
 int Data_c::GetCharacterFlag(int num)
 {
-	return 0;
+	return character[num].flag;
 }
-
-void Data_c::CalcItemFlag(int num, int vary)
-{
-}
-
-void Data_c::CalcSoubiFlag(int num, int vary)
-{
-}
-
-void Data_c::CalcSkillFlag(int num, int vary)
-{
-}
-
-void Data_c::CalcCharacterFlag(int num, int vary)
-{
-}
-
 int Data_c::GetItemPoint(int num, int sort)
 {
-	return 0;
+	switch (sort) {
+	case 0:
+		return item[num].num;
+		break;
+	case 1:
+		return item[num].type;
+		break;
+	case 2:
+		return item[num].effect1;
+		break;
+	case 3:
+		return item[num].effect2;
+		break;
+	case 4:
+		return item[num].point1;
+		break;
+	case 5:
+		return item[num].point2;
+		break;
+	case 6:
+		return item[num].area;
+		break;
+	}
 }
-
 string Data_c::GetItemText(int num, int sort)
 {
-	return string();
+	switch (sort) {
+	case 0:
+		return string(item[num].name);
+		break;
+	case 1:
+		return string(item[num].explain);
+		break;
+	}
 }
-
 int Data_c::GetSoubiPoint(int num, int sort)
 {
-	return 0;
+	switch (sort) {
+	case 0:
+		return soubi[num].num;
+		break;
+	case 1:
+		return soubi[num].type;
+		break;
+	case 2:
+		return soubi[num].effect;
+		break;
+	case 3:
+		return soubi[num].point;
+		break;
+	case 4:
+		return soubi[num].area;
+		break;
+	}
 }
-
 string Data_c::GetSoubiText(int num, int sort)
 {
-	return string();
+	switch (sort) {
+	case 0:
+		return string(soubi[num].name);
+		break;
+	case 1:
+		return string(soubi[num].explain);
+		break;
+	}
 }
-
 int Data_c::GetSkillPoint(int num, int sort)
 {
-	return 0;
+	switch (sort) {
+	case 0:
+		return skill[num].num;
+		break;
+	case 1:
+		return skill[num].MP;
+		break;
+	case 2:
+		return skill[num].effect;
+		break;
+	case 3:
+		return skill[num].status;
+		break;
+	case 4:
+		return skill[num].magnification;
+		break;
+	case 5:
+		return skill[num].area;
+		break;
+	}
 }
-
 string Data_c::GetSkillText(int num, int sort)
 {
-	return string();
+	switch (sort) {
+	case 0:
+		return string(skill[num].name);
+		break;
+	case 1:
+		return string(skill[num].explain);
+		break;
+	}
 }
-
 int Data_c::GetCharacterPoint(int num, int sort)
 {
-	return 0;
+	switch (sort) {
+	case 0:
+		return character[num].HPMAX;
+		break;
+	case 1:
+		return character[num].MPMAX;
+		break;
+	case 2:
+		return character[num].HP;
+		break;
+	case 3:
+		return character[num].MP;
+		break;
+	case 4:
+		return character[num].STR;
+		break;
+	case 5:
+		return character[num].VIT;
+		break;
+	case 6:
+		return character[num].AGI;
+		break;
+	case 7:
+		return character[num].INT;
+		break;
+	case 8:
+		return character[num].Image;
+		break;
+	}
 }
-
-string Data_c::GetCharacterText(int num, int sort)
+int Data_c::GetCharacterSkillCode(int num, int order)
 {
-	return string();
+	return character[num].skillCode[order];
+}
+string Data_c::GetCharacterName(int num)
+{
+	return string(character[num].name);
 }
 
 int Data_c::GetScenario()
 {
 	return scenario;
 }
-
 int Data_c::GetDungeonX()
 {
 	return dungeonX;
 }
-
 int Data_c::GetDungeonY()
 {
 	return dungeonY;
 }
 
+
 void Data_c::SetScenario(int i)
 {
 	scenario = i;
 }
-
 void Data_c::SetDungeonX(int i)
 {
 	dungeonX = i;
 }
-
 void Data_c::SetDungeonY(int i)
 {
 	dungeonY = i;
+}
+
+int Data_c::GetMapFlag(int scenario, int stage, int x, int y)
+{
+	return mapFlag[scenario][stage][x][y];
+}
+int Data_c::GetEventFlag(int scenario, int num)
+{
+	return eventFlag[scenario][num];
+}
+int Data_c::GetPlayCount()
+{
+	return playCount;
+}
+
+void Data_c::SetMapFlag(int scenario, int stage, int x, int y, int i)
+{
+	mapFlag[scenario][stage][x][y] = i;
+}
+void Data_c::SetEventFlag(int scenario, int num, int i)
+{
+	eventFlag[scenario][num] = i;
+}
+void Data_c::SetPlayCount(int i)
+{
+	playCount = i;
+}
+void Data_c::AddPlayCount() 
+{
+	playCount++;
+}
+
+
+
+void Data_c::CalcItemFlag(int num, int vary)
+{
+	if (item[num].flag + vary >= ITEM_FLAG_MAX) {
+		item[num].flag = ITEM_FLAG_MAX;
+	}
+	else if (item[num].flag + vary <= 0) {
+		item[num].flag = 0;
+	}
+	else {
+		item[num].flag += vary;
+	}
+}
+void Data_c::CalcSoubiFlag(int num, int vary)
+{
+	if (soubi[num].flag + vary >= SOUBI_FLAG_MAX) {
+		soubi[num].flag = SOUBI_FLAG_MAX;
+	}
+	else if (soubi[num].flag + vary <= 0) {
+		soubi[num].flag = 0;
+	}
+	else {
+		soubi[num].flag += vary;
+	}
+}
+
+void Data_c::SetCharacterFlag(int num, int vary)
+{
+	character[num].flag = vary;
 }
