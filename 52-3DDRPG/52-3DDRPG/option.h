@@ -1,16 +1,15 @@
 #pragma once
 
-class option_c {
+class Option_c {
 private:
 	int BGMVol, SEVol, BattleType, KeyConfig;
-	int cursor_posi = 50;
+	int Cursor;
 public:
-	bool WinMode;
-	void Ini();
-	void main();
-	void backdraw();
-	void itemdraw();
-	void configdraw();
-	void cursor();
-	void Fin();
+	Option_c();
+	~Option_c();
+
+	void Main();
+	void BackDraw();
+	void ItemDraw();
+	void CursorDraw();
 };
