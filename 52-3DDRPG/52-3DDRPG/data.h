@@ -1,11 +1,18 @@
 #pragma once
 
+#include <string>
+using namespace std;
+
 const int SCENARIO_SIZE = 5;
 const int STAGE_SIZE = 5;
 const int ITEM_TYPE_SIZE = 3;
 const int ITEM_SIZE = 32;
 const int NAME_SIZE = 32;
 const int SKILL_CODE_SIZE = 16;
+const int ITEM_SIZE = 64;
+const int SOUBI_SIZE = 64;
+const int SKILL_SIZE = 64;
+const int CHARACTER_SIZE = 4;
 
 class Data_c {
 private:
@@ -26,6 +33,7 @@ private:
 		int area;				//スキル効果の範囲(0:単体、1:全体)
 		char explain[64];		//スキルの説明文
 	};
+	Skill_t skill[SKILL_SIZE];
 
 	struct Item_t {
 		int flag;				//アイテムを所持している個数
@@ -34,9 +42,10 @@ private:
 		int type;				//アイテムの種類(0:消耗品、1:だいじなもの)
 		int effect1, effect2;	//アイテムの効果(0:HP回復、1:MP回復、2:STR上昇、3:VIT上昇、4:AGI上昇、5:INT上昇、6:ダメージ)
 		int point1, point2;		//アイテム効果の固定値
-		int area1, area2;		//アイテム効果の範囲(0:単体、1:全体)
+		int area;				//アイテム効果の範囲(0:単体、1:全体)
 		char explain[64];		//アイテムの説明文
 	};
+	Item_t item[ITEM_SIZE];
 
 	struct Soubi_t {
 		int flag;				//装備を所持している個数
@@ -48,16 +57,18 @@ private:
 		int area;				//武器の攻撃範囲(0:単体、1:全体)
 		char explain[64];		//装備の説明文
 	};
+	Soubi_t soubi[SOUBI_SIZE];
 	
 	struct Character_t {
 		int flag;
-		const int HPMAX, MPMAX, STR, VIT, AGI, INT;
+		int HPMAX, MPMAX, STR, VIT, AGI, INT;
 		int HP, MP;
 		char name[NAME_SIZE];
 		int skillCode[SKILL_CODE_SIZE];
 		int Image;
 	};
-
+	Character_t character[CHARACTER_SIZE];
+	
 public:
 	Data_c();		//コンストラクタ
 	~Data_c();		//デストラクタ
@@ -67,6 +78,28 @@ public:
 	void SoubiLoad(int scenario);
 	void SkillLoad(int scenario);
 	void CharacterLoad(int scenario);
+
+	int GetItemFlag(int num);
+	int GetSoubiFlag(int num);
+	int GetSkillFlag(int num);
+	int GetCharacterFlag(int num);
+
+	void CalcItemFlag(int num, int vary);
+	void CalcSoubiFlag(int num, int vary);
+	void CalcSkillFlag(int num, int vary);
+	void CalcCharacterFlag(int num, int vary);
+
+	int GetItemPoint(int num, int sort);
+	string GetItemText(int num, int sort);
+
+	int GetSoubiPoint(int num, int sort);
+	string GetSoubiText(int num, int sort);
+
+	int GetSkillPoint(int num, int sort);
+	string GetSkillText(int num, int sort);
+
+	int GetCharacterPoint(int num, int sort);
+	string GetCharacterText(int num, int sort);
 
 	int GetScenario();
 	int GetDungeonX();
