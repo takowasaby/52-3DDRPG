@@ -8,6 +8,12 @@ EventDrawSetting_c::EventDrawSetting_c()
 	m_dark = 0;
 }
 
+EventDrawSetting_c::EventDrawSetting_c(int x, int y):
+	m_x(x),
+	m_y(y)
+{
+}
+
 EventDrawSetting_c::EventDrawSetting_c(int x,int y,string name,string pictureName,int mode)
 {
 	//EventDrawSetting_c();

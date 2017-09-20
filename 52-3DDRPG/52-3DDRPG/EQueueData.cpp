@@ -1,5 +1,10 @@
 #include "define.h"
 
+EventQueuePrototype::EventQueuePrototype()
+{
+
+}
+
 EventQueuePrototype::EventQueuePrototype(string name, int actionType, int from, int to, int takeTime, int afterOK)
 {
 	m_name = name;

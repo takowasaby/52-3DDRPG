@@ -15,6 +15,7 @@ private:
 public:
 	EventChara_c();
 	EventChara_c(string name);
+	EventChara_c(string name, int direction);
 	~EventChara_c();
 	int pictureRead(string filename, string pictureName);
 	int getPictureID(string pictureName);

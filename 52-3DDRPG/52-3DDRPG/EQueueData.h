@@ -14,6 +14,7 @@ private:
 	int m_currentTime;
 	int m_afterOn;
 public:
+	EventQueuePrototype();
 	EventQueuePrototype(string name, int actionType, int from, int to, int takeTime, int afterOK);
 	EventQueuePrototype(string name, int actionType, int from1, int from2, int to1, int to2, int takeTime, int afterOK);
 	string getName();

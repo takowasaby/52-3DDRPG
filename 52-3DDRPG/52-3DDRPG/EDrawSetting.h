@@ -24,6 +24,7 @@ private:
 	int m_dark;
 public:
 	EventDrawSetting_c();
+	EventDrawSetting_c(int x, int y);
 	EventDrawSetting_c(int x, int y, string name, string pictureName,int mode);
 	~EventDrawSetting_c();
 

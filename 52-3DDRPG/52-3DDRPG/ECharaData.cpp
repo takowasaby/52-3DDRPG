@@ -10,6 +10,13 @@ EventChara_c::EventChara_c(string name) :
 
 }
 
+EventChara_c::EventChara_c(string name, int direction) :
+	m_name(name),
+	m_direction(direction)
+{
+
+}
+
 EventChara_c::~EventChara_c()
 {
 
