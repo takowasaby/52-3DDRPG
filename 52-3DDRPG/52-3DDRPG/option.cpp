@@ -2,12 +2,11 @@
 
 void option_c::Ini()
 {
-	//BGMの音量大小0-5
-	//SEの音量大小0-5
+	//BGMの音量
+	//SEの音量
 	//キーコンフィグ
-	//戦闘モード0-3
-	//ウィンドウモードtrue or false
-	//背景画像、カーソル画像読み込み
+	//戦闘モード
+	//ウィンドウモード
 }
 
 void option_c::main()
@@ -15,7 +14,7 @@ void option_c::main()
 	backdraw();	//背景描写
 	itemdraw();	//項目描写
 	configdraw();	//設定描写
-	cursor();	//カーソル
+	cursol();	//カーソル
 }
 
 void option_c::backdraw()
@@ -24,7 +23,10 @@ void option_c::backdraw()
 
 void option_c::itemdraw()
 {
-	//仮置き項目
+}
+
+void option_c::configdraw()
+{
 	DrawFormatString(240, 20, GetColor(255, 255, 255), "OPTION");
 	DrawFormatString(40, 50, GetColor(255, 255, 255), "BGM");
 	DrawFormatString(40, 90, GetColor(255, 255, 255), "SE");
@@ -33,11 +35,7 @@ void option_c::itemdraw()
 	DrawFormatString(40, 210, GetColor(255, 255, 255), "WindowMode");
 }
 
-void option_c::configdraw()
-{
-}
-
-void option_c::cursor()
+void option_c::cursol()
 {
 }
 

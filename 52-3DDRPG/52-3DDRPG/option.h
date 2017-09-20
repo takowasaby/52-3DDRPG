@@ -10,6 +10,6 @@ public:
 	void backdraw();
 	void itemdraw();
 	void configdraw();
-	void cursor();
+	void cursol();
 	void Fin();
 };

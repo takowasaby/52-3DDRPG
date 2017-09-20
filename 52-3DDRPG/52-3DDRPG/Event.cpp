@@ -1,4 +1,5 @@
 #include "define.h"
+#include "Event.h"
 
 Event_c::Event_c():
 	m_keyBuffer(KEY_INPUT_Z),
