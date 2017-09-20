@@ -10,3 +10,4 @@
 #include "menu.h"
 #include <math.h>
 #include "option.h"
+#include "Sound.h"
