@@ -35,21 +35,80 @@ void Menu_c::DrawLeft()
 
 void Menu_c::DrawRight()
 {
-	switch (mode) {
-	case map:
-		break;
-	case status:
-		break;
-	case soubi:
-		break;
-	case item:
-		break;
-	case library:
-		break;
-	case save:
-		break;
-	case option:
-		break;
+	int count = 0;
+
+	switch (depth) {
+		case 0:
+			switch (mode) {
+			case map:
+				break;
+			case status:
+				break;
+			case soubi:
+				break;
+			case item:
+				DrawFormatString(320, 20, GetColor(255, 255, 255), "è¡ñ’ïi");
+				DrawFormatString(480, 20, GetColor(255, 255, 255), "ÇæÇ¢Ç∂Ç»Ç‡ÇÃ");
+				break;
+			case library:
+				break;
+			case save:
+				break;
+			case option:
+				break;
+			}
+			break;
+		case 1:
+			switch (mode) {
+			case map:
+				break;
+			case status:
+				break;
+			case soubi:
+				break;
+			case item:
+				DrawFormatString(320, 20, GetColor(255, 255, 255), "è¡ñ’ïi");
+				DrawFormatString(480, 20, GetColor(255, 255, 255), "ÇæÇ¢Ç∂Ç»Ç‡ÇÃ");
+				break;
+			case library:
+				break;
+			case save:
+				break;
+			case option:
+				break;
+			}
+			break;
+		case 2:
+			switch (mode) {
+			case map:
+				break;
+			case status:
+				break;
+			case soubi:
+				break;
+			case item:
+				DrawFormatString(320, 20, GetColor(255, 255, 255), "è¡ñ’ïi");
+				DrawFormatString(480, 20, GetColor(255, 255, 255), "ÇæÇ¢Ç∂Ç»Ç‡ÇÃ");
+
+				for (int i = 0; i < ITEM_SIZE ; i++) {
+					if (data.GetItemFlag(i) >= 1) {
+						if (count < 40) {
+							DrawFormatString(((count / 20) + 1) * 160, ((count % 20) + 1) * 20 + 20, GetColor(255, 255, 255), data.GetItemText(i, 0));
+							count ++;
+						}
+					}
+				}
+				break;
+			case library:
+				break;
+			case save:
+				break;
+			case option:
+				break;
+			}
+			break;
+		case 3:
+		case 4:
 	}
 }
 
@@ -70,6 +129,7 @@ void Menu_c::CheckKey()
 		case 0: 
 			if (cursorY[0] != limitDOWN[0]) {
 				cursorY[0] += 20;
+				mode++;
 			}
 			break;
 		case 1:
@@ -82,6 +142,7 @@ void Menu_c::CheckKey()
 		case 0:
 			if (cursorY[0] != limitUP[0]) {
 				cursorY[0] -= 20;
+				mode--;
 			}
 			break;
 		case 1:
