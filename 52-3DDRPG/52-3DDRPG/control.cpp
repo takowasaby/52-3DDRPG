@@ -1,5 +1,7 @@
-#include"define.h"
+#include "define.h"
 
+int Key[256];
+void UpdateKey(void);
 
 Control_c::Control_c()
 {
@@ -14,9 +16,10 @@ Control_c::~Control_c()
 }
 
 void Control_c::All() {
+	UpdateKey();
 
 	fps->Update();	//更新
-	fps->Draw();		//fps表示
+	fps->Draw();	//fps表示
 
 	switch (mode) {
 	case event:
@@ -41,17 +44,12 @@ void Control_c::All() {
 		case scenario: 
 			//シナリオ選択画面
 			break;
-<<<<<<< HEAD
 		case start: {
-			//繧ｿ繧､繝医Ν逕ｻ髱｢
+			//タイトル画面
 			Title_c Title;
-			Title.TitleScreen();
+			Title.TitleScreen(Key);
 			delete &Title;
 			}
-=======
-		case start:
-			//タイトル画面
->>>>>>> bd5f51902cb6046e6702accc1f660e09dcb273e7
 			break;
 		case save_load:
 			//セーブ・ロード
@@ -80,5 +78,18 @@ void Control_c::All() {
 		break;
 	}
 
-	fps->Wait();		//待機
+	fps->Wait();	//待機
+}
+
+void UpdateKey(void) {
+	char tmpKey[256];
+	GetHitKeyStateAll(tmpKey);
+	for (int i = 0; i < 256; i++) {
+		if (tmpKey[i] != 0) {
+			Key[i]++;
+		}
+		else {
+			Key[i] = 0;
+		}
+	}
 }

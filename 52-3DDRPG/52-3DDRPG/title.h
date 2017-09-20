@@ -16,13 +16,13 @@ private:
 	int Cursor = 300;
 	char Key[256];
 	int SE[4];
+	bool first = false;
 
-	int UpdateKey(void);
 	void nowLoading(void);
 
 public:
 	Title_c();
 	~Title_c();
 
-	void TitleScreen();
+	void TitleScreen(int*);
 };

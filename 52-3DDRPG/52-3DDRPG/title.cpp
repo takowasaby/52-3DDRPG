@@ -16,54 +16,41 @@ Title_c::~Title_c() {
 	DeleteGraph(TitleGraph);
 }
 
-void Title_c::TitleScreen() {
-	nowLoading();
-	for (int i = 0; i < 4; i++) {
-		ChangeVolumeSoundMem(128, SE[i]);
-	}
-	while (CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(FontTitleMain) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE) {
-		ProcessMessage();
-		Sleep(1);
-	}
-	while (1) {
-		DrawGraph(0, 0, TitleGraph, FALSE);
-		DrawFormatStringToHandle(150, 100, GetColor(255, 255, 255), FontTitle, "タイトル");
-		DrawFormatStringToHandle(230, 300, GetColor(255, 255, 255), FontTitleMain, "ニューゲーム");
-		DrawFormatStringToHandle(230, 330, GetColor(255, 255, 255), FontTitleMain, "コンティニュー");
-		DrawFormatStringToHandle(230, 360, GetColor(255, 255, 255), FontTitleMain, "オプション");
-
-		DrawFormatStringToHandle(200, Cursor, GetColor(255, 255, 255), FontTitleMain, "●");
-
-		ScreenFlip();
-		UpdateKey();
-		if (Key[KEY_INPUT_DOWN] == 1) {
-			if (Cursor != 360) { Cursor = Cursor + 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+void Title_c::TitleScreen(int* Key) {
+	if (first) {
+		first = true;
+		nowLoading();
+		for (int i = 0; i < 4; i++) {
+			ChangeVolumeSoundMem(128, SE[i]);
 		}
-		else if (Key[KEY_INPUT_UP] == 1) {
-			if (Cursor != 300) { Cursor = Cursor - 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
-		}
-		else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
-			if (Cursor == 300) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->ニューゲーム*/; }
-			else if (Cursor == 330) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->コンティニュー*/; }
-			else { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->オプション*/; }
-		}
-
-		if (ProcessMessage() == -1) break;
-	}
-}
-
-int Title_c::UpdateKey(void) {
-	char tmpKey[256];
-	GetHitKeyStateAll(tmpKey);
-	for (int i = 0; i < 256; i++) {
-		if (tmpKey[i] != 0) {
-			Key[i]++;
-		}
-		else {
-			Key[i] = 0;
+		while (CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(FontTitleMain) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE) {
+			ProcessMessage();
+			Sleep(1);
 		}
 	}
-	return 0;
+
+	ClearDrawScreen();
+
+	DrawGraph(0, 0, TitleGraph, FALSE);
+	DrawFormatStringToHandle(150, 100, GetColor(255, 255, 255), FontTitle, "タイトル");
+	DrawFormatStringToHandle(230, 300, GetColor(255, 255, 255), FontTitleMain, "ニューゲーム");
+	DrawFormatStringToHandle(230, 330, GetColor(255, 255, 255), FontTitleMain, "コンティニュー");
+	DrawFormatStringToHandle(230, 360, GetColor(255, 255, 255), FontTitleMain, "オプション");
+
+	DrawFormatStringToHandle(200, Cursor, GetColor(255, 255, 255), FontTitleMain, "●");
+
+	ScreenFlip();
+	if (Key[KEY_INPUT_DOWN] == 1) {
+		if (Cursor != 360) { Cursor = Cursor + 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+	}
+	else if (Key[KEY_INPUT_UP] == 1) {
+		if (Cursor != 300) { Cursor = Cursor - 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+	}
+	else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
+		if (Cursor == 300) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->ニューゲーム*/; }
+		else if (Cursor == 330) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->コンティニュー*/; }
+		else { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->オプション*/; }
+	}
 }
 
 void Title_c::nowLoading(void) {

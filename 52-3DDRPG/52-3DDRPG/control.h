@@ -3,11 +3,10 @@
 class Fps_c;
 class Event_c;
 
-
 class Control_c {
 private:
-	int mode = 0;
-	int event_scene, title_scene, game_scene = 0;
+	int mode = 1;
+	int event_scene = 0, title_scene = 2, game_scene = 0;
 	Fps_c* fps;
 	Event_c* events;
 public:
