@@ -1,7 +1,20 @@
 #include "define.h"
 
-Dungeon_c::Dungeon_c()
+Dungeon_c::Dungeon_c() :
+	mscenario(0),
+	mstage(0)
 {
+	// data.GetScenario();
+	//date.GetStage();
+
+	DataLoad(mscenario, mstage);
+	GraphLoad(mscenario, mstage);
+}
+
+Dungeon_c::Dungeon_c(Data_c *d) :
+	data(d)
+{
+
 }
 
 Dungeon_c::~Dungeon_c()
@@ -10,11 +23,6 @@ Dungeon_c::~Dungeon_c()
 
 void Dungeon_c::DungeonAll()
 {
-	mscenario = data.GetScenario();
-	mstage = 0; //date.GetStage();
-	DataLoad(mscenario, mstage);
-	WallSet();
-	GraphLoad(mscenario, mstage);
 	BackDraw();
 	WallDraw();
 	UIDraw();
@@ -60,10 +68,7 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 	}
 EXFILE:
 	FileRead_close(mfp);
-}
 
-void Dungeon_c::WallSet()
-{
 	for (i = 0; i < MAP_SIZE_X - 1; i++) {
 		for (j = 0; j < MAP_SIZE_Y; j++) {
 			switch (wallData[i][j].type) {
@@ -131,10 +136,30 @@ void Dungeon_c::WallSet()
 
 void Dungeon_c::GraphLoad(int scenario, int stage)
 {
+	sprintf_s(gname, "resource/%d.png", scenario);
+	back = LoadGraph(gname);
+
+	for (int i = 0; i < WALL_SIDE; i++) {
+		for (int j = 0; j < WALL_TYPE; j++) {
+			sprintf_s(gname, "resource/%d_%d_%d.png", scenario, i, j);
+			wall[scenario][i][j] = LoadGraph(gname);
+		}
+	}
+}
+
+void Dungeon_c::SetData(Data_c *d)
+{
+	data = d;
 }
 
 void Dungeon_c::BackDraw()
 {
+	DrawGraph(0, 0, back, FALSE);
+}
+
+void Dungeon_c::WallDraw()
+{
+
 }
 
 void Dungeon_c::UIDraw()

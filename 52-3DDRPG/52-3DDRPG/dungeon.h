@@ -7,7 +7,7 @@ const int WALL_SCENARIO = 5;
 const int WALL_SIDE = 10;
 const int WALL_TYPE = 1;
 
-//class Data_c;
+class Data_c;
 
 class Dungeon_c {
 private:
@@ -19,7 +19,7 @@ private:
 	int wall[5][10][1];
 	int back;
 	char gname[32];
-	//	Data_c *data;
+	Data_c *data;
 
 	struct WallData_t {
 		int Nwall = 1, Ewall = 1, Swall = 1, Wwall = 1;
