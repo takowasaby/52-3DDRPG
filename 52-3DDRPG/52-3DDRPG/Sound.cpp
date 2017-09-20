@@ -3,7 +3,7 @@
 Sound::Sound() {}
 Sound::~Sound() 
 {
-	InitSoundMem;
+	InitSoundMem();
 	bn = 0;
 	sn = 0;
 }
@@ -47,7 +47,7 @@ void Sound::PlaySE(char SEgain)
 
 void Sound::SoundFinalize()
 {
-	InitSoundMem;
+	InitSoundMem();
 	bn = 0;
 	sn = 0;
 }

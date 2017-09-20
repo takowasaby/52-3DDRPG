@@ -1,4 +1,5 @@
-#include "define.h"
+#include "DxLib.h"
+#include "title.h"
 
 Title_c::Title_c() {
 	SetUseASyncLoadFlag(TRUE);
@@ -26,14 +27,16 @@ void Title_c::TitleScreen() {
 		Sleep(1);
 	}
 	while (1) {
+		ClearDrawScreen();
 		DrawGraph(0, 0, TitleGraph, FALSE);
-		DrawFormatStringToHandle(200, 80, GetColor(255, 255, 255), FontTitle, "タイトル");
-		DrawFormatStringToHandle(200, 300, GetColor(255, 255, 255), FontTitleMain, "ニューゲーム");
-		DrawFormatStringToHandle(200, 330, GetColor(255, 255, 255), FontTitleMain, "コンティニュー");
-		DrawFormatStringToHandle(200, 360, GetColor(255, 255, 255), FontTitleMain, "オプション");
+		DrawFormatStringToHandle(150, 100, GetColor(255, 255, 255), FontTitle, "タイトル");
+		DrawFormatStringToHandle(230, 300, GetColor(255, 255, 255), FontTitleMain, "ニューゲーム");
+		DrawFormatStringToHandle(230, 330, GetColor(255, 255, 255), FontTitleMain, "コンティニュー");
+		DrawFormatStringToHandle(230, 360, GetColor(255, 255, 255), FontTitleMain, "オプション");
 
 		DrawFormatStringToHandle(200, Cursor, GetColor(255, 255, 255), FontTitleMain, "●");
 
+		ScreenFlip();
 		UpdateKey();
 		if (Key[KEY_INPUT_DOWN] == 1) {
 			if (Cursor != 360) { Cursor = Cursor + 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
@@ -42,9 +45,33 @@ void Title_c::TitleScreen() {
 			if (Cursor != 300) { Cursor = Cursor - 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
 		}
 		else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
-
+			if (Cursor == 300) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->ニューゲーム*/; }
+			else if (Cursor == 330) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->コンティニュー*/; }
+			else { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->オプション*/; }
 		}
 
 		if (ProcessMessage() == -1) break;
 	}
+}
+
+int Title_c::UpdateKey(void) {
+	char tmpKey[256];
+	GetHitKeyStateAll(tmpKey);
+	for (int i = 0; i < 256; i++) {
+		if (tmpKey[i] != 0) {
+			Key[i]++;
+		}
+		else {
+			Key[i] = 0;
+		}
+	}
+	return 0;
+}
+
+void Title_c::nowLoading(void) {
+	ClearDrawScreen();
+	NLGraph = LoadGraph("resource/NOW LOADING.png");
+	DrawGraph(0, 0, NLGraph, FALSE);
+	ScreenFlip();
+	DeleteGraph(NLGraph);
 }
