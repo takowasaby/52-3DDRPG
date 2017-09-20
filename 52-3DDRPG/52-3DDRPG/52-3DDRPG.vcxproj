@@ -161,6 +161,7 @@
     <ClCompile Include="fps.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="option.cpp" />
+    <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="title.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="fps.h" />
     <ClInclude Include="option.h" />
+    <ClInclude Include="TextBox.h" />
     <ClInclude Include="title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
