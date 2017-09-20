@@ -27,13 +27,14 @@ void Title_c::TitleScreen() {
 	}
 	while (1) {
 		DrawGraph(0, 0, TitleGraph, FALSE);
-		DrawFormatStringToHandle(200, 80, GetColor(255, 255, 255), FontTitle, "タイトル");
-		DrawFormatStringToHandle(200, 300, GetColor(255, 255, 255), FontTitleMain, "ニューゲーム");
-		DrawFormatStringToHandle(200, 330, GetColor(255, 255, 255), FontTitleMain, "コンティニュー");
-		DrawFormatStringToHandle(200, 360, GetColor(255, 255, 255), FontTitleMain, "オプション");
+		DrawFormatStringToHandle(150, 100, GetColor(255, 255, 255), FontTitle, "タイトル");
+		DrawFormatStringToHandle(230, 300, GetColor(255, 255, 255), FontTitleMain, "ニューゲーム");
+		DrawFormatStringToHandle(230, 330, GetColor(255, 255, 255), FontTitleMain, "コンティニュー");
+		DrawFormatStringToHandle(230, 360, GetColor(255, 255, 255), FontTitleMain, "オプション");
 
 		DrawFormatStringToHandle(200, Cursor, GetColor(255, 255, 255), FontTitleMain, "●");
 
+		ScreenFlip();
 		UpdateKey();
 		if (Key[KEY_INPUT_DOWN] == 1) {
 			if (Cursor != 360) { Cursor = Cursor + 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
@@ -42,7 +43,9 @@ void Title_c::TitleScreen() {
 			if (Cursor != 300) { Cursor = Cursor - 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
 		}
 		else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
-
+			if (Cursor == 300) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->ニューゲーム*/; }
+			else if (Cursor == 330) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->コンティニュー*/; }
+			else { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->オプション*/; }
 		}
 
 		if (ProcessMessage() == -1) break;
