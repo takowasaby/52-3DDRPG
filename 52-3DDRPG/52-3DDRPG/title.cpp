@@ -1,5 +1,4 @@
-#include "DxLib.h"
-#include "title.h"
+#include "define.h"
 
 Title_c::Title_c() {
 	SetUseASyncLoadFlag(TRUE);
