@@ -2,13 +2,15 @@
 
 #include "DxLib.h"
 #include "control.h"
-#include "fps.h"
-#include "Event.h"
-#include "dungeon.h"
 #include "data.h"
+#include "dungeon.h"
 #include "ECharaData.h"
 #include "EDrawSetting.h"
 #include "EQueueData.h"
+#include "Event.h"
+#include "fps.h"
+#include "option.h"
+#include "title.h"
 #include <math.h>
 #include <map>
 #include <vector>
