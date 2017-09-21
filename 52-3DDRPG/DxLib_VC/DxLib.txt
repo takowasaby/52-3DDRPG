@@ -1,165 +1,165 @@
 //===============================================================================================
 //
-//	�c�w���C�u�����@�����
+//	ＤＸライブラリ　さわり
 //
-//	Ver 3.18a		By �R�c�@�I
+//	Ver 3.18e		By 山田　巧
 //
 //===============================================================================================
 
-// �c�w���C�u�����i�c�w���C�u�����j�Ƃ́H--------------------------------------
+// ＤＸライブラリ（ＤＸライブラリ）とは？--------------------------------------
 
-	�@�c�w���C�u�����Ƃ͂v�������������`�o�h�i�@�\���ߌQ�j�̈��ł���
-	�c�����������w�̋@�\���ȒP���V���v���Ɏg�p�ł���悤�ɍ��ꂽ���C�u�����ł��B
-	(�Ȃ��w�c�w���C�u�����x���Ƃ����Ɓw�c�x�����������w�w�x�̃��C�u����������ł�(����))
+	　ＤＸライブラリとはＷｉｎｄｏｗｓＡＰＩ（機能命令群）の一種である
+	ＤｉｒｅｃｔＸの機能を簡単かつシンプルに使用できるように作られたライブラリです。
+	(なぜ『ＤＸライブラリ』かというと『Ｄ』ｉｒｅｃｔ『Ｘ』のライブラリだからです(安直))
 
-	�@�c�����������w�Ƃ͂v���������������ŃQ�[�����̃}�V���ɑ΂��镉�ׂ̍���
-	�\�t�g�����p�\�ȃ��x���ɂ��邽�߂ɍ��o���ꂽ�f���炵���`�o�h�ł����A
-	�@�����񂻂̎d�l�̕��G���䂦�ɏ��S�҂ɂ͂Ƃ����ɂ����A���ʂƂ��ď��S��
-	�ɂ͈����Ȃ��@�\�Ƃ��Ĉꕔ�̒����㋉�҂݂̂��g���`�o�h�ƂȂ��Ă��܂��܂����B
+	　ＤｉｒｅｃｔＸとはＷｉｎｄｏｗｓ環境でゲーム等のマシンに対する負荷の高い
+	ソフトを実用可能なレベルにするために作り出された素晴らしいＡＰＩですが、
+	如何せんその仕様の複雑さゆえに初心者にはとっつきにくく、結果として初心者
+	には扱えない機能として一部の中級上級者のみが使うＡＰＩとなってしまいました。
 
-	�@�c�w���C�u�����͂��̑f���炵���`�o�h�ł���c�����������w�̕��G�Ȏd�l��
-	��݁A���ɗ��p�҂̕��ɂ킩��₷���`�łc�����������w�̉��b��񋟂���
-	���߂ɍ��ꂽ���C�u�����ł��B���̃��C�u�������g�p���邱�Ƃɂ���Ĕ���
-	�ȒP�ɂc�����������w���g�p�����\�t�g����邱�Ƃ��ł��܂��B
+	　ＤＸライブラリはその素晴らしいＡＰＩであるＤｉｒｅｃｔＸの複雑な仕様を
+	包み、非常に利用者の方にわかりやすい形でＤｉｒｅｃｔＸの恩恵を提供する
+	ために作られたライブラリです。このライブラリを使用することによって非常に
+	簡単にＤｉｒｅｃｔＸを使用したソフトを作ることができます。
 
-	�@����ɂ��̃��C�u�������g�p���邱�Ƃɂ��v�������������\�t�g�v���O������
-	�����ł���v�������������\�t�g�v���O�����̕��G�����������Ă���C�x���g�쓮�^
-	�v���O���������Ƃ����T�O��K�v�Ƃ��Ȃ��v���O������g�ނ��Ƃ��ł��܂��B
+	　さらにこのライブラリを使用することによりＷｉｎｄｏｗｓソフトプログラムの
+	特徴でありＷｉｎｄｏｗｓソフトプログラムの複雑さを助長しているイベント駆動型
+	プログラム方式という概念を必要としないプログラムを組むことができます。
 
 
 
-// �c�w���C�u�������g���ɂ́H--------------------------------------------------
+// ＤＸライブラリを使うには？--------------------------------------------------
 
-	�@�c�w���C�u�����̎n�ߕ��ɂ��Ă͂c�w���C�u�����̃t�H���_�̒��ɂ���whelp�x
-	�t�H���_���́wDxUse.html�x���Q�Ƃ��ĉ������B
+	　ＤＸライブラリの始め方についてはＤＸライブラリのフォルダの中にある『help』
+	フォルダ内の『DxUse.html』を参照して下さい。
 
 			
 
-// �c�w���C�u�����֐����t�@�����X----------------------------------------------
+// ＤＸライブラリ関数リファレンス----------------------------------------------
 
-	�@�c�w���C�u�����̊֐����t�@�����X�ɂ��Ă͂c�w���C�u�����̃t�H���_��
-	���ɂ���whelp�x�t�H���_���́wDxFunc.html�x���Q�Ƃ��ĉ������B
-
-
-
-// ���쌠�Ȃ�------------------------------------------------------------------
-
-	<<��ʓI�Ȏ���>>
-	�@�E�c�w���C�u�����̒��쌠�͎R�c �I���ێ����܂��B
-
-	�@�E�����\�t�g�A�L���\�t�g��킸�A�c�w���C�u�������g�p���č쐬���ꂽ�\�t�g�E�G�A�ɑ΂���
-	�@�@���C�Z���X������(���p���p�E�@�l���p��킸)��ؔ������܂���B
-
-	�@�E�c�w���C�u������p�������Ƃɂ���Đ������@���Ȃ鑹�Q�ɑ΂��Ă����쌠�ۗL�҂͂���
-	�@�@�ۏ�`������ؕ���Ȃ����̂Ƃ��܂��B
-
-	�@�E���쌠�ۗL�҂͂c�w���C�u�����ɕs�����L���Ă��A������������`���𕉂��܂���B
-
-	�@�E�c�w���C�u�������g�p���č쐬���ꂽ�\�t�g�E�G�A�ɂc�w���C�u�������g�p�����|���L�ڂ���
-	�@�@�K�v�͂���܂���B(�L�ڂ����Ί������ł���)
+	　ＤＸライブラリの関数リファレンスについてはＤＸライブラリのフォルダの
+	中にある『help』フォルダ内の『DxFunc.html』を参照して下さい。
 
 
-	�@�E���L�̋@�\���g�p�����ꍇ�́A�z�z����\�t�g�E�G�A�̃h�L�������g���Ɋe�@�\�ɉ�����
-	�@�@���쌠�\�����܂߂Ă��������B
 
-	�@�@JPEG �摜��ǂ݂��ދ@�\���g�p�����ꍇ
+// 著作権など------------------------------------------------------------------
 
-	�@�@�@libjpeg�@Copyright (C) 1991-2013, Thomas G. Lane, Guido Vollbeding.
+	<<一般的な事項>>
+	　・ＤＸライブラリの著作権は山田 巧が保持します。
 
+	　・無料ソフト、有料ソフト問わず、ＤＸライブラリを使用して作成されたソフトウエアに対する
+	　　ライセンス料等は(商用利用・法人利用問わず)一切発生しません。
 
-	�@�@PNG �摜��ǂ݂��ދ@�\���g�p�����ꍇ
+	　・ＤＸライブラリを用いたことによって生じた如何なる損害に対しても著作権保有者はその
+	　　保障義務を一切負わないものとします。
 
-	�@�@�@libpng�@Copyright (C) 2004, 2006-2012 Glenn Randers-Pehrson.
-	�@�@�@zlib�@Copyright (C) 1995-2012 Jean-loup Gailly and Mark Adler.
+	　・著作権保有者はＤＸライブラリに不備が有っても、それを訂正する義務を負いません。
 
-
-	�@�@TIFF �摜��ǂݍ��ދ@�\���g�p�����ꍇ
-
-	�@�@�@libtiff�@Copyright (c) 1988-1997 Sam Leffler
-	�@�@�@libtiff�@Copyright (c) 1991-1997 Silicon Graphics, Inc.
-
-�@�@�@
-	�@�@Ogg Vorbis �����f�[�^��ǂݍ��ދ@�\�A���� Ogg Theora ����f�[�^��ǂݍ��ދ@�\���g�p�����ꍇ
-
-	�@�@�@Copyright (C) 2002-2009 Xiph.org Foundation
-
-	�@�@�@Redistribution and use in source and binary forms, with or without
-	�@�@�@modification, are permitted provided that the following conditions
-	�@�@�@are met:
-
-	�@�@�@- Redistributions of source code must retain the above copyright
-	�@�@�@notice, this list of conditions and the following disclaimer.
-
-	�@�@�@- Redistributions in binary form must reproduce the above copyright
-	�@�@�@notice, this list of conditions and the following disclaimer in the
-	�@�@�@documentation and/or other materials provided with the distribution.
-
-	�@�@�@- Neither the name of the Xiph.org Foundation nor the names of its
-	�@�@�@contributors may be used to endorse or promote products derived from
-	�@�@�@this software without specific prior written permission.
-
-	�@�@�@THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-	�@�@�@``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-	�@�@�@LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-	�@�@�@A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE FOUNDATION
-	�@�@�@OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-	�@�@�@SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-	�@�@�@LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-	�@�@�@DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	�@�@�@THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-	�@�@�@(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-	�@�@�@OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+	　・ＤＸライブラリを使用して作成されたソフトウエアにＤＸライブラリを使用した旨を記載する
+	　　必要はありません。(記載されれば嬉しいですが)
 
 
-	�@�@�֐� GetRand ���g�p�����ꍇ
+	　・下記の機能を使用した場合は、配布するソフトウエアのドキュメント等に各機能に応じた
+	　　著作権表示を含めてください。
 
-	�@�@�@Mersenne Twister
-	�@�@�@Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
-	�@�@�@All rights reserved.
+	　　JPEG 画像を読みこむ機能を使用した場合
 
-	�@�@�@Redistribution and use in source and binary forms, with or without
-	�@�@�@modification, are permitted provided that the following conditions
-	�@�@�@are met:
-
-	�@�@�@1. Redistributions of source code must retain the above copyright
-	�@�@�@notice, this list of conditions and the following disclaimer.
-
-	�@�@�@2. Redistributions in binary form must reproduce the above copyright
-	�@�@�@notice, this list of conditions and the following disclaimer in the
-	�@�@�@documentation and/or other materials provided with the distribution.
-
-	�@�@�@3. The name of the author may not be used to endorse or promote products
-	�@�@�@derived from this software without specific prior written permission.
-
-	�@�@�@THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
-	�@�@�@IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-	�@�@�@OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-	�@�@�@IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
-	�@�@�@INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
-	�@�@�@NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-	�@�@�@DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	�@�@�@THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-	�@�@�@(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
-	�@�@�@THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+	　　　libjpeg　Copyright (C) 1991-2013, Thomas G. Lane, Guido Vollbeding.
 
 
-	�@�@PMD+VMD�t�@�C���̓ǂݍ��݂ŕ������Z���g�p�����ꍇ
+	　　PNG 画像を読みこむ機能を使用した場合
 
-	�@�@�@Bullet�@Copyright (c) 2003-2006 Erwin Coumans.
-
-
-	<<�c�w���C�u�����̃��C�u�����t�@�C����\�[�X�R�[�h�̍Ĕz�z�ɂ���>>
-		�@�c�w���C�u�����̃��C�u�����t�@�C��( �g���q�� lib �� a �̃t�@�C�� )��A�v���O�����\�[�X�t�@�C��
-		�@( DxGraphics.cpp �� DxLib.h �Ȃǂ̃t�@�C�� )��z�z����ꍇ�́A�ꕔ�A�S����킸�ȉ��̒��쌠�\����
-		�@�z�z���ƂƂ��ɒ񋟂���镶���A�܂��͑��̎����Ɋ܂߂ĉ������B
-
-	�@�@�@DX Library Copyright (C) 2001-2014 Takumi Yamada.
+	　　　libpng　Copyright (C) 2004, 2006-2012 Glenn Randers-Pehrson.
+	　　　zlib　Copyright (C) 1995-2012 Jean-loup Gailly and Mark Adler.
 
 
-// �A��------------------------------------------------------------------------
+	　　TIFF 画像を読み込む機能を使用した場合
 
-	�@�Ȃɂ����C�t���̓_���������܂����玟�̃��[���A�h���X�܂ŘA�������肢���܂��B
+	　　　libtiff　Copyright (c) 1988-1997 Sam Leffler
+	　　　libtiff　Copyright (c) 1991-1997 Silicon Graphics, Inc.
 
-		BQE00322@nifty.ne.jp	 �R�c�@�I
+　　　
+	　　Ogg Vorbis 音声データを読み込む機能、又は Ogg Theora 動画データを読み込む機能を使用した場合
+
+	　　　Copyright (C) 2002-2009 Xiph.org Foundation
+
+	　　　Redistribution and use in source and binary forms, with or without
+	　　　modification, are permitted provided that the following conditions
+	　　　are met:
+
+	　　　- Redistributions of source code must retain the above copyright
+	　　　notice, this list of conditions and the following disclaimer.
+
+	　　　- Redistributions in binary form must reproduce the above copyright
+	　　　notice, this list of conditions and the following disclaimer in the
+	　　　documentation and/or other materials provided with the distribution.
+
+	　　　- Neither the name of the Xiph.org Foundation nor the names of its
+	　　　contributors may be used to endorse or promote products derived from
+	　　　this software without specific prior written permission.
+
+	　　　THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+	　　　``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+	　　　LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+	　　　A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE FOUNDATION
+	　　　OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+	　　　SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+	　　　LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+	　　　DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+	　　　THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	　　　(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+	　　　OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+	　　関数 GetRand を使用した場合
+
+	　　　Mersenne Twister
+	　　　Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
+	　　　All rights reserved.
+
+	　　　Redistribution and use in source and binary forms, with or without
+	　　　modification, are permitted provided that the following conditions
+	　　　are met:
+
+	　　　1. Redistributions of source code must retain the above copyright
+	　　　notice, this list of conditions and the following disclaimer.
+
+	　　　2. Redistributions in binary form must reproduce the above copyright
+	　　　notice, this list of conditions and the following disclaimer in the
+	　　　documentation and/or other materials provided with the distribution.
+
+	　　　3. The name of the author may not be used to endorse or promote products
+	　　　derived from this software without specific prior written permission.
+
+	　　　THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+	　　　IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+	　　　OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+	　　　IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+	　　　INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+	　　　NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+	　　　DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+	　　　THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	　　　(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+	　　　THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+	　　PMD+VMDファイルの読み込みで物理演算を使用した場合
+
+	　　　Bullet　Copyright (c) 2003-2006 Erwin Coumans.
+
+
+	<<ＤＸライブラリのライブラリファイルやソースコードの再配布について>>
+		　ＤＸライブラリのライブラリファイル( 拡張子が lib や a のファイル )や、プログラムソースファイル
+		　( DxGraphics.cpp や DxLib.h などのファイル )を配布する場合は、一部、全部問わず以下の著作権表示を
+		　配布物とともに提供される文書、または他の資料に含めて下さい。
+
+	　　　DX Library Copyright (C) 2001-2014 Takumi Yamada.
+
+
+// 連絡------------------------------------------------------------------------
+
+	　なにかお気付きの点がございましたら次のメールアドレスまで連絡をお願いします。
+
+		BQE00322@nifty.ne.jp	 山田　巧
 		http://dxlib.o.oo7.jp/index.html
 
