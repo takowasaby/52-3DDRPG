@@ -11,9 +11,13 @@ private:
 	Fps_c* fps;
 	Event_c* events;
 	Title_c* Title;
+
+	bool titleStart = false;
+	bool titleEnd = false;
+
 public:
-	Control_c();		//繧ｳ繝ｳ繧ｹ繝医Λ繧ｯ繧ｿ
-	~Control_c();		//繝�繧ｹ繝医Λ繧ｯ繧ｿ
+	Control_c();		//コンストラクタ
+	~Control_c();		//デストラクタ
 
 	void All();
 };

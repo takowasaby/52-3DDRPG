@@ -2,19 +2,19 @@
 
 void option_c::Ini()
 {
-	//BGMã®éŸ³é‡
-	//SEã®éŸ³é‡
-	//ã‚­ãƒ¼ã‚³ãƒ³ãƒ•ã‚£ã‚°
-	//æˆ¦é—˜ãƒ¢ãƒ¼ãƒ‰
-	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰
+	//BGM‚Ì‰¹—Ê
+	//SE‚Ì‰¹—Ê
+	//ƒL[ƒRƒ“ƒtƒBƒO
+	//í“¬ƒ‚[ƒh
+	//ƒEƒBƒ“ƒhƒEƒ‚[ƒh
 }
 
 void option_c::main()
 {
-	backdraw();	//èƒŒæ™¯æå†™
-	itemdraw();	//é …ç›®æå†™
-	configdraw();	//è¨­å®šæå†™
-	cursol();	//ã‚«ãƒ¼ã‚½ãƒ«
+	backdraw();	//”wŒi•`Ê
+	itemdraw();	//€–Ú•`Ê
+	configdraw();	//İ’è•`Ê
+	cursol();	//ƒJ[ƒ\ƒ‹
 }
 
 void option_c::backdraw()
