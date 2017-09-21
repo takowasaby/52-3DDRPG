@@ -18,6 +18,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	while (!ProcessMessage() && !ClearDrawScreen() && !GetHitKeyStateAll(Key) && !Key[KEY_INPUT_ESCAPE]) {
 		//↑ﾒｯｾｰｼﾞ処理         ↑画面をｸﾘｱ          ↑ｷｰﾎﾞｰﾄﾞ入力状態取得       ↑ESCが押されていない
 
+		ClearDrawScreen();
+
 		control.All();
 
 		ScreenFlip();//裏画面を表画面に反映

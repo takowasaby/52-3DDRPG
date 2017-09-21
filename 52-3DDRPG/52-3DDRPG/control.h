@@ -2,6 +2,7 @@
 
 class Fps_c;
 class Event_c;
+class Title_c;
 
 class Control_c {
 private:
@@ -9,9 +10,10 @@ private:
 	int event_scene = 0, title_scene = 2, game_scene = 0;
 	Fps_c* fps;
 	Event_c* events;
+	Title_c* Title;
 public:
-	Control_c();		//コンストラクタ
-	~Control_c();		//デストラクタ
+	Control_c();		//繧ｳ繝ｳ繧ｹ繝医Λ繧ｯ繧ｿ
+	~Control_c();		//繝�繧ｹ繝医Λ繧ｯ繧ｿ
 
 	void All();
 };

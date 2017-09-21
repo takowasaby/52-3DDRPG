@@ -1,15 +1,6 @@
 #include "define.h"
 
 Title_c::Title_c() {
-	SetUseASyncLoadFlag(TRUE);
-	FontTitle = CreateFontToHandle(NULL, 80, 8, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT, 3);
-	FontTitleMain = CreateFontToHandle(NULL, 24, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT);
-	SE[DECISION] = LoadSoundMem("resource/sounds/SE/common/Decision1.ogg");
-	SE[CANCEL] = LoadSoundMem("resource/sounds/SE/common/Cancel2.ogg");
-	SE[CURSOR] = LoadSoundMem("resource/sounds/SE/common/Cursor2.ogg");
-	SE[BUZZER] = LoadSoundMem("resource/sounds/SE/common/Buzzer1.ogg");
-	TitleGraph = LoadGraph("resource/title.jpg");
-	SetUseASyncLoadFlag(FALSE);
 }
 
 Title_c::~Title_c() {
@@ -17,8 +8,19 @@ Title_c::~Title_c() {
 }
 
 void Title_c::TitleScreen(int* Key) {
-	if (first) {
+	if (first == false) {
 		first = true;
+
+		SetUseASyncLoadFlag(TRUE);
+		FontTitle = CreateFontToHandle(NULL, 80, 8, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT, 3);
+		FontTitleMain = CreateFontToHandle(NULL, 24, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT);
+		SE[DECISION] = LoadSoundMem("resource/sounds/SE/common/Decision1.ogg");
+		SE[CANCEL] = LoadSoundMem("resource/sounds/SE/common/Cancel2.ogg");
+		SE[CURSOR] = LoadSoundMem("resource/sounds/SE/common/Cursor2.ogg");
+		SE[BUZZER] = LoadSoundMem("resource/sounds/SE/common/Buzzer1.ogg");
+		TitleGraph = LoadGraph("resource/title.jpg");
+		SetUseASyncLoadFlag(FALSE);
+		
 		nowLoading();
 		for (int i = 0; i < 4; i++) {
 			ChangeVolumeSoundMem(128, SE[i]);
@@ -29,17 +31,14 @@ void Title_c::TitleScreen(int* Key) {
 		}
 	}
 
-	ClearDrawScreen();
-
 	DrawGraph(0, 0, TitleGraph, FALSE);
-	DrawFormatStringToHandle(150, 100, GetColor(255, 255, 255), FontTitle, "ƒ^ƒCƒgƒ‹");
-	DrawFormatStringToHandle(230, 300, GetColor(255, 255, 255), FontTitleMain, "ƒjƒ…[ƒQ[ƒ€");
-	DrawFormatStringToHandle(230, 330, GetColor(255, 255, 255), FontTitleMain, "ƒRƒ“ƒeƒBƒjƒ…[");
-	DrawFormatStringToHandle(230, 360, GetColor(255, 255, 255), FontTitleMain, "ƒIƒvƒVƒ‡ƒ“");
+	DrawFormatStringToHandle(150, 100, GetColor(255, 255, 255), FontTitle, "ã‚¿ã‚¤ãƒˆãƒ«");
+	DrawFormatStringToHandle(230, 300, GetColor(255, 255, 255), FontTitleMain, "ãƒ‹ãƒ¥ãƒ¼ã‚²ãƒ¼ãƒ ");
+	DrawFormatStringToHandle(230, 330, GetColor(255, 255, 255), FontTitleMain, "ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼");
+	DrawFormatStringToHandle(230, 360, GetColor(255, 255, 255), FontTitleMain, "ã‚ªãƒ—ã‚·ãƒ§ãƒ³");
 
-	DrawFormatStringToHandle(200, Cursor, GetColor(255, 255, 255), FontTitleMain, "œ");
+	DrawFormatStringToHandle(200, Cursor, GetColor(255, 255, 255), FontTitleMain, "â—");
 
-	ScreenFlip();
 	if (Key[KEY_INPUT_DOWN] == 1) {
 		if (Cursor != 360) { Cursor = Cursor + 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
@@ -47,9 +46,9 @@ void Title_c::TitleScreen(int* Key) {
 		if (Cursor != 300) { Cursor = Cursor - 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
-		if (Cursor == 300) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene‘JˆÚ-->ƒjƒ…[ƒQ[ƒ€*/; }
-		else if (Cursor == 330) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene‘JˆÚ-->ƒRƒ“ƒeƒBƒjƒ…[*/; }
-		else { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene‘JˆÚ-->ƒIƒvƒVƒ‡ƒ“*/; }
+		if (Cursor == 300) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Sceneé·ç§»-->ãƒ‹ãƒ¥ãƒ¼ã‚²ãƒ¼ãƒ */; }
+		else if (Cursor == 330) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Sceneé·ç§»-->ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼*/; }
+		else { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Sceneé·ç§»-->ã‚ªãƒ—ã‚·ãƒ§ãƒ³*/; }
 	}
 }
 

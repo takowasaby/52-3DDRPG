@@ -7,31 +7,33 @@ Control_c::Control_c()
 {
 	events = new Event_c;
 	fps = new Fps_c;
+	Title = new Title_c;
 }
 
 Control_c::~Control_c()
 {
 	delete events;
 	delete fps;
+	delete Title;
 }
 
 void Control_c::All() {
+
 	UpdateKey();
 
-	fps->Update();	//XV
-	fps->Draw();	//fps•\Ž¦
+	fps->Update();	//æ›´æ–°
 
 	switch (mode) {
 	case event:
 		switch (event_scene) {
 		case conversation:
-			//—§‚¿ŠG‰ï˜b
+			//ç«‹ã¡çµµä¼šè©±
 			break;
 		case opening:
-			//ƒI[ƒvƒjƒ“ƒO
+			//ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°
 			break;
 		case ending:
-			//ƒGƒ“ƒfƒBƒ“ƒO
+			//ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°
 			break;
 		}
 		break;
@@ -39,23 +41,20 @@ void Control_c::All() {
 	case title:
 		switch (title_scene) {
 		case gameover:
-			//ƒQ[ƒ€ƒI[ƒo[
+			//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
 			break;
 		case scenario: 
-			//ƒVƒiƒŠƒI‘I‘ð‰æ–Ê
+			//ã‚·ãƒŠãƒªã‚ªé¸æŠžç”»é¢
 			break;
-		case start: {
-			//ƒ^ƒCƒgƒ‹‰æ–Ê
-			Title_c Title;
-			Title.TitleScreen(Key);
-			delete &Title;
-			}
+		case start:
+			//ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
+			Title->TitleScreen(Key);
 			break;
 		case save_load:
-			//ƒZ[ƒuEƒ[ƒh
+			//ã‚»ãƒ¼ãƒ–ãƒ»ãƒ­ãƒ¼ãƒ‰
 			break;
 		case option:
-			//ƒIƒvƒVƒ‡ƒ“
+			//ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 			break;
 		}
 		break;
@@ -63,22 +62,23 @@ void Control_c::All() {
 	case game:
 		switch (game_scene) {
 		case dungeon:
-			//ƒ_ƒ“ƒWƒ‡ƒ“’Tõ
+			//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æŽ¢ç´¢
 			break;
 		case room:
-			//•”‰®’Tõ
+			//éƒ¨å±‹æŽ¢ç´¢
 			break;
 		case battle:
-			//ƒoƒgƒ‹
+			//ãƒãƒˆãƒ«
 			break;
 		case menu:
-			//ƒƒjƒ…[
+			//ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 			break;
 		}
 		break;
 	}
 
-	fps->Wait();	//‘Ò‹@
+	fps->Draw();	//fpsè¡¨ç¤º
+	fps->Wait();	//å¾…æ©Ÿ
 }
 
 void UpdateKey(void) {
