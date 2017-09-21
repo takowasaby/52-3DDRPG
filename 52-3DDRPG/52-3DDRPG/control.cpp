@@ -19,7 +19,7 @@ Control_c::~Control_c()
 
 void Control_c::All() {
 
-	UpdateKey();
+	UpdateKey();	//キー入力の検知
 
 	fps->Update();	//更新
 
