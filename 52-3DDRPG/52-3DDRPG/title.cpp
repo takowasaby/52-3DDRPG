@@ -8,7 +8,9 @@ Title_c::Title_c() {
 	SE[CANCEL] = LoadSoundMem("resource/sounds/SE/common/Cancel2.ogg");
 	SE[CURSOR] = LoadSoundMem("resource/sounds/SE/common/Cursor2.ogg");
 	SE[BUZZER] = LoadSoundMem("resource/sounds/SE/common/Buzzer1.ogg");
+	NLGraph = LoadGraph("resource/NOW LOADING.png");
 	TitleGraph = LoadGraph("resource/title.jpg");
+	TempScreen = MakeScreen(640, 480, FALSE);
 	SetUseASyncLoadFlag(FALSE);
 }
 
@@ -19,17 +21,26 @@ Title_c::~Title_c() {
 	DeleteSoundMem(SE[CANCEL]);
 	DeleteSoundMem(SE[CURSOR]);
 	DeleteSoundMem(SE[BUZZER]);
+	DeleteGraph(NLGraph);
 	DeleteGraph(TitleGraph);
+	DeleteGraph(TempScreen);
 }
 
-bool Title_c::TitleScreen(int* Key) {
-	nowLoading();
-	for (int i = 0; i < 4; i++) {
-		ChangeVolumeSoundMem(128, SE[i]);
+bool Title_c::TitleScreen(int* Key, int* title_scene) {
+	if (first == true) {
+		first = false;
+		for (int i = 0; i < 4; i++) {
+			ChangeVolumeSoundMem(128, SE[i]);
+		}
+		while (!ProcessMessage() && (CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(FontTitleMain) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE)) {
+			nowLoading();
+			Sleep(1);
+		}
 	}
-	while (CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(FontTitleMain) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE) {
-		ProcessMessage();
-		Sleep(1);
+
+	if (bright < 255) {
+		bright = bright + 5;
+		SetDrawBright(bright, bright, bright);
 	}
 
 	DrawGraph(0, 0, TitleGraph, FALSE);
@@ -47,16 +58,55 @@ bool Title_c::TitleScreen(int* Key) {
 		if (Cursor != 300) { Cursor = Cursor - 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
-		if (Cursor == 300) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->ニューゲーム*/; return true; }
-		else if (Cursor == 330) { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->コンティニュー*/; return true; }
-		else { PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK); /*Scene遷移-->オプション*/; return true; }
+		if (Cursor == 300) {
+			PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
+			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
+			do {
+				bright = bright - 5;
+				SetDrawBright(bright, bright, bright);
+				ClearDrawScreen();
+				DrawGraph(0, 0, TempScreen, FALSE);
+				ScreenFlip();
+			} while (bright > 0);
+			SetDrawBright(255, 255, 255);
+			*title_scene = 1; //ニューゲーム(シナリオ選択)
+			return true;
+		}
+		else if (Cursor == 330) {
+			PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
+			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
+			do {
+				bright = bright - 5;
+				SetDrawBright(bright, bright, bright);
+				ClearDrawScreen();
+				DrawGraph(0, 0, TempScreen, FALSE);
+				ScreenFlip();
+			} while (bright > 0);
+			SetDrawBright(255, 255, 255);
+			*title_scene = 3; //コンティニュー(セーブ･ロード)
+			return true;
+		}
+		else {
+			PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
+			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
+			do {
+				bright = bright - 5;
+				SetDrawBright(bright, bright, bright);
+				ClearDrawScreen();
+				DrawGraph(0, 0, TempScreen, FALSE);
+				ScreenFlip();
+			} while (bright > 0);
+			SetDrawBright(255, 255, 255);
+			*title_scene = 4; //オプション
+			return true;
+		}
 	}
+
+	return false;
 }
 
 void Title_c::nowLoading(void) {
 	ClearDrawScreen();
-	NLGraph = LoadGraph("resource/NOW LOADING.png");
 	DrawGraph(0, 0, NLGraph, FALSE);
 	ScreenFlip();
-	DeleteGraph(NLGraph);
 }

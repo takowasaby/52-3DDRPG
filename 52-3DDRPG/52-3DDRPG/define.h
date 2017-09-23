@@ -11,9 +11,8 @@
 #include "Event.h"
 #include "fps.h"
 #include "option.h"
-#include "title.h"
 #include "TextBox.h"
-
+#include "title.h"
 #include <math.h>
 #include <map>
 #include <vector>

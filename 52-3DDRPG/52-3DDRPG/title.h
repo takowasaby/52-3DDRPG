@@ -12,11 +12,14 @@ private:
 
 	int NLGraph;
 	int TitleGraph;
+	
+	int TempScreen;
 
 	int Cursor = 300;
 	char Key[256];
 	int SE[4];
-	bool first = false;
+	bool first = true;
+	int bright = 0;
 
 	void nowLoading(void);
 
@@ -24,5 +27,5 @@ public:
 	Title_c();
 	~Title_c();
 
-	bool TitleScreen(int*);
+	bool TitleScreen(int*, int*);
 };

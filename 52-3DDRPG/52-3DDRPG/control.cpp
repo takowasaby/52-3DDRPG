@@ -43,19 +43,22 @@ void Control_c::All() {
 			break;
 		case scenario: 
 			//シナリオ選択画面
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "シナリオ選択"); //デバッグ用
 			break;
 		case start: {
 			//タイトル画面
 			if (titleStart == false) { titleStart = true; Title = new Title_c; }
-			titleEnd = Title->TitleScreen(Key);
-			if (titleEnd == true) { titleEnd = false; delete &Title; }
+			titleEnd = Title->TitleScreen(Key, &title_scene);
+			if (titleEnd == true) { titleEnd = false; delete Title; }
 			}
 			break;
 		case save_load:
 			//セーブ・ロード
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "セーブ･ロード"); //デバッグ用
 			break;
 		case option:
 			//オプション
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "オプション"); //デバッグ用
 			break;
 		}
 		break;
