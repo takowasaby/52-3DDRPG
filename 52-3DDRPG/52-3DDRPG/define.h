@@ -32,12 +32,3 @@ const int EVENT_ACTION_DARK = 64;
 const int EVENT_ACTION_TEXTCLEAR = 128;
 const int EVENT_ACTION_WAIT = 256;
 const int EVENT_ACTION_END =512;
-
-//TextBox関連の宣言------------------------------------
-//ウィンドウモードに関する列挙体
-enum WindowMode {
-	readMode,	//選択できないメッセージ用
-	pageMode,	//上下で選択、左右でページ移動
-	scrollMode	//スクロールで移動
-};
-//-------------------------------------------------------

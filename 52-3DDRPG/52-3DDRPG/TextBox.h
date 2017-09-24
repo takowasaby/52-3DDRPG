@@ -4,6 +4,12 @@ class Data_c; //仮
 class TextBox
 {
 private:
+	//ウィンドウモードに関する列挙体
+	enum WindowMode {
+		readMode,	//選択できないメッセージ用
+		pageMode,	//上下で選択、左右でページ移動
+		scrollMode	//スクロールで移動
+	};
 	WindowMode windowMode;
 
 	Data_c* originalData;		// データクラスから一覧を読み込む用
