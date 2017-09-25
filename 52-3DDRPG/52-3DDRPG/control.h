@@ -11,11 +11,17 @@ private:
 
 
 
+	Option_c* Option;
+
 public:
 	Control_c();		//コンストラクタ
 	~Control_c();		//デストラクタ
 
 	void All();
+
+	void SetMode(int ChangeTo);
+	void SetTitle(int ChangeTo);
+	void SetGame(int ChangeTo);
 };
 
 typedef enum {

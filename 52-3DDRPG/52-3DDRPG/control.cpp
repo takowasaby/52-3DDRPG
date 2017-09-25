@@ -1,9 +1,11 @@
 #include"define.h"
 
 Control_c::Control_c() {
+	Option = new Option_c;
 }
 
 Control_c::~Control_c() {
+	delete &Option;
 }
 
 void Control_c::All() {
@@ -40,18 +42,15 @@ void Control_c::All() {
 		case scenario: 
 			//シナリオ選択画面
 			break;
-		case start: /*{
+		case start:
 			//タイトル画面
-			Title_c Title;
-			Title.TitleScreen();
-			delete &Title;
-			}*/
 			break;
 		case save_load:
 			//セーブ・ロード
 			break;
 		case option:
 			//オプション
+			Option->Main();
 			break;
 		}
 		break;
@@ -81,4 +80,19 @@ void Control_c::All() {
 	*/
 	
 	
+}
+
+void Control_c::SetMode(int ChangeTo)
+{
+	mode = ChangeTo;
+}
+
+void Control_c::SetTitle(int ChangeTo)
+{
+	title_scene = ChangeTo;
+}
+
+void Control_c::SetGame(int ChangeTo)
+{
+	game_scene = ChangeTo;
 }
