@@ -9,7 +9,7 @@ Option_c::Option_c()
 
 Option_c::~Option_c()
 {
-	delete &control;
+	delete control;
 }
 
 void Option_c::Main()
@@ -160,4 +160,9 @@ int Option_c::GetBattleType()
 bool Option_c::GetWindowMode()
 {
 	return WindowMode;
+}
+
+void Option_c::SetOptionFlag(bool flag)
+{
+	option_flag = flag;
 }

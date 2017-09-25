@@ -23,4 +23,6 @@ public:
 	int GetSEVol();
 	int GetBattleType();
 	bool GetWindowMode();
+
+	void SetOptionFlag(bool flag);
 };

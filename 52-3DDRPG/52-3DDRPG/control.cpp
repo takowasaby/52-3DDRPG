@@ -5,7 +5,7 @@ Control_c::Control_c() {
 }
 
 Control_c::~Control_c() {
-	delete &Option;
+	delete Option;
 }
 
 void Control_c::All() {
@@ -44,6 +44,12 @@ void Control_c::All() {
 			break;
 		case start:
 			//タイトル画面
+
+			/*when player jump into option from "TITLE", option_flag = false;
+				Option->SetOptionFlag(false);
+				title_scene = option;
+			*/
+
 			break;
 		case save_load:
 			//セーブ・ロード
@@ -68,6 +74,13 @@ void Control_c::All() {
 			break;
 		case menu:
 			//メニュー
+
+			/*when player jump into option from here, option_flag = true;
+				Option->SetOptionFlag(false);
+				mode = title;
+				title_scene = option;
+			*/
+
 			break;
 		}
 		break;
