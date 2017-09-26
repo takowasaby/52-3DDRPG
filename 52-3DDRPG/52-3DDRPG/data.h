@@ -1,21 +1,7 @@
 #pragma once
 
-#include <string>
+//#include <string>
 using namespace std;
-
-const int SCENARIO_SIZE = 5;
-const int STAGE_SIZE = 5;
-const int ITEM_TYPE_SIZE = 3;
-const int ITEM_SIZE = 32;
-const int ITEM_FLAG_MAX = 99;
-const int NAME_SIZE = 32;
-const int SKILL_CODE_SIZE = 8;
-const int ITEM_SIZE = 64;
-const int SOUBI_SIZE = 64;
-const int SOUBI_FLAG_MAX = 99;
-const int SKILL_SIZE = 64;
-const int CHARACTER_SIZE = 4;
-const int EVENT_SIZE = 64;
 
 class Data_c {
 private:
@@ -33,7 +19,7 @@ private:
 		int MP;					//スキルの消費MP
 		int effect;				//スキルの効果(0:HP回復、1:MP回復、2:STR上昇、3:VIT上昇、4:AGI上昇、5:INT上昇、6:ダメージ)
 		int status;				//スキルの効果に依存されるステータス
-		double magnification;	//スキル効果のステータス依存の倍率
+		double magnification;	//スキル効果のステータス依存の倍率*1000
 		int area;				//スキル効果の範囲(0:単体、1:全体)
 		char explain[64];		//スキルの説明文
 	};
@@ -91,18 +77,18 @@ public:
 	void CalcSoubiFlag(int num, int vary);
 	void SetCharacterFlag(int num, int vary);
 
-	int GetItemPoint(int num, int sort);
-	string GetItemText(int num, int sort);
+	int GetItemPoint(int num, int sort);			//0:num 1:type 2:effect1 3:effect2 4:point1 5:point2 6:area
+	string GetItemText(int num, int sort);			//0:name 1:explain
 
-	int GetSoubiPoint(int num, int sort);
-	string GetSoubiText(int num, int sort);
+	int GetSoubiPoint(int num, int sort);			//0:num 1:type 2:effect 3:point 4:area
+	string GetSoubiText(int num, int sort);			//0:name 1:explain
 
-	int GetSkillPoint(int num, int sort);
-	string GetSkillText(int num, int sort);
+	int GetSkillPoint(int num, int sort);			//0:num 1:MP 2:effect 3:status 4:magnification 5:area
+	string GetSkillText(int num, int sort);			//0:name 1:explain
 
-	int GetCharacterPoint(int num, int sort);
-	int GetCharacterSkillCode(int num, int order);
-	string GetCharacterName(int num);
+	int GetCharacterPoint(int num, int sort);		//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image
+	int GetCharacterSkillCode(int num, int order);	
+	string GetCharacterName(int num);				
 
 	int GetScenario();
 	int GetDungeonX();

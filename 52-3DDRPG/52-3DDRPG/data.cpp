@@ -49,15 +49,15 @@ void Data_c::ItemLoad(int scenario)
 			}
 		}
 		switch (num) {
-		case 0: item[n].num = atoi(inputc);		break;
-		case 1: strcpy(item[n].name, inputc);	break;
-		case 2: item[n].type = atoi(inputc);	break;
-		case 3: item[n].effect1 = atoi(inputc);	break;
-		case 4: item[n].point1 = atoi(inputc);	break;
-		case 5: item[n].area = atoi(inputc);	break;
-		case 6: item[n].effect2 = atoi(inputc);	break;
-		case 7: item[n].point2 = atoi(inputc);	break;
-		case 8: strcpy(item[n].explain, inputc); break;
+		case 0: item[n].num = atoi(inputc);			break;
+		case 1: strcpy_s(item[n].name, inputc);		break;
+		case 2: item[n].type = atoi(inputc);		break;
+		case 3: item[n].effect1 = atoi(inputc);		break;
+		case 4: item[n].point1 = atoi(inputc);		break;
+		case 5: item[n].area = atoi(inputc);		break;
+		case 6: item[n].effect2 = atoi(inputc);		break;
+		case 7: item[n].point2 = atoi(inputc);		break;
+		case 8: strcpy_s(item[n].explain, inputc);	break;
 		}
 		num++;
 		if (num == 9) {
@@ -104,12 +104,12 @@ void Data_c::SoubiLoad(int scenario)
 		}
 		switch (num) {
 		case 0: soubi[n].num = atoi(inputc);		break;
-		case 1: strcpy(soubi[n].name, inputc);		break;
+		case 1: strcpy_s(soubi[n].name, inputc);	break;
 		case 2: soubi[n].type = atoi(inputc);		break;
 		case 3: soubi[n].effect = atoi(inputc);		break;
 		case 4: soubi[n].point = atoi(inputc);		break;
 		case 5: soubi[n].area = atoi(inputc);		break;
-		case 6: strcpy(soubi[n].explain, inputc);	break;
+		case 6: strcpy_s(soubi[n].explain, inputc);	break;
 		}
 		num++;
 		if (num == 7) {
@@ -156,13 +156,13 @@ void Data_c::SkillLoad(int scenario)
 		}
 		switch (num) {
 		case 0: skill[n].num = atoi(inputc);			break;
-		case 1: strcpy(skill[n].name, inputc);			break;
+		case 1: strcpy_s(skill[n].name, inputc);		break;
 		case 2: skill[n].MP = atoi(inputc);				break;
 		case 3: skill[n].effect = atoi(inputc);			break;
 		case 4: skill[n].status = atoi(inputc);			break;
 		case 5: skill[n].magnification = atof(inputc);	break;
 		case 6: skill[n].area = atoi(inputc);			break;
-		case 7: strcpy(skill[n].explain, inputc);		break;
+		case 7: strcpy_s(skill[n].explain, inputc);		break;
 		}
 		num++;
 		if (num == 8) {
@@ -208,7 +208,7 @@ void Data_c::CharacterLoad(int scenario)
 			}
 		}
 		switch (num) {
-		case 0:		strcpy(character[n].name, inputc);					break;
+		case 0:		strcpy_s(character[n].name, inputc);				break;
 		case 1:		character[n].HPMAX = atoi(inputc);					break;
 		case 2:		character[n].MPMAX = atoi(inputc);					break;
 		case 3:		character[n].STR = atoi(inputc);					break;
@@ -273,6 +273,7 @@ int Data_c::GetItemPoint(int num, int sort)
 		return item[num].area;
 		break;
 	}
+	return 0;
 }
 string Data_c::GetItemText(int num, int sort)
 {
@@ -284,6 +285,7 @@ string Data_c::GetItemText(int num, int sort)
 		return string(item[num].explain);
 		break;
 	}
+	return 0;
 }
 int Data_c::GetSoubiPoint(int num, int sort)
 {
@@ -304,6 +306,7 @@ int Data_c::GetSoubiPoint(int num, int sort)
 		return soubi[num].area;
 		break;
 	}
+	return 0;
 }
 string Data_c::GetSoubiText(int num, int sort)
 {
@@ -315,6 +318,7 @@ string Data_c::GetSoubiText(int num, int sort)
 		return string(soubi[num].explain);
 		break;
 	}
+	return 0;
 }
 int Data_c::GetSkillPoint(int num, int sort)
 {
@@ -338,6 +342,7 @@ int Data_c::GetSkillPoint(int num, int sort)
 		return skill[num].area;
 		break;
 	}
+	return 0;
 }
 string Data_c::GetSkillText(int num, int sort)
 {
@@ -349,6 +354,7 @@ string Data_c::GetSkillText(int num, int sort)
 		return string(skill[num].explain);
 		break;
 	}
+	return 0;
 }
 int Data_c::GetCharacterPoint(int num, int sort)
 {
@@ -381,6 +387,7 @@ int Data_c::GetCharacterPoint(int num, int sort)
 		return character[num].Image;
 		break;
 	}
+	return 0;
 }
 int Data_c::GetCharacterSkillCode(int num, int order)
 {

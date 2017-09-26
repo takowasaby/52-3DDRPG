@@ -1,12 +1,5 @@
 #pragma once
 
-const int MAP_SIZE_X = 25;
-const int MAP_SIZE_Y = 25;
-
-const int WALL_SCENARIO = 5;
-const int WALL_SIDE = 10;
-const int WALL_TYPE = 1;
-
 class Data_c;
 
 class Dungeon_c {
