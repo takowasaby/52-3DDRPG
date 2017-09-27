@@ -14,14 +14,18 @@ Dungeon_c::Dungeon_c() :
 	GraphLoad(mscenario, mstage);
 }
 
-Dungeon_c::Dungeon_c(Data_c *d) :
-	data(d)
+Dungeon_c::Dungeon_c(Data_c* data, int * Key, int * mode, int * event_scene, int * title_scene, int * game_scene) :
+	mData(data),
+	mMode(mode),
+	mEvent_scene(event_scene),
+	mTitle_scene(title_scene),
+	mGame_scene(game_scene)
 {
-
 }
 
 Dungeon_c::~Dungeon_c()
 {
+	delete mData;
 }
 
 void Dungeon_c::DungeonAll()
@@ -36,10 +40,10 @@ void Dungeon_c::DungeonAll()
 
 void Dungeon_c::DataSet()
 {
-	mscenario = data->GetScenario(); 
-	dir = data->GetDir();
-	x = data->GetDungeonX();
-	y = data->GetDungeonY();
+	mscenario = mData->GetScenario(); 
+	dir = mData->GetDir();
+	x = mData->GetDungeonX();
+	y = mData->GetDungeonY();
 }
 
 void Dungeon_c::DataLoad(int scenario, int stage)
@@ -167,7 +171,7 @@ void Dungeon_c::GraphLoad(int scenario, int stage)
 
 void Dungeon_c::SetData(Data_c *d)
 {
-	data = d;
+	mData = d;
 }
 
 void Dungeon_c::BackDraw()
@@ -387,7 +391,7 @@ void Dungeon_c::WaitKey()
 	else if (Key[KEY_INPUT_C] == 1) {
 	}
 */
-	data->SetDungeonX(x);
-	data->SetDungeonY(y);
-	data->SetDir(dir);
+	mData->SetDungeonX(x);
+	mData->SetDungeonY(y);
+	mData->SetDir(dir);
 }
