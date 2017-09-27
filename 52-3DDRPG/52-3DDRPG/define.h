@@ -58,3 +58,4 @@ const int EVENT_SIZE = 64;
 #include "option.h"
 #include "TextBox.h"
 #include "title.h"
+#include "menu.h"

@@ -6,21 +6,28 @@ event_scene(0),
 title_scene(2),
 game_scene(0)
 {
-	events = new Event_c;
-	fps = new Fps_c;
+	mEvents = new Event_c;
+	mFps = new Fps_c;
+	mMenu = new Menu_c(mData, Key, &mode, &event_scene, &title_scene, &game_scene);
+	mDungeon = new Dungeon_c(mData, Key, &mode, &event_scene, &title_scene, &game_scene);
+	mData = new Data_c;
 }
 
 Control_c::~Control_c()
 {
-	delete events;
-	delete fps;
+	delete mEvents;
+	delete mFps;
+	delete mTitle;
+	delete mMenu;
+	delete mDungeon;
+	delete mData;
 }
 
 void Control_c::All() {
 
 	UpdateKey();	//キー入力の検知
 
-	fps->Update();	//更新
+	mFps->Update();	//更新
 
 	switch (mode) {
 	case event:
@@ -48,9 +55,9 @@ void Control_c::All() {
 			break;
 		case start: {
 			//タイトル画面
-			if (titleStart == false) { titleStart = true; Title = new Title_c; }
-			titleEnd = Title->TitleScreen(Key, &title_scene);
-			if (titleEnd == true) { titleEnd = false; delete Title; }
+			if (titleStart == false) { titleStart = true; mTitle = new Title_c; }
+			titleEnd = mTitle->TitleScreen(Key, &title_scene);
+			if (titleEnd == true) { titleEnd = false; delete mTitle; }
 			}
 			break;
 		case save_load:
@@ -82,8 +89,8 @@ void Control_c::All() {
 		break;
 	}
 
-	fps->Draw();	//fps表示
-	fps->Wait();	//待機
+	mFps->Draw();	//fps表示
+	mFps->Wait();	//待機
 }
 
 void Control_c::UpdateKey(void)

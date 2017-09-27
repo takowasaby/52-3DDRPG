@@ -160,6 +160,7 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="fps.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="option.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="title.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="EQueueData.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="fps.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="option.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="title.h" />
