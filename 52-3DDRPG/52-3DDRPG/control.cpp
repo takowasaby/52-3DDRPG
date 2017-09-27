@@ -1,9 +1,10 @@
 #include "define.h"
 
-int Key[256];
-void UpdateKey(void);
-
-Control_c::Control_c()
+Control_c::Control_c() :
+mode(1),
+event_scene(0),
+title_scene(2),
+game_scene(0)
 {
 	events = new Event_c;
 	fps = new Fps_c;
@@ -85,7 +86,8 @@ void Control_c::All() {
 	fps->Wait();	//‘Ò‹@
 }
 
-void UpdateKey(void) {
+void Control_c::UpdateKey(void)
+{
 	char tmpKey[256];
 	GetHitKeyStateAll(tmpKey);
 	for (int i = 0; i < 256; i++) {
