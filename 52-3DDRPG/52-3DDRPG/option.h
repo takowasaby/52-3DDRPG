@@ -1,5 +1,7 @@
 #pragma once
 
+class Control_c;
+
 class Option_c {
 private:
 	bool option_flag;
@@ -14,15 +16,17 @@ public:
 	Option_c();
 	~Option_c();
 
-	void Main();
+	bool Main(int* Key);
+	
 	void BackDraw();
 	void ItemDraw();
-	void CursorDraw();
+	
+	bool CursorDraw(int* Key);
 
 	int GetBGMvol();
 	int GetSEVol();
 	int GetBattleType();
 	bool GetWindowMode();
 
-	void SetOptionFlag(bool flag);
+	void SetOptionFlag(bool* flag);
 };

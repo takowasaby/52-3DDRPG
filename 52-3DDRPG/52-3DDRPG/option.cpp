@@ -1,9 +1,12 @@
 #include "define.h"
 
-Option_c::Option_c()
+Option_c::Option_c():
+	Cursor(50),
+	BGMLv(3),
+	SELv(3),
+	BattleType(2),
+	WindowMode(true)
 {
-	Cursor = 50;
-
 	control = new Control_c;
 }
 
@@ -12,11 +15,13 @@ Option_c::~Option_c()
 	delete control;
 }
 
-void Option_c::Main()
+bool Option_c::Main(int* Key)
 {
-	void BackDraw();
-	void ItemDraw();
-	void CursorDraw();
+
+	BackDraw();
+	ItemDraw();
+	
+	return CursorDraw(Key);
 }
 
 void Option_c::BackDraw()
@@ -25,54 +30,58 @@ void Option_c::BackDraw()
 
 void Option_c::ItemDraw()
 {
-	//仮置き項目
 	DrawFormatString(240, 20, GetColor(255, 255, 255), "OPTION");
 
 	DrawFormatString(40, 50, GetColor(255, 255, 255), "BGM");
-	DrawFormatString(120, 50, GetColor(255, 255, 255), "%d",BGMVol);
-	DrawBox(140,45,140+100*BGMVol/5,55,GetColor(255,255,0),true);
+	DrawFormatString(120, 50, GetColor(255, 255, 255), "%d", BGMLv);
+	DrawBox(140, 45, 140 + 100 * double(BGMLv) / 5, 55, GetColor(255, 255, 0), true);
 
 	DrawFormatString(40, 90, GetColor(255, 255, 255), "SE");
-	DrawFormatString(120, 90, GetColor(255, 255, 255), "%d", SEVol);
-	DrawBox(140, 85, 140 + 100 * SEVol / 5, 95, GetColor(255, 255, 0), true);
+	DrawFormatString(120, 90, GetColor(255, 255, 255), "%d", SELv);
+	DrawBox(140, 85, 140 + 100 * double(SELv) / 5, 95, GetColor(255, 255, 0), true);
 
 	DrawFormatString(40, 130, GetColor(255, 255, 255), "BattleMode");
-	DrawFormatString(120, 130, GetColor(255, 255, 255), "%d", BattleType);
+	DrawFormatString(160, 130, GetColor(255, 255, 255), "%d", BattleType);
 	switch (BattleType) {
 	case 0:
-		DrawFormatString(140, 130, GetColor(255, 255, 255), "NONE");
+		DrawFormatString(200, 130, GetColor(255, 255, 255), "NONE");
+		break;
 	case 1:
-		DrawFormatString(140, 130, GetColor(255, 255, 255), "EASY");
+		DrawFormatString(200, 130, GetColor(255, 255, 255), "EASY");
+		break;
 	case 2:
-		DrawFormatString(140, 130, GetColor(255, 255, 255), "NORMAL");
+		DrawFormatString(200, 130, GetColor(255, 255, 255), "NORMAL");
+		break;
 	case 3:
-		DrawFormatString(140, 130, GetColor(255, 255, 255), "HARD");
+		DrawFormatString(200, 130, GetColor(255, 255, 255), "HARD");
+		break;
 	}
 
 	DrawFormatString(40, 170, GetColor(255, 255, 255), "WindowMode");
 	if (WindowMode == false) {
-		DrawFormatString(120, 50, GetColor(255, 255, 255), "WINDOW");
+		DrawFormatString(170, 170, GetColor(255, 255, 255), "WINDOW");
 	}
 	else {
-		DrawFormatString(120, 50, GetColor(255, 255, 255), "FULL");
+		DrawFormatString(170, 170, GetColor(255, 255, 255), "FULL");
 	}
 
 	DrawFormatString(40, 210, GetColor(255, 255, 255), "Back");
 }
 
-void Option_c::CursorDraw()
-{
-	DrawFormatString(40, Cursor, GetColor(255, 255, 255), "->");
 
-	//UpdateKey();
+bool Option_c::CursorDraw(int* Key )
+{
+	DrawFormatString(10, Cursor, GetColor(255, 255, 255), "->");
+
+
 	if (Key[KEY_INPUT_DOWN] == 1) {
 			if(Cursor != 210) Cursor += 40;
 	}
-	if (Key[KEY_INPUT_UP] == 1) {
+	else if (Key[KEY_INPUT_UP] == 1) {
 			if(Cursor != 50) Cursor -= 40;
 	}
 
-	if (Key[KEY_INPUT_RIGHT] == 1) {
+	else if (Key[KEY_INPUT_RIGHT] == 1) {
 		switch (Cursor) {
 		case 50:
 			if (BGMLv != 5) {
@@ -96,7 +105,7 @@ void Option_c::CursorDraw()
 			break;
 		}
 	}
-	if (Key[KEY_INPUT_LEFT]==1) {
+	else if (Key[KEY_INPUT_LEFT]==1) {
 		switch (Cursor) {
 		case 50:
 			if (BGMLv != 0) {
@@ -122,12 +131,14 @@ void Option_c::CursorDraw()
 	}
 
 	// Back or CANCEL_KEY
-	if ((Key[KEY_INPUT_Z] == 1 && Cursor == 210) || Key[KEY_INPUT_X] == 1) {
+	else if ((Key[KEY_INPUT_Z] == 1 && Cursor == 210) || Key[KEY_INPUT_X] == 1) {
 		//if player jump from "title"
 		if(option_flag == false)
 		{
 			control->SetMode(1);	//mode = title
 			control->SetTitle(2);	//title_scene = start
+
+			return true;
 		}
 
 		//if player jump from "menu"
@@ -135,8 +146,11 @@ void Option_c::CursorDraw()
 		{
 			control->SetMode(2);	//mode = game
 			control->SetGame(3);	//game_scene = menu
+
+			return true;
 		}
 	}
+	return false;
 
 	BGMVol = 255 * BGMLv / 5;
 	SEVol = 255 * SELv / 5;
@@ -162,7 +176,7 @@ bool Option_c::GetWindowMode()
 	return WindowMode;
 }
 
-void Option_c::SetOptionFlag(bool flag)
+void Option_c::SetOptionFlag(bool* flag)
 {
 	option_flag = flag;
 }
