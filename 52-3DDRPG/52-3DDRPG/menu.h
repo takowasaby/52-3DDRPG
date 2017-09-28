@@ -35,9 +35,10 @@ private:
 
 public:
 	Menu_c();
-	Menu_c(Data_c* data, int* Key, int* mode, int* event_scene, int* title_scene, int* game_scene);
+	Menu_c(Data_c* data, int* mode, int* event_scene, int* title_scene, int* game_scene);
 	~Menu_c();
 
+	void KeyUpdata(int Key[256]);
 	void MenuAll();
 	void DrawBack();
 	void DrawLeft();

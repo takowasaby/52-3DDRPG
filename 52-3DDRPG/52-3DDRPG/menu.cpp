@@ -4,20 +4,24 @@ Menu_c::Menu_c()
 {
 }
 
-Menu_c::Menu_c(Data_c * data, int * Key, int * mode, int * event_scene, int * title_scene, int * game_scene) :
+Menu_c::Menu_c(Data_c * data, int * mode, int * event_scene, int * title_scene, int * game_scene) :
 	mData(data),
 	mMode(mode),
 	mEvent_scene(event_scene),
 	mTitle_scene(title_scene),
 	mGame_scene(game_scene)
 {
-	for (int i = 0; i < 256; i++) {
-		mKey[i] = Key[i];
-	}
 }
 
 Menu_c::~Menu_c()
 {
+}
+
+void Menu_c::KeyUpdata(int Key[256])
+{
+	for (int i = 0; i < 256; i++) {
+		mKey[i] = Key[i];
+	}
 }
 
 void Menu_c::MenuAll()
