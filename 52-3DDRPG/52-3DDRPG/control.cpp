@@ -8,8 +8,8 @@ game_scene(0)
 {
 	mEvents = new Event_c;
 	mFps = new Fps_c;
-	mMenu = new Menu_c(mData, Key, &mode, &event_scene, &title_scene, &game_scene);
-	mDungeon = new Dungeon_c(mData, Key, &mode, &event_scene, &title_scene, &game_scene);
+	mMenu = new Menu_c(mData, &mode, &event_scene, &title_scene, &game_scene);
+	mDungeon = new Dungeon_c(mData, &mode, &event_scene, &title_scene, &game_scene);
 	mData = new Data_c;
 }
 
@@ -75,6 +75,7 @@ void Control_c::All() {
 		switch (game_scene) {
 		case dungeon:
 			//ダンジョン探索
+			mDungeon->KeyUpdata(Key);
 			break;
 		case room:
 			//部屋探索
@@ -83,6 +84,7 @@ void Control_c::All() {
 			//バトル
 			break;
 		case menu:
+			mMenu->KeyUpdata(Key);
 			//メニュー
 			break;
 		}
