@@ -1,6 +1,6 @@
 #pragma once
 
-//class Data_c;
+class Data_c;
 
 class Dungeon_c {
 private:
@@ -19,7 +19,7 @@ private:
 	int* mEvent_scene;
 	int* mTitle_scene;
 	int* mGame_scene;
-	int* Key[256];
+	int mKey[256];
 
 	struct WallData_t {
 		int Nwall = 1, Ewall = 1, Swall = 1, Wwall = 1;
@@ -29,8 +29,9 @@ private:
 
 public:
 	Dungeon_c();
-	Dungeon_c(Data_c* data, int* Key, int* mode, int* event_scene, int* title_scene, int* game_scene);
+	Dungeon_c(Data_c* data, int* mode, int* event_scene, int* title_scene, int* game_scene);
 	~Dungeon_c();
+	void KeyUpdata(int Key[256]);
 	void DungeonAll();
 	void DataSet();
 	void DataLoad(int scenario, int stage);
