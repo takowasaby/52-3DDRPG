@@ -14,7 +14,7 @@ Dungeon_c::Dungeon_c() :
 	GraphLoad(mscenario, mstage);
 }
 
-Dungeon_c::Dungeon_c(Data_c* data, int * Key, int * mode, int * event_scene, int * title_scene, int * game_scene) :
+Dungeon_c::Dungeon_c(Data_c* data, int * mode, int * event_scene, int * title_scene, int * game_scene) :
 	mData(data),
 	mMode(mode),
 	mEvent_scene(event_scene),
@@ -26,6 +26,13 @@ Dungeon_c::Dungeon_c(Data_c* data, int * Key, int * mode, int * event_scene, int
 Dungeon_c::~Dungeon_c()
 {
 	delete mData;
+}
+
+void Dungeon_c::KeyUpdata(int Key[256])
+{
+	for (int i = 0; i < 256; i++) {
+		mKey[i] = Key[i];
+	}
 }
 
 void Dungeon_c::DungeonAll()
@@ -300,7 +307,7 @@ void Dungeon_c::MessageDraw()
 
 void Dungeon_c::WaitKey()
 {
-/*	if (Key[KEY_INPUT_DOWN] == 1) {
+	if (mKey[KEY_INPUT_DOWN] == 1) {
 		switch (dir) {
 		case 0:
 			if (wallData[x][y].Swall == 0) y++;
@@ -315,8 +322,9 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Ewall == 0) x++;
 			break;
 		}
+		WallDrawSet();
 	}
-	else if (Key[KEY_INPUT_UP] == 1) {
+	else if (mKey[KEY_INPUT_UP] == 1) {
 		switch (dir) {
 		case 0:
 			if (wallData[x][y].Nwall == 0) y--;
@@ -331,8 +339,9 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Wwall == 0) x--;
 			break;
 		}
+		WallDrawSet();
 	}
-	else if (Key[KEY_INPUT_RIGHT] == 1 && Key[KEY_INPUT_LSHIFT] >= 1) {
+	else if (mKey[KEY_INPUT_RIGHT] == 1 && mKey[KEY_INPUT_LSHIFT] >= 1) {
 		switch (dir) {
 		case 0:
 			if (wallData[x][y].Ewall == 0) x++;
@@ -347,8 +356,9 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Nwall == 0) y--;
 			break;
 		}
+		WallDrawSet();
 	}
-	else if (Key[KEY_INPUT_LEFT] == 1 && Key[KEY_INPUT_LSHIFT] >= 1) {
+	else if (mKey[KEY_INPUT_LEFT] == 1 && mKey[KEY_INPUT_LSHIFT] >= 1) {
 		switch (dir) {
 		case 0:
 			if (wallData[x][y].Wwall == 0) x--;
@@ -363,16 +373,19 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Swall == 0) y++;
 			break;
 		}
+		WallDrawSet();
 	}
-	else if (Key[KEY_INPUT_LEFT] == 1) {
+	else if (mKey[KEY_INPUT_LEFT] == 1) {
 		if (dir == 0) dir = 4;
 		dir--;
+		WallDrawSet();
 	}
-	else if (Key[KEY_INPUT_RIGHT] == 1) {
+	else if (mKey[KEY_INPUT_RIGHT] == 1) {
 		if (dir == 3) dir = -1;
 		dir++;
+		WallDrawSet();
 	}
-	else if (Key[KEY_INPUT_Z] == 1) {
+	else if (mKey[KEY_INPUT_Z] == 1) {
 		switch (dir) {
 		case 0:
 			if (wallData[x][y].Nwall == 2) printfDx("open!");
@@ -388,9 +401,9 @@ void Dungeon_c::WaitKey()
 			break;
 		}
 	}
-	else if (Key[KEY_INPUT_C] == 1) {
+	else if (mKey[KEY_INPUT_C] == 1) {
 	}
-*/
+
 	mData->SetDungeonX(x);
 	mData->SetDungeonY(y);
 	mData->SetDir(dir);
