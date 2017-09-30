@@ -6,8 +6,10 @@ using namespace std;
 class Data_c {
 private:
 	int scenario;
+	int stage;
 	int dir;
 	int dungeonX, dungeonY;
+	int wallType[MAP_SIZE_X][MAP_SIZE_Y];
 	int mapFlag[SCENARIO_SIZE][STAGE_SIZE][MAP_SIZE_X][MAP_SIZE_Y];
 	int eventFlag[SCENARIO_SIZE][EVENT_SIZE];
 	int playCount;
@@ -91,11 +93,13 @@ public:
 	string GetCharacterName(int num);				
 
 	int GetScenario();
+	int GetStage();
 	int GetDungeonX();
 	int GetDungeonY();
 	int GetDir();
 
 	void SetScenario(int i);
+	void SetStage(int i);
 	void SetDungeonX(int i);
 	void SetDungeonY(int i);
 	void SetDir(int i);
@@ -103,9 +107,11 @@ public:
 	int GetMapFlag(int scenario, int stage, int x, int y);
 	int GetEventFlag(int scenario, int num);
 	int GetPlayCount();
+	int GetWallType(int x, int y);
 
 	void SetMapFlag(int scenario, int stage, int x, int y, int i);
 	void SetEventFlag(int scenario, int num, int i);
 	void SetPlayCount(int i);
 	void AddPlayCount();
+	void SetWallType(int x, int y, int type);
 };

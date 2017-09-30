@@ -402,6 +402,10 @@ int Data_c::GetScenario()
 {
 	return scenario;
 }
+int Data_c::GetStage()
+{
+	return stage;
+}
 int Data_c::GetDungeonX()
 {
 	return dungeonX;
@@ -420,6 +424,10 @@ int Data_c::GetDir()
 void Data_c::SetScenario(int i)
 {
 	scenario = i;
+}
+void Data_c::SetStage(int i)
+{
+	stage = i;
 }
 void Data_c::SetDungeonX(int i)
 {
@@ -448,6 +456,11 @@ int Data_c::GetPlayCount()
 	return playCount;
 }
 
+int Data_c::GetWallType(int x, int y)
+{
+	return wallType[x][y];
+}
+
 void Data_c::SetMapFlag(int scenario, int stage, int x, int y, int i)
 {
 	mapFlag[scenario][stage][x][y] = i;
@@ -463,6 +476,10 @@ void Data_c::SetPlayCount(int i)
 void Data_c::AddPlayCount()
 {
 	playCount++;
+}
+void Data_c::SetWallType(int x, int y, int type)
+{
+	wallType[x][y] = type;
 }
 
 
@@ -491,7 +508,6 @@ void Data_c::CalcSoubiFlag(int num, int vary)
 		soubi[num].flag += vary;
 	}
 }
-
 void Data_c::SetCharacterFlag(int num, int vary)
 {
 	character[num].flag = vary;
