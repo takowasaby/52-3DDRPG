@@ -61,17 +61,22 @@ void Menu_c::DrawRight()
 			mdir = mData->GetDir();
 			mx = mData->GetDungeonX();
 			my = mData->GetDungeonY();
+			for (int i = 0; i < MAP_SIZE_X; i++) {
+				for (int j = 0; j < MAP_SIZE_Y; j++) {
+					mwallType[i][j] = mData->GetWallType(i, j);
+				}
+			}
 
 			int xLeft, yUp, size;
-			DrawBox(487, 327, 633, 473, 0, TRUE);
+			size = 14;
+			DrawBox(MENU_MAP_LEFT, MENU_MAP_UP, MENU_MAP_LEFT + 402, MENU_MAP_UP + 402, 0, TRUE);
 
 			for (int i = 0; i < 25; i++) {
 				for (int j = 0; j < 25; j++) {
-					xLeft =  + j * 16;
-					yUp =  + i * 16;
-					size = 14;
+					xLeft = MENU_MAP_LEFT + 1 + j * 16;
+					yUp =  MENU_MAP_UP + 1 + i * 16;
 
-					switch (wallData[mx - 4 + j][my - 4 + i].type) {
+					switch (mwallType[mx - 4 + j][my - 4 + i]) {
 					case 1: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(255, 255, 255), TRUE);	break;
 					case 2: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(255, 0, 0), TRUE);		break;
 					case 3: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(0, 255, 0), TRUE);		break;
@@ -80,11 +85,13 @@ void Menu_c::DrawRight()
 				}
 			}
 
+			xLeft = MENU_MAP_LEFT + 1 + mx * 16;
+			yUp = MENU_MAP_UP + 1 + my * 16;
 			switch (mdir) {
-			case 0:	DrawTriangle(553, 407, 560, 393, 567, 407, GetColor(255, 255, 0), TRUE); break;
-			case 1: DrawTriangle(553, 393, 567, 400, 553, 407, GetColor(255, 255, 0), TRUE); break;
-			case 2: DrawTriangle(553, 393, 567, 393, 560, 407, GetColor(255, 255, 0), TRUE); break;
-			case 3: DrawTriangle(567, 393, 553, 400, 567, 407, GetColor(255, 255, 0), TRUE); break;
+			case 0:	DrawTriangle(xLeft, yUp + size, xLeft + size / 2, yUp, xLeft + size, yUp + size, GetColor(255, 255, 0), TRUE); break;
+			case 1: DrawTriangle(xLeft, yUp, xLeft + size, yUp + size / 2, xLeft, yUp + size, GetColor(255, 255, 0), TRUE); break;
+			case 2: DrawTriangle(xLeft, yUp, xLeft + size, yUp, xLeft + size / 2, yUp + size, GetColor(255, 255, 0), TRUE); break;
+			case 3: DrawTriangle(xLeft + size, yUp, xLeft, yUp + size / 2, xLeft + size, yUp + size, GetColor(255, 255, 0), TRUE); break;
 			}
 			break;
 		case status:

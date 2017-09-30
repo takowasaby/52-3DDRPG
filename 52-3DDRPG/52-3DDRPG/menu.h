@@ -10,6 +10,7 @@ private:
 	int depth;
 	int mode = 0;
 	int mscenario, mdir, mx, my;
+	int mwallType[MAP_SIZE_X][MAP_SIZE_Y];
 
 	Data_c* mData;
 	int mKey[256];
