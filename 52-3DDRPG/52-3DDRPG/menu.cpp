@@ -210,3 +210,15 @@ void Menu_c::CheckKey()
 		if (depth != 0) depth--;
 	}
 }
+
+void Menu_c::UseItem(int num, int target)
+{
+}
+
+void Menu_c::WearSoubi(int num, int target)
+{
+}
+
+void Menu_c::UseSkill(int num, int target)
+{
+}

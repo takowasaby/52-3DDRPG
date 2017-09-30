@@ -46,4 +46,7 @@ public:
 	void DrawRight();
 	void DrawCursor();
 	void CheckKey();
+	void UseItem(int num, int target);
+	void WearSoubi(int num, int target);
+	void UseSkill(int num, int target);
 };
