@@ -6,7 +6,7 @@ class Dungeon_c {
 private:
 	int x, y, dir;
 	int mscenario, mstage;
-	int mn, mnum, mfp, i, j;
+	int mn, mnum, mfp;
 	char fname[32];
 	int input[MAP_SIZE_X * MAP_SIZE_Y];
 	char inputc[MAP_SIZE_X * MAP_SIZE_Y];

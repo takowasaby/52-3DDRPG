@@ -62,12 +62,12 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 		printfDx("read error\n");
 		return;
 	}
-	for (i = 0; i < 1; i++)//最初の2行読み飛ばす
+	for (int i = 0; i < 1; i++)//最初の2行読み飛ばす
 		while (FileRead_getc(mfp) != '\n');
 
 	mn = 0, mnum = 0;
 	while (1) {
-		for (i = 0; i<MAP_SIZE_X * MAP_SIZE_Y; i++) {
+		for (int i = 0; i<MAP_SIZE_X * MAP_SIZE_Y; i++) {
 			inputc[i] = input[i] = FileRead_getc(mfp);//1文字取得する
 			if (inputc[i] == '/') {//スラッシュがあれば
 				while (FileRead_getc(mfp) != '\n');//改行までループ
@@ -92,8 +92,8 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 EXFILE:
 	FileRead_close(mfp);
 
-	for (i = 0; i < MAP_SIZE_X - 1; i++) {
-		for (j = 0; j < MAP_SIZE_Y; j++) {
+	for (int i = 0; i < MAP_SIZE_X - 1; i++) {
+		for (int j = 0; j < MAP_SIZE_Y; j++) {
 			switch (wallData[i][j].type) {
 			case 1:
 				switch (wallData[i + 1][j].type) {
@@ -127,8 +127,8 @@ EXFILE:
 		}
 	}
 
-	for (i = 0; i < MAP_SIZE_X; i++) {
-		for (j = 0; j < MAP_SIZE_Y - 1; j++) {
+	for (int i = 0; i < MAP_SIZE_X; i++) {
+		for (int j = 0; j < MAP_SIZE_Y - 1; j++) {
 			switch (wallData[i][j].type) {
 			case 1:
 				switch (wallData[i][j + 1].type) {
@@ -159,6 +159,12 @@ EXFILE:
 				}
 				break;
 			}
+		}
+	}
+
+	for (int i = 0; i < MAP_SIZE_X; i++) {
+		for (int j = 0; j < MAP_SIZE_Y; j++) {
+			mData->SetWallType(i, j, wallData[i][j].type);
 		}
 	}
 }
