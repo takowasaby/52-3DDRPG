@@ -1,27 +1,45 @@
-#include"define.h"
+#include "define.h"
 
-Control_c::Control_c() {
+Control_c::Control_c() :
+mode(1),
+event_scene(0),
+title_scene(2),
+game_scene(0)
+{
+	mEvents = new Event_c;
+	mFps = new Fps_c;
+	mMenu = new Menu_c(mData, &mode, &event_scene, &title_scene, &game_scene);
+	mDungeon = new Dungeon_c(mData, &mode, &event_scene, &title_scene, &game_scene);
+	mData = new Data_c;
 }
 
-Control_c::~Control_c() {
+Control_c::~Control_c()
+{
+	delete mEvents;
+	delete mFps;
+	delete mTitle;
+	delete mMenu;
+	delete mDungeon;
+	delete mData;
 }
 
 void Control_c::All() {
 
-	fps.Update();	//æ›´æ–°
-	fps.Draw();	//fpsè¡¨ç¤º
+	UpdateKey();	//ƒL[“ü—Í‚ÌŒŸ’m
+
+	mFps->Update();	//XV
 
 	switch (mode) {
 	case event:
 		switch (event_scene) {
 		case conversation:
-			//ç«‹ã¡çµµä¼šè©±
+			//—§‚¿ŠG‰ï˜b
 			break;
 		case opening:
-			//ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°
+			//ƒI[ƒvƒjƒ“ƒO
 			break;
 		case ending:
-			//ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°
+			//ƒGƒ“ƒfƒBƒ“ƒO
 			break;
 		}
 		break;
@@ -29,24 +47,26 @@ void Control_c::All() {
 	case title:
 		switch (title_scene) {
 		case gameover:
-			//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
+			//ƒQ[ƒ€ƒI[ƒo[
 			break;
 		case scenario: 
-			//ã‚·ãƒŠãƒªã‚ªé¸æŠžç”»é¢
+			//ƒVƒiƒŠƒI‘I‘ð‰æ–Ê
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "ƒVƒiƒŠƒI‘I‘ð"); //ƒfƒoƒbƒO—p
 			break;
-		case start: /*{
-			//ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
-			Title_c Title;
-			Title.TitleScreen();
-			delete &Title;
-			}*/
+		case start: {
+			//ƒ^ƒCƒgƒ‹‰æ–Ê
+			if (titleStart == false) { titleStart = true; mTitle = new Title_c; }
+			titleEnd = mTitle->TitleScreen(Key, &title_scene);
+			if (titleEnd == true) { titleEnd = false; delete mTitle; }
+			}
 			break;
 		case save_load:
-			//ã‚»ãƒ¼ãƒ–ãƒ»ãƒ­ãƒ¼ãƒ‰
+			//ƒZ[ƒuEƒ[ƒh
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "ƒZ[ƒu¥ƒ[ƒh"); //ƒfƒoƒbƒO—p
 			break;
 		case option:
-			//ã‚ªãƒ—ã‚·ãƒ§ãƒ³
-			option.main();
+			//ƒIƒvƒVƒ‡ƒ“
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "ƒIƒvƒVƒ‡ƒ“"); //ƒfƒoƒbƒO—p
 			break;
 		}
 		break;
@@ -54,20 +74,37 @@ void Control_c::All() {
 	case game:
 		switch (game_scene) {
 		case dungeon:
-			//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æŽ¢ç´¢
+			//ƒ_ƒ“ƒWƒ‡ƒ“’Tõ
+			mDungeon->KeyUpdata(Key);
 			break;
 		case room:
-			//éƒ¨å±‹æŽ¢ç´¢
+			//•”‰®’Tõ
 			break;
 		case battle:
-			//ãƒãƒˆãƒ«
+			//ƒoƒgƒ‹
 			break;
 		case menu:
-			//ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+			mMenu->KeyUpdata(Key);
+			//ƒƒjƒ…[
 			break;
 		}
 		break;
 	}
 
-	fps.Wait();		//å¾…æ©Ÿ
+	mFps->Draw();	//fps•\Ž¦
+	mFps->Wait();	//‘Ò‹@
+}
+
+void Control_c::UpdateKey(void)
+{
+	char tmpKey[256];
+	GetHitKeyStateAll(tmpKey);
+	for (int i = 0; i < 256; i++) {
+		if (tmpKey[i] != 0) {
+			Key[i]++;
+		}
+		else {
+			Key[i] = 0;
+		}
+	}
 }

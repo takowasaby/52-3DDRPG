@@ -2,20 +2,19 @@
 
 void option_c::Ini()
 {
-	//BGMã®éŸ³é‡å¤§å°0-5
-	//SEã®éŸ³é‡å¤§å°0-5
-	//ã‚­ãƒ¼ã‚³ãƒ³ãƒ•ã‚£ã‚°
-	//æˆ¦é—˜ãƒ¢ãƒ¼ãƒ‰0-3
-	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰true or false
-	//èƒŒæ™¯ç”»åƒã€ã‚«ãƒ¼ã‚½ãƒ«ç”»åƒèª­ã¿è¾¼ã¿
+	//BGM‚Ì‰¹—Ê
+	//SE‚Ì‰¹—Ê
+	//ƒL[ƒRƒ“ƒtƒBƒO
+	//í“¬ƒ‚[ƒh
+	//ƒEƒBƒ“ƒhƒEƒ‚[ƒh
 }
 
 void option_c::main()
 {
-	backdraw();	//èƒŒæ™¯æå†™
-	itemdraw();	//é …ç›®æå†™
-	configdraw();	//è¨­å®šæå†™
-	cursor();	//ã‚«ãƒ¼ã‚½ãƒ«
+	backdraw();	//”wŒi•`Ê
+	itemdraw();	//€–Ú•`Ê
+	configdraw();	//İ’è•`Ê
+	cursol();	//ƒJ[ƒ\ƒ‹
 }
 
 void option_c::backdraw()
@@ -24,7 +23,10 @@ void option_c::backdraw()
 
 void option_c::itemdraw()
 {
-	//ä»®ç½®ãé …ç›®
+}
+
+void option_c::configdraw()
+{
 	DrawFormatString(240, 20, GetColor(255, 255, 255), "OPTION");
 	DrawFormatString(40, 50, GetColor(255, 255, 255), "BGM");
 	DrawFormatString(40, 90, GetColor(255, 255, 255), "SE");
@@ -33,11 +35,7 @@ void option_c::itemdraw()
 	DrawFormatString(40, 210, GetColor(255, 255, 255), "WindowMode");
 }
 
-void option_c::configdraw()
-{
-}
-
-void option_c::cursor()
+void option_c::cursol()
 {
 }
 
