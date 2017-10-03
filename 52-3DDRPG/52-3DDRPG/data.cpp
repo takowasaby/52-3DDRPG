@@ -7,21 +7,60 @@ Data_c::~Data_c()
 {
 }
 
-void Data_c::LoadAll(int scenario)
+void Data_c::LoadAll(int s)
 {
-	ItemLoad(scenario);
-	SoubiLoad(scenario);
-	SkillLoad(scenario);
-	CharacterLoad(scenario);
+	ItemLoad(s);
+	GoalLoad(s);
+	SoubiLoad(s);
+	SkillLoad(s);
+	CharacterLoad(s);
 }
-void Data_c::ItemLoad(int scenario)
+void Data_c::GoalLoad(int s)
+{
+	int n, i, fp;
+	char fname[32];
+	int input[64];
+	char inputc[64];
+
+	sprintf_s(fname, "resource/goal_%d.csv", s);
+
+	fp = FileRead_open(fname);//ファイル読み込み
+	if (fp == NULL) {
+		printfDx("read error\n");
+		return;
+	}
+
+	n = 0;
+	while (1) {
+		for (i = 0; i<64; i++) {
+			inputc[i] = input[i] = FileRead_getc(fp);//1文字取得する
+			if (inputc[i] == '/') {//スラッシュがあれば
+				while (FileRead_getc(fp) != '\n');//改行までループ
+				i = -1;//カウンタを最初に戻して
+				continue;
+			}
+			if (input[i] == ',' || input[i] == '\n') {//カンマか改行なら
+				inputc[i] = '\0';//そこまでを文字列とし
+				break;
+			}
+			if (input[i] == EOF) {//ファイルの終わりなら
+				goto EXFILE;//終了
+			}
+		}
+		GoalText[s][n] = inputc;
+		n++;
+	}
+EXFILE:
+	FileRead_close(fp);
+}
+void Data_c::ItemLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/item_%d.csv", scenario);
+	sprintf_s(fname, "resource/item_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
@@ -68,14 +107,14 @@ void Data_c::ItemLoad(int scenario)
 EXFILE:
 	FileRead_close(fp);
 }
-void Data_c::SoubiLoad(int scenario)
+void Data_c::SoubiLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/soubi_%d.csv", scenario);
+	sprintf_s(fname, "resource/soubi_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
@@ -120,14 +159,14 @@ void Data_c::SoubiLoad(int scenario)
 EXFILE:
 	FileRead_close(fp);
 }
-void Data_c::SkillLoad(int scenario)
+void Data_c::SkillLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/skill_%d.csv", scenario);
+	sprintf_s(fname, "resource/skill_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
@@ -173,14 +212,14 @@ void Data_c::SkillLoad(int scenario)
 EXFILE:
 	FileRead_close(fp);
 }
-void Data_c::CharacterLoad(int scenario)
+void Data_c::CharacterLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/character_%d.csv", scenario);
+	sprintf_s(fname, "resource/character_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
