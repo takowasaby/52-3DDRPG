@@ -82,6 +82,8 @@ public:
 	void CalcSoubiFlag(int num, int vary);
 	void SetCharacterFlag(int num, int vary);
 
+	string GetGoalText(int s, int num);
+
 	int GetItemPoint(int num, int sort);			//0:num 1:type 2:effect1 3:effect2 4:point1 5:point2 6:area
 	string GetItemText(int num, int sort);			//0:name 1:explain
 
