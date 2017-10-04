@@ -1,13 +1,5 @@
 #include "define.h"
 
-<<<<<<< HEAD
-Control_c::Control_c() {
-	Option = new Option_c;
-}
-
-Control_c::~Control_c() {
-	delete Option;
-=======
 Control_c::Control_c() :
 mode(1),
 event_scene(0),
@@ -29,25 +21,13 @@ Control_c::~Control_c()
 	delete mMenu;
 	delete mDungeon;
 	delete mData;
->>>>>>> master
 }
 
 void Control_c::All() {
 
-<<<<<<< HEAD
-
-
-	/*
-	fps.Update();	//譖ｴ譁ｰ
-	fps.Draw();	//fps陦ｨ遉ｺ
-	*/
-
-
-=======
 	UpdateKey();	//キー入力の検知
 
 	mFps->Update();	//更新
->>>>>>> master
 
 	switch (mode) {
 	case event:
@@ -73,36 +53,20 @@ void Control_c::All() {
 			//シナリオ選択画面
 			DrawFormatString(150, 100, GetColor(255, 255, 255), "シナリオ選択"); //デバッグ用
 			break;
-<<<<<<< HEAD
-		case start:
-			//繧ｿ繧､繝医Ν逕ｻ髱｢
-
-			/*when player jump into option from "TITLE", option_flag = false;
-				Option->SetOptionFlag(false);
-				title_scene = option;
-			*/
-
-=======
 		case start: {
 			//タイトル画面
 			if (titleStart == false) { titleStart = true; mTitle = new Title_c; }
 			titleEnd = mTitle->TitleScreen(Key, &title_scene);
 			if (titleEnd == true) { titleEnd = false; delete mTitle; }
 			}
->>>>>>> master
 			break;
 		case save_load:
 			//セーブ・ロード
 			DrawFormatString(150, 100, GetColor(255, 255, 255), "セーブ･ロード"); //デバッグ用
 			break;
 		case option:
-<<<<<<< HEAD
-			//繧ｪ繝励す繝ｧ繝ｳ
-			Option->Main();
-=======
 			//オプション
 			DrawFormatString(150, 100, GetColor(255, 255, 255), "オプション"); //デバッグ用
->>>>>>> master
 			break;
 		}
 		break;
@@ -120,51 +84,16 @@ void Control_c::All() {
 			//バトル
 			break;
 		case menu:
-<<<<<<< HEAD
-			//繝｡繝九Η繝ｼ
-
-			/*when player jump into option from here, option_flag = true;
-				Option->SetOptionFlag(false);
-				mode = title;
-				title_scene = option;
-			*/
-
-=======
 			mMenu->KeyUpdata(Key);
 			//メニュー
->>>>>>> master
 			break;
 		}
 		break;
 	}
 
-<<<<<<< HEAD
-
-
-	/*
-	fps.Wait();		//蠕・ｩ・
-	*/
-	
-	
-}
-
-void Control_c::SetMode(int ChangeTo)
-{
-	mode = ChangeTo;
-}
-
-void Control_c::SetTitle(int ChangeTo)
-{
-	title_scene = ChangeTo;
-}
-
-void Control_c::SetGame(int ChangeTo)
-{
-	game_scene = ChangeTo;
-=======
 	mFps->Draw();	//fps表示
 	mFps->Wait();	//待機
->>>>>>> master
+
 }
 
 void Control_c::UpdateKey(void)

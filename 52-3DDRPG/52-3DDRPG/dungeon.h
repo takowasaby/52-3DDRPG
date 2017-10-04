@@ -27,17 +27,6 @@ private:
 	};
 	WallData_t wallData[MAP_SIZE_X][MAP_SIZE_Y];
 
-<<<<<<< HEAD
-
-
-
-	//Data_c data;
-
-
-
-
-=======
->>>>>>> master
 public:
 	Dungeon_c();
 	Dungeon_c(Data_c* data, int* mode, int* event_scene, int* title_scene, int* game_scene);

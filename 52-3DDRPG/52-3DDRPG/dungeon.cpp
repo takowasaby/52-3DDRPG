@@ -37,21 +37,7 @@ void Dungeon_c::KeyUpdata(int Key[256])
 
 void Dungeon_c::DungeonAll()
 {
-<<<<<<< HEAD
-
-
-
-	//mscenario = data.GetScenario();
-	
-	
-	
-	mstage = 0; //date.GetStage();
-	DataLoad(mscenario, mstage);
-	WallSet();
-	GraphLoad(mscenario, mstage);
-=======
 	DataSet();
->>>>>>> master
 	BackDraw();
 	WallDraw();
 	UIDraw();

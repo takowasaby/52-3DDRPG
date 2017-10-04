@@ -1,33 +1,18 @@
 #include "define.h"
 
-Option_c::Option_c():
+Option_c::Option_c() :
 	Cursor(50),
 	BGMLv(3),
 	SELv(3),
 	BattleType(2),
 	WindowMode(true)
 {
-<<<<<<< HEAD
 	control = new Control_c;
-=======
-	//BGMの音量
-	//SEの音量
-	//キーコンフィグ
-	//戦闘モード
-	//ウィンドウモード
->>>>>>> master
 }
 
 Option_c::~Option_c()
 {
-<<<<<<< HEAD
 	delete control;
-=======
-	backdraw();	//背景描写
-	itemdraw();	//項目描写
-	configdraw();	//設定描写
-	cursol();	//カーソル
->>>>>>> master
 }
 
 bool Option_c::Main(int* Key)
@@ -35,7 +20,7 @@ bool Option_c::Main(int* Key)
 
 	BackDraw();
 	ItemDraw();
-	
+
 	return CursorDraw(Key);
 }
 
@@ -45,13 +30,6 @@ void Option_c::BackDraw()
 
 void Option_c::ItemDraw()
 {
-<<<<<<< HEAD
-=======
-}
-
-void option_c::configdraw()
-{
->>>>>>> master
 	DrawFormatString(240, 20, GetColor(255, 255, 255), "OPTION");
 
 	DrawFormatString(40, 50, GetColor(255, 255, 255), "BGM");
@@ -91,16 +69,16 @@ void option_c::configdraw()
 }
 
 
-bool Option_c::CursorDraw(int* Key )
+bool Option_c::CursorDraw(int* Key)
 {
 	DrawFormatString(10, Cursor, GetColor(255, 255, 255), "->");
 
 
 	if (Key[KEY_INPUT_DOWN] == 1) {
-			if(Cursor != 210) Cursor += 40;
+		if (Cursor != 210) Cursor += 40;
 	}
 	else if (Key[KEY_INPUT_UP] == 1) {
-			if(Cursor != 50) Cursor -= 40;
+		if (Cursor != 50) Cursor -= 40;
 	}
 
 	else if (Key[KEY_INPUT_RIGHT] == 1) {
@@ -127,7 +105,7 @@ bool Option_c::CursorDraw(int* Key )
 			break;
 		}
 	}
-	else if (Key[KEY_INPUT_LEFT]==1) {
+	else if (Key[KEY_INPUT_LEFT] == 1) {
 		switch (Cursor) {
 		case 50:
 			if (BGMLv != 0) {
@@ -155,7 +133,7 @@ bool Option_c::CursorDraw(int* Key )
 	// Back or CANCEL_KEY
 	else if ((Key[KEY_INPUT_Z] == 1 && Cursor == 210) || Key[KEY_INPUT_X] == 1) {
 		//if player jump from "title"
-		if(option_flag == false)
+		if (option_flag == false)
 		{
 			control->SetMode(1);	//mode = title
 			control->SetTitle(2);	//title_scene = start
@@ -164,7 +142,7 @@ bool Option_c::CursorDraw(int* Key )
 		}
 
 		//if player jump from "menu"
-		else 
+		else
 		{
 			control->SetMode(2);	//mode = game
 			control->SetGame(3);	//game_scene = menu
@@ -188,16 +166,12 @@ int Option_c::GetSEVol()
 	return SEVol;
 }
 
-<<<<<<< HEAD
 int Option_c::GetBattleType()
 {
 	return BattleType;
 }
 
 bool Option_c::GetWindowMode()
-=======
-void option_c::cursol()
->>>>>>> master
 {
 	return WindowMode;
 }

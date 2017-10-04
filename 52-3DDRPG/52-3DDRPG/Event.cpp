@@ -1,4 +1,3 @@
-/*
 #include "define.h"
 #include "Event.h"
 
@@ -186,11 +185,6 @@ void Event_c::readDataFromFile(string filename)
 		}
 		printfDx("\n");
 		*/
-
-
-
-
-/*
 		readEach.clear();
 	}
 }
@@ -322,11 +316,6 @@ int Event_c::addCharacter(string name)
 int Event_c::addCharacterPicture(string filename, string name, string pictureName)
 {
 	return m_charaData[name].pictureRead(filename, pictureName)/*returns pictureID*/;
-
-
-
-
-/*
 }
 
 int Event_c::addEventAction(string name,int actionType,int from, int to, int takeTime,int afterOn)
@@ -473,6 +462,3 @@ vector<string> Event_c::splitString(string s, char delim)
 	}
 	return elems;
 }
-
-
-*/

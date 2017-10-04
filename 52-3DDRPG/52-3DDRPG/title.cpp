@@ -1,6 +1,3 @@
-/*
-
-
 #include "define.h"
 
 Title_c::Title_c() {
@@ -104,13 +101,6 @@ bool Title_c::TitleScreen(int* Key, int* title_scene) {
 			return true;
 		}
 	}
-<<<<<<< HEAD
-}
-
-
-*/
-=======
-
 	return false;
 }
 
@@ -119,4 +109,3 @@ void Title_c::nowLoading(void) {
 	DrawGraph(0, 0, NLGraph, FALSE);
 	ScreenFlip();
 }
->>>>>>> master
