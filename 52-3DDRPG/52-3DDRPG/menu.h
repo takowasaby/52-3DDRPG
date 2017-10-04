@@ -11,6 +11,7 @@ private:
 	int mode = 0;
 	int mscenario, mdir, mx, my;
 	int mwallType[MAP_SIZE_X][MAP_SIZE_Y];
+	int meventFlag[SCENARIO_SIZE][EVENT_SIZE];
 
 	Data_c* mData;
 	int mKey[256];
@@ -40,6 +41,7 @@ public:
 	~Menu_c();
 
 	void KeyUpdata(int Key[256]);
+	void DrawGoal();
 	void MenuAll();
 	void DrawBack();
 	void DrawLeft();

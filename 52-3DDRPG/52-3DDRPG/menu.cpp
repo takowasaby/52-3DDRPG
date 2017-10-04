@@ -24,6 +24,17 @@ void Menu_c::KeyUpdata(int Key[256])
 	}
 }
 
+void Menu_c::DrawGoal()
+{
+	int count;
+
+	for (int i = 0; i < EVENT_SIZE; i++) {
+		count += mData->GetEventFlag(mscenario, i);
+	}
+
+	DrawFormatString(320, 20, GetColor(255, 255, 255), "%s");
+}
+
 void Menu_c::MenuAll()
 {
 	DrawLeft();
@@ -57,6 +68,8 @@ void Menu_c::DrawRight()
 	case 0:
 		switch (mode) {
 		case map:
+			DrawGoal();
+
 			mscenario = mData->GetScenario();
 			mdir = mData->GetDir();
 			mx = mData->GetDungeonX();
