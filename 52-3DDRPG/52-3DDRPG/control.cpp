@@ -1,15 +1,40 @@
-#include"define.h"
+#include "define.h"
 
+<<<<<<< HEAD
 Control_c::Control_c() {
 	Option = new Option_c;
 }
 
 Control_c::~Control_c() {
 	delete Option;
+=======
+Control_c::Control_c() :
+mode(1),
+event_scene(0),
+title_scene(2),
+game_scene(0)
+{
+	mEvents = new Event_c;
+	mFps = new Fps_c;
+	mMenu = new Menu_c(mData, &mode, &event_scene, &title_scene, &game_scene);
+	mDungeon = new Dungeon_c(mData, &mode, &event_scene, &title_scene, &game_scene);
+	mData = new Data_c;
+}
+
+Control_c::~Control_c()
+{
+	delete mEvents;
+	delete mFps;
+	delete mTitle;
+	delete mMenu;
+	delete mDungeon;
+	delete mData;
+>>>>>>> master
 }
 
 void Control_c::All() {
 
+<<<<<<< HEAD
 
 
 	/*
@@ -18,18 +43,23 @@ void Control_c::All() {
 	*/
 
 
+=======
+	UpdateKey();	//ƒL[“ü—Í‚ÌŒŸ’m
+
+	mFps->Update();	//XV
+>>>>>>> master
 
 	switch (mode) {
 	case event:
 		switch (event_scene) {
 		case conversation:
-			//ç«‹ã¡çµµä¼šè©±
+			//—§‚¿ŠG‰ï˜b
 			break;
 		case opening:
-			//ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°
+			//ƒI[ƒvƒjƒ“ƒO
 			break;
 		case ending:
-			//ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°
+			//ƒGƒ“ƒfƒBƒ“ƒO
 			break;
 		}
 		break;
@@ -37,11 +67,13 @@ void Control_c::All() {
 	case title:
 		switch (title_scene) {
 		case gameover:
-			//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
+			//ƒQ[ƒ€ƒI[ƒo[
 			break;
 		case scenario: 
-			//ã‚·ãƒŠãƒªã‚ªé¸æŠç”»é¢
+			//ƒVƒiƒŠƒI‘I‘ğ‰æ–Ê
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "ƒVƒiƒŠƒI‘I‘ğ"); //ƒfƒoƒbƒO—p
 			break;
+<<<<<<< HEAD
 		case start:
 			//ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
 
@@ -50,13 +82,27 @@ void Control_c::All() {
 				title_scene = option;
 			*/
 
+=======
+		case start: {
+			//ƒ^ƒCƒgƒ‹‰æ–Ê
+			if (titleStart == false) { titleStart = true; mTitle = new Title_c; }
+			titleEnd = mTitle->TitleScreen(Key, &title_scene);
+			if (titleEnd == true) { titleEnd = false; delete mTitle; }
+			}
+>>>>>>> master
 			break;
 		case save_load:
-			//ã‚»ãƒ¼ãƒ–ãƒ»ãƒ­ãƒ¼ãƒ‰
+			//ƒZ[ƒuEƒ[ƒh
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "ƒZ[ƒu¥ƒ[ƒh"); //ƒfƒoƒbƒO—p
 			break;
 		case option:
+<<<<<<< HEAD
 			//ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 			Option->Main();
+=======
+			//ƒIƒvƒVƒ‡ƒ“
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "ƒIƒvƒVƒ‡ƒ“"); //ƒfƒoƒbƒO—p
+>>>>>>> master
 			break;
 		}
 		break;
@@ -64,15 +110,17 @@ void Control_c::All() {
 	case game:
 		switch (game_scene) {
 		case dungeon:
-			//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æ¢ç´¢
+			//ƒ_ƒ“ƒWƒ‡ƒ“’Tõ
+			mDungeon->KeyUpdata(Key);
 			break;
 		case room:
-			//éƒ¨å±‹æ¢ç´¢
+			//•”‰®’Tõ
 			break;
 		case battle:
-			//ãƒãƒˆãƒ«
+			//ƒoƒgƒ‹
 			break;
 		case menu:
+<<<<<<< HEAD
 			//ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 
 			/*when player jump into option from here, option_flag = true;
@@ -81,15 +129,20 @@ void Control_c::All() {
 				title_scene = option;
 			*/
 
+=======
+			mMenu->KeyUpdata(Key);
+			//ƒƒjƒ…[
+>>>>>>> master
 			break;
 		}
 		break;
 	}
 
+<<<<<<< HEAD
 
 
 	/*
-	fps.Wait();		//å¾…æ©Ÿ
+	fps.Wait();		//å¾E©E
 	*/
 	
 	
@@ -108,4 +161,22 @@ void Control_c::SetTitle(int ChangeTo)
 void Control_c::SetGame(int ChangeTo)
 {
 	game_scene = ChangeTo;
+=======
+	mFps->Draw();	//fps•\¦
+	mFps->Wait();	//‘Ò‹@
+>>>>>>> master
+}
+
+void Control_c::UpdateKey(void)
+{
+	char tmpKey[256];
+	GetHitKeyStateAll(tmpKey);
+	for (int i = 0; i < 256; i++) {
+		if (tmpKey[i] != 0) {
+			Key[i]++;
+		}
+		else {
+			Key[i] = 0;
+		}
+	}
 }

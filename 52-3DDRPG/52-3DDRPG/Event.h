@@ -1,4 +1,6 @@
 #pragma once
+#include "define.h"
+
 #include "ECharaData.h"
 #include "EDrawSetting.h"
 #include "EQueueData.h"

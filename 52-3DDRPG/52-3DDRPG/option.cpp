@@ -7,12 +7,27 @@ Option_c::Option_c():
 	BattleType(2),
 	WindowMode(true)
 {
+<<<<<<< HEAD
 	control = new Control_c;
+=======
+	//BGMの音量
+	//SEの音量
+	//キーコンフィグ
+	//戦闘モード
+	//ウィンドウモード
+>>>>>>> master
 }
 
 Option_c::~Option_c()
 {
+<<<<<<< HEAD
 	delete control;
+=======
+	backdraw();	//背景描写
+	itemdraw();	//項目描写
+	configdraw();	//設定描写
+	cursol();	//カーソル
+>>>>>>> master
 }
 
 bool Option_c::Main(int* Key)
@@ -30,6 +45,13 @@ void Option_c::BackDraw()
 
 void Option_c::ItemDraw()
 {
+<<<<<<< HEAD
+=======
+}
+
+void option_c::configdraw()
+{
+>>>>>>> master
 	DrawFormatString(240, 20, GetColor(255, 255, 255), "OPTION");
 
 	DrawFormatString(40, 50, GetColor(255, 255, 255), "BGM");
@@ -166,12 +188,16 @@ int Option_c::GetSEVol()
 	return SEVol;
 }
 
+<<<<<<< HEAD
 int Option_c::GetBattleType()
 {
 	return BattleType;
 }
 
 bool Option_c::GetWindowMode()
+=======
+void option_c::cursol()
+>>>>>>> master
 {
 	return WindowMode;
 }
