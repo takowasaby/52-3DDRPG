@@ -551,3 +551,8 @@ void Data_c::SetCharacterFlag(int num, int vary)
 {
 	character[num].flag = vary;
 }
+
+string Data_c::GetGoalText(int s, int num)
+{
+	return GoalText[s][num];
+}
