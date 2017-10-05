@@ -226,6 +226,24 @@ void Menu_c::CheckKey()
 
 void Menu_c::UseItem(int num, int target)
 {
+	int x = 0;
+	int y = 0;
+	int effect1 = mData->GetItemPoint(num, 2);
+	int effect2 = mData->GetItemPoint(num, 3);
+
+	if (mData->GetItemPoint(num, 6) == 1) {
+		for (int i = 0; i < CHARACTER_SIZE; i++) {
+			if (mData->GetCharacterFlag(i) == 1) {
+				x = mData->GetCharacterPoint(i, effect1);
+				if (mData->GetItemPoint(num, 3) != -1) {
+					y = mData->GetCharacterPoint(i, effect2);
+				}
+			}
+		}
+
+	} else {
+
+	}
 }
 
 void Menu_c::WearSoubi(int num, int target)
