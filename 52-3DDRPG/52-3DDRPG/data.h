@@ -94,6 +94,7 @@ public:
 	string GetSkillText(int num, int sort);			//0:name 1:explain
 
 	int GetCharacterPoint(int num, int sort);		//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image
+	void SetCharacterPoint(int num, int sort, int point);
 	int GetCharacterSkillCode(int num, int order);	
 	string GetCharacterName(int num);				
 
