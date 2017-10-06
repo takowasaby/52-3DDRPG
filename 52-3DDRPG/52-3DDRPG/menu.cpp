@@ -173,7 +173,7 @@ void Menu_c::DrawRight()
 		}
 		break;
 	case 3:
-	case 4:
+	case 4: break;
 	}
 }
 
@@ -199,7 +199,7 @@ void Menu_c::CheckKey()
 		case 1:
 		case 2:
 		case 3:
-		case 4:
+		case 4: break;
 		}
 	}
 	else if (mKey[KEY_INPUT_UP] == 1) {
@@ -213,7 +213,7 @@ void Menu_c::CheckKey()
 		case 1:
 		case 2:
 		case 3:
-		case 4:
+		case 4: break;
 		}
 	}
 	else if (mKey[KEY_INPUT_Z] == 1) {
@@ -234,15 +234,45 @@ void Menu_c::UseItem(int num, int target)
 	if (mData->GetItemPoint(num, 6) == 1) {
 		for (int i = 0; i < CHARACTER_SIZE; i++) {
 			if (mData->GetCharacterFlag(i) == 1) {
-				x = mData->GetCharacterPoint(i, effect1);
+				x = mData->GetCharacterPoint(i, effect1 + 2);
 				if (mData->GetItemPoint(num, 3) != -1) {
+					y = mData->GetCharacterPoint(i, effect2 + 2);
+				}
+
+				x += mData->GetItemPoint(num, 4);
+				if (effect1 <= 1 && x > mData->GetCharacterPoint(i, effect1)) {
+					x = mData->GetCharacterPoint(i, effect1);
+				}
+				y += mData->GetItemPoint(num, 5);
+				if (effect2 <= 1 && y > mData->GetCharacterPoint(i, effect2)) {
 					y = mData->GetCharacterPoint(i, effect2);
+				}
+
+				mData->SetCharacterPoint(i, effect1 + 2, x);
+				if (mData->GetItemPoint(num, 3) != -1) {
+					mData->SetCharacterPoint(i, effect2 + 2, y);
 				}
 			}
 		}
-
 	} else {
+		x = mData->GetCharacterPoint(target, effect1 + 2);
+		if (mData->GetItemPoint(num, 3) != -1) {
+			y = mData->GetCharacterPoint(target, effect2 + 2);
+		}
 
+		x += mData->GetItemPoint(num, 4);
+		if (effect1 <= 1 && x > mData->GetCharacterPoint(target, effect1)) {
+			x = mData->GetCharacterPoint(target, effect1);
+		}
+		y += mData->GetItemPoint(num, 5);
+		if (effect2 <= 1 && y > mData->GetCharacterPoint(target, effect2)) {
+			y = mData->GetCharacterPoint(target, effect2);
+		}
+
+		mData->SetCharacterPoint(target, effect1 + 2, x);
+		if (mData->GetItemPoint(num, 3) != -1) {
+			mData->SetCharacterPoint(target, effect2 + 2, y);
+		}
 	}
 }
 
@@ -252,4 +282,31 @@ void Menu_c::WearSoubi(int num, int target)
 
 void Menu_c::UseSkill(int num, int target)
 {
+	int x = 0;
+	int effect = mData->GetSkillPoint(num, 2);
+
+	if (mData->GetSkillPoint(num, 6) == 1) {
+		for (int i = 0; i < CHARACTER_SIZE; i++) {
+			if (mData->GetCharacterFlag(i) == 1) {
+				x = mData->GetCharacterPoint(i, effect + 2);
+
+				x += mData->GetSkillPoint(num, 4);
+				if (effect <= 1 && x > mData->GetCharacterPoint(i, effect)) {
+					x = mData->GetCharacterPoint(i, effect);
+				}
+
+				mData->SetCharacterPoint(i, effect + 2, x);
+			}
+		}
+	}
+	else {
+		x = mData->GetCharacterPoint(target, effect + 2);
+
+		x += mData->GetSkillPoint(num, 4);
+		if (effect <= 1 && x > mData->GetCharacterPoint(target, effect)) {
+			x = mData->GetCharacterPoint(target, effect);
+		}
+
+		mData->SetCharacterPoint(target, effect + 2, x);
+	}
 }
