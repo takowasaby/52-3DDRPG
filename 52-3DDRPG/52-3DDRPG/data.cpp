@@ -425,6 +425,12 @@ int Data_c::GetCharacterPoint(int num, int sort)
 	case 8:
 		return character[num].Image;
 		break;
+	case 9:
+		return character[num].soubi[0];
+		break;
+	case 10:
+		return character[num].soubi[1];
+		break;
 	}
 	return 0;
 }
@@ -457,6 +463,12 @@ void Data_c::SetCharacterPoint(int num, int sort, int point)
 		break;
 	case 8:
 		character[num].Image = point;
+		break;
+	case 9:
+		character[num].soubi[0] = point;
+		break;
+	case 10:
+		character[num].soubi[1] = point;
 		break;
 	}
 }
