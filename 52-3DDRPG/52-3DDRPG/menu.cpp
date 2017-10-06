@@ -213,11 +213,23 @@ void Menu_c::CheckKey()
 		case 1:
 		case 2:
 		case 3:
-		case 4: break;
+			*mMode = 1;
+			*mTitle_scene = 3;
+			break;
+		case 4:
+			*mMode = 1;
+			*mTitle_scene = 4;
+			break;
 		}
 	}
 	else if (mKey[KEY_INPUT_Z] == 1) {
-		if (depth != 4) depth++;
+		if (mode == save) {
+			*mMode = 1;
+			*mTitle_scene = 3;
+		} else if (mode == option) {
+			*mMode = 1;
+			*mTitle_scene = 4;
+		} else if (depth != 4) depth++;
 	}
 	else if (mKey[KEY_INPUT_X] == 1) {
 		if (depth != 0) depth--;
@@ -276,8 +288,9 @@ void Menu_c::UseItem(int num, int target)
 	}
 }
 
-void Menu_c::WearSoubi(int num, int target)
+void Menu_c::WearSoubi(int num, int target, int part)
 {
+	mData->SetCharacterPoint(target, part + 9, num);
 }
 
 void Menu_c::UseSkill(int num, int target)
