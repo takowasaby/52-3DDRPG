@@ -1,7 +1,5 @@
 #include "define.h"
 
-char Key[256];
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
 	ChangeWindowMode(true/*option.WinMode*/);//ウィンドウモードで描画
@@ -15,10 +13,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	Control_c control;
 
-	while (!ProcessMessage() && !ClearDrawScreen() && !GetHitKeyStateAll(Key) && !Key[KEY_INPUT_ESCAPE]) {
+	while (!ProcessMessage() && !ClearDrawScreen() && control.All()) {
 		//↑ﾒｯｾｰｼﾞ処理         ↑画面をｸﾘｱ          ↑ｷｰﾎﾞｰﾄﾞ入力状態取得       ↑ESCが押されていない
 
-		control.All();
+		//control.All();
 
 		ScreenFlip();//裏画面を表画面に反映
 	}

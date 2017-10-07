@@ -6,7 +6,7 @@ class Dungeon_c {
 private:
 	int x, y, dir;
 	int mscenario, mstage;
-	int mn, mnum, mfp, i, j;
+	int mn, mnum, mfp;
 	char fname[32];
 	int input[MAP_SIZE_X * MAP_SIZE_Y];
 	char inputc[MAP_SIZE_X * MAP_SIZE_Y];
@@ -15,10 +15,6 @@ private:
 	char gname[32];
 	int wallForDraw[10];
 	Data_c *mData;
-	int* mMode;
-	int* mEvent_scene;
-	int* mTitle_scene;
-	int* mGame_scene;
 	int mKey[256];
 
 	struct WallData_t {
@@ -29,7 +25,7 @@ private:
 
 public:
 	Dungeon_c();
-	Dungeon_c(Data_c* data, int* mode, int* event_scene, int* title_scene, int* game_scene);
+	Dungeon_c(Data_c* data);
 	~Dungeon_c();
 	void KeyUpdata(int Key[256]);
 	void DungeonAll();
