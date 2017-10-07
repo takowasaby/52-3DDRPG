@@ -8,9 +8,10 @@ game_scene(0)
 {
 	mEvents = new Event_c;
 	mFps = new Fps_c;
-	mMenu = new Menu_c(mData, &mode, &event_scene, &title_scene, &game_scene);
-	mDungeon = new Dungeon_c(mData, &mode, &event_scene, &title_scene, &game_scene);
-	mData = new Data_c;
+	mTitle = new Title_c;
+	mMenu = new Menu_c(mData);
+	mDungeon = new Dungeon_c(mData);
+	mData = new Data_c(&mode, &event_scene, &title_scene, &game_scene);
 }
 
 Control_c::~Control_c()
@@ -23,7 +24,7 @@ Control_c::~Control_c()
 	delete mData;
 }
 
-void Control_c::All() {
+bool Control_c::All() {
 
 	UpdateKey();	//キー入力の検知
 
@@ -93,6 +94,11 @@ void Control_c::All() {
 
 	mFps->Draw();	//fps表示
 	mFps->Wait();	//待機
+
+	if (Key[KEY_INPUT_ESCAPE] == 1) {
+		return FALSE;
+	}
+	return TRUE;
 }
 
 void Control_c::UpdateKey(void)

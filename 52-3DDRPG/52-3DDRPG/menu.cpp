@@ -173,7 +173,7 @@ void Menu_c::DrawRight()
 		}
 		break;
 	case 3:
-	case 4:
+	case 4: break;
 	}
 }
 
@@ -199,7 +199,7 @@ void Menu_c::CheckKey()
 		case 1:
 		case 2:
 		case 3:
-		case 4:
+		case 4:break;
 		}
 	}
 	else if (mKey[KEY_INPUT_UP] == 1) {
@@ -213,7 +213,7 @@ void Menu_c::CheckKey()
 		case 1:
 		case 2:
 		case 3:
-		case 4:
+		case 4: break;
 		}
 	}
 	else if (mKey[KEY_INPUT_Z] == 1) {

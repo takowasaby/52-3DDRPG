@@ -25,7 +25,7 @@ Dungeon_c::Dungeon_c(Data_c* data, int * mode, int * event_scene, int * title_sc
 
 Dungeon_c::~Dungeon_c()
 {
-	delete mData;
+//	delete mData;
 }
 
 void Dungeon_c::KeyUpdata(int Key[256])
