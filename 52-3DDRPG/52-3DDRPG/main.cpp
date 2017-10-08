@@ -2,6 +2,7 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
+
 	ChangeWindowMode(true/*option.WinMode*/);//ウィンドウモードで描画
 							//SetGraphMode(WINDOW_X, WINDOW_Y, WINDOW_COLOR_BIT);	// 画面の大きさを変える(640*480の32bit)
 	if (DxLib_Init() == -1) {

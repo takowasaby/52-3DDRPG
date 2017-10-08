@@ -1,15 +1,32 @@
 #pragma once
 
-class option_c {
+class Control_c;
+
+class Option_c {
 private:
-	int BGMVol, SEVol, BattleType, KeyConfig;
+	bool option_flag;
+
+	int BGMVol, BGMLv, SEVol, SELv, BattleType;
+	bool WindowMode;
+
+	int Cursor;
+
+	Control_c* control;
 public:
-	bool WinMode;
-	void Ini();
-	void main();
-	void backdraw();
-	void itemdraw();
-	void configdraw();
-	void cursol();
-	void Fin();
+	Option_c();
+	~Option_c();
+
+	bool Main(int* Key);
+
+	void BackDraw();
+	void ItemDraw();
+
+	bool CursorDraw(int* Key);
+
+	int GetBGMvol();
+	int GetSEVol();
+	int GetBattleType();
+	bool GetWindowMode();
+
+	void SetOptionFlag(bool* flag);
 };
