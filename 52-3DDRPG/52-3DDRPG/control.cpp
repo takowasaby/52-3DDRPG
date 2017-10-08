@@ -95,13 +95,10 @@ bool Control_c::All() {
 	mFps->Draw();	//fps•\Ž¦
 	mFps->Wait();	//‘Ò‹@
 
-<<<<<<< HEAD
-=======
 	if (Key[KEY_INPUT_ESCAPE] == 1) {
 		return FALSE;
 	}
 	return TRUE;
->>>>>>> master
 }
 
 void Control_c::UpdateKey(void)
