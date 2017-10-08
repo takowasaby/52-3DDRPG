@@ -15,6 +15,14 @@ private:
 	int playCount;
 	string GoalText[SCENARIO_SIZE][EVENT_SIZE];
 	//	int itemFlag[SCENARIO_SIZE][ITEM_TYPE_SIZE][ITEM_SIZE];
+	int EventFlag;
+	
+	int BMode;
+	int BScene;
+	int* ControlMode;
+	int* mEventScene;
+	int* mTitleScene;
+	int* mGameScene;
 
 	struct Skill_t {
 		int num;				//スキル固有の数字
@@ -65,6 +73,7 @@ private:
 
 public:
 	Data_c();		//コンストラクタ
+	Data_c(int* mode, int* event_scene, int* title_scene, int* game_scene);
 	~Data_c();		//デストラクタ
 
 	void LoadAll(int s);
@@ -103,12 +112,14 @@ public:
 	int GetDungeonX();
 	int GetDungeonY();
 	int GetDir();
+	int GetEventFlag();
 
 	void SetScenario(int i);
 	void SetStage(int i);
 	void SetDungeonX(int i);
 	void SetDungeonY(int i);
 	void SetDir(int i);
+	void SetEventFlag(int i);
 
 	int GetMapFlag(int scenario, int stage, int x, int y);
 	int GetEventFlag(int scenario, int num);
@@ -120,4 +131,7 @@ public:
 	void SetPlayCount(int i);
 	void AddPlayCount();
 	void SetWallType(int x, int y, int type);
+
+	void SceneRequest(int mode, int scene);
+	void SceneBackRequest();
 };

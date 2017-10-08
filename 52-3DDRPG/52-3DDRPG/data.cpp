@@ -3,6 +3,13 @@
 Data_c::Data_c()
 {
 }
+Data_c::Data_c(int * mode, int * event_scene, int * title_scene, int * game_scene) :
+	ControlMode(mode),
+	mEventScene(event_scene),
+	mTitleScene(title_scene),
+	mGameScene(game_scene)
+{
+}
 Data_c::~Data_c()
 {
 }
@@ -503,6 +510,11 @@ int Data_c::GetDir()
 	return dir;
 }
 
+int Data_c::GetEventFlag()
+{
+	return EventFlag;
+}
+
 
 void Data_c::SetScenario(int i)
 {
@@ -524,6 +536,11 @@ void Data_c::SetDungeonY(int i)
 void Data_c::SetDir(int i)
 {
 	dir = i;
+}
+
+void Data_c::SetEventFlag(int i)
+{
+	EventFlag = i;
 }
 
 int Data_c::GetMapFlag(int scenario, int stage, int x, int y)
@@ -563,6 +580,45 @@ void Data_c::AddPlayCount()
 void Data_c::SetWallType(int x, int y, int type)
 {
 	wallType[x][y] = type;
+}
+
+void Data_c::SceneRequest(int mode, int scene)
+{
+	if (EventFlag == 0) {
+		BMode = *ControlMode;
+		*ControlMode = mode;
+		switch (mode) {
+		case 0: 
+			BScene = *mEventScene;	
+			*mEventScene = scene;
+			break;
+		case 1: 
+			BScene = *mTitleScene;	
+			*mTitleScene = scene;
+			break;
+		case 2: 
+			BScene = *mGameScene;
+			*mGameScene = scene;
+			break;
+		}
+	}
+}
+void Data_c::SceneBackRequest()
+{
+	if (EventFlag == 0) {
+		*ControlMode = BMode;
+		switch (BMode) {
+		case 0:
+			*mEventScene = BScene;
+			break;
+		case 1:
+			*mTitleScene = BScene;
+			break;
+		case 2:
+			*mGameScene = BScene;
+			break;
+		}
+	}
 }
 
 
