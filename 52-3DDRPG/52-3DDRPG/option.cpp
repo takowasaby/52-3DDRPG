@@ -135,8 +135,8 @@ bool Option_c::CursorDraw(int* Key)
 		//if player jump from "title"
 		if (option_flag == false)
 		{
-			control->SetMode(1);	//mode = title
-			control->SetTitle(2);	//title_scene = start
+			//mode = title
+			//title_scene = start
 
 			return true;
 		}
@@ -144,8 +144,8 @@ bool Option_c::CursorDraw(int* Key)
 		//if player jump from "menu"
 		else
 		{
-			control->SetMode(2);	//mode = game
-			control->SetGame(3);	//game_scene = menu
+			//mode = game
+			//game_scene = menu
 
 			return true;
 		}

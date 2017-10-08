@@ -54,6 +54,7 @@ public:
 	Control_c();		//コンストラクタ
 	~Control_c();		//デストラクタ
 
-	void All();
+	bool All();
+
 	void UpdateKey(void);
 };
