@@ -13,7 +13,6 @@ private:
 	int mapFlag[SCENARIO_SIZE][STAGE_SIZE][MAP_SIZE_X][MAP_SIZE_Y];
 	int eventFlag[SCENARIO_SIZE][EVENT_SIZE];
 	int playCount;
-	string GoalText[SCENARIO_SIZE][EVENT_SIZE];
 	//	int itemFlag[SCENARIO_SIZE][ITEM_TYPE_SIZE][ITEM_SIZE];
 
 	struct Skill_t {
@@ -54,7 +53,6 @@ private:
 
 	struct Character_t {
 		int flag;
-		int soubi[2];
 		int HPMAX, MPMAX, STR, VIT, AGI, INT;
 		int HP, MP;
 		char name[NAME_SIZE];
@@ -67,12 +65,11 @@ public:
 	Data_c();		//コンストラクタ
 	~Data_c();		//デストラクタ
 
-	void LoadAll(int s);
-	void GoalLoad(int s);
-	void ItemLoad(int s);
-	void SoubiLoad(int s);
-	void SkillLoad(int s);
-	void CharacterLoad(int s);
+	void LoadAll(int scenario);
+	void ItemLoad(int scenario);
+	void SoubiLoad(int scenario);
+	void SkillLoad(int scenario);
+	void CharacterLoad(int scenario);
 
 	int GetItemFlag(int num);
 	int GetSoubiFlag(int num);
@@ -81,8 +78,6 @@ public:
 	void CalcItemFlag(int num, int vary);
 	void CalcSoubiFlag(int num, int vary);
 	void SetCharacterFlag(int num, int vary);
-
-	string GetGoalText(int s, int num);
 
 	int GetItemPoint(int num, int sort);			//0:num 1:type 2:effect1 3:effect2 4:point1 5:point2 6:area
 	string GetItemText(int num, int sort);			//0:name 1:explain
@@ -94,7 +89,6 @@ public:
 	string GetSkillText(int num, int sort);			//0:name 1:explain
 
 	int GetCharacterPoint(int num, int sort);		//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image
-	void SetCharacterPoint(int num, int sort, int point);
 	int GetCharacterSkillCode(int num, int order);	
 	string GetCharacterName(int num);				
 

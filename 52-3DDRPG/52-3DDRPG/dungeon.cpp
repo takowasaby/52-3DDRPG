@@ -14,14 +14,18 @@ Dungeon_c::Dungeon_c() :
 	GraphLoad(mscenario, mstage);
 }
 
-Dungeon_c::Dungeon_c(Data_c* data) :
-	mData(data)
+Dungeon_c::Dungeon_c(Data_c* data, int * mode, int * event_scene, int * title_scene, int * game_scene) :
+	mData(data),
+	mMode(mode),
+	mEvent_scene(event_scene),
+	mTitle_scene(title_scene),
+	mGame_scene(game_scene)
 {
 }
 
 Dungeon_c::~Dungeon_c()
 {
-//	delete mData;
+	delete mData;
 }
 
 void Dungeon_c::KeyUpdata(int Key[256])
