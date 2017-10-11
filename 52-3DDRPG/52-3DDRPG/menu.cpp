@@ -26,17 +26,19 @@ void Menu_c::KeyUpdata(int Key[256])
 
 void Menu_c::DrawGoal()
 {
-	int count;
+	int drawCount;
 
 	for (int i = 0; i < EVENT_SIZE; i++) {
-		count += mData->GetEventFlag(mscenario, i);
+		drawCount += mData->GetEventFlag(mscenario, i);
 	}
 
-	DrawFormatString(320, 20, GetColor(255, 255, 255), "%s");
+	printfDx("%s");
 }
 
 void Menu_c::MenuAll()
 {
+	clsDx();
+
 	DrawLeft();
 	DrawRight();
 	DrawCursor();
@@ -49,23 +51,33 @@ void Menu_c::DrawBack()
 
 void Menu_c::DrawLeft()
 {
-	DrawFormatString(20, 20, GetColor(255, 255, 255), "マップ");
-	DrawFormatString(20, 40, GetColor(255, 255, 255), "ステータス");
-	DrawFormatString(20, 60, GetColor(255, 255, 255), "装備");
-	DrawFormatString(20, 80, GetColor(255, 255, 255), "アイテム");
-	DrawFormatString(20, 100, GetColor(255, 255, 255), "ライブラリ");
-	DrawFormatString(20, 120, GetColor(255, 255, 255), "セーブ");
-	DrawFormatString(20, 140, GetColor(255, 255, 255), "オプション");
-	DrawFormatString(20, 160, GetColor(255, 255, 255), "プレイ時間");
-	DrawFormatString(20, 200, GetColor(255, 255, 255), "現在のシナリオ");
+	printfDx("マップ");
+	printfDx("ステータス");
+	printfDx("装備");
+	printfDx("アイテム");
+	printfDx("ライブラリ");
+	printfDx("セーブ");
+	printfDx("オプション");
+	printfDx("プレイ時間");
+	printfDx("現在のシナリオ");
 }
 
 void Menu_c::DrawRight()
 {
-	int count = 0;
+	drawCount = 0;
+
+	printfDx("/nMode:%d, ", mode);
+	printfDx("ItemType:%d, ", itemType);
+	printfDx("SoubiType:%d, ", soubiType);
+	printfDx("CChara:%d, ", chooseChara);
+	printfDx("CItem:%d, ", chooseItem);
+	printfDx("CSoubi:%d, ", chooseSoubi);
+	printfDx("CSkill:%d, ", chooseSoubi);
+	printfDx("YN:%d, ", YN);
 
 	switch (depth) {
 	case 0:
+	case 1:
 		switch (mode) {
 		case map:
 			DrawGoal();
@@ -108,38 +120,38 @@ void Menu_c::DrawRight()
 			}
 			break;
 		case status:
+			for (int i = 0; i < CHARACTER_SIZE; i++) {
+				if (mData->GetCharacterFlag(i)) {
+					printfDx("/n%s ", mData->GetCharacterName(i));
+					printfDx("HP:%d/%d ", mData->GetCharacterPoint(i, 0), mData->GetCharacterPoint(i, 2));
+					printfDx("MP:%d/%d ", mData->GetCharacterPoint(i, 1), mData->GetCharacterPoint(i, 3));
+					printfDx("STR:%d ", mData->GetCharacterPoint(i, 4));
+					printfDx("VIT:%d ", mData->GetCharacterPoint(i, 5));
+					printfDx("AGI:%d ", mData->GetCharacterPoint(i, 6));
+					printfDx("INT:%d ", mData->GetCharacterPoint(i, 7));
+
+					charaNum[drawCount] = i;
+					drawCount++;
+				}
+			}
 			break;
 		case soubi:
+			for (int i = 0; i < CHARACTER_SIZE; i++) {
+				if (mData->GetCharacterFlag(i)) {
+					printfDx("/n%s ", mData->GetCharacterName(i));
+					printfDx("武器:%s, ", mData->GetSoubiText(mData->GetCharacterPoint(i, 9), 0));
+					printfDx("アクセ:%s, ", mData->GetSoubiText(mData->GetCharacterPoint(i, 10), 0));
+
+					charaNum[drawCount] = i;
+					drawCount++;
+				}
+			}
 			break;
 		case item:
-			DrawFormatString(320, 20, GetColor(255, 255, 255), "消耗品");
-			DrawFormatString(480, 20, GetColor(255, 255, 255), "だいじなもの");
+			printfDx("消耗品");
+			printfDx("だいじなもの");
 			break;
 		case library:
-			break;
-		case save:
-			break;
-		case option:
-			break;
-		}
-		break;
-	case 1:
-		switch (mode) {
-		case map:
-			break;
-		case status:
-			break;
-		case soubi:
-			break;
-		case item:
-			DrawFormatString(320, 20, GetColor(255, 255, 255), "消耗品");
-			DrawFormatString(480, 20, GetColor(255, 255, 255), "だいじなもの");
-			break;
-		case library:
-			break;
-		case save:
-			break;
-		case option:
 			break;
 		}
 		break;
@@ -148,42 +160,107 @@ void Menu_c::DrawRight()
 		case map:
 			break;
 		case status:
-			break;
-		case soubi:
-			break;
-		case item:
-			DrawFormatString(320, 20, GetColor(255, 255, 255), "消耗品");
-			DrawFormatString(480, 20, GetColor(255, 255, 255), "だいじなもの");
+			printfDx("/n%s ", mData->GetCharacterName(chooseChara));
+			printfDx("HP:%d/%d ", mData->GetCharacterPoint(chooseChara, 0), mData->GetCharacterPoint(chooseChara, 2));
+			printfDx("MP:%d/%d ", mData->GetCharacterPoint(chooseChara, 1), mData->GetCharacterPoint(chooseChara, 3));
+			printfDx("STR:%d ", mData->GetCharacterPoint(chooseChara, 4));
+			printfDx("VIT:%d ", mData->GetCharacterPoint(chooseChara, 5));
+			printfDx("AGI:%d ", mData->GetCharacterPoint(chooseChara, 6));
+			printfDx("INT:%d ", mData->GetCharacterPoint(chooseChara, 7));
+			DrawGraph(480, 240, mData->GetCharacterPoint(chooseChara, 8), TRUE);
 
-			for (int i = 0; i < ITEM_SIZE; i++) {
-				if (mData->GetItemFlag(i) >= 1) {
-					if (count < 40) {
-						DrawFormatString(((count / 20) + 1) * 160, ((count % 20) + 1) * 20 + 20, GetColor(255, 255, 255), "%s" ,mData->GetItemText(i, 0));
-						count++;
+			for (int i = 0; i < SKILL_CODE_SIZE; i++) {
+				if (mData->GetCharacterSkillCode(chooseChara, i) == -1) {
+					printfDx("/n%s, ", mData->GetSkillText(mData->GetCharacterSkillCode(chooseChara, i), 0));
+					skillNum[drawCount] = mData->GetCharacterSkillCode(chooseChara, i);
+					drawCount++;
+				}
+			}
+			
+			printfDx("/n%s", mData->GetSkillText(skillNum[chooseSkill], 1));
+			break;
+
+		case soubi:
+			printfDx("%s", mData->GetCharacterName(chooseChara));
+			
+			for (int i = 0; i < SOUBI_SIZE; i++) {
+				if (mData->GetSoubiFlag(i) >= 1) {
+					if (soubiType == mData->GetSoubiPoint(i, 1)) {
+						if (i == mData->GetCharacterPoint(chooseChara, soubiType + 9)) printfDx("E.");
+						printfDx("%s, ", mData->GetSoubiText(i, 0));
+						soubiNum[drawCount] = i;
+						drawCount++;
 					}
 				}
 			}
+
+			printfDx("/n%s", mData->GetSoubiText(soubiNum[chooseSoubi], 1));
 			break;
+
+		case item:
+			printfDx("消耗品");
+			printfDx("だいじなもの");
+
+			for (int i = 0; i < ITEM_SIZE; i++) {
+				if (mData->GetItemFlag(i) >= 1) {
+					if (itemType == mData->GetItemPoint(i, 1)) {
+						printfDx("%s, " ,mData->GetItemText(i, 0));
+						itemNum[drawCount] = i;
+						drawCount++;
+					}
+				}
+			}
+
+			printfDx("/n%s", mData->GetItemText(itemNum[chooseItem], 1));
+			break;
+
 		case library:
 			break;
-		case save:
+		}
+	case 3:
+		switch (mode) {
+		case status:
+			printfDx("/nこのスキルを使用しますか？");
+			printfDx("はい　");
+			printfDx("いいえ");
 			break;
-		case option:
+		case soubi:
+			printfDx("/n%sを装備しますか？", mData->GetSoubiText(soubiNum[chooseSoubi], 0));
+			printfDx("はい　");
+			printfDx("いいえ");
+			break;
+		case item:
+			printfDx("/nこのアイテムを使用しますか？");
+			printfDx("はい　");
+			printfDx("いいえ");
+			break;
+		}
+	case 4: 
+		switch (mode) {
+		case status:
+			printfDx("/nこのスキルを誰に使用しますか？");
+			for (int i = 0; i < CHARACTER_SIZE; i++) {
+				if (mData->GetCharacterFlag(i)) {
+					printfDx("/n%s ", mData->GetCharacterName(i));
+				}
+			}
+			break;
+		case item:
+			printfDx("/nこのアイテムを誰に使用しますか？");
+			for (int i = 0; i < CHARACTER_SIZE; i++) {
+				if (mData->GetCharacterFlag(i)) {
+					printfDx("/n%s ", mData->GetCharacterName(i));
+				}
+			}
 			break;
 		}
 		break;
-	case 3:
-	case 4: break;
 	}
 }
 
 void Menu_c::DrawCursor()
 {
-	for (int i = 0; i < 5; i++) {
-		if (cursorY[i] != -1) {
-			DrawTriangle(cursorX[i] - 5, cursorY[i] - 3, cursorX[i] + 5, cursorY[i], cursorX[i] - 5, cursorY[i] + 3, GetColor(255, 255, 255), TRUE);
-		}
-	}
+	DrawTriangle(cursorX - 5, cursorY - 3, cursorX + 5, cursorY, cursorX - 5, cursorY + 3, GetColor(255, 255, 255), TRUE);
 }
 
 void Menu_c::CheckKey()
@@ -191,48 +268,231 @@ void Menu_c::CheckKey()
 	if (mKey[KEY_INPUT_DOWN] == 1) {
 		switch (depth) {
 		case 0:
-			if (cursorY[0] != limitDOWN[0]) {
-				cursorY[0] += 20;
+			if (cursorY != limitDOWN) {
+				cursorY += 20;
 				mode++;
 			}
 			break;
 		case 1:
+			switch (mode) {
+			case status:
+				if (chooseChara != drawCount) {
+					chooseChara++;
+				}
+				break;
+			case soubi:
+				if (chooseChara != drawCount) {
+					chooseChara++;
+				}
+				break;
+			}
+			break;
 		case 2:
+			switch (mode) {
+			case status:
+				if (chooseSkill != drawCount) {
+					chooseSkill++;
+				}
+				break;
+			case soubi:
+				if (chooseSoubi != drawCount) {
+					chooseSoubi++;
+				}
+				break;
+			case item:
+				if (chooseItem != drawCount) {
+					chooseItem++;
+				}
+				break;
+			}
+			break;
 		case 3:
-		case 4: break;
+			if (YN != 1) {
+				YN++;
+			}
+			break;
+		case 4: 
+			if (targetChara != drawCount) {
+				targetChara++;
+			}
+			break;
 		}
 	}
 	else if (mKey[KEY_INPUT_UP] == 1) {
 		switch (depth) {
 		case 0:
-			if (cursorY[0] != limitUP[0]) {
-				cursorY[0] -= 20;
+			if (cursorY != limitUP) {
+				cursorY -= 20;
 				mode--;
 			}
 			break;
 		case 1:
+			switch (mode) {
+			case status:
+				if (chooseChara != 0) {
+					chooseChara--;
+				}
+				break;
+			case soubi:
+				if (chooseChara != 0) {
+					chooseChara--;
+				}
+				break;
+			}
+			break;
 		case 2:
+			switch (mode) {
+			case status:
+				if (chooseSkill != 0) {
+					chooseSkill--;
+				}
+				break;
+			case soubi:
+				if (chooseSoubi != 0) {
+					chooseSoubi--;
+				}
+				break;
+			case item:
+				if (chooseItem != 0) {
+					chooseItem--;
+				}
+				break;
+			}
+			break;
+		case 3: 
+			if (YN != 0) {
+				YN--;
+			}
+			break;
+		case 4: 
+			if (targetChara != 0) {
+				targetChara--;
+			}
+			break;
+		}
+	}
+	else if (mKey[KEY_INPUT_LEFT] == 1) {
+		switch (depth) {
+		case 0: break;
+		case 1:
+			switch (mode) {
+			case soubi:
+				if (soubiType != 0) {
+					soubiType--;
+				}
+				break;
+			case item:
+				if (itemType != 0) {
+					itemType--;
+				}
+				break;
+			}
+			break;
+		case 2: 
 		case 3:
+		case 4: break;
+		}
+	}
+	else if (mKey[KEY_INPUT_RIGHT] == 1) {
+		switch (depth) {
+		case 0: break;
+		case 1: 
+			switch (mode) {
+			case soubi:
+				if (soubiType != 1) {
+					soubiType++;
+				}
+				break;
+			case item:
+				if (itemType != 1) {
+					itemType++;
+				}
+				break;
+			}
+			break;
+		case 2: 
+		case 3:
+		case 4: break;
+		}
+	}
+	else if (mKey[KEY_INPUT_Z] == 1) {
+		switch (mode) {
+		case status:
+			switch (depth) {
+			case 0:
+			case 1: 
+			case 2: depth++; break;
+			case 3: 
+				if (YN == 0) {
+					if (mData->GetSkillPoint(skillNum[chooseSkill], 6) == 0) {
+						depth++;
+					}
+					else {
+						UseSkill(skillNum[chooseSkill], -1);
+					}
+				}
+				else {
+					depth--;
+				}
+				break;
+			case 4:
+				UseSkill(itemNum[chooseSkill], targetChara);
+				break;
+			}
+			break;
+		case soubi:
+			switch (depth) {
+			case 0:
+			case 1:
+			case 2: depth++; break;
+			case 3:
+				if (YN == 0) {
+					mData->SetCharacterPoint(charaNum[chooseChara], 9, soubiNum[chooseSoubi]);
+				}
+				else {
+					depth--;
+				}
+				break;
+			}
+			break;
+		case item:
+			switch (depth) {
+			case 0:
+			case 1:
+			case 2: depth++; break;
+			case 3:
+				if (YN == 0) {
+					if (mData->GetItemPoint(itemNum[chooseItem], 6) == 0) {
+						depth++;
+					}
+					else {
+						UseItem(itemNum[chooseItem], -1);
+					}
+				}
+				else {
+					depth--;
+				}
+				break;
+			case 4:
+				UseItem(itemNum[chooseItem], targetChara);
+				break;
+			}
+			break;
+//		case library:
+		case save:
 			*mMode = 1;
 			*mTitle_scene = 3;
 			break;
-		case 4:
+		case option:
 			*mMode = 1;
 			*mTitle_scene = 4;
 			break;
 		}
 	}
-	else if (mKey[KEY_INPUT_Z] == 1) {
-		if (mode == save) {
-			*mMode = 1;
-			*mTitle_scene = 3;
-		} else if (mode == option) {
-			*mMode = 1;
-			*mTitle_scene = 4;
-		} else if (depth != 4) depth++;
-	}
 	else if (mKey[KEY_INPUT_X] == 1) {
-		if (depth != 0) depth--;
+		if (depth != 0) {
+			depth--;
+		}
 	}
 }
 
