@@ -45,6 +45,12 @@ public:
 	void AddMessage(string);
 	void SetMessage(string,int);
 
+	//ƒy[ƒW‚ß‚­‚èŠÖ”
+	void ScrollUp();
+	void ScrollDown();
+	void PageUp();
+	void PageDown();
+
 	string GetText(int);
 };
 

@@ -7,6 +7,7 @@ class Menu_c;
 class Dungeon_c;
 class Data_c;
 class SaveLoad_c;
+class Option_c;
 
 class Control_c {
 private:
@@ -19,6 +20,7 @@ private:
 	Dungeon_c* mDungeon;
 	Data_c* mData;
 	SaveLoad_c* mSaveLoad;
+	Option_c* mOption;
 
 	int Key[256];
 
@@ -29,6 +31,9 @@ private:
 
 	bool SaveLoadStart = false;
 	bool SaveLoadEnd = false;
+
+	bool optionStart = false;
+	bool optionEnd = false;
 
 	typedef enum {
 		event,
