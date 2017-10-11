@@ -7,21 +7,21 @@ Option_c::Option_c() :
 	BattleType(2),
 	WindowMode(true)
 {
-	control = new Control_c;
+	//mData = new Data_c;
 }
 
 Option_c::~Option_c()
 {
-	delete control;
+	//delete mData;
 }
 
-bool Option_c::Main(int* Key)
+bool Option_c::Main(int* Key, int* mode, int* title_scene, int* game_scene)
 {
 
 	BackDraw();
 	ItemDraw();
 
-	return CursorDraw(Key);
+	return CursorDraw(Key, mode, title_scene, game_scene);
 }
 
 void Option_c::BackDraw()
@@ -69,7 +69,7 @@ void Option_c::ItemDraw()
 }
 
 
-bool Option_c::CursorDraw(int* Key)
+bool Option_c::CursorDraw(int* Key, int* mode, int* title_scene, int* game_scene)
 {
 	DrawFormatString(10, Cursor, GetColor(255, 255, 255), "->");
 
@@ -130,8 +130,11 @@ bool Option_c::CursorDraw(int* Key)
 		}
 	}
 
+	BGMVol = 255 * BGMLv / 5;	//mData->BGMVol =
+	SEVol = 255 * SELv / 5;		//mData->SEVol =
+
 	// Back or CANCEL_KEY
-	else if ((Key[KEY_INPUT_Z] == 1 && Cursor == 210) || Key[KEY_INPUT_X] == 1) {
+	if ((Key[KEY_INPUT_Z] == 1 && Cursor == 210) || Key[KEY_INPUT_X] == 1) {
 		//if player jump from "title"
 		if (option_flag == false)
 		{
@@ -151,9 +154,6 @@ bool Option_c::CursorDraw(int* Key)
 		}
 	}
 	return false;
-
-	BGMVol = 255 * BGMLv / 5;
-	SEVol = 255 * SELv / 5;
 }
 
 int Option_c::GetBGMvol()

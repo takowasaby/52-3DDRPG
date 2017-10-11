@@ -1,6 +1,6 @@
 #pragma once
 
-class Control_c;
+class Data_c;
 
 class Option_c {
 private:
@@ -11,17 +11,17 @@ private:
 
 	int Cursor;
 
-	Control_c* control;
+	//Data_c* mData;
 public:
 	Option_c();
 	~Option_c();
 
-	bool Main(int* Key);
+	bool Main(int* Key, int* mode, int* title_scene, int* game_scene);
 
 	void BackDraw();
 	void ItemDraw();
 
-	bool CursorDraw(int* Key);
+	bool CursorDraw(int* Key, int* mode, int* title_scene, int* game_scene);
 
 	int GetBGMvol();
 	int GetSEVol();
