@@ -60,9 +60,13 @@ void Control_c::All() {
 			if (titleEnd == true) { titleEnd = false; delete mTitle; }
 			}
 			break;
-		case save_load:
-			//セーブ・ロード
-			DrawFormatString(150, 100, GetColor(255, 255, 255), "セーブ･ロード"); //デバッグ用
+		case save:
+			//セーブ
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "セーブ"); //デバッグ用
+			break;
+		case load:
+			//ロード
+			DrawFormatString(150, 100, GetColor(255, 255, 255), "ロード"); //デバッグ用
 			break;
 		case option:
 			//オプション

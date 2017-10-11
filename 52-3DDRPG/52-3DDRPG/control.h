@@ -39,7 +39,8 @@ private:
 		gameover,
 		scenario,
 		start,
-		save_load,
+		save,
+		load,
 		option,
 	}Title_scene;
 
