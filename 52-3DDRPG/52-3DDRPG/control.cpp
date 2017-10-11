@@ -76,7 +76,9 @@ void Control_c::All() {
 			break;
 		case option:
 			//オプション
-			DrawFormatString(150, 100, GetColor(255, 255, 255), "オプション"); //デバッグ用
+			if (optionStart == false) { optionStart = true; mOption = new Option_c; }
+			optionEnd = mOption->Main(Key, &mode, &title_scene, &game_scene);
+			if (optionEnd == true) { optionEnd = false; delete mOption; }
 			break;
 		}
 		break;
