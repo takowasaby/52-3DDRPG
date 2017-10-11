@@ -6,6 +6,7 @@ class Title_c;
 class Menu_c;
 class Dungeon_c;
 class Data_c;
+class SaveLoad_c;
 
 class Control_c {
 private:
@@ -17,11 +18,17 @@ private:
 	Menu_c* mMenu;
 	Dungeon_c* mDungeon;
 	Data_c* mData;
+	SaveLoad_c* mSaveLoad;
 
 	int Key[256];
 
+	int *CharX, *CharY, Status[10];//‰¼’u‚«—p
+
 	bool titleStart = false;
 	bool titleEnd = false;
+
+	bool SaveLoadStart = false;
+	bool SaveLoadEnd = false;
 
 	typedef enum {
 		event,

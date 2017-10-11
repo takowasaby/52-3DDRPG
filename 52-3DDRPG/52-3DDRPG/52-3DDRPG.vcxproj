@@ -162,6 +162,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="option.cpp" />
+    <ClCompile Include="save_load.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="title.cpp" />
   </ItemGroup>
@@ -177,6 +178,7 @@
     <ClInclude Include="fps.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="option.h" />
+    <ClInclude Include="save_load.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="title.h" />
   </ItemGroup>

@@ -21,6 +21,7 @@ Control_c::~Control_c()
 	delete mMenu;
 	delete mDungeon;
 	delete mData;
+	delete mSaveLoad;
 }
 
 void Control_c::All() {
@@ -60,13 +61,18 @@ void Control_c::All() {
 			if (titleEnd == true) { titleEnd = false; delete mTitle; }
 			}
 			break;
-		case save:
+		case save: {
 			//セーブ
-			DrawFormatString(150, 100, GetColor(255, 255, 255), "セーブ"); //デバッグ用
+			if (SaveLoadStart == false) { SaveLoadStart = true; mSaveLoad = new SaveLoad_c; }
+			SaveLoadEnd = mSaveLoad->SaveScreen(Key, &game_scene, CharX, CharY, Status, 10);
+			if (SaveLoadEnd == true) { SaveLoadEnd = false; delete mSaveLoad; }
+			}
 			break;
-		case load:
-			//ロード
-			DrawFormatString(150, 100, GetColor(255, 255, 255), "ロード"); //デバッグ用
+		case load: {
+			if (SaveLoadStart == false) { SaveLoadStart = true; mSaveLoad = new SaveLoad_c; }
+			SaveLoadEnd = mSaveLoad->LoadScreen(Key, &game_scene, CharX, CharY, Status, 10);
+			if (SaveLoadEnd == true) { SaveLoadEnd = false; delete mSaveLoad; }
+			}
 			break;
 		case option:
 			//オプション

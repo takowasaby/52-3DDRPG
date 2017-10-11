@@ -16,7 +16,6 @@ private:
 	int TempScreen;
 
 	int Cursor = 300;
-	char Key[256];
 	int SE[4];
 	bool first = true;
 	int bright = 0;
