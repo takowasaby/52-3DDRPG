@@ -395,8 +395,7 @@ int Data_c::GetCharacterPoint(int num, int sort)
 	}
 	return 0;
 }
-<<<<<<< HEAD
-=======
+
 void Data_c::SetCharacterPoint(int num, int sort, int point)
 {
 	switch (sort) {
@@ -435,7 +434,7 @@ void Data_c::SetCharacterPoint(int num, int sort, int point)
 		break;
 	}
 }
->>>>>>> menu
+
 int Data_c::GetCharacterSkillCode(int num, int order)
 {
 	return character[num].skillCode[order];

@@ -1,6 +1,10 @@
 #pragma once
 
 //#include <string>
+
+const int MENU_MAP_UP = 200;
+const int MENU_MAP_LEFT = 200;
+
 using namespace std;
 
 class Data_c {
@@ -55,6 +59,7 @@ private:
 		int flag;
 		int HPMAX, MPMAX, STR, VIT, AGI, INT;
 		int HP, MP;
+		int soubi[2];
 		char name[NAME_SIZE];
 		int skillCode[SKILL_CODE_SIZE];
 		int Image;
@@ -88,12 +93,9 @@ public:
 	int GetSkillPoint(int num, int sort);			//0:num 1:MP 2:effect 3:status 4:magnification 5:area
 	string GetSkillText(int num, int sort);			//0:name 1:explain
 
-<<<<<<< HEAD
-	int GetCharacterPoint(int num, int sort);		//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image
-=======
 	int GetCharacterPoint(int num, int sort);		//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image 9:soubi[1] 10:soubi[2]
 	void SetCharacterPoint(int num, int sort, int point);	//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image 9:soubi[1] 10:soubi[2]
->>>>>>> menu
+
 	int GetCharacterSkillCode(int num, int order);	
 	string GetCharacterName(int num);				
 

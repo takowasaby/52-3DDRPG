@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "define.h"
 
 Menu_c::Menu_c()
 {
@@ -8,8 +8,6 @@ Menu_c::~Menu_c()
 {
 }
 
-<<<<<<< HEAD
-=======
 void Menu_c::KeyUpdata(int Key[256])
 {
 	for (int i = 0; i < 256; i++) {
@@ -28,7 +26,6 @@ void Menu_c::DrawGoal()
 	printfDx("%s");
 }
 
->>>>>>> menu
 void Menu_c::MenuAll()
 {
 	clsDx();
@@ -45,9 +42,6 @@ void Menu_c::DrawBack()
 
 void Menu_c::DrawLeft()
 {
-<<<<<<< HEAD
-	DrawFormatString();
-=======
 	printfDx("マップ");
 	printfDx("ステータス");
 	printfDx("装備");
@@ -57,14 +51,10 @@ void Menu_c::DrawLeft()
 	printfDx("オプション");
 	printfDx("プレイ時間");
 	printfDx("現在のシナリオ");
->>>>>>> menu
 }
 
 void Menu_c::DrawRight()
 {
-<<<<<<< HEAD
-
-=======
 	drawCount = 0;
 
 	printfDx("/nMode:%d, ", mode);
@@ -257,21 +247,15 @@ void Menu_c::DrawRight()
 		}
 		break;
 	}
->>>>>>> menu
 }
 
 void Menu_c::DrawCursor()
 {
-<<<<<<< HEAD
-=======
 	DrawTriangle(cursorX - 5, cursorY - 3, cursorX + 5, cursorY, cursorX - 5, cursorY + 3, GetColor(255, 255, 255), TRUE);
->>>>>>> menu
 }
 
 void Menu_c::CheckKey()
 {
-<<<<<<< HEAD
-=======
 	if (mKey[KEY_INPUT_DOWN] == 1) {
 		switch (depth) {
 		case 0:
@@ -589,5 +573,4 @@ void Menu_c::UseSkill(int num, int target)
 
 		mData->SetCharacterPoint(target, effect + 2, x);
 	}
->>>>>>> menu
 }

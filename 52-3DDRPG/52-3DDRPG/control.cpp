@@ -8,7 +8,7 @@ game_scene(0)
 {
 	mEvents = new Event_c;
 	mFps = new Fps_c;
-	mMenu = new Menu_c(mData, &mode, &event_scene, &title_scene, &game_scene);
+	mMenu = new Menu_c();
 	mDungeon = new Dungeon_c(mData, &mode, &event_scene, &title_scene, &game_scene);
 	mData = new Data_c;
 }
@@ -17,11 +17,11 @@ Control_c::~Control_c()
 {
 	delete mEvents;
 	delete mFps;
-	delete mTitle;
+//	delete mTitle;
 	delete mMenu;
 	delete mDungeon;
 	delete mData;
-	delete mSaveLoad;
+//	delete mSaveLoad;
 }
 
 bool Control_c::All() {
