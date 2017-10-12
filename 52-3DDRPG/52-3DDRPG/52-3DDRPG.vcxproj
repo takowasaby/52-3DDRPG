@@ -162,6 +162,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="option.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="save_load.cpp" />
+    <ClCompile Include="TextBox.cpp" />
+>>>>>>> 4ecee024daaa0dbf9e67bad410c6577604f6d556
     <ClCompile Include="title.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +178,11 @@
     <ClInclude Include="fps.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="option.h" />
+<<<<<<< HEAD
+=======
+    <ClInclude Include="save_load.h" />
+    <ClInclude Include="TextBox.h" />
+>>>>>>> 4ecee024daaa0dbf9e67bad410c6577604f6d556
     <ClInclude Include="title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

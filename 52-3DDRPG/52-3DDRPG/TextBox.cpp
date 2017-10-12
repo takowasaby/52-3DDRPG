@@ -33,7 +33,9 @@ void TextBox::Update()
 	}
 
 	//2017/9/17 スクロールモードのみ実装開始
+	//2017/10/11 すべてのキー入力をクラス外操作に移行
 	if (windowMode == scrollMode) {
+		/*
 		//キー入力によるページ移動
 		if (key[KEY_INPUT_W] == 1) {
 			if (topOfPage < position) position--;
@@ -65,7 +67,7 @@ void TextBox::Update()
 				position = position - topOfPage;
 				topOfPage = 0;
 			}
-		}
+		}*/
 
 		//決定キーを押したときの動作
 		if (key[KEY_INPUT_Z] == 1) isSelected = true;
@@ -131,6 +133,45 @@ void TextBox::SetMessage(string text, int index)
 {
 	if (message.size() > index) message[index] = text;
 	else message.push_back(text);
+}
+
+void TextBox::ScrollUp()
+{
+	if (topOfPage < position) position--;
+	else if (topOfPage + raw < message.size() - 1) position += raw - 1;
+	else position = message.size() - 1;
+}
+
+void TextBox::ScrollDown()
+{
+	if ((topOfPage + raw - 1) > position && position < message.size() - 1) position++;
+	else position = topOfPage;
+}
+
+void TextBox::PageUp()
+{
+	if (topOfPage + raw < message.size() - 1) {
+		topOfPage += raw;
+		if (position + raw < message.size() - 1) position += raw;
+		else position = message.size() - 1;
+	}
+	else {
+		position = position - topOfPage;
+		topOfPage = 0;
+	}
+}
+
+void TextBox::PageDown()
+{
+	if (topOfPage > 0) {
+		topOfPage -= raw;
+		position -= raw;
+	}
+	else {
+		topOfPage += (message.size() - (message.size() % raw));
+		if (topOfPage + position < message.size() - 1) position += topOfPage;
+		else position = message.size() - 1;
+	}
 }
 
 string TextBox::GetText(int index)

@@ -50,6 +50,9 @@
     </ClCompile>
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="save_load.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -91,10 +94,14 @@
     <ClInclude Include="menu.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Sound.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
+=======
+    <ClInclude Include="save_load.h">
+>>>>>>> 4ecee024daaa0dbf9e67bad410c6577604f6d556
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
