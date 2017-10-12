@@ -26,6 +26,11 @@ bool SaveLoad_c::SaveScreen(const int* Key, int* game_scene, int* CharX, int* Ch
 		Origin.StatusNum = StatusNum;
 	}
 
+	if (bright < 255) {
+		bright = bright + 5;
+		SetDrawBright(bright, bright, bright);
+	}
+
 	DrawFormatStringToHandle(10, 10, GetColor(255, 255, 255), FontTitleMain, "Slot 1");
 	DrawFormatStringToHandle(10, 110, GetColor(255, 255, 255), FontTitleMain, "Slot 2");
 	DrawFormatStringToHandle(10, 210, GetColor(255, 255, 255), FontTitleMain, "Slot 3");
