@@ -24,7 +24,7 @@ Control_c::~Control_c()
 	delete mSaveLoad;
 }
 
-void Control_c::All() {
+bool Control_c::All() {
 
 	UpdateKey();	//キー入力の検知
 
@@ -106,6 +106,10 @@ void Control_c::All() {
 	mFps->Draw();	//fps表示
 	mFps->Wait();	//待機
 
+	if (Key[KEY_INPUT_ESCAPE] == 1) {
+		return FALSE;
+	}
+	return TRUE;
 }
 
 void Control_c::UpdateKey(void)
