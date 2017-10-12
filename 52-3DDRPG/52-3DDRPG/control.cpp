@@ -8,20 +8,20 @@ game_scene(0)
 {
 	mEvents = new Event_c;
 	mFps = new Fps_c;
-	mTitle = new Title_c;
-	mMenu = new Menu_c(mData);
-	mDungeon = new Dungeon_c(mData);
-	mData = new Data_c(&mode, &event_scene, &title_scene, &game_scene);
+	mMenu = new Menu_c();
+	mDungeon = new Dungeon_c(mData, &mode, &event_scene, &title_scene, &game_scene);
+	mData = new Data_c;
 }
 
 Control_c::~Control_c()
 {
 	delete mEvents;
 	delete mFps;
-	delete mTitle;
+//	delete mTitle;
 	delete mMenu;
 	delete mDungeon;
 	delete mData;
+//	delete mSaveLoad;
 }
 
 bool Control_c::All() {
@@ -61,13 +61,24 @@ bool Control_c::All() {
 			if (titleEnd == true) { titleEnd = false; delete mTitle; }
 			}
 			break;
-		case save_load:
-			//セーブ・ロード
-			DrawFormatString(150, 100, GetColor(255, 255, 255), "セーブ･ロード"); //デバッグ用
+		case save: {
+			//セーブ
+			if (SaveLoadStart == false) { SaveLoadStart = true; mSaveLoad = new SaveLoad_c; }
+			SaveLoadEnd = mSaveLoad->SaveScreen(Key, &game_scene, CharX, CharY, Status, 10);
+			if (SaveLoadEnd == true) { SaveLoadEnd = false; delete mSaveLoad; }
+			}
+			break;
+		case load: {
+			if (SaveLoadStart == false) { SaveLoadStart = true; mSaveLoad = new SaveLoad_c; }
+			SaveLoadEnd = mSaveLoad->LoadScreen(Key, &game_scene, CharX, CharY, Status, 10);
+			if (SaveLoadEnd == true) { SaveLoadEnd = false; delete mSaveLoad; }
+			}
 			break;
 		case option:
 			//オプション
-			DrawFormatString(150, 100, GetColor(255, 255, 255), "オプション"); //デバッグ用
+			if (optionStart == false) { optionStart = true; mOption = new Option_c; }
+			optionEnd = mOption->Main(Key, &mode, &title_scene, &game_scene);
+			if (optionEnd == true) { optionEnd = false; delete mOption; }
 			break;
 		}
 		break;

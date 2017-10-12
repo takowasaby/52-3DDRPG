@@ -101,7 +101,6 @@ bool Title_c::TitleScreen(int* Key, int* title_scene) {
 			return true;
 		}
 	}
-
 	return false;
 }
 

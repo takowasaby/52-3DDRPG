@@ -56,6 +56,7 @@ const int EVENT_SIZE = 64;
 #include "Event.h"
 #include "fps.h"
 #include "option.h"
+#include "save_load.h"
 #include "TextBox.h"
 #include "title.h"
 #include "menu.h"
