@@ -4,7 +4,7 @@ Dungeon_c::Dungeon_c() :
 	mscenario(0),
 	mstage(0)
 {
-	// data.GetScenario();
+	// GData.GetScenario();
 	// date.GetStage();
 	for (int i = 0; i < 10; i++) {
 		wallForDraw[i] = 0;
@@ -13,7 +13,7 @@ Dungeon_c::Dungeon_c() :
 	DataLoad(mscenario, mstage);
 	GraphLoad(mscenario, mstage);
 }
-
+/*
 Dungeon_c::Dungeon_c(Data_c* data, int * mode, int * event_scene, int * title_scene, int * game_scene) :
 	mData(data),
 	mMode(mode),
@@ -22,7 +22,7 @@ Dungeon_c::Dungeon_c(Data_c* data, int * mode, int * event_scene, int * title_sc
 	mGame_scene(game_scene)
 {
 }
-
+*/
 Dungeon_c::~Dungeon_c()
 {
 	delete mData;
@@ -47,23 +47,23 @@ void Dungeon_c::DungeonAll()
 
 void Dungeon_c::DataSet()
 {
-	mscenario = mData->GetScenario(); 
-	dir = mData->GetDir();
-	x = mData->GetDungeonX();
-	y = mData->GetDungeonY();
+	mscenario = GData.GetScenario(); 
+	dir = GData.GetDir();
+	x = GData.GetDungeonX();
+	y = GData.GetDungeonY();
 }
 
 void Dungeon_c::DataLoad(int scenario, int stage)
 {
-	sprintf_s(fname, "resource/%d_%d.csv", scenario, stage);
+	sprintf_s(fname, "resource/dungeon/%d/%d_%d.csv", scenario, scenario, stage);
 
 	mfp = FileRead_open(fname);
 	if (mfp == NULL) {
 		printfDx("read error\n");
 		return;
 	}
-	for (int i = 0; i < 1; i++)//Å‰‚Ì2s“Ç‚Ý”ò‚Î‚·
-		while (FileRead_getc(mfp) != '\n');
+//	for (int i = 0; i < 1; i++)//Å‰‚Ì2s“Ç‚Ý”ò‚Î‚·
+//		while (FileRead_getc(mfp) != '\n');
 
 	mn = 0, mnum = 0;
 	while (1) {
@@ -164,29 +164,29 @@ EXFILE:
 
 	for (int i = 0; i < MAP_SIZE_X; i++) {
 		for (int j = 0; j < MAP_SIZE_Y; j++) {
-			mData->SetWallType(i, j, wallData[i][j].type);
+			GData.SetWallType(i, j, wallData[i][j].type);
 		}
 	}
 }
 
 void Dungeon_c::GraphLoad(int scenario, int stage)
 {
-	sprintf_s(gname, "resource/%d.png", scenario);
+	sprintf_s(gname, "resource/dungeon/%d/%d.png", scenario, scenario);
 	back = LoadGraph(gname);
 
 	for (int i = 0; i < WALL_SIDE; i++) {
 		for (int j = 0; j < WALL_TYPE; j++) {
-			sprintf_s(gname, "resource/%d_%d_%d.png", scenario, i, j);
+			sprintf_s(gname, "resource/dungeon/%d/%d_%d_%d.png", scenario, scenario, i, j);
 			wall[scenario][i][j] = LoadGraph(gname);
 		}
 	}
 }
-
+/*
 void Dungeon_c::SetData(Data_c *d)
 {
 	mData = d;
 }
-
+*/
 void Dungeon_c::BackDraw()
 {
 	DrawGraph(0, 0, back, FALSE);
@@ -270,9 +270,13 @@ void Dungeon_c::WallDrawSet()
 
 void Dungeon_c::WallDraw()
 {
-	for (int i = WALL_SIDE - 1; i >= 0; i--) {
+	for (int i = WALL_SIDE; i >= 0; i--) {
 		for (int j = 0; j < WALL_TYPE; j++) {
-			if (wallForDraw[i] == j + 1) DrawGraph(0, 0, wall[mscenario][i][j], TRUE);
+			switch (wallForDraw[i]) {
+			case 1: DrawGraph(0, 0, wall[mscenario][i][0], TRUE); break;
+			case 2: DrawGraph(0, 0, wall[mscenario][i][1], TRUE); break;
+			case 3: DrawGraph(0, 0, wall[mscenario][i][2], TRUE); break;
+			}
 		}
 	}
 }
@@ -410,7 +414,7 @@ void Dungeon_c::WaitKey()
 	else if (mKey[KEY_INPUT_C] == 1) {
 	}
 
-	mData->SetDungeonX(x);
-	mData->SetDungeonY(y);
-	mData->SetDir(dir);
+	GData.SetDungeonX(x);
+	GData.SetDungeonY(y);
+	GData.SetDir(dir);
 }

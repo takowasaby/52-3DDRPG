@@ -26,5 +26,5 @@ public:
 	Title_c();
 	~Title_c();
 
-	bool TitleScreen(int*, int*);
+	bool TitleScreen(int*);
 };
