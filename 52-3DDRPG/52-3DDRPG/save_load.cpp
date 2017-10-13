@@ -17,7 +17,7 @@ SaveLoad_c::~SaveLoad_c() {
 	DeleteSoundMem(SE[BUZZER]);
 }
 
-bool SaveLoad_c::SaveScreen(const int* Key, int* CharX, int* CharY, int* Status, const int StatusNum) {
+bool SaveLoad_c::SaveScreen(const int* Key, int* game_scene, int* CharX, int* CharY, int* Status, const int StatusNum) {
 	if (first == false) {
 		first = true;
 		Origin.CharX = CharX;
@@ -57,7 +57,7 @@ bool SaveLoad_c::SaveScreen(const int* Key, int* CharX, int* CharY, int* Status,
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(1, 1);//メニューに戻る
+			*game_scene = 3; //メニューに戻る
 			return true;
 		}
 		else if (Cursor == 110) {
@@ -72,7 +72,7 @@ bool SaveLoad_c::SaveScreen(const int* Key, int* CharX, int* CharY, int* Status,
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(2, 3); //メニューに戻る
+			*game_scene = 3; //メニューに戻る
 			return true;
 		}
 		else if (Cursor == 210) {
@@ -87,7 +87,7 @@ bool SaveLoad_c::SaveScreen(const int* Key, int* CharX, int* CharY, int* Status,
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(2, 3); //メニューに戻る
+			*game_scene = 3; //メニューに戻る
 			return true;
 		}
 		else {
@@ -102,13 +102,13 @@ bool SaveLoad_c::SaveScreen(const int* Key, int* CharX, int* CharY, int* Status,
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(2, 3); //メニューに戻る
+			*game_scene = 3; //メニューに戻る
 			return true;
 		}
 	}
 }
 
-bool SaveLoad_c::LoadScreen(const int* Key, int* CharX, int* CharY, int* Status, const int StatusNum) {
+bool SaveLoad_c::LoadScreen(const int* Key, int* game_scene, int* CharX, int* CharY, int* Status, const int StatusNum) {
 	if (first == false) {
 		first = true;
 		Origin.CharX = CharX;
@@ -143,7 +143,7 @@ bool SaveLoad_c::LoadScreen(const int* Key, int* CharX, int* CharY, int* Status,
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(2, 0); //ダンジョン探索へ
+			*game_scene = 0; //ダンジョン探索へ
 			return true;
 		}
 		else if (Cursor == 110) {
@@ -158,7 +158,7 @@ bool SaveLoad_c::LoadScreen(const int* Key, int* CharX, int* CharY, int* Status,
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(2, 0); //ダンジョン探索へ
+			*game_scene = 0; //ダンジョン探索へ
 			return true;
 		}
 		else if (Cursor == 210) {
@@ -173,7 +173,7 @@ bool SaveLoad_c::LoadScreen(const int* Key, int* CharX, int* CharY, int* Status,
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(2, 0); //ダンジョン探索へ
+			*game_scene = 0; //ダンジョン探索へ
 			return true;
 		}
 		else {
@@ -188,7 +188,7 @@ bool SaveLoad_c::LoadScreen(const int* Key, int* CharX, int* CharY, int* Status,
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(2, 0); //ダンジョン探索へ
+			*game_scene = 0; //ダンジョン探索へ
 			return true;
 		}
 	}

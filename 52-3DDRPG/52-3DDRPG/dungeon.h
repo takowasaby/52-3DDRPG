@@ -1,5 +1,7 @@
 #pragma once
 
+class Data_c;
+
 class Dungeon_c {
 private:
 	int x, y, dir;
@@ -12,7 +14,7 @@ private:
 	int back;
 	char gname[32];
 	int wallForDraw[10];
-
+	Data_c *mData;
 	int* mMode;
 	int* mEvent_scene;
 	int* mTitle_scene;

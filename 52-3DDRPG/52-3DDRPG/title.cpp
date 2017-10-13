@@ -26,7 +26,7 @@ Title_c::~Title_c() {
 	DeleteGraph(TempScreen);
 }
 
-bool Title_c::TitleScreen(int* Key) {
+bool Title_c::TitleScreen(int* Key, int* title_scene) {
 	if (first == true) {
 		first = false;
 		for (int i = 0; i < 4; i++) {
@@ -69,7 +69,7 @@ bool Title_c::TitleScreen(int* Key) {
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(1, 1);//ニューゲーム(シナリオ選択)
+			*title_scene = 1; //ニューゲーム(シナリオ選択)
 			return true;
 		}
 		else if (Cursor == 330) {
@@ -83,7 +83,7 @@ bool Title_c::TitleScreen(int* Key) {
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(1, 3); //コンティニュー(セーブ･ロード)
+			*title_scene = 3; //コンティニュー(セーブ･ロード)
 			return true;
 		}
 		else {
@@ -97,7 +97,7 @@ bool Title_c::TitleScreen(int* Key) {
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(1, 4); //オプション
+			*title_scene = 4; //オプション
 			return true;
 		}
 	}
