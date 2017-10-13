@@ -8,7 +8,7 @@ const int MAP_SIZE_Y = 25;
 
 const int WALL_SCENARIO = 5;
 const int WALL_SIDE = 10;
-const int WALL_TYPE = 1;
+const int WALL_TYPE = 3;
 //-----------------------------------------------------------------------
 
 //event—p----------------------------------------------------------------

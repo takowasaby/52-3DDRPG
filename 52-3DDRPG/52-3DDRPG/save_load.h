@@ -39,8 +39,8 @@ public:
 	SaveLoad_c();
 	~SaveLoad_c();
 
-	bool SaveScreen(const int*, int*, int*, int*, int*, const int);
-	bool LoadScreen(const int*, int*, int*, int*, int*, const int);
+	bool SaveScreen(const int*, int*, int*, int*, const int);
+	bool LoadScreen(const int*, int*, int*, int*, const int);
 	void Save(const int, OriginData_t);
 	void Load(const int, OriginData_t);
 };

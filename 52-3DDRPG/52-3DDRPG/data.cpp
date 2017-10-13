@@ -1,34 +1,110 @@
 #include "define.h"
 
-Data_c::Data_c()
+Data_c::Data_c() :
+	scenario(0),
+	stage(0),
+	dir(0),
+	dungeonX(1),
+	dungeonY(2),
+	playCount(0),
+	BMode(0),
+	BScene(0),
+	EventCallFlag(0)
 {
+	controlMode = 1;
+	eventScene = 0;
+	titleScene = 2;
+	gameScene = 0;
+
+	for (int i = 0; i < MAP_SIZE_X; i++) {
+		for (int j = 0; j < MAP_SIZE_Y; j++) {
+			wallType[i][j] = 0;
+		}
+	}
+	for (int i = 0; i < SCENARIO_SIZE; i++) {
+		for (int j = 0; j < STAGE_SIZE; j++) {
+			for (int k = 0; k < MAP_SIZE_X; k++) {
+				for (int l = 0; l < MAP_SIZE_Y; l++) {
+					mapFlag[i][j][k][l] = 0;
+				}
+			}
+		}
+	}
+	for (int i = 0; i < SCENARIO_SIZE; i++) {
+		for (int j = 0; j < EVENT_SIZE; j++) {
+			eventFlag[i][j] = 0;
+			GoalText[i][j] = "";
+		}
+	}
 }
+/*
 Data_c::Data_c(int * mode, int * event_scene, int * title_scene, int * game_scene) :
-	ControlMode(mode),
-	mEventScene(event_scene),
-	mTitleScene(title_scene),
-	mGameScene(game_scene)
+controlMode(mode),
+eventScene(event_scene),
+titleScene(title_scene),
+gameScene(game_scene)
 {
+Data_c();
 }
+*/
 Data_c::~Data_c()
 {
 }
 
-void Data_c::LoadAll(int scenario)
+void Data_c::LoadAll(int s)
 {
-	ItemLoad(scenario);
-	SoubiLoad(scenario);
-	SkillLoad(scenario);
-	CharacterLoad(scenario);
+	ItemLoad(s);
+	GoalLoad(s);
+	SoubiLoad(s);
+	SkillLoad(s);
+	CharacterLoad(s);
 }
-void Data_c::ItemLoad(int scenario)
+void Data_c::GoalLoad(int s)
+{
+	int n, i, fp;
+	char fname[32];
+	int input[64];
+	char inputc[64];
+
+	sprintf_s(fname, "resource/goal_%d.csv", s);
+
+	fp = FileRead_open(fname);//ファイル読み込み
+	if (fp == NULL) {
+		printfDx("read error\n");
+		return;
+	}
+
+	n = 0;
+	while (1) {
+		for (i = 0; i<64; i++) {
+			inputc[i] = input[i] = FileRead_getc(fp);//1文字取得する
+			if (inputc[i] == '/') {//スラッシュがあれば
+				while (FileRead_getc(fp) != '\n');//改行までループ
+				i = -1;//カウンタを最初に戻して
+				continue;
+			}
+			if (input[i] == ',' || input[i] == '\n') {//カンマか改行なら
+				inputc[i] = '\0';//そこまでを文字列とし
+				break;
+			}
+			if (input[i] == EOF) {//ファイルの終わりなら
+				goto EXFILE;//終了
+			}
+		}
+		GoalText[s][n] = inputc;
+		n++;
+	}
+EXFILE:
+	FileRead_close(fp);
+}
+void Data_c::ItemLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/item_%d.csv", scenario);
+	sprintf_s(fname, "resource/item_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
@@ -75,14 +151,14 @@ void Data_c::ItemLoad(int scenario)
 EXFILE:
 	FileRead_close(fp);
 }
-void Data_c::SoubiLoad(int scenario)
+void Data_c::SoubiLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/soubi_%d.csv", scenario);
+	sprintf_s(fname, "resource/soubi_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
@@ -127,14 +203,14 @@ void Data_c::SoubiLoad(int scenario)
 EXFILE:
 	FileRead_close(fp);
 }
-void Data_c::SkillLoad(int scenario)
+void Data_c::SkillLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/skill_%d.csv", scenario);
+	sprintf_s(fname, "resource/skill_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
@@ -180,14 +256,14 @@ void Data_c::SkillLoad(int scenario)
 EXFILE:
 	FileRead_close(fp);
 }
-void Data_c::CharacterLoad(int scenario)
+void Data_c::CharacterLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/character_%d.csv", scenario);
+	sprintf_s(fname, "resource/character_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
@@ -402,7 +478,6 @@ int Data_c::GetCharacterPoint(int num, int sort)
 	}
 	return 0;
 }
-
 void Data_c::SetCharacterPoint(int num, int sort, int point)
 {
 	switch (sort) {
@@ -441,7 +516,6 @@ void Data_c::SetCharacterPoint(int num, int sort, int point)
 		break;
 	}
 }
-
 int Data_c::GetCharacterSkillCode(int num, int order)
 {
 	return character[num].skillCode[order];
@@ -475,7 +549,7 @@ int Data_c::GetDir()
 
 int Data_c::GetEventFlag()
 {
-	return EventFlag;
+	return EventCallFlag;
 }
 
 
@@ -503,7 +577,7 @@ void Data_c::SetDir(int i)
 
 void Data_c::SetEventFlag(int i)
 {
-	EventFlag = i;
+	EventCallFlag = i;
 }
 
 int Data_c::GetMapFlag(int scenario, int stage, int x, int y)
@@ -545,42 +619,55 @@ void Data_c::SetWallType(int x, int y, int type)
 	wallType[x][y] = type;
 }
 
-void Data_c::SceneRequest(int mode, int scene)
+void Data_c::SceneRequest(int m, int s)
 {
-	if (EventFlag == 0) {
-		BMode = *ControlMode;
-		*ControlMode = mode;
-		switch (mode) {
-		case 0: 
-			BScene = *mEventScene;	
-			*mEventScene = scene;
+	if (EventCallFlag == 0) {
+		BMode = controlMode;
+		controlMode = m;
+		switch (m) {
+		case 0:
+			BScene = eventScene;
+			eventScene = s;
 			break;
-		case 1: 
-			BScene = *mTitleScene;	
-			*mTitleScene = scene;
+		case 1:
+			BScene = titleScene;
+			titleScene = s;
 			break;
-		case 2: 
-			BScene = *mGameScene;
-			*mGameScene = scene;
+		case 2:
+			BScene = gameScene;
+			gameScene = s;
 			break;
 		}
 	}
 }
 void Data_c::SceneBackRequest()
 {
-	if (EventFlag == 0) {
-		*ControlMode = BMode;
+	if (EventCallFlag == 0) {
+		controlMode = BMode;
 		switch (BMode) {
 		case 0:
-			*mEventScene = BScene;
+			eventScene = BScene;
 			break;
 		case 1:
-			*mTitleScene = BScene;
+			titleScene = BScene;
 			break;
 		case 2:
-			*mGameScene = BScene;
+			gameScene = BScene;
 			break;
 		}
+	}
+}
+
+int Data_c::GetMode()
+{
+	return controlMode;
+}
+int Data_c::GetScene(int mode)
+{
+	switch (mode) {
+	case 0: return eventScene; break;
+	case 1: return titleScene; break;
+	case 2: return gameScene; break;
 	}
 }
 
@@ -613,4 +700,9 @@ void Data_c::CalcSoubiFlag(int num, int vary)
 void Data_c::SetCharacterFlag(int num, int vary)
 {
 	character[num].flag = vary;
+}
+
+string Data_c::GetGoalText(int s, int num)
+{
+	return GoalText[s][num];
 }

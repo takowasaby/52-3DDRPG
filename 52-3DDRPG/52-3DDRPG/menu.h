@@ -26,7 +26,6 @@ private:
 
 	int targetChara;
 
-	Data_c* mData;
 	int mKey[256];
 	int* mMode;
 	int* mEvent_scene;

@@ -20,7 +20,7 @@ void Menu_c::DrawGoal()
 	int drawCount;
 
 	for (int i = 0; i < EVENT_SIZE; i++) {
-		drawCount += mData->GetEventFlag(mscenario, i);
+		drawCount += GData.GetEventFlag(mscenario, i);
 	}
 
 	printfDx("%s");
@@ -73,13 +73,13 @@ void Menu_c::DrawRight()
 		case map:
 			DrawGoal();
 
-			mscenario = mData->GetScenario();
-			mdir = mData->GetDir();
-			mx = mData->GetDungeonX();
-			my = mData->GetDungeonY();
+			mscenario = GData.GetScenario();
+			mdir = GData.GetDir();
+			mx = GData.GetDungeonX();
+			my = GData.GetDungeonY();
 			for (int i = 0; i < MAP_SIZE_X; i++) {
 				for (int j = 0; j < MAP_SIZE_Y; j++) {
-					mwallType[i][j] = mData->GetWallType(i, j);
+					mwallType[i][j] = GData.GetWallType(i, j);
 				}
 			}
 
@@ -112,14 +112,14 @@ void Menu_c::DrawRight()
 			break;
 		case status:
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
-				if (mData->GetCharacterFlag(i)) {
-					printfDx("/n%s ", mData->GetCharacterName(i));
-					printfDx("HP:%d/%d ", mData->GetCharacterPoint(i, 0), mData->GetCharacterPoint(i, 2));
-					printfDx("MP:%d/%d ", mData->GetCharacterPoint(i, 1), mData->GetCharacterPoint(i, 3));
-					printfDx("STR:%d ", mData->GetCharacterPoint(i, 4));
-					printfDx("VIT:%d ", mData->GetCharacterPoint(i, 5));
-					printfDx("AGI:%d ", mData->GetCharacterPoint(i, 6));
-					printfDx("INT:%d ", mData->GetCharacterPoint(i, 7));
+				if (GData.GetCharacterFlag(i)) {
+					printfDx("/n%s ", GData.GetCharacterName(i));
+					printfDx("HP:%d/%d ", GData.GetCharacterPoint(i, 0), GData.GetCharacterPoint(i, 2));
+					printfDx("MP:%d/%d ", GData.GetCharacterPoint(i, 1), GData.GetCharacterPoint(i, 3));
+					printfDx("STR:%d ", GData.GetCharacterPoint(i, 4));
+					printfDx("VIT:%d ", GData.GetCharacterPoint(i, 5));
+					printfDx("AGI:%d ", GData.GetCharacterPoint(i, 6));
+					printfDx("INT:%d ", GData.GetCharacterPoint(i, 7));
 
 					charaNum[drawCount] = i;
 					drawCount++;
@@ -128,10 +128,10 @@ void Menu_c::DrawRight()
 			break;
 		case soubi:
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
-				if (mData->GetCharacterFlag(i)) {
-					printfDx("/n%s ", mData->GetCharacterName(i));
-					printfDx("武器:%s, ", mData->GetSoubiText(mData->GetCharacterPoint(i, 9), 0));
-					printfDx("アクセ:%s, ", mData->GetSoubiText(mData->GetCharacterPoint(i, 10), 0));
+				if (GData.GetCharacterFlag(i)) {
+					printfDx("/n%s ", GData.GetCharacterName(i));
+					printfDx("武器:%s, ", GData.GetSoubiText(GData.GetCharacterPoint(i, 9), 0));
+					printfDx("アクセ:%s, ", GData.GetSoubiText(GData.GetCharacterPoint(i, 10), 0));
 
 					charaNum[drawCount] = i;
 					drawCount++;
@@ -151,41 +151,41 @@ void Menu_c::DrawRight()
 		case map:
 			break;
 		case status:
-			printfDx("/n%s ", mData->GetCharacterName(chooseChara));
-			printfDx("HP:%d/%d ", mData->GetCharacterPoint(chooseChara, 0), mData->GetCharacterPoint(chooseChara, 2));
-			printfDx("MP:%d/%d ", mData->GetCharacterPoint(chooseChara, 1), mData->GetCharacterPoint(chooseChara, 3));
-			printfDx("STR:%d ", mData->GetCharacterPoint(chooseChara, 4));
-			printfDx("VIT:%d ", mData->GetCharacterPoint(chooseChara, 5));
-			printfDx("AGI:%d ", mData->GetCharacterPoint(chooseChara, 6));
-			printfDx("INT:%d ", mData->GetCharacterPoint(chooseChara, 7));
-			DrawGraph(480, 240, mData->GetCharacterPoint(chooseChara, 8), TRUE);
+			printfDx("/n%s ", GData.GetCharacterName(chooseChara));
+			printfDx("HP:%d/%d ", GData.GetCharacterPoint(chooseChara, 0), GData.GetCharacterPoint(chooseChara, 2));
+			printfDx("MP:%d/%d ", GData.GetCharacterPoint(chooseChara, 1), GData.GetCharacterPoint(chooseChara, 3));
+			printfDx("STR:%d ", GData.GetCharacterPoint(chooseChara, 4));
+			printfDx("VIT:%d ", GData.GetCharacterPoint(chooseChara, 5));
+			printfDx("AGI:%d ", GData.GetCharacterPoint(chooseChara, 6));
+			printfDx("INT:%d ", GData.GetCharacterPoint(chooseChara, 7));
+			DrawGraph(480, 240, GData.GetCharacterPoint(chooseChara, 8), TRUE);
 
 			for (int i = 0; i < SKILL_CODE_SIZE; i++) {
-				if (mData->GetCharacterSkillCode(chooseChara, i) == -1) {
-					printfDx("/n%s, ", mData->GetSkillText(mData->GetCharacterSkillCode(chooseChara, i), 0));
-					skillNum[drawCount] = mData->GetCharacterSkillCode(chooseChara, i);
+				if (GData.GetCharacterSkillCode(chooseChara, i) == -1) {
+					printfDx("/n%s, ", GData.GetSkillText(GData.GetCharacterSkillCode(chooseChara, i), 0));
+					skillNum[drawCount] = GData.GetCharacterSkillCode(chooseChara, i);
 					drawCount++;
 				}
 			}
 			
-			printfDx("/n%s", mData->GetSkillText(skillNum[chooseSkill], 1));
+			printfDx("/n%s", GData.GetSkillText(skillNum[chooseSkill], 1));
 			break;
 
 		case soubi:
-			printfDx("%s", mData->GetCharacterName(chooseChara));
+			printfDx("%s", GData.GetCharacterName(chooseChara));
 			
 			for (int i = 0; i < SOUBI_SIZE; i++) {
-				if (mData->GetSoubiFlag(i) >= 1) {
-					if (soubiType == mData->GetSoubiPoint(i, 1)) {
-						if (i == mData->GetCharacterPoint(chooseChara, soubiType + 9)) printfDx("E.");
-						printfDx("%s, ", mData->GetSoubiText(i, 0));
+				if (GData.GetSoubiFlag(i) >= 1) {
+					if (soubiType == GData.GetSoubiPoint(i, 1)) {
+						if (i == GData.GetCharacterPoint(chooseChara, soubiType + 9)) printfDx("E.");
+						printfDx("%s, ", GData.GetSoubiText(i, 0));
 						soubiNum[drawCount] = i;
 						drawCount++;
 					}
 				}
 			}
 
-			printfDx("/n%s", mData->GetSoubiText(soubiNum[chooseSoubi], 1));
+			printfDx("/n%s", GData.GetSoubiText(soubiNum[chooseSoubi], 1));
 			break;
 
 		case item:
@@ -193,16 +193,16 @@ void Menu_c::DrawRight()
 			printfDx("だいじなもの");
 
 			for (int i = 0; i < ITEM_SIZE; i++) {
-				if (mData->GetItemFlag(i) >= 1) {
-					if (itemType == mData->GetItemPoint(i, 1)) {
-						printfDx("%s, " ,mData->GetItemText(i, 0));
+				if (GData.GetItemFlag(i) >= 1) {
+					if (itemType == GData.GetItemPoint(i, 1)) {
+						printfDx("%s, " ,GData.GetItemText(i, 0));
 						itemNum[drawCount] = i;
 						drawCount++;
 					}
 				}
 			}
 
-			printfDx("/n%s", mData->GetItemText(itemNum[chooseItem], 1));
+			printfDx("/n%s", GData.GetItemText(itemNum[chooseItem], 1));
 			break;
 
 		case library:
@@ -216,7 +216,7 @@ void Menu_c::DrawRight()
 			printfDx("いいえ");
 			break;
 		case soubi:
-			printfDx("/n%sを装備しますか？", mData->GetSoubiText(soubiNum[chooseSoubi], 0));
+			printfDx("/n%sを装備しますか？", GData.GetSoubiText(soubiNum[chooseSoubi], 0));
 			printfDx("はい　");
 			printfDx("いいえ");
 			break;
@@ -231,16 +231,16 @@ void Menu_c::DrawRight()
 		case status:
 			printfDx("/nこのスキルを誰に使用しますか？");
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
-				if (mData->GetCharacterFlag(i)) {
-					printfDx("/n%s ", mData->GetCharacterName(i));
+				if (GData.GetCharacterFlag(i)) {
+					printfDx("/n%s ", GData.GetCharacterName(i));
 				}
 			}
 			break;
 		case item:
 			printfDx("/nこのアイテムを誰に使用しますか？");
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
-				if (mData->GetCharacterFlag(i)) {
-					printfDx("/n%s ", mData->GetCharacterName(i));
+				if (GData.GetCharacterFlag(i)) {
+					printfDx("/n%s ", GData.GetCharacterName(i));
 				}
 			}
 			break;
@@ -415,7 +415,7 @@ void Menu_c::CheckKey()
 			case 2: depth++; break;
 			case 3: 
 				if (YN == 0) {
-					if (mData->GetSkillPoint(skillNum[chooseSkill], 6) == 0) {
+					if (GData.GetSkillPoint(skillNum[chooseSkill], 6) == 0) {
 						depth++;
 					}
 					else {
@@ -438,7 +438,7 @@ void Menu_c::CheckKey()
 			case 2: depth++; break;
 			case 3:
 				if (YN == 0) {
-					mData->SetCharacterPoint(charaNum[chooseChara], 9, soubiNum[chooseSoubi]);
+					GData.SetCharacterPoint(charaNum[chooseChara], 9, soubiNum[chooseSoubi]);
 				}
 				else {
 					depth--;
@@ -453,7 +453,7 @@ void Menu_c::CheckKey()
 			case 2: depth++; break;
 			case 3:
 				if (YN == 0) {
-					if (mData->GetItemPoint(itemNum[chooseItem], 6) == 0) {
+					if (GData.GetItemPoint(itemNum[chooseItem], 6) == 0) {
 						depth++;
 					}
 					else {
@@ -491,86 +491,86 @@ void Menu_c::UseItem(int num, int target)
 {
 	int x = 0;
 	int y = 0;
-	int effect1 = mData->GetItemPoint(num, 2);
-	int effect2 = mData->GetItemPoint(num, 3);
+	int effect1 = GData.GetItemPoint(num, 2);
+	int effect2 = GData.GetItemPoint(num, 3);
 
-	if (mData->GetItemPoint(num, 6) == 1) {
+	if (GData.GetItemPoint(num, 6) == 1) {
 		for (int i = 0; i < CHARACTER_SIZE; i++) {
-			if (mData->GetCharacterFlag(i) == 1) {
-				x = mData->GetCharacterPoint(i, effect1 + 2);
-				if (mData->GetItemPoint(num, 3) != -1) {
-					y = mData->GetCharacterPoint(i, effect2 + 2);
+			if (GData.GetCharacterFlag(i) == 1) {
+				x = GData.GetCharacterPoint(i, effect1 + 2);
+				if (GData.GetItemPoint(num, 3) != -1) {
+					y = GData.GetCharacterPoint(i, effect2 + 2);
 				}
 
-				x += mData->GetItemPoint(num, 4);
-				if (effect1 <= 1 && x > mData->GetCharacterPoint(i, effect1)) {
-					x = mData->GetCharacterPoint(i, effect1);
+				x += GData.GetItemPoint(num, 4);
+				if (effect1 <= 1 && x > GData.GetCharacterPoint(i, effect1)) {
+					x = GData.GetCharacterPoint(i, effect1);
 				}
-				y += mData->GetItemPoint(num, 5);
-				if (effect2 <= 1 && y > mData->GetCharacterPoint(i, effect2)) {
-					y = mData->GetCharacterPoint(i, effect2);
+				y += GData.GetItemPoint(num, 5);
+				if (effect2 <= 1 && y > GData.GetCharacterPoint(i, effect2)) {
+					y = GData.GetCharacterPoint(i, effect2);
 				}
 
-				mData->SetCharacterPoint(i, effect1 + 2, x);
-				if (mData->GetItemPoint(num, 3) != -1) {
-					mData->SetCharacterPoint(i, effect2 + 2, y);
+				GData.SetCharacterPoint(i, effect1 + 2, x);
+				if (GData.GetItemPoint(num, 3) != -1) {
+					GData.SetCharacterPoint(i, effect2 + 2, y);
 				}
 			}
 		}
 	} else {
-		x = mData->GetCharacterPoint(target, effect1 + 2);
-		if (mData->GetItemPoint(num, 3) != -1) {
-			y = mData->GetCharacterPoint(target, effect2 + 2);
+		x = GData.GetCharacterPoint(target, effect1 + 2);
+		if (GData.GetItemPoint(num, 3) != -1) {
+			y = GData.GetCharacterPoint(target, effect2 + 2);
 		}
 
-		x += mData->GetItemPoint(num, 4);
-		if (effect1 <= 1 && x > mData->GetCharacterPoint(target, effect1)) {
-			x = mData->GetCharacterPoint(target, effect1);
+		x += GData.GetItemPoint(num, 4);
+		if (effect1 <= 1 && x > GData.GetCharacterPoint(target, effect1)) {
+			x = GData.GetCharacterPoint(target, effect1);
 		}
-		y += mData->GetItemPoint(num, 5);
-		if (effect2 <= 1 && y > mData->GetCharacterPoint(target, effect2)) {
-			y = mData->GetCharacterPoint(target, effect2);
+		y += GData.GetItemPoint(num, 5);
+		if (effect2 <= 1 && y > GData.GetCharacterPoint(target, effect2)) {
+			y = GData.GetCharacterPoint(target, effect2);
 		}
 
-		mData->SetCharacterPoint(target, effect1 + 2, x);
-		if (mData->GetItemPoint(num, 3) != -1) {
-			mData->SetCharacterPoint(target, effect2 + 2, y);
+		GData.SetCharacterPoint(target, effect1 + 2, x);
+		if (GData.GetItemPoint(num, 3) != -1) {
+			GData.SetCharacterPoint(target, effect2 + 2, y);
 		}
 	}
 }
 
 void Menu_c::WearSoubi(int num, int target, int part)
 {
-	mData->SetCharacterPoint(target, part + 9, num);
+	GData.SetCharacterPoint(target, part + 9, num);
 }
 
 void Menu_c::UseSkill(int num, int target)
 {
 	int x = 0;
-	int effect = mData->GetSkillPoint(num, 2);
+	int effect = GData.GetSkillPoint(num, 2);
 
-	if (mData->GetSkillPoint(num, 6) == 1) {
+	if (GData.GetSkillPoint(num, 6) == 1) {
 		for (int i = 0; i < CHARACTER_SIZE; i++) {
-			if (mData->GetCharacterFlag(i) == 1) {
-				x = mData->GetCharacterPoint(i, effect + 2);
+			if (GData.GetCharacterFlag(i) == 1) {
+				x = GData.GetCharacterPoint(i, effect + 2);
 
-				x += mData->GetSkillPoint(num, 4);
-				if (effect <= 1 && x > mData->GetCharacterPoint(i, effect)) {
-					x = mData->GetCharacterPoint(i, effect);
+				x += GData.GetSkillPoint(num, 4);
+				if (effect <= 1 && x > GData.GetCharacterPoint(i, effect)) {
+					x = GData.GetCharacterPoint(i, effect);
 				}
 
-				mData->SetCharacterPoint(i, effect + 2, x);
+				GData.SetCharacterPoint(i, effect + 2, x);
 			}
 		}
 	}
 	else {
-		x = mData->GetCharacterPoint(target, effect + 2);
+		x = GData.GetCharacterPoint(target, effect + 2);
 
-		x += mData->GetSkillPoint(num, 4);
-		if (effect <= 1 && x > mData->GetCharacterPoint(target, effect)) {
-			x = mData->GetCharacterPoint(target, effect);
+		x += GData.GetSkillPoint(num, 4);
+		if (effect <= 1 && x > GData.GetCharacterPoint(target, effect)) {
+			x = GData.GetCharacterPoint(target, effect);
 		}
 
-		mData->SetCharacterPoint(target, effect + 2, x);
+		GData.SetCharacterPoint(target, effect + 2, x);
 	}
 }

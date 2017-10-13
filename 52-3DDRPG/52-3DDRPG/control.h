@@ -5,20 +5,16 @@ class Event_c;
 class Title_c;
 class Menu_c;
 class Dungeon_c;
-class Data_c;
 class SaveLoad_c;
 class Option_c;
 
 class Control_c {
 private:
-	int mode;
-	int event_scene, title_scene, game_scene;
 	Fps_c* mFps;
 	Event_c* mEvents;
 	Title_c* mTitle;
 	Menu_c* mMenu;
 	Dungeon_c* mDungeon;
-	Data_c* mData;
 	SaveLoad_c* mSaveLoad;
 	Option_c* mOption;
 

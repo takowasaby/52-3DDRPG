@@ -1,5 +1,7 @@
 #include "define.h"
 
+Data_c GData;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
 
