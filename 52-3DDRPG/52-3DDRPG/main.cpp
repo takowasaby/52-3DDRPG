@@ -1,5 +1,7 @@
 #include "define.h"
 
+char Key[256];
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
 
@@ -14,8 +16,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	Control_c control;
 
-	while (!ProcessMessage() && !ClearDrawScreen() && control.All()) {
-		//ªÒ¯¾°¼Þˆ—         ª‰æ–Ê‚ð¸Ø±          
+	while (!ProcessMessage() && !ClearDrawScreen() && !GetHitKeyStateAll(Key) && !Key[KEY_INPUT_ESCAPE]) {
+		//ªÒ¯¾°¼Þˆ—         ª‰æ–Ê‚ð¸Ø±          ª·°ÎÞ°ÄÞ“ü—Íó‘ÔŽæ“¾       ªESC‚ª‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢
+
+		control.All();
 
 		ScreenFlip();//— ‰æ–Ê‚ð•\‰æ–Ê‚É”½‰f
 	}
@@ -23,4 +27,3 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	DxLib_End();
 	return 0;
 }
->>>>>>> 4ecee024daaa0dbf9e67bad410c6577604f6d556

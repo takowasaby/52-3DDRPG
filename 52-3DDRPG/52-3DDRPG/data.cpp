@@ -386,55 +386,9 @@ int Data_c::GetCharacterPoint(int num, int sort)
 	case 8:
 		return character[num].Image;
 		break;
-	case 9:
-		return character[num].soubi[0];
-		break;
-	case 10:
-		return character[num].soubi[1];
-		break;
 	}
 	return 0;
 }
-
-void Data_c::SetCharacterPoint(int num, int sort, int point)
-{
-	switch (sort) {
-	case 0:
-		character[num].HPMAX = point;
-		break;
-	case 1:
-		character[num].MPMAX = point;
-		break;
-	case 2:
-		character[num].HP = point;
-		break;
-	case 3:
-		character[num].MP = point;
-		break;
-	case 4:
-		character[num].STR = point;
-		break;
-	case 5:
-		character[num].VIT = point;
-		break;
-	case 6:
-		character[num].AGI = point;
-		break;
-	case 7:
-		character[num].INT = point;
-		break;
-	case 8:
-		character[num].Image = point;
-		break;
-	case 9:
-		character[num].soubi[0] = point;
-		break;
-	case 10:
-		character[num].soubi[1] = point;
-		break;
-	}
-}
-
 int Data_c::GetCharacterSkillCode(int num, int order)
 {
 	return character[num].skillCode[order];
