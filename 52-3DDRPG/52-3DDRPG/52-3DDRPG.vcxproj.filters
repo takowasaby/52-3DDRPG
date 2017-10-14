@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\BattleScene">
+      <UniqueIdentifier>{b9be991b-4b13-48cb-afae-18b1e6bc21e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\BattleScene">
+      <UniqueIdentifier>{9343274d-6912-4c4c-80b5-edbe4d2e9c4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
