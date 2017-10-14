@@ -1,6 +1,10 @@
 #pragma once
 
 //#include <string>
+
+const int MENU_MAP_UP = 200;
+const int MENU_MAP_LEFT = 200;
+
 using namespace std;
 
 class Data_c {
@@ -13,7 +17,16 @@ private:
 	int mapFlag[SCENARIO_SIZE][STAGE_SIZE][MAP_SIZE_X][MAP_SIZE_Y];
 	int eventFlag[SCENARIO_SIZE][EVENT_SIZE];
 	int playCount;
+	string GoalText[SCENARIO_SIZE][EVENT_SIZE];
 	//	int itemFlag[SCENARIO_SIZE][ITEM_TYPE_SIZE][ITEM_SIZE];
+	int EventCallFlag;
+
+	int BMode;
+	int BScene;
+	int controlMode;
+	int eventScene;
+	int titleScene;
+	int gameScene;
 
 	struct Skill_t {
 		int num;				//スキル固有の数字
@@ -53,6 +66,7 @@ private:
 
 	struct Character_t {
 		int flag;
+		int soubi[2];
 		int HPMAX, MPMAX, STR, VIT, AGI, INT;
 		int HP, MP;
 		char name[NAME_SIZE];
@@ -63,13 +77,15 @@ private:
 
 public:
 	Data_c();		//コンストラクタ
+					//	Data_c(int* mode, int* event_scene, int* title_scene, int* game_scene);
 	~Data_c();		//デストラクタ
 
-	void LoadAll(int scenario);
-	void ItemLoad(int scenario);
-	void SoubiLoad(int scenario);
-	void SkillLoad(int scenario);
-	void CharacterLoad(int scenario);
+	void LoadAll(int s);
+	void GoalLoad(int s);
+	void ItemLoad(int s);
+	void SoubiLoad(int s);
+	void SkillLoad(int s);
+	void CharacterLoad(int s);
 
 	int GetItemFlag(int num);
 	int GetSoubiFlag(int num);
@@ -78,6 +94,8 @@ public:
 	void CalcItemFlag(int num, int vary);
 	void CalcSoubiFlag(int num, int vary);
 	void SetCharacterFlag(int num, int vary);
+
+	string GetGoalText(int s, int num);
 
 	int GetItemPoint(int num, int sort);			//0:num 1:type 2:effect1 3:effect2 4:point1 5:point2 6:area
 	string GetItemText(int num, int sort);			//0:name 1:explain
@@ -88,21 +106,24 @@ public:
 	int GetSkillPoint(int num, int sort);			//0:num 1:MP 2:effect 3:status 4:magnification 5:area
 	string GetSkillText(int num, int sort);			//0:name 1:explain
 
-	int GetCharacterPoint(int num, int sort);		//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image
-	int GetCharacterSkillCode(int num, int order);	
-	string GetCharacterName(int num);				
+	int GetCharacterPoint(int num, int sort);		//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image 9:soubi[1] 10:soubi[2]
+	void SetCharacterPoint(int num, int sort, int point);	//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image 9:soubi[1] 10:soubi[2]
+	int GetCharacterSkillCode(int num, int order);
+	string GetCharacterName(int num);
 
 	int GetScenario();
 	int GetStage();
 	int GetDungeonX();
 	int GetDungeonY();
 	int GetDir();
+	int GetEventFlag();
 
 	void SetScenario(int i);
 	void SetStage(int i);
 	void SetDungeonX(int i);
 	void SetDungeonY(int i);
 	void SetDir(int i);
+	void SetEventFlag(int i);
 
 	int GetMapFlag(int scenario, int stage, int x, int y);
 	int GetEventFlag(int scenario, int num);
@@ -114,4 +135,12 @@ public:
 	void SetPlayCount(int i);
 	void AddPlayCount();
 	void SetWallType(int x, int y, int type);
+
+	void SceneRequest(int m, int s);
+	void SceneBackRequest();
+
+	int GetMode();
+	int GetScene(int mode);
 };
+
+extern Data_c GData;

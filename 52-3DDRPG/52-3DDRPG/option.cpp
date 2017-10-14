@@ -15,13 +15,13 @@ Option_c::~Option_c()
 	//delete mData;
 }
 
-bool Option_c::Main(int* Key, int* mode, int* title_scene, int* game_scene)
+bool Option_c::Main(int* Key)
 {
 
 	BackDraw();
 	ItemDraw();
 
-	return CursorDraw(Key, mode, title_scene, game_scene);
+	return CursorDraw(Key);
 }
 
 void Option_c::BackDraw()
@@ -69,7 +69,7 @@ void Option_c::ItemDraw()
 }
 
 
-bool Option_c::CursorDraw(int* Key, int* mode, int* title_scene, int* game_scene)
+bool Option_c::CursorDraw(int* Key)
 {
 	DrawFormatString(10, Cursor, GetColor(255, 255, 255), "->");
 
