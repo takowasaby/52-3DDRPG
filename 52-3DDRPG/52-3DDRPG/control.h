@@ -7,6 +7,7 @@ class Menu_c;
 class Dungeon_c;
 class SaveLoad_c;
 class Option_c;
+class Room_c;
 
 class Control_c {
 private:
@@ -17,6 +18,7 @@ private:
 	Dungeon_c* mDungeon;
 	SaveLoad_c* mSaveLoad;
 	Option_c* mOption;
+	Room_c* mRoom;
 
 	int Key[256];
 

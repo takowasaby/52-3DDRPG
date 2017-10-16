@@ -6,6 +6,7 @@ Control_c::Control_c()
 	mFps = new Fps_c;
 	mMenu = new Menu_c();
 	mDungeon = new Dungeon_c();
+	mRoom = new Room_c();
 }
 
 Control_c::~Control_c()
@@ -15,6 +16,7 @@ Control_c::~Control_c()
 //	delete mTitle;
 	delete mMenu;
 	delete mDungeon;
+	delete mRoom;
 //	delete mSaveLoad;
 }
 
@@ -86,6 +88,8 @@ bool Control_c::All() {
 			break;
 		case room:
 			//•”‰®’Tõ
+			mRoom->KEyUpdata(Key);
+			mRoom->RoomAll();
 			break;
 		case battle:
 			//ƒoƒgƒ‹

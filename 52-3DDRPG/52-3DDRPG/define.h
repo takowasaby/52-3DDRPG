@@ -43,6 +43,28 @@ const int CHARACTER_SIZE = 4;
 const int EVENT_SIZE = 64;
 //------------------------------------------------------------------------
 
+//room—p-----------------------------------------------------------------
+const int ROOM_MAXSIZE_X = 25;
+const int ROOM_MAXSIZE_Y = 25;
+//const int ROOM_EVENTTIMELINE = 15;
+
+const float ROOM_RATIO = 0.5;
+const int ROOM_WALL_SIZE_Y = 420 * ROOM_RATIO;
+const int ROOM_WALL_SIZE_X = 104 * ROOM_RATIO;
+const int ROOM_SHIFT_SIZE_X = 104 * ROOM_RATIO;
+const int ROOM_SHIFT_SIZE_Y = 60 * ROOM_RATIO;
+const int ROOM_FLOOR_SIZE_X = 208 * ROOM_RATIO;
+const int ROOM_FLOOR_SIZE_Y = 120 * ROOM_RATIO;
+const int ROOM_FLOOR_HALFSIZE_X = ROOM_FLOOR_SIZE_X / 2;
+const int ROOM_FLOOR_HALFSIZE_Y = ROOM_FLOOR_SIZE_Y / 2;
+const int ROOM_SELECT_SIZE_Y = 360 * ROOM_RATIO;
+const int ROOM_SELECT_SIZE_X = 208 * ROOM_RATIO;
+const int ROOM_FURNITURE_MAX = 100;
+const int ROOM_FURNITURE_LENGTH = ROOM_WALL_SIZE_X * 2;
+const int ROOM_POINT_X = 320;
+const int ROOM_POINT_Y = 240;
+//------------------------------------------------------------------------
+
 #include <math.h>
 #include <map>
 #include <vector>
@@ -61,3 +83,4 @@ const int EVENT_SIZE = 64;
 #include "title.h"
 #include "menu.h"
 #include "Sound.h"
+#include"room.h"
