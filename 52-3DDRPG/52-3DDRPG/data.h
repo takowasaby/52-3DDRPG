@@ -2,9 +2,6 @@
 
 //#include <string>
 
-const int MENU_MAP_UP = 200;
-const int MENU_MAP_LEFT = 200;
-
 using namespace std;
 
 class Data_c {
@@ -36,7 +33,7 @@ private:
 		int status;				//スキルの効果に依存されるステータス
 		double magnification;	//スキル効果のステータス依存の倍率*1000
 		int area;				//スキル効果の範囲(0:単体、1:全体)
-		char explain[64];		//スキルの説明文
+		char explain[512];		//スキルの説明文
 	};
 	Skill_t skill[SKILL_SIZE];
 
@@ -48,7 +45,7 @@ private:
 		int effect1, effect2;	//アイテムの効果(0:HP回復、1:MP回復、2:STR上昇、3:VIT上昇、4:AGI上昇、5:INT上昇、6:ダメージ)
 		int point1, point2;		//アイテム効果の固定値
 		int area;				//アイテム効果の範囲(0:単体、1:全体)
-		char explain[64];		//アイテムの説明文
+		char explain[512];		//アイテムの説明文
 	};
 	Item_t item[ITEM_SIZE];
 
@@ -60,7 +57,7 @@ private:
 		int effect;				//装備の効果(0:HP上昇、1:MP上昇、2:STR上昇、3:VIT上昇、4:AGI上昇、5:INT上昇)
 		int point;				//装備効果の固定値
 		int area;				//武器の攻撃範囲(0:単体、1:全体)
-		char explain[64];		//装備の説明文
+		char explain[512];		//装備の説明文
 	};
 	Soubi_t soubi[SOUBI_SIZE];
 
@@ -70,7 +67,7 @@ private:
 		int HPMAX, MPMAX, STR, VIT, AGI, INT;
 		int HP, MP;
 		char name[NAME_SIZE];
-		int skillCode[SKILL_CODE_SIZE];
+		int skillCode[SKILL_CODE_SIZE] = {};
 		int Image;
 	};
 	Character_t character[CHARACTER_SIZE];
@@ -98,12 +95,15 @@ public:
 	string GetGoalText(int s, int num);
 
 	int GetItemPoint(int num, int sort);			//0:num 1:type 2:effect1 3:effect2 4:point1 5:point2 6:area
+	void SetItemPoint(int num, int sort, int point);
 	string GetItemText(int num, int sort);			//0:name 1:explain
 
 	int GetSoubiPoint(int num, int sort);			//0:num 1:type 2:effect 3:point 4:area
+	void SetSoubiPoint(int num, int sort, int point);
 	string GetSoubiText(int num, int sort);			//0:name 1:explain
 
 	int GetSkillPoint(int num, int sort);			//0:num 1:MP 2:effect 3:status 4:magnification 5:area
+	void SetSkillPoint(int num, int sort, int point);
 	string GetSkillText(int num, int sort);			//0:name 1:explain
 
 	int GetCharacterPoint(int num, int sort);		//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image 9:soubi[1] 10:soubi[2]

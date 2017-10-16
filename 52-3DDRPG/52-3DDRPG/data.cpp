@@ -11,10 +11,10 @@ Data_c::Data_c() :
 	BScene(0),
 	EventCallFlag(0)
 {
-	controlMode = 1;
+	controlMode = 2;
 	eventScene = 0;
 	titleScene = 2;
-	gameScene = 0;
+	gameScene = 3;
 
 	for (int i = 0; i < MAP_SIZE_X; i++) {
 		for (int j = 0; j < MAP_SIZE_Y; j++) {
@@ -101,22 +101,20 @@ void Data_c::ItemLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
-	int input[64];
-	char inputc[64];
+	int input[512];
+	char inputc[512];
 
-	sprintf_s(fname, "resource/item_%d.csv", s);
+	sprintf_s(fname, "resource/data/item_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
 		printfDx("read error\n");
 		return;
 	}
-	for (i = 0; i<1; i++)//最初の2行読み飛ばす
-		while (FileRead_getc(fp) != '\n');
 
 	n = 0, num = 0;
 	while (1) {
-		for (i = 0; i<64; i++) {
+		for (i = 0; i<512; i++) {
 			inputc[i] = input[i] = FileRead_getc(fp);//1文字取得する
 			if (inputc[i] == '/') {//スラッシュがあれば
 				while (FileRead_getc(fp) != '\n');//改行までループ
@@ -142,6 +140,9 @@ void Data_c::ItemLoad(int s)
 		case 7: item[n].point2 = atoi(inputc);		break;
 		case 8: strcpy_s(item[n].explain, inputc);	break;
 		}
+		//
+		item[n].flag = 1;
+		//
 		num++;
 		if (num == 9) {
 			num = 0;
@@ -155,22 +156,21 @@ void Data_c::SoubiLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
-	int input[64];
-	char inputc[64];
+	int input[512];
+	char inputc[512];
+	int length = 0;
 
-	sprintf_s(fname, "resource/soubi_%d.csv", s);
+	sprintf_s(fname, "resource/data/soubi_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
 		printfDx("read error\n");
 		return;
 	}
-	for (i = 0; i<1; i++)//最初の2行読み飛ばす
-		while (FileRead_getc(fp) != '\n');
 
 	n = 0, num = 0;
 	while (1) {
-		for (i = 0; i<64; i++) {
+		for (i = 0; i<512; i++) {
 			inputc[i] = input[i] = FileRead_getc(fp);//1文字取得する
 			if (inputc[i] == '/') {//スラッシュがあれば
 				while (FileRead_getc(fp) != '\n');//改行までループ
@@ -184,6 +184,7 @@ void Data_c::SoubiLoad(int s)
 			if (input[i] == EOF) {//ファイルの終わりなら
 				goto EXFILE;//終了
 			}
+			length++;
 		}
 		switch (num) {
 		case 0: soubi[n].num = atoi(inputc);		break;
@@ -194,6 +195,9 @@ void Data_c::SoubiLoad(int s)
 		case 5: soubi[n].area = atoi(inputc);		break;
 		case 6: strcpy_s(soubi[n].explain, inputc);	break;
 		}
+		//
+		soubi[n].flag = 1;
+		//
 		num++;
 		if (num == 7) {
 			num = 0;
@@ -207,22 +211,20 @@ void Data_c::SkillLoad(int s)
 {
 	int n, num, i, fp;
 	char fname[32];
-	int input[64];
-	char inputc[64];
+	int input[512];
+	char inputc[512];
 
-	sprintf_s(fname, "resource/skill_%d.csv", s);
+	sprintf_s(fname, "resource/data/skill_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
 		printfDx("read error\n");
 		return;
 	}
-	for (i = 0; i<1; i++)//最初の2行読み飛ばす
-		while (FileRead_getc(fp) != '\n');
 
 	n = 0, num = 0;
 	while (1) {
-		for (i = 0; i<64; i++) {
+		for (i = 0; i<512; i++) {
 			inputc[i] = input[i] = FileRead_getc(fp);//1文字取得する
 			if (inputc[i] == '/') {//スラッシュがあれば
 				while (FileRead_getc(fp) != '\n');//改行までループ
@@ -263,15 +265,13 @@ void Data_c::CharacterLoad(int s)
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/character_%d.csv", s);
+	sprintf_s(fname, "resource/data/character_%d.csv", s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
 		printfDx("read error\n");
 		return;
 	}
-	for (i = 0; i<1; i++)//最初の2行読み飛ばす
-		while (FileRead_getc(fp) != '\n');
 
 	n = 0, num = 0;
 	while (1) {
@@ -298,8 +298,11 @@ void Data_c::CharacterLoad(int s)
 		case 4:		character[n].VIT = atoi(inputc);					break;
 		case 5:		character[n].AGI = atoi(inputc);					break;
 		case 6:		character[n].INT = atoi(inputc);					break;
-		default:	character[n].skillCode[num - 7] = atoi(inputc);		break;
+		default:	character[n].skillCode[atoi(inputc)] = 1;			break;
 		}
+		//
+		character[n].flag = 1;
+		//
 		num++;
 		if (num == 15) {
 			num = 0;
@@ -312,7 +315,7 @@ EXFILE:
 	char gname[64];
 
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
-		sprintf_s(gname, "resource/%d_chara%d.png", scenario, i);
+		sprintf_s(gname, "resource/data/%d_chara%d.png", scenario, i);
 		character[i].Image = LoadGraph(gname);
 	}
 }
@@ -358,6 +361,32 @@ int Data_c::GetItemPoint(int num, int sort)
 	}
 	return 0;
 }
+void Data_c::SetItemPoint(int num, int sort, int point)
+{
+	switch (sort) {
+	case 0:
+		item[num].num = point;
+		break;
+	case 1:
+		item[num].type = point;
+		break;
+	case 2:
+		item[num].effect1 = point;
+		break;
+	case 3:
+		item[num].effect2 = point;
+		break;
+	case 4:
+		item[num].point1 = point;
+		break;
+	case 5:
+		item[num].point2 = point;
+		break;
+	case 6:
+		item[num].area = point;
+		break;
+	}
+}
 string Data_c::GetItemText(int num, int sort)
 {
 	switch (sort) {
@@ -390,6 +419,26 @@ int Data_c::GetSoubiPoint(int num, int sort)
 		break;
 	}
 	return 0;
+}
+void Data_c::SetSoubiPoint(int num, int sort, int point)
+{
+	switch (sort) {
+	case 0:
+		soubi[num].num = point;
+		break;
+	case 1:
+		soubi[num].type = point;
+		break;
+	case 2:
+		soubi[num].effect = point;
+		break;
+	case 3:
+		soubi[num].point = point;
+		break;
+	case 4:
+		soubi[num].area = point;
+		break;
+	}
 }
 string Data_c::GetSoubiText(int num, int sort)
 {
@@ -426,6 +475,29 @@ int Data_c::GetSkillPoint(int num, int sort)
 		break;
 	}
 	return 0;
+}
+void Data_c::SetSkillPoint(int num, int sort, int point)
+{
+	switch (sort) {
+	case 0:
+		skill[num].num = point;
+		break;
+	case 1:
+		skill[num].MP = point;
+		break;
+	case 2:
+		skill[num].effect = point;
+		break;
+	case 3:
+		skill[num].status = point;
+		break;
+	case 4:
+		skill[num].magnification = point;
+		break;
+	case 5:
+		skill[num].area = point;
+		break;
+	}
 }
 string Data_c::GetSkillText(int num, int sort)
 {
