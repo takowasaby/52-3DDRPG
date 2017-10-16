@@ -17,19 +17,21 @@ void TextBox::Update()
 	if (!isActivated) return;		//非アクティブ状態なら更新はしない
 
 	//キー入力の検知
+	/*
 	static char buf[256];
 	GetHitKeyStateAll(buf);
 	for (int i = 0; i < 256; i++) {
 		if (buf[i]) key[i]++;
 		else        key[i] = 0;
-	}
+	}*/
 
 	//2017/9/19 メッセージモードの実装開始
 	if (windowMode == readMode) {
 		//決定キーを押したときの動作
+		/*
 		if (key[KEY_INPUT_Z] == 1) {
 			if (topOfPage < message.size()) topOfPage++;
-		}
+		}*/
 	}
 
 	//2017/9/17 スクロールモードのみ実装開始
@@ -70,8 +72,8 @@ void TextBox::Update()
 		}*/
 
 		//決定キーを押したときの動作
-		if (key[KEY_INPUT_Z] == 1) isSelected = true;
-		else isSelected = false;
+		//if (key[KEY_INPUT_Z] == 1) isSelected = true;
+		//else isSelected = false;
 	}
 }
 
@@ -83,11 +85,13 @@ void TextBox::Draw()
 	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
 
 	//ウィンドウにメッセージを描画する
-	for (int i = topOfPage; i < topOfPage + raw; i++) {
-		if (i > message.size() - 1) break;
-		int color = GetColor(255, 255, 255);
-		if (i == position && windowMode != readMode) color = GetColor(255, 191, 0);
-		DrawFormatString(x + 5, y + 5 + ((i-topOfPage) * 17), color, message[i].c_str());
+	if (message.size() > 0) {
+		for (int i = topOfPage; i < topOfPage + raw; i++) {
+			if (i > (message.size() - 1)) break;
+			int color = GetColor(255, 255, 255);
+			if (i == position && windowMode != readMode) color = GetColor(255, 191, 0);
+			DrawFormatString(x + 5, y + 5 + ((i - topOfPage) * 17), color, message[i].c_str());
+		}
 	}
 }
 

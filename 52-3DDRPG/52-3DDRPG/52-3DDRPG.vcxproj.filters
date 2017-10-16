@@ -1,82 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="control.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="data.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="dungeon.cpp">
-      <Filter>ソースファイル</Filter>
+    <ClCompile Include="BattleManager.cpp">
+      <Filter>ソースファイル\BattleScene</Filter>
     </ClCompile>
     <ClCompile Include="ECharaData.cpp">
-      <Filter>ソースファイル</Filter>
+      <Filter>ソースファイル\Event</Filter>
     </ClCompile>
     <ClCompile Include="EDrawSetting.cpp">
-      <Filter>ソースファイル</Filter>
+      <Filter>ソースファイル\Event</Filter>
     </ClCompile>
     <ClCompile Include="EQueueData.cpp">
-      <Filter>ソースファイル</Filter>
+      <Filter>ソースファイル\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="control.cpp">
+      <Filter>ソースファイル\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="data.cpp">
+      <Filter>ソースファイル\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="dungeon.cpp">
+      <Filter>ソースファイル\Other</Filter>
     </ClCompile>
     <ClCompile Include="Event.cpp">
-      <Filter>ソースファイル</Filter>
+      <Filter>ソースファイル\Other</Filter>
     </ClCompile>
     <ClCompile Include="fps.cpp">
-      <Filter>ソースファイル</Filter>
+      <Filter>ソースファイル\Other</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>ソースファイル</Filter>
+      <Filter>ソースファイル\Other</Filter>
     </ClCompile>
     <ClCompile Include="menu.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="save_load.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="title.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound.cpp">
-      <Filter>ソースファイル</Filter>
+      <Filter>ソースファイル\Other</Filter>
     </ClCompile>
     <ClCompile Include="option.cpp">
-      <Filter>ソースファイル</Filter>
+      <Filter>ソースファイル\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="save_load.cpp">
+      <Filter>ソースファイル\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>ソースファイル\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="title.cpp">
+      <Filter>ソースファイル\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>ソースファイル\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BattleManager.h">
+      <Filter>ヘッダーファイル\BattleScene</Filter>
+    </ClInclude>
     <ClInclude Include="control.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\Other</Filter>
     </ClInclude>
     <ClInclude Include="data.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\Other</Filter>
     </ClInclude>
     <ClInclude Include="define.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\Other</Filter>
     </ClInclude>
     <ClInclude Include="dungeon.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\Other</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\Other</Filter>
     </ClInclude>
     <ClInclude Include="fps.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\Other</Filter>
     </ClInclude>
     <ClInclude Include="menu.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\Other</Filter>
     </ClInclude>
     <ClInclude Include="option.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\Other</Filter>
     </ClInclude>
     <ClInclude Include="save_load.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="title.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\Other</Filter>
     </ClInclude>
     <ClInclude Include="Sound.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>ヘッダーファイル\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBox.h">
+      <Filter>ヘッダーファイル\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +97,24 @@
     </Filter>
     <Filter Include="ソースファイル">
       <UniqueIdentifier>{c6a2eb47-3891-4712-8f94-299070b0ace7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\BattleScene">
+      <UniqueIdentifier>{44af8d29-3cf5-4355-aaa8-52b59d7caa3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\BattleScene">
+      <UniqueIdentifier>{aa432b4c-ffd3-4a77-9b13-7d118f76a8e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Event">
+      <UniqueIdentifier>{fe37a1ef-ca85-40fc-94a4-d9d16948c9e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Event">
+      <UniqueIdentifier>{4294d546-54fd-427a-808d-e2f32c9e185a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Other">
+      <UniqueIdentifier>{7e454cac-812b-4b65-a2d4-a46ec3a0a9e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Other">
+      <UniqueIdentifier>{b18e668a-023c-4e19-9bc7-5b26ede7f77e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

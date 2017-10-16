@@ -11,10 +11,12 @@ Data_c::Data_c() :
 	BScene(0),
 	EventCallFlag(0)
 {
-	controlMode = 1;
+	//controlMode = 1;
+	controlMode = 2;
 	eventScene = 0;
 	titleScene = 2;
-	gameScene = 0;
+	//gameScene = 0;
+	gameScene = 2;
 
 	for (int i = 0; i < MAP_SIZE_X; i++) {
 		for (int j = 0; j < MAP_SIZE_Y; j++) {
@@ -263,7 +265,7 @@ void Data_c::CharacterLoad(int s)
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/character_%d.csv", s);
+	sprintf_s(fname, "resource/data/character_%d.csv", s);
 
 	fp = FileRead_open(fname);//ƒtƒ@ƒCƒ‹“Ç‚Ýž‚Ý
 	if (fp == NULL) {
@@ -523,6 +525,11 @@ int Data_c::GetCharacterSkillCode(int num, int order)
 string Data_c::GetCharacterName(int num)
 {
 	return string(character[num].name);
+}
+
+Character_t Data_c::GetCharacter(int num)
+{
+	return character[num];
 }
 
 int Data_c::GetScenario()

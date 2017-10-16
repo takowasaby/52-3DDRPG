@@ -8,6 +8,8 @@ class Dungeon_c;
 class SaveLoad_c;
 class Option_c;
 
+class BattleManager;
+
 class Control_c {
 private:
 	Fps_c* mFps;
@@ -17,6 +19,7 @@ private:
 	Dungeon_c* mDungeon;
 	SaveLoad_c* mSaveLoad;
 	Option_c* mOption;
+	BattleManager* battleManager;
 
 	int Key[256];
 

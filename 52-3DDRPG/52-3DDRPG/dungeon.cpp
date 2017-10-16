@@ -25,7 +25,7 @@ Dungeon_c::Dungeon_c(Data_c* data, int * mode, int * event_scene, int * title_sc
 
 Dungeon_c::~Dungeon_c()
 {
-	delete mData;
+	//delete mData;
 }
 
 void Dungeon_c::KeyUpdata(int Key[256])
@@ -59,7 +59,7 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 
 	mfp = FileRead_open(fname);
 	if (mfp == NULL) {
-		printfDx("read error\n");
+		//printfDx("read error\n");
 		return;
 	}
 	for (int i = 0; i < 1; i++)//Å‰‚Ì2s“Ç‚Ý”ò‚Î‚·

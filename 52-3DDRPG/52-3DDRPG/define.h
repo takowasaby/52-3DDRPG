@@ -43,6 +43,29 @@ const int CHARACTER_SIZE = 4;
 const int EVENT_SIZE = 64;
 //------------------------------------------------------------------------
 
+//BattleScene—p-----------------------------------------------------------------
+struct Param {
+	int current, base;
+};
+struct Character_t {
+	int flag;
+	int soubi[2];
+	int HPMAX, MPMAX, STR, VIT, AGI, INT;
+	int HP, MP;
+	char name[NAME_SIZE];
+	int skillCode[SKILL_CODE_SIZE];
+	int Image;
+};
+struct CharacterData {
+	int flag;
+	int soubi[2];
+	Param hp, mp, str, vit, agi, intel;
+	char name[NAME_SIZE];
+	int skillCode[SKILL_CODE_SIZE];
+	int Image;
+};
+//------------------------------------------------------------------------
+
 #include <math.h>
 #include <map>
 #include <vector>
@@ -61,3 +84,4 @@ const int EVENT_SIZE = 64;
 #include "title.h"
 #include "menu.h"
 #include "Sound.h"
+#include "BattleManager.h"

@@ -64,7 +64,7 @@ private:
 	};
 	Soubi_t soubi[SOUBI_SIZE];
 
-	struct Character_t {
+	/*struct Character_t {
 		int flag;
 		int soubi[2];
 		int HPMAX, MPMAX, STR, VIT, AGI, INT;
@@ -72,7 +72,7 @@ private:
 		char name[NAME_SIZE];
 		int skillCode[SKILL_CODE_SIZE];
 		int Image;
-	};
+	};*/
 	Character_t character[CHARACTER_SIZE];
 
 public:
@@ -110,6 +110,8 @@ public:
 	void SetCharacterPoint(int num, int sort, int point);	//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image 9:soubi[1] 10:soubi[2]
 	int GetCharacterSkillCode(int num, int order);
 	string GetCharacterName(int num);
+
+	Character_t GetCharacter(int);
 
 	int GetScenario();
 	int GetStage();

@@ -1,5 +1,6 @@
 #include "define.h"
 
+Data_c GData;
 char Key[256];
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
@@ -15,6 +16,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetDrawScreen(DX_SCREEN_BACK);        //— ‰æ–Ê‚Éİ’è
 
 	Control_c control;
+	GData.CharacterLoad(0);
 
 	while (!ProcessMessage() && !ClearDrawScreen() && !GetHitKeyStateAll(Key) && !Key[KEY_INPUT_ESCAPE]) {
 		//ªÒ¯¾°¼Şˆ—         ª‰æ–Ê‚ğ¸Ø±          ª·°ÎŞ°ÄŞ“ü—Íó‘Ôæ“¾       ªESC‚ª‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢

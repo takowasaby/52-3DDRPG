@@ -6,6 +6,7 @@ Control_c::Control_c()
 	mFps = new Fps_c;
 	mMenu = new Menu_c();
 	mDungeon = new Dungeon_c();
+	battleManager = new BattleManager();
 }
 
 Control_c::~Control_c()
@@ -89,6 +90,9 @@ bool Control_c::All() {
 			break;
 		case battle:
 			//ƒoƒgƒ‹
+			battleManager->KeyUpdata(Key);
+			battleManager->Update();
+			battleManager->Draw();
 			break;
 		case menu:
 			mMenu->KeyUpdata(Key);
