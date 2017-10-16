@@ -1,24 +1,16 @@
 #include "define.h"
 
 Menu_c::Menu_c() :
-	depth(0),
-	mode(0),
-	mscenario(0),
-	mdir(0),
-	mx(0),
-	my(0),
+	depth(0), 
+	mode(0), mscenario(0),
+	mdir(0), mx(0), my(0),
 	drawCount(0),
-	itemType(0),
-	soubiType(0),
-	chooseChara(0),
-	chooseItem(0),
-	chooseSoubi(0),
-	chooseSkill(0),
-	YN(0),
-	targetChara(0),
-	windowH(0),
-	windowW(0),
-	menuScreen(0)
+	itemType(0), soubiType(0),
+	chooseChara(0), chooseItem(0), chooseSoubi(0), chooseSkill(0),
+	YN(0), targetChara(0),
+	windowH(0), windowW(0), menuScreen(0),
+	row(0), stringX(0), stringY(0),
+	xLeft(0), yUp(0)
 {
 	colorW = GetColor(255, 255, 255);
 	LoadWindow();
@@ -74,15 +66,25 @@ void Menu_c::DrawLeft()
 {
 	DrawExtendGraph(60, 40, 161, 321, windowH, TRUE);
 	DrawExtendGraph(60, 320, 161, 441, windowH, TRUE);
-	printfDx("マップ");
-	printfDx("ステータス");
-	printfDx("装備");
-	printfDx("アイテム");
-	printfDx("ライブラリ");
-	printfDx("セーブ");
-	printfDx("オプション");
-	printfDx("プレイ時間");
-	printfDx("現在のシナリオ");
+
+	row = 40;
+	stringX = 65;
+	stringY = 45;
+
+	DrawFormatString(stringX, stringY + row * 0, colorW, "マップ");
+	DrawFormatString(stringX, stringY + row * 1, colorW, "ステータス");
+	DrawFormatString(stringX, stringY + row * 2, colorW, "装備");
+	DrawFormatString(stringX, stringY + row * 3, colorW, "アイテム");
+	DrawFormatString(stringX, stringY + row * 4, colorW, "ライブラリ");
+	DrawFormatString(stringX, stringY + row * 5, colorW, "セーブ");
+	DrawFormatString(stringX, stringY + row * 6, colorW, "オプション");
+
+	row = 50;
+	stringX = 65;
+	stringY = 325;
+
+	DrawFormatString(stringX, stringY + row * 0, colorW, "プレイ時間");
+	DrawFormatString(stringX, stringY + row * 1, colorW, "シナリオ");
 }
 void Menu_c::DrawRight()
 {
@@ -106,48 +108,48 @@ void Menu_c::DrawRight()
 				}
 			}
 
-			int xLeft, yUp, size;
-			size = 12;
-			DrawBox(MENU_MAP_LEFT, MENU_MAP_UP, MENU_MAP_LEFT + (size + 2) * MAP_SIZE_X + 2, MENU_MAP_UP + (size + 2) * MAP_SIZE_Y + 2, 0, TRUE);
+			DrawBox(MENU_MAP_LEFT, MENU_MAP_UP, MENU_MAP_LEFT + (MENU_MAP_SIZE + 2) * MAP_SIZE_X + 2, MENU_MAP_UP + (MENU_MAP_SIZE + 2) * MAP_SIZE_Y + 2, 0, TRUE);
 
 			for (int i = 0; i < 25; i++) {
 				for (int j = 0; j < 25; j++) {
-					xLeft = MENU_MAP_LEFT + 2 + j * (size + 2);
-					yUp = MENU_MAP_UP + 2 + i * (size + 2);
+					xLeft = MENU_MAP_LEFT + 2 + j * (MENU_MAP_SIZE + 2);
+					yUp = MENU_MAP_UP + 2 + i * (MENU_MAP_SIZE + 2);
 
 					switch (mwallType[j][i]) {
-					case 1: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(255, 255, 255), TRUE);	break;
-					case 2: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(255, 0, 0), TRUE);		break;
-					case 3: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(0, 255, 0), TRUE);		break;
-					case 4: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(0, 0, 255), TRUE);		break;
+					case 1: DrawBox(xLeft, yUp, xLeft + MENU_MAP_SIZE, yUp + MENU_MAP_SIZE, GetColor(255, 255, 255), TRUE);	break;
+					case 2: DrawBox(xLeft, yUp, xLeft + MENU_MAP_SIZE, yUp + MENU_MAP_SIZE, GetColor(255, 0, 0), TRUE);		break;
+					case 3: DrawBox(xLeft, yUp, xLeft + MENU_MAP_SIZE, yUp + MENU_MAP_SIZE, GetColor(0, 255, 0), TRUE);		break;
+					case 4: DrawBox(xLeft, yUp, xLeft + MENU_MAP_SIZE, yUp + MENU_MAP_SIZE, GetColor(0, 0, 255), TRUE);		break;
 					}
 				}
 			}
 
-			xLeft = MENU_MAP_LEFT + 2 + mx * (size + 2);
-			yUp = MENU_MAP_UP + 2 + my * (size + 2);
+			xLeft = MENU_MAP_LEFT + 2 + mx * (MENU_MAP_SIZE + 2);
+			yUp = MENU_MAP_UP + 2 + my * (MENU_MAP_SIZE + 2);
 			switch (mdir) {
-			case 0:	DrawTriangle(xLeft, yUp + size, xLeft + size / 2, yUp, xLeft + size, yUp + size, GetColor(255, 255, 0), TRUE); break;
-			case 1: DrawTriangle(xLeft, yUp, xLeft + size, yUp + size / 2, xLeft, yUp + size, GetColor(255, 255, 0), TRUE); break;
-			case 2: DrawTriangle(xLeft, yUp, xLeft + size, yUp, xLeft + size / 2, yUp + size, GetColor(255, 255, 0), TRUE); break;
-			case 3: DrawTriangle(xLeft + size, yUp, xLeft, yUp + size / 2, xLeft + size, yUp + size, GetColor(255, 255, 0), TRUE); break;
+			case 0:	DrawTriangle(xLeft, yUp + MENU_MAP_SIZE, xLeft + MENU_MAP_SIZE / 2, yUp, xLeft + MENU_MAP_SIZE, yUp + MENU_MAP_SIZE, GetColor(255, 255, 0), TRUE); break;
+			case 1: DrawTriangle(xLeft, yUp, xLeft + MENU_MAP_SIZE, yUp + MENU_MAP_SIZE / 2, xLeft, yUp + MENU_MAP_SIZE, GetColor(255, 255, 0), TRUE); break;
+			case 2: DrawTriangle(xLeft, yUp, xLeft + MENU_MAP_SIZE, yUp, xLeft + MENU_MAP_SIZE / 2, yUp + MENU_MAP_SIZE, GetColor(255, 255, 0), TRUE); break;
+			case 3: DrawTriangle(xLeft + MENU_MAP_SIZE, yUp, xLeft, yUp + MENU_MAP_SIZE / 2, xLeft + MENU_MAP_SIZE, yUp + MENU_MAP_SIZE, GetColor(255, 255, 0), TRUE); break;
 			}
 			break;
 		case status:
 
 			DrawExtendGraph(160, 40, 581, 441, windowW, TRUE);
+
+			row = 100;
+			stringX = 190;
+			stringY = 80;
+
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
 				if (GData.GetCharacterFlag(i)) {
-					printfDx("\n%s ", GData.GetCharacterName(i).c_str());
-					printfDx("\nHP:%d/%d ", GData.GetCharacterPoint(i, 0), GData.GetCharacterPoint(i, 2));
-					printfDx("MP:%d/%d ", GData.GetCharacterPoint(i, 1), GData.GetCharacterPoint(i, 3));
-					printfDx("STR:%d ", GData.GetCharacterPoint(i, 4));
-					printfDx("VIT:%d ", GData.GetCharacterPoint(i, 5));
-					printfDx("AGI:%d ", GData.GetCharacterPoint(i, 6));
-					printfDx("INT:%d ", GData.GetCharacterPoint(i, 7));
+					DrawFormatString(stringX, stringY + row * i, colorW, "%s HP:%d/%d MP:%d/%d \nSTR:%d VIT:%d AGI:%d INT:%d", 
+						GData.GetCharacterName(i).c_str(), GData.GetCharacterPoint(i, 0), GData.GetCharacterPoint(i, 2), 
+						GData.GetCharacterPoint(i, 1), GData.GetCharacterPoint(i, 3), GData.GetCharacterPoint(i, 4), 
+						GData.GetCharacterPoint(i, 5), GData.GetCharacterPoint(i, 6), GData.GetCharacterPoint(i, 7));
 
-					charaNum[drawCount] = i;
 					drawCount++;
+					charaNum[drawCount - 1] = i;
 				}
 			}
 			break;
@@ -199,7 +201,7 @@ void Menu_c::DrawRight()
 			for (int i = 0; i < SKILL_SIZE; i++) {
 				skillNum[i] = 0;
 				if (GData.GetCharacterSkillCode(chooseChara, i) == 1) {
-					printfDx("\n%s, ", GData.GetSkillText(GData.GetCharacterSkillCode(chooseChara, i), 0).c_str());
+					printfDx("\n%s, ", GData.GetSkillText(i, 0).c_str());
 					skillNum[drawCount] = i;
 					drawCount++;
 				}
