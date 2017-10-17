@@ -8,7 +8,7 @@ private:
 	//ƒL[“ü—Í—p•Ï”
 	int mKey[256]; // 0:“ü—Í‚³‚ê‚Ä‚¢‚È‚¢ 1:“ü—Í‚³‚ê‚½uŠÔ 2:“ü—Í‚³‚ê‚Ä‚¢‚é
 
-	Character_t player[CHARACTER_SIZE];
+	CharacterData player[CHARACTER_SIZE];
 
 	TextBox* PlayerWindow;
 	TextBox* OpinionWindow[2];
@@ -23,6 +23,7 @@ public:
 
 	void LoadPlayer(int);
 
+	void BattleInitialize();
 	void PlayerSelection();
 	void EnemySelection();
 	void PlayerCalc();

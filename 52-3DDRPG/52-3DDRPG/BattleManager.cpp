@@ -3,12 +3,12 @@
 BattleManager::BattleManager()
 	: phase(0)
 {
-	GData.CharacterLoad(0);
+	//GData.CharacterLoad(0);
 	PlayerWindow = new TextBox();
 	for (int i = 0; i < 2; i++) OpinionWindow[i] = new TextBox();
 	
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
-		player[i] = GData.GetCharacter(i);
+		LoadPlayer(i);
 	}
 }
 
@@ -22,6 +22,7 @@ void BattleManager::Update()
 	switch (phase)
 	{
 	case 0:
+		BattleInitialize();
 		break;
 	case 1://プレイヤーの行動選択
 		PlayerSelection();
@@ -59,17 +60,24 @@ void BattleManager::Draw()
 		printfDx("Player%d : ", i+1);
 		if (player[i].flag) printfDx("NONE\n");
 		else {
-			printfDx("%s %d/%d %d/%d %d %d %d %d\n"
-				,player[i].name, player[i].HP, player[i].HPMAX
-				, player[i].MP, player[i].MPMAX, player[i].STR
-				, player[i].VIT, player[i].AGI, player[i].INT);
+			printfDx("%s %d/%d %d/%d %d/%d %d/%d %d/%d %d/%d\n"
+				,player[i].name, player[i].hp.current, player[i].hp.base
+				, player[i].mp.current, player[i].mp.base, player[i].str.current
+				, player[i].str.base, player[i].vit.current, player[i].vit.base
+				, player[i].agi.current, player[i].agi.base
+				, player[i].intel.current, player[i].intel.base);
 		}
 	}
 }
 
 void BattleManager::LoadPlayer(int index)
 {
-	
+	//for Debug
+	player[index].name = "PLAYER" + to_string(index);
+}
+
+void BattleManager::BattleInitialize()
+{
 }
 
 void BattleManager::PlayerSelection()
