@@ -63,11 +63,11 @@ private:
 
 	struct Character_t {
 		int flag;
-		int soubi[2];
+		int soubi[2] = {-1, -1};
 		int HPMAX, MPMAX, STR, VIT, AGI, INT;
 		int HP, MP;
 		char name[NAME_SIZE];
-		int skillCode[SKILL_CODE_SIZE] = {};
+		int skillCode[SKILL_SIZE] = {};
 		int Image;
 	};
 	Character_t character[CHARACTER_SIZE];
