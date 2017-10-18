@@ -2,6 +2,11 @@
 
 #include "DxLib.h"
 
+#include <math.h>
+#include <map>
+#include <vector>
+#include <string>
+
 //dungeon—p--------------------------------------------------------------
 const int MAP_SIZE_X = 25;
 const int MAP_SIZE_Y = 25;
@@ -44,6 +49,7 @@ const int EVENT_SIZE = 64;
 //------------------------------------------------------------------------
 
 //BattleScene—p-----------------------------------------------------------------
+using namespace std;
 struct Param {
 	int current, base;
 };
@@ -60,16 +66,12 @@ struct CharacterData {
 	int flag;
 	int soubi[2];
 	Param hp, mp, str, vit, agi, intel;
-	char name[NAME_SIZE];
+	string name;
 	int skillCode[SKILL_CODE_SIZE];
 	int Image;
 };
 //------------------------------------------------------------------------
 
-#include <math.h>
-#include <map>
-#include <vector>
-#include <string>
 #include "control.h"
 #include "data.h"
 #include "dungeon.h"
