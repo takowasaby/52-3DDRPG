@@ -298,13 +298,17 @@ void Data_c::CharacterLoad(int s)
 		case 4:		character[n].VIT = atoi(inputc);					break;
 		case 5:		character[n].AGI = atoi(inputc);					break;
 		case 6:		character[n].INT = atoi(inputc);					break;
-		default:	character[n].skillCode[atoi(inputc)] = 1;			break;
+		default:	
+			if (atoi(inputc) != -1) {
+				character[n].skillCode[atoi(inputc)] = 1;
+			}
+			break;
 		}
 		//
 		character[n].flag = 1;
 		//
 		num++;
-		if (num == 15) {
+		if (num == 16) {
 			num = 0;
 			n++;
 		}

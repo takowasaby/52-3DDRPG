@@ -2,43 +2,35 @@
 
 const int MENU_MAP_UP = 65;
 const int MENU_MAP_LEFT = 195;
+const int MENU_MAP_SIZE = 12;
 
 class Menu_c {
 private:
 	int depth;
-	int mode;
-	int mscenario, mdir, mx, my;
+	int mode, mscenario;
+	int mdir, mx, my;
 	int mwallType[MAP_SIZE_X][MAP_SIZE_Y] = {};
 	int meventFlag[SCENARIO_SIZE][EVENT_SIZE] = {};
-	unsigned int drawCount;
-	int colorW;
+	int drawCount;
+	unsigned int colorW, colorY;
+	int xLeft, yUp;
 
-	int windowH;
-	int windowW;
-	int menuScreen;
+	int windowH, windowW, menuScreen;
 
-	int itemType;
-	int soubiType;
+	int row, stringX, stringY;
 
-	int charaNum[CHARACTER_SIZE] = {};
-	int itemNum[ITEM_SIZE] = {};
-	int soubiNum[SOUBI_SIZE] = {};
-	int skillNum[SKILL_SIZE] = {};
+	int itemType, soubiType;
 
-	int chooseChara;
-	int chooseItem;
-	int chooseSoubi;
-	int chooseSkill;
+	int charaNum[CHARACTER_SIZE];
+	int itemNum[ITEM_SIZE];
+	int soubiNum[SOUBI_SIZE];
+	int skillNum[SKILL_SIZE];
 
-	int YN;
+	int chooseChara, chooseItem, chooseSoubi, chooseSkill;
 
-	int targetChara;
+	int YN, targetChara;
 
 	int mKey[256];
-	int* mMode;
-	int* mEvent_scene;
-	int* mTitle_scene;
-	int* mGame_scene;
 
 	int cursorY = 20;
 	const int cursorX = 10;
