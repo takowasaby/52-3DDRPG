@@ -12,7 +12,7 @@ private:
 	int mwallType[MAP_SIZE_X][MAP_SIZE_Y] = {};
 	int meventFlag[SCENARIO_SIZE][EVENT_SIZE] = {};
 	int drawCount;
-	unsigned int colorW;
+	unsigned int colorW, colorY;
 	int xLeft, yUp;
 
 	int windowH, windowW, menuScreen;
@@ -21,20 +21,16 @@ private:
 
 	int itemType, soubiType;
 
-	int charaNum[CHARACTER_SIZE] = {};
-	int itemNum[ITEM_SIZE] = {};
-	int soubiNum[SOUBI_SIZE] = {};
-	int skillNum[SKILL_SIZE] = {};
+	int charaNum[CHARACTER_SIZE];
+	int itemNum[ITEM_SIZE];
+	int soubiNum[SOUBI_SIZE];
+	int skillNum[SKILL_SIZE];
 
 	int chooseChara, chooseItem, chooseSoubi, chooseSkill;
 
 	int YN, targetChara;
 
 	int mKey[256];
-	int* mMode;
-	int* mEvent_scene;
-	int* mTitle_scene;
-	int* mGame_scene;
 
 	int cursorY = 20;
 	const int cursorX = 10;

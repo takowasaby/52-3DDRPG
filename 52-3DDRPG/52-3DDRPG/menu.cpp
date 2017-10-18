@@ -13,7 +13,21 @@ Menu_c::Menu_c() :
 	xLeft(0), yUp(0)
 {
 	colorW = GetColor(255, 255, 255);
+	colorY = GetColor(255, 191, 0);
 	LoadWindow();
+
+	for (int i = 0; i < CHARACTER_SIZE; i++) {
+		charaNum[i] = -1;
+	}
+	for (int i = 0; i < ITEM_SIZE; i++) {
+		itemNum[i] = -1;
+	}
+	for (int i = 0; i < SOUBI_SIZE; i++) {
+		soubiNum[i] = -1;
+	}
+	for (int i = 0; i < SKILL_SIZE; i++) {
+		skillNum[i] = -1;
+	}
 }
 Menu_c::~Menu_c()
 {
@@ -71,13 +85,26 @@ void Menu_c::DrawLeft()
 	stringX = 65;
 	stringY = 45;
 
-	DrawFormatString(stringX, stringY + row * 0, colorW, "マップ");
-	DrawFormatString(stringX, stringY + row * 1, colorW, "ステータス");
-	DrawFormatString(stringX, stringY + row * 2, colorW, "装備");
-	DrawFormatString(stringX, stringY + row * 3, colorW, "アイテム");
-	DrawFormatString(stringX, stringY + row * 4, colorW, "ライブラリ");
-	DrawFormatString(stringX, stringY + row * 5, colorW, "セーブ");
-	DrawFormatString(stringX, stringY + row * 6, colorW, "オプション");
+	if (mode == 0) DrawFormatString(stringX, stringY + row * 0, colorY, "マップ");
+	else DrawFormatString(stringX, stringY + row * 0, colorW, "マップ");
+
+	if (mode == 1) DrawFormatString(stringX, stringY + row * 1, colorY, "ステータス");
+	else DrawFormatString(stringX, stringY + row * 1, colorW, "ステータス");
+
+	if (mode == 2) DrawFormatString(stringX, stringY + row * 2, colorY, "装備");
+	else DrawFormatString(stringX, stringY + row * 2, colorW, "装備");
+
+	if (mode == 3) DrawFormatString(stringX, stringY + row * 3, colorY, "アイテム");
+	else DrawFormatString(stringX, stringY + row * 3, colorW, "アイテム");
+
+	if (mode == 4) DrawFormatString(stringX, stringY + row * 4, colorY, "ライブラリ");
+	else DrawFormatString(stringX, stringY + row * 4, colorW, "ライブラリ");
+
+	if (mode == 5) DrawFormatString(stringX, stringY + row * 5, colorY, "セーブ");
+	else DrawFormatString(stringX, stringY + row * 5, colorW, "セーブ");
+
+	if (mode == 6) DrawFormatString(stringX, stringY + row * 6, colorY, "オプション");
+	else DrawFormatString(stringX, stringY + row * 6, colorW, "オプション");
 
 	row = 50;
 	stringX = 65;
@@ -89,7 +116,19 @@ void Menu_c::DrawLeft()
 void Menu_c::DrawRight()
 {
 	drawCount = 0;
-
+/*	for (int i = 0; i < CHARACTER_SIZE; i++) {
+		charaNum[i] = -1;
+	}
+	for (int i = 0; i < ITEM_SIZE; i++) {
+		itemNum[i] = -1;
+	}
+	for (int i = 0; i < SOUBI_SIZE; i++) {
+		soubiNum[i] = -1;
+	}
+	for (int i = 0; i < SKILL_SIZE; i++) {
+		skillNum[i] = -1;
+	}
+*/
 	switch (depth) {
 	case 0:
 	case 1:
@@ -108,7 +147,7 @@ void Menu_c::DrawRight()
 				}
 			}
 
-			DrawBox(MENU_MAP_LEFT, MENU_MAP_UP, MENU_MAP_LEFT + (MENU_MAP_SIZE + 2) * MAP_SIZE_X + 2, MENU_MAP_UP + (MENU_MAP_SIZE + 2) * MAP_SIZE_Y + 2, 0, TRUE);
+	//		DrawBox(MENU_MAP_LEFT, MENU_MAP_UP, MENU_MAP_LEFT + (MENU_MAP_SIZE + 2) * MAP_SIZE_X + 2, MENU_MAP_UP + (MENU_MAP_SIZE + 2) * MAP_SIZE_Y + 2, 0, TRUE);
 
 			for (int i = 0; i < 25; i++) {
 				for (int j = 0; j < 25; j++) {
@@ -143,34 +182,55 @@ void Menu_c::DrawRight()
 
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
 				if (GData.GetCharacterFlag(i)) {
-					DrawFormatString(stringX, stringY + row * i, colorW, "%s HP:%d/%d MP:%d/%d \nSTR:%d VIT:%d AGI:%d INT:%d", 
+
+					if (chooseChara == i && depth == 1) DrawFormatString(stringX, stringY + row * i, colorY, "%s HP:%d/%d MP:%d/%d \nSTR:%d VIT:%d AGI:%d INT:%d", 
 						GData.GetCharacterName(i).c_str(), GData.GetCharacterPoint(i, 0), GData.GetCharacterPoint(i, 2), 
 						GData.GetCharacterPoint(i, 1), GData.GetCharacterPoint(i, 3), GData.GetCharacterPoint(i, 4), 
+						GData.GetCharacterPoint(i, 5), GData.GetCharacterPoint(i, 6), GData.GetCharacterPoint(i, 7));
+					else DrawFormatString(stringX, stringY + row * i, colorW, "%s HP:%d/%d MP:%d/%d \nSTR:%d VIT:%d AGI:%d INT:%d",
+						GData.GetCharacterName(i).c_str(), GData.GetCharacterPoint(i, 0), GData.GetCharacterPoint(i, 2),
+						GData.GetCharacterPoint(i, 1), GData.GetCharacterPoint(i, 3), GData.GetCharacterPoint(i, 4),
 						GData.GetCharacterPoint(i, 5), GData.GetCharacterPoint(i, 6), GData.GetCharacterPoint(i, 7));
 
 					drawCount++;
 					charaNum[drawCount - 1] = i;
 				}
 			}
+
 			break;
 		case soubi:
 			DrawExtendGraph(160, 40, 581, 441, windowW, TRUE);
+
+			row = 100;
+			stringX = 190;
+			stringY = 80;
+
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
 				if (GData.GetCharacterFlag(i)) {
-					printfDx("\n%s ", GData.GetCharacterName(i).c_str());
-					printfDx("武器:%s, ", GData.GetSoubiText(GData.GetCharacterPoint(i, 9), 0).c_str());
-					printfDx("アクセ:%s, ", GData.GetSoubiText(GData.GetCharacterPoint(i, 10), 0).c_str());
+					DrawFormatString(stringX, stringY + row * drawCount, colorW, "%s ", GData.GetCharacterName(i).c_str());
 
-					charaNum[drawCount] = i;
+					if (chooseChara == i && soubiType == 0 && depth == 1) DrawFormatString(stringX + 80, stringY + row * i, colorY, "武器:\n%s", GData.GetSoubiText(GData.GetCharacterPoint(i, 9), 0).c_str());
+					else DrawFormatString(stringX + 80, stringY + row * i, colorW, "武器:\n%s", GData.GetSoubiText(GData.GetCharacterPoint(i, 9), 0).c_str());
+					
+					if (chooseChara == i && soubiType == 1 && depth == 1) DrawFormatString(stringX + 200, stringY + row * i, colorY, "アクセ:\n%s", GData.GetSoubiText(GData.GetCharacterPoint(i, 10), 0).c_str());
+					else DrawFormatString(stringX + 200, stringY + row * i, colorW, "アクセ:\n%s", GData.GetSoubiText(GData.GetCharacterPoint(i, 10), 0).c_str());
+
 					drawCount++;
+					charaNum[drawCount - 1] = i;
 				}
 			}
 			break;
 		case item:
 			DrawExtendGraph(160, 40, 581, 81, windowW, TRUE);
 			DrawExtendGraph(160, 80, 581, 441, windowW, TRUE);
-			printfDx("消耗品");
-			printfDx("だいじなもの");
+
+			stringX = 175;
+			stringY = 50;
+
+			if (itemType == 0 && depth == 1) DrawFormatString(stringX, stringY + row * 0, colorY, "消耗品");
+			else DrawFormatString(stringX, stringY + row * 0, colorW, "消耗品");
+			if (itemType == 1 && depth == 1) DrawFormatString(stringX + 210, stringY + row * 0, colorY, "だいじなもの");
+			else DrawFormatString(stringX + 210, stringY + row * 0, colorW, "だいじなもの");
 			break;
 		case library:
 			DrawExtendGraph(160, 40, 581, 441, windowW, TRUE);
@@ -189,47 +249,90 @@ void Menu_c::DrawRight()
 			DrawExtendGraph(160, 240, 581, 401, windowW, TRUE);
 			DrawExtendGraph(160, 400, 581, 441, windowW, TRUE);
 
-			printfDx("\n%s ", GData.GetCharacterName(chooseChara).c_str());
-			printfDx("\nHP:%d/%d ", GData.GetCharacterPoint(chooseChara, 0), GData.GetCharacterPoint(chooseChara, 2));
-			printfDx("MP:%d/%d ", GData.GetCharacterPoint(chooseChara, 1), GData.GetCharacterPoint(chooseChara, 3));
-			printfDx("STR:%d ", GData.GetCharacterPoint(chooseChara, 4));
-			printfDx("VIT:%d ", GData.GetCharacterPoint(chooseChara, 5));
-			printfDx("AGI:%d ", GData.GetCharacterPoint(chooseChara, 6));
-			printfDx("INT:%d ", GData.GetCharacterPoint(chooseChara, 7));
+			row = 30;
+			stringX = 175;
+			stringY = 60;
+
+			DrawFormatString(stringX, stringY + row * 0, colorW, "%s ", GData.GetCharacterName(chooseChara).c_str());
+			DrawFormatString(stringX, stringY + row * 1, colorW, "HP:%d/%d ", GData.GetCharacterPoint(chooseChara, 0), GData.GetCharacterPoint(chooseChara, 2));
+			DrawFormatString(stringX, stringY + row * 2, colorW, "MP:%d/%d ", GData.GetCharacterPoint(chooseChara, 1), GData.GetCharacterPoint(chooseChara, 3));
+			DrawFormatString(stringX, stringY + row * 3, colorW, "STR:%d ", GData.GetCharacterPoint(chooseChara, 4));
+			DrawFormatString(stringX + 100, stringY + row * 3, colorW, "VIT:%d ", GData.GetCharacterPoint(chooseChara, 5));
+			DrawFormatString(stringX, stringY + row * 4, colorW, "AGI:%d ", GData.GetCharacterPoint(chooseChara, 6));
+			DrawFormatString(stringX + 100, stringY + row * 4, colorW, "INT:%d ", GData.GetCharacterPoint(chooseChara, 7));
 			DrawGraph(480, 240, GData.GetCharacterPoint(chooseChara, 8), TRUE);
 
+			row = 20;
+			stringX = 175;
+			stringY = 255;
+
 			for (int i = 0; i < SKILL_SIZE; i++) {
-				skillNum[i] = 0;
+				skillNum[i] = -1;
 				if (GData.GetCharacterSkillCode(chooseChara, i) == 1) {
-					printfDx("\n%s, ", GData.GetSkillText(i, 0).c_str());
-					skillNum[drawCount] = i;
+					if (chooseSkill == drawCount) {
+						DrawFormatString(stringX, stringY + row * drawCount, colorY, "%s", GData.GetSkillText(i, 0).c_str());
+						DrawFormatString(stringX + 300, stringY + row * i, colorY, "消費MP:%d", GData.GetSkillPoint(i, 1));
+					}
+					else {
+						DrawFormatString(stringX, stringY + row * drawCount, colorW, "%s", GData.GetSkillText(i, 0).c_str());
+						DrawFormatString(stringX + 300, stringY + row * i, colorW, "消費MP:%d", GData.GetSkillPoint(i, 1));
+					}
 					drawCount++;
+					skillNum[drawCount - 1] = i;
 				}
 			}
 
-			printfDx("\n%s", GData.GetSkillText(skillNum[chooseSkill], 1).c_str());
+			stringX = 175;
+			stringY = 412;
+			if (skillNum[chooseSkill] != -1) {
+				DrawFormatString(stringX, stringY + row * 0, colorW, "%s", GData.GetSkillText(skillNum[chooseSkill], 1).c_str());
+			}
 			break;
 
 		case soubi:
+
 			DrawExtendGraph(160, 40, 581, 81, windowW, TRUE);
 			DrawExtendGraph(160, 80, 581, 401, windowW, TRUE);
 			DrawExtendGraph(160, 400, 581, 441, windowW, TRUE);
 
-			printfDx("%s", GData.GetCharacterName(chooseChara).c_str());
+			stringX = 175;
+			stringY = 50;
+
+			DrawFormatString(stringX, stringY + row * 0, colorW, "%s", GData.GetCharacterName(chooseChara).c_str());
+
+			row = 20;	
+			stringX = 175;
+			stringY = 95;
 
 			for (int i = 0; i < SOUBI_SIZE; i++) {
-				soubiNum[i] = 0;
+				soubiNum[i] = -1;
 				if (GData.GetSoubiFlag(i) >= 1) {
 					if (soubiType == GData.GetSoubiPoint(i, 1)) {
-						if (i == GData.GetCharacterPoint(chooseChara, soubiType + 9)) printfDx("E.");
-						printfDx("%s, ", GData.GetSoubiText(i, 0).c_str());
-						soubiNum[drawCount] = i;
-						drawCount++;
+						if (i != GData.GetCharacterPoint(0, soubiType + 9)
+							&& i != GData.GetCharacterPoint(1, soubiType + 9)
+							&& i != GData.GetCharacterPoint(2, soubiType + 9)
+							&& i != GData.GetCharacterPoint(3, soubiType + 9)) {
+							if (drawCount == chooseSoubi) {
+								DrawFormatString(stringX, stringY + row * drawCount, colorY, "%s", GData.GetSoubiText(i, 0).c_str());
+								DrawFormatString(stringX + 300, stringY + row * drawCount, colorY, "X%d", GData.GetSoubiFlag(i));
+							}
+							else {
+								DrawFormatString(stringX, stringY + row * drawCount, colorW, "%s", GData.GetSoubiText(i, 0).c_str());
+								DrawFormatString(stringX + 300, stringY + row * drawCount, colorW, "X%d", GData.GetSoubiFlag(i));
+							}
+							drawCount++;
+							soubiNum[drawCount - 1] = i;
+						}
 					}
 				}
 			}
 
-			printfDx("\n%s", GData.GetSoubiText(soubiNum[chooseSoubi], 1).c_str());
+			stringX = 175;
+			stringY = 412;
+
+			if (soubiNum[chooseSoubi] != -1) {
+				DrawFormatString(stringX, stringY + row * 0, colorW, "%s", GData.GetSoubiText(soubiNum[chooseSoubi], 1).c_str());
+			}
 			break;
 
 		case item:
@@ -237,21 +340,42 @@ void Menu_c::DrawRight()
 			DrawExtendGraph(160, 80, 581, 401, windowW, TRUE);
 			DrawExtendGraph(160, 400, 581, 441, windowW, TRUE);
 
-			printfDx("消耗品");
-			printfDx("だいじなもの");
+			stringX = 175;
+			stringY = 50;
+
+			if (itemType == 0) DrawFormatString(stringX, stringY + row * 0, colorY, "消耗品");
+			else DrawFormatString(stringX, stringY + row * 0, colorW, "消耗品");
+			if (itemType == 1) DrawFormatString(stringX + 210, stringY + row * 0, colorY, "だいじなもの");
+			else DrawFormatString(stringX + 210, stringY + row * 0, colorW, "だいじなもの");
+			
+			row = 20;
+			stringX = 175;
+			stringY = 95;
 
 			for (int i = 0; i < ITEM_SIZE; i++) {
-				itemNum[i] = 0;
+				itemNum[i] = -1;
 				if (GData.GetItemFlag(i) >= 1) {
 					if (itemType == GData.GetItemPoint(i, 1)) {
-						printfDx("%s, ", GData.GetItemText(i, 0).c_str());
-						itemNum[drawCount] = i;
+						if (drawCount == chooseItem) {
+							DrawFormatString(stringX, stringY + row * drawCount, colorY, "%s", GData.GetItemText(i, 0).c_str());
+							DrawFormatString(stringX + 300, stringY + row * drawCount, colorY, "X%d", GData.GetItemFlag(i));
+						}
+						else {
+							DrawFormatString(stringX, stringY + row * drawCount, colorW, "%s", GData.GetItemText(i, 0).c_str());
+							DrawFormatString(stringX + 300, stringY + row * drawCount, colorW, "X%d", GData.GetItemFlag(i));
+						}
 						drawCount++;
+						itemNum[drawCount - 1] = i;
 					}
 				}
 			}
 
-			printfDx("\n%s", GData.GetItemText(itemNum[chooseItem], 1).c_str());
+			stringX = 175;
+			stringY = 412;
+
+			if (itemNum[chooseItem] != -1) {
+				DrawFormatString(stringX, stringY + row * 0, colorW, "%s", GData.GetItemText(itemNum[chooseItem], 1).c_str());
+			}
 			break;
 
 		case library:
@@ -263,27 +387,60 @@ void Menu_c::DrawRight()
 		switch (mode) {
 		case status:
 			DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
-			DrawExtendGraph(480, 220, 541, 261, windowW, TRUE);
+			DrawExtendGraph(460, 220, 541, 281, windowW, TRUE);
 
-			printfDx("\nこのスキルを使用しますか？");
-			printfDx("はい　");
-			printfDx("いいえ");
+			stringX = 230;
+			stringY = 170;
+
+			DrawFormatString(stringX, stringY + row * 0, colorW, "このスキルを使用しますか？");
+
+			row = 25;
+			stringX = 477;
+			stringY = 230;
+
+			if (YN == 0) DrawFormatString(stringX, stringY + row * 0, colorY, "はい　");
+			else DrawFormatString(stringX, stringY + row * 0, colorW, "はい　");
+
+			if (YN == 1) DrawFormatString(stringX, stringY + row * 1, colorY, "いいえ");
+			else DrawFormatString(stringX, stringY + row * 1, colorW, "いいえ");
 			break;
 		case soubi:
 			DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
-			DrawExtendGraph(480, 220, 541, 261, windowW, TRUE);
+			DrawExtendGraph(460, 220, 541, 281, windowW, TRUE);
 
-			printfDx("\n%sを装備しますか？", GData.GetSoubiText(soubiNum[chooseSoubi], 0).c_str());
-			printfDx("はい　");
-			printfDx("いいえ");
+			stringX = 230;
+			stringY = 170;
+
+			DrawFormatString(stringX, stringY + row * 0, colorW, "%sを装備しますか？", GData.GetSoubiText(soubiNum[chooseSoubi], 0).c_str());
+
+			row = 25;
+			stringX = 477;
+			stringY = 230;
+
+			if (YN == 0) DrawFormatString(stringX, stringY + row * 0, colorY, "はい　");
+			else DrawFormatString(stringX, stringY + row * 0, colorW, "はい　");
+
+			if (YN == 1) DrawFormatString(stringX, stringY + row * 1, colorY, "いいえ");
+			else DrawFormatString(stringX, stringY + row * 1, colorW, "いいえ");
 			break;
 		case item:
 			DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
-			DrawExtendGraph(480, 220, 541, 261, windowW, TRUE);
+			DrawExtendGraph(460, 220, 541, 281, windowW, TRUE);
 
-			printfDx("\nこのアイテムを使用しますか？");
-			printfDx("はい　");
-			printfDx("いいえ");
+			stringX = 230;
+			stringY = 170;
+
+			DrawFormatString(stringX, stringY + row * 0, colorW, "このアイテムを使用しますか？");
+
+			row = 25;
+			stringX = 477;
+			stringY = 230;
+
+			if (YN == 0) DrawFormatString(stringX, stringY + row * 0, colorY, "はい　");
+			else DrawFormatString(stringX, stringY + row * 0, colorW, "はい　");
+
+			if (YN == 1) DrawFormatString(stringX, stringY + row * 1, colorY, "いいえ");
+			else DrawFormatString(stringX, stringY + row * 1, colorW, "いいえ");
 			break;
 		}
 		break;
@@ -292,24 +449,44 @@ void Menu_c::DrawRight()
 		switch (mode) {
 		case status:
 			DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
-			DrawExtendGraph(480, 220, 541, 281, windowW, TRUE);
+			DrawExtendGraph(460, 220, 541, 331, windowW, TRUE);
 
-			printfDx("\nこのスキルを誰に使用しますか？");
+			stringX = 230;
+			stringY = 170;
+
+			DrawFormatString(stringX, stringY + row * 0, colorW, "このスキルを誰に使用しますか？");
+
+			row = 25;
+			stringX = 477;
+			stringY = 230;
+
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
 				if (GData.GetCharacterFlag(i)) {
-					printfDx("\n%s ", GData.GetCharacterName(i).c_str());
+					if (targetChara == drawCount) DrawFormatString(stringX, stringY + row * drawCount, colorY, "%s ", GData.GetCharacterName(i).c_str());
+					else DrawFormatString(stringX, stringY + row * drawCount, colorW, "%s ", GData.GetCharacterName(i).c_str());
+
 					drawCount++;
 				}
 			}
 			break;
 		case item:
 			DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
-			DrawExtendGraph(480, 220, 541, 281, windowW, TRUE);
+			DrawExtendGraph(460, 220, 541, 331, windowW, TRUE);
 
-			printfDx("\nこのアイテムを誰に使用しますか？");
+			stringX = 230;
+			stringY = 170;
+
+			DrawFormatString(stringX, stringY + row * 0, colorW, "このアイテムを誰に使用しますか？");
+
+			row = 25;
+			stringX = 477;
+			stringY = 230;
+
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
 				if (GData.GetCharacterFlag(i)) {
-					printfDx("\n%s ", GData.GetCharacterName(i).c_str());
+					if (targetChara == drawCount) DrawFormatString(stringX, stringY + row * drawCount, colorY, "%s ", GData.GetCharacterName(i).c_str());
+					else DrawFormatString(stringX, stringY + row * drawCount, colorW, "%s ", GData.GetCharacterName(i).c_str());
+				
 					drawCount++;
 				}
 			}
@@ -317,7 +494,13 @@ void Menu_c::DrawRight()
 		}
 		break;
 	case 5:
-		printfDx("MPが足りません！");
+		DrawGraph(0, 0, menuScreen, TRUE);		
+		DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
+
+		stringX = 230;
+		stringY = 170;
+
+		DrawFormatString(stringX, stringY + row * 0, colorW, "MPが足りません！");
 		break;
 	}
 }
@@ -507,12 +690,18 @@ void Menu_c::CheckKey()
 					}
 				}
 				else {
+					YN = 0;
 					depth--;
 				}
 				break;
 			case 4:
 				if (UseSkill(skillNum[chooseSkill], targetChara, chooseChara) == FALSE) {
 					depth = 5;
+				}
+				else {
+					YN = 0;
+					targetChara = 0;
+					depth = 2;
 				}
 				break;
 			case 5:
@@ -537,8 +726,11 @@ void Menu_c::CheckKey()
 			case 3:
 				if (YN == 0) {
 					GData.SetCharacterPoint(charaNum[chooseChara], 9, soubiNum[chooseSoubi]);
+					YN = 0;
+					depth = 2;
 				}
 				else {
+					YN = 0;
 					depth--;
 				}
 				break;
@@ -568,11 +760,15 @@ void Menu_c::CheckKey()
 					}
 				}
 				else {
+					YN = 0;
 					depth--;
 				}
 				break;
 			case 4:
 				UseItem(itemNum[chooseItem], targetChara);
+				YN = 0;
+				targetChara = 0;
+				depth = 2;
 				break;
 			}
 			break;
