@@ -31,18 +31,18 @@ bool SaveLoad_c::SaveScreen(const int* Key, int* CharX, int* CharY, int* Status,
 		SetDrawBright(bright, bright, bright);
 	}
 
-	DrawFormatStringToHandle(10, 10, GetColor(255, 255, 255), FontTitleMain, "Slot 1");
-	DrawFormatStringToHandle(10, 110, GetColor(255, 255, 255), FontTitleMain, "Slot 2");
-	DrawFormatStringToHandle(10, 210, GetColor(255, 255, 255), FontTitleMain, "Slot 3");
-	DrawFormatStringToHandle(10, 310, GetColor(255, 255, 255), FontTitleMain, "Slot 4");
+	DrawFormatStringToHandle(40, 10, GetColor(255, 255, 255), FontTitleMain, "Slot 1");
+	DrawFormatStringToHandle(40, 125, GetColor(255, 255, 255), FontTitleMain, "Slot 2");
+	DrawFormatStringToHandle(40, 240, GetColor(255, 255, 255), FontTitleMain, "Slot 3");
+	DrawFormatStringToHandle(40, 355, GetColor(255, 255, 255), FontTitleMain, "Slot 4");
 
 	DrawFormatStringToHandle(5, Cursor, GetColor(255, 255, 255), FontTitleMain, "●");
 
 	if (Key[KEY_INPUT_DOWN] == 1) {
-		if (Cursor != 310) { Cursor = Cursor + 100; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+		if (Cursor != 355) { Cursor = Cursor + 115; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_UP] == 1) {
-		if (Cursor != 10) { Cursor = Cursor - 100; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+		if (Cursor != 10) { Cursor = Cursor - 115; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
 		if (Cursor == 10) {
@@ -60,7 +60,7 @@ bool SaveLoad_c::SaveScreen(const int* Key, int* CharX, int* CharY, int* Status,
 			GData.SceneRequest(1, 1);//メニューに戻る
 			return true;
 		}
-		else if (Cursor == 110) {
+		else if (Cursor == 125) {
 			PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
 			Save(2, Origin); //スロット2にセーブ
 			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
@@ -75,7 +75,7 @@ bool SaveLoad_c::SaveScreen(const int* Key, int* CharX, int* CharY, int* Status,
 			GData.SceneRequest(2, 3); //メニューに戻る
 			return true;
 		}
-		else if (Cursor == 210) {
+		else if (Cursor == 240) {
 			PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
 			Save(3, Origin); //スロット3にセーブ
 			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
@@ -106,6 +106,8 @@ bool SaveLoad_c::SaveScreen(const int* Key, int* CharX, int* CharY, int* Status,
 			return true;
 		}
 	}
+
+	return false;
 }
 
 bool SaveLoad_c::LoadScreen(const int* Key, int* CharX, int* CharY, int* Status, const int StatusNum) {
@@ -117,18 +119,18 @@ bool SaveLoad_c::LoadScreen(const int* Key, int* CharX, int* CharY, int* Status,
 		Origin.StatusNum = StatusNum;
 	}
 
-	DrawFormatStringToHandle(10, 10, GetColor(255, 255, 255), FontTitleMain, "Slot 1");
-	DrawFormatStringToHandle(10, 110, GetColor(255, 255, 255), FontTitleMain, "Slot 2");
-	DrawFormatStringToHandle(10, 210, GetColor(255, 255, 255), FontTitleMain, "Slot 3");
-	DrawFormatStringToHandle(10, 310, GetColor(255, 255, 255), FontTitleMain, "Slot 4");
+	DrawFormatStringToHandle(40, 10, GetColor(255, 255, 255), FontTitleMain, "Slot 1");
+	DrawFormatStringToHandle(40, 125, GetColor(255, 255, 255), FontTitleMain, "Slot 2");
+	DrawFormatStringToHandle(40, 240, GetColor(255, 255, 255), FontTitleMain, "Slot 3");
+	DrawFormatStringToHandle(40, 355, GetColor(255, 255, 255), FontTitleMain, "Slot 4");
 
 	DrawFormatStringToHandle(5, Cursor, GetColor(255, 255, 255), FontTitleMain, "●");
 
 	if (Key[KEY_INPUT_DOWN] == 1) {
-		if (Cursor != 310) { Cursor = Cursor + 100; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+		if (Cursor != 355) { Cursor = Cursor + 115; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_UP] == 1) {
-		if (Cursor != 10) { Cursor = Cursor - 100; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+		if (Cursor != 10) { Cursor = Cursor - 115; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
 		if (Cursor == 10) {
@@ -146,7 +148,7 @@ bool SaveLoad_c::LoadScreen(const int* Key, int* CharX, int* CharY, int* Status,
 			GData.SceneRequest(2, 0); //ダンジョン探索へ
 			return true;
 		}
-		else if (Cursor == 110) {
+		else if (Cursor == 125) {
 			PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
 			Load(2, Origin); //スロット2をロード
 			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
@@ -161,7 +163,7 @@ bool SaveLoad_c::LoadScreen(const int* Key, int* CharX, int* CharY, int* Status,
 			GData.SceneRequest(2, 0); //ダンジョン探索へ
 			return true;
 		}
-		else if (Cursor == 210) {
+		else if (Cursor == 240) {
 			PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
 			Load(3, Origin); //スロット3をロード
 			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
@@ -192,6 +194,8 @@ bool SaveLoad_c::LoadScreen(const int* Key, int* CharX, int* CharY, int* Status,
 			return true;
 		}
 	}
+
+	return false;
 }
 
 void SaveLoad_c::Save(const int SlotNum, OriginData_t Origin) {
@@ -224,4 +228,5 @@ void SaveLoad_c::Load(const int SlotNum, OriginData_t Origin) {
 			i++;
 		} while (i <= Origin.StatusNum - 1);
 	}
+	else GData.SceneRequest(1, 2);
 }

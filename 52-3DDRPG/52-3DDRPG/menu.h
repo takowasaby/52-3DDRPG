@@ -66,7 +66,7 @@ public:
 	void DrawCursor();
 	void CheckKey();
 
-	void KeyUpdata(int Key[256]);
+	void KeyUpdate(int Key[256]);
 	void DrawGoal();
 
 	void UseItem(int num, int target);

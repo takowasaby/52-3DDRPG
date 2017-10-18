@@ -27,7 +27,7 @@ Menu_c::~Menu_c()
 {
 }
 
-void Menu_c::KeyUpdata(int Key[256])
+void Menu_c::KeyUpdate(int Key[256])
 {
 	for (int i = 0; i < 256; i++) {
 		mKey[i] = Key[i];

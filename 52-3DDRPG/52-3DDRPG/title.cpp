@@ -32,10 +32,11 @@ bool Title_c::TitleScreen(int* Key) {
 		for (int i = 0; i < 4; i++) {
 			ChangeVolumeSoundMem(128, SE[i]);
 		}
-		while (!ProcessMessage() && (CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(FontTitleMain) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE)) {
-			nowLoading();
-			Sleep(1);
-		}
+	}
+
+	if ((CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(FontTitleMain) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE)) {
+		nowLoading();
+		return false;
 	}
 
 	if (bright < 255) {
@@ -83,7 +84,7 @@ bool Title_c::TitleScreen(int* Key) {
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
-			GData.SceneRequest(1, 3); //コンティニュー(セーブ･ロード)
+			GData.SceneRequest(1, 4); //コンティニュー(ロード)
 			return true;
 		}
 		else {
@@ -105,7 +106,5 @@ bool Title_c::TitleScreen(int* Key) {
 }
 
 void Title_c::nowLoading(void) {
-	ClearDrawScreen();
 	DrawGraph(0, 0, NLGraph, FALSE);
-	ScreenFlip();
 }

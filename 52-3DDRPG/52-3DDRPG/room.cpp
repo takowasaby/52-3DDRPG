@@ -29,7 +29,7 @@ Room_c::~Room_c()
 	//delete mData;
 }
 
-void Room_c::KeyUpdata(int Key[256])
+void Room_c::KeyUpdate(int Key[256])
 {
 	for (int i = 0; i < 256; i++) {
 		mKey[i] = Key[i];
@@ -112,7 +112,6 @@ void Room_c::GraphLoad(int scenario)
 			}
 		}
 	}
-	printfDx("Hold C to scroll\n");
 }
 
 void Room_c::RoomDraw()
@@ -145,26 +144,24 @@ void Room_c::RoomDraw()
 		}
 	}
 
-	//if (reverse == false) {
-		for (int j = 0; j < roomsizey; j++) {
-			for (int i = 0; i < roomsizex; i++) {
-				if (roomData[roomsizex - i - 1][j].type > 0)
-					DrawExtendGraph(
-						ROOM_POINT_X - scrollx - ROOM_FLOOR_HALFSIZE_X - (ROOM_SHIFT_SIZE_X * i) + (ROOM_FLOOR_HALFSIZE_X * j),
-						ROOM_POINT_Y - scrolly + ROOM_FLOOR_SIZE_Y - furniturehight[roomData[roomsizex - i - 1][j].type] + ROOM_SHIFT_SIZE_Y * (i - 1) + (ROOM_FLOOR_HALFSIZE_Y * j),
-						ROOM_POINT_X - scrollx + ROOM_FLOOR_HALFSIZE_X - (ROOM_SHIFT_SIZE_X * i) + (ROOM_FLOOR_HALFSIZE_X * j),
-						ROOM_POINT_Y - scrolly + ROOM_FLOOR_SIZE_Y + ROOM_SHIFT_SIZE_Y * (i - 1) + (ROOM_FLOOR_HALFSIZE_Y * j),
-						furniture[roomData[roomsizex - i - 1][j].type], true);
-				else if (roomData[roomsizex - i - 1][j].type < 0)					
-					DrawExtendGraph(
-						ROOM_POINT_X - scrollx+ ROOM_FURNITURE_LENGTH - ROOM_FLOOR_HALFSIZE_X - (ROOM_SHIFT_SIZE_X * i) + (ROOM_FLOOR_HALFSIZE_X * j),
-						ROOM_POINT_Y - scrolly + ROOM_FLOOR_SIZE_Y - furniturehight[abs(roomData[roomsizex - i - 1][j].type)] + ROOM_SHIFT_SIZE_Y * (i - 1) + (ROOM_FLOOR_HALFSIZE_Y * j),
-						ROOM_POINT_X - scrollx-ROOM_FURNITURE_LENGTH + ROOM_FLOOR_HALFSIZE_X - (ROOM_SHIFT_SIZE_X * i) + (ROOM_FLOOR_HALFSIZE_X * j),
-						ROOM_POINT_Y - scrolly + ROOM_FLOOR_SIZE_Y + ROOM_SHIFT_SIZE_Y * (i - 1) + (ROOM_FLOOR_HALFSIZE_Y * j),
-						furniture[abs(roomData[roomsizex - i - 1][j].type)], true);
-			}
+	for (int j = 0; j < roomsizey; j++) {
+		for (int i = 0; i < roomsizex; i++) {
+			if (roomData[roomsizex - i - 1][j].type > 0)
+				DrawExtendGraph(
+					ROOM_POINT_X - scrollx - ROOM_FLOOR_HALFSIZE_X - (ROOM_SHIFT_SIZE_X * i) + (ROOM_FLOOR_HALFSIZE_X * j),
+					ROOM_POINT_Y - scrolly + ROOM_FLOOR_SIZE_Y - furniturehight[roomData[roomsizex - i - 1][j].type] + ROOM_SHIFT_SIZE_Y * (i - 1) + (ROOM_FLOOR_HALFSIZE_Y * j),
+					ROOM_POINT_X - scrollx + ROOM_FLOOR_HALFSIZE_X - (ROOM_SHIFT_SIZE_X * i) + (ROOM_FLOOR_HALFSIZE_X * j),
+					ROOM_POINT_Y - scrolly + ROOM_FLOOR_SIZE_Y + ROOM_SHIFT_SIZE_Y * (i - 1) + (ROOM_FLOOR_HALFSIZE_Y * j),
+					furniture[roomData[roomsizex - i - 1][j].type], true);
+			else if (roomData[roomsizex - i - 1][j].type < 0)					
+				DrawExtendGraph(
+					ROOM_POINT_X - scrollx+ ROOM_FURNITURE_LENGTH - ROOM_FLOOR_HALFSIZE_X - (ROOM_SHIFT_SIZE_X * i) + (ROOM_FLOOR_HALFSIZE_X * j),
+					ROOM_POINT_Y - scrolly + ROOM_FLOOR_SIZE_Y - furniturehight[abs(roomData[roomsizex - i - 1][j].type)] + ROOM_SHIFT_SIZE_Y * (i - 1) + (ROOM_FLOOR_HALFSIZE_Y * j),
+					ROOM_POINT_X - scrollx-ROOM_FURNITURE_LENGTH + ROOM_FLOOR_HALFSIZE_X - (ROOM_SHIFT_SIZE_X * i) + (ROOM_FLOOR_HALFSIZE_X * j),
+					ROOM_POINT_Y - scrolly + ROOM_FLOOR_SIZE_Y + ROOM_SHIFT_SIZE_Y * (i - 1) + (ROOM_FLOOR_HALFSIZE_Y * j),
+					furniture[abs(roomData[roomsizex - i - 1][j].type)], true);
 		}
-	//}
+	}
 
 	DrawExtendGraph(
 		ROOM_POINT_X - scrollx - ROOM_FLOOR_HALFSIZE_X - (ROOM_SHIFT_SIZE_X * (roomsizex - selectx - 1)) + (ROOM_FLOOR_HALFSIZE_X * selecty),

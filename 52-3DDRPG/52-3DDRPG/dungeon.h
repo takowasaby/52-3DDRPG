@@ -29,7 +29,7 @@ public:
 	Dungeon_c();
 	Dungeon_c(Data_c* data, int* mode, int* event_scene, int* title_scene, int* game_scene);
 	~Dungeon_c();
-	void KeyUpdata(int Key[256]);
+	void KeyUpdate(int Key[256]);
 	void DungeonAll();
 	void DataSet();
 	void DataLoad(int scenario, int stage);

@@ -14,7 +14,6 @@ private:
 	int scrollx = 0, scrolly = 0;
 	int select;
 	bool cflag = false;
-	bool reverse = false;
 	Data_c *mData;
 	char gname[32];
 	char fname[32];
@@ -40,7 +39,7 @@ public:
 	Room_c();
 	Room_c(Data_c* data, int* mode, int* event_scene, int* title_scene, int* game_scene);
 	~Room_c();
-	void KeyUpdata(int Key[256]);
+	void KeyUpdate(int Key[256]);
 	void RoomAll();
 	void DataLoad(int scenario, int stage, int room);
 	void GraphLoad(int scenario);

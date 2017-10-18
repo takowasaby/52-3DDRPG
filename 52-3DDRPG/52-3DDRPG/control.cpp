@@ -1,7 +1,6 @@
 #include "define.h"
 
-Control_c::Control_c() 
-{
+Control_c::Control_c() {
 	mEvents = new Event_c;
 	mFps = new Fps_c;
 	mMenu = new Menu_c();
@@ -9,15 +8,12 @@ Control_c::Control_c()
 	mRoom = new Room_c();
 }
 
-Control_c::~Control_c()
-{
+Control_c::~Control_c() {
 	delete mEvents;
 	delete mFps;
-//	delete mTitle;
 	delete mMenu;
 	delete mDungeon;
 	delete mRoom;
-//	delete mSaveLoad;
 }
 
 bool Control_c::All() {
@@ -28,7 +24,7 @@ bool Control_c::All() {
 
 	switch (GData.GetMode()) {
 	case event:
-		switch (GData.GetScene(0)) {
+		switch (GData.GetScene(event)) {
 		case conversation:
 			//立ち絵会話
 			break;
@@ -42,7 +38,7 @@ bool Control_c::All() {
 		break;
 
 	case title:
-		switch (GData.GetScene(1)) {
+		switch (GData.GetScene(title)) {
 		case gameover:
 			//ゲームオーバー
 			break;
@@ -65,6 +61,7 @@ bool Control_c::All() {
 			}
 			break;
 		case load: {
+			//ロード
 			if (SaveLoadStart == false) { SaveLoadStart = true; mSaveLoad = new SaveLoad_c; }
 			SaveLoadEnd = mSaveLoad->LoadScreen(Key, CharX, CharY, Status, 10);
 			if (SaveLoadEnd == true) { SaveLoadEnd = false; delete mSaveLoad; }
@@ -80,22 +77,22 @@ bool Control_c::All() {
 		break;
 
 	case game:
-		switch (GData.GetScene(2)) {
+		switch (GData.GetScene(game)) {
 		case dungeon:
 			//ダンジョン探索
-			mDungeon->KeyUpdata(Key);
+			mDungeon->KeyUpdate(Key);
 			mDungeon->DungeonAll();
 			break;
 		case room:
 			//部屋探索
-			mRoom->KEyUpdata(Key);
+			mRoom->KeyUpdate(Key);
 			mRoom->RoomAll();
 			break;
 		case battle:
 			//バトル
 			break;
 		case menu:
-			mMenu->KeyUpdata(Key);
+			mMenu->KeyUpdate(Key);
 			//メニュー
 			break;
 		}
@@ -106,9 +103,9 @@ bool Control_c::All() {
 	mFps->Wait();	//待機
 
 	if (Key[KEY_INPUT_ESCAPE] == 1) {
-		return FALSE;
+		return false;
 	}
-	return TRUE;
+	return true;
 }
 
 void Control_c::UpdateKey(void)

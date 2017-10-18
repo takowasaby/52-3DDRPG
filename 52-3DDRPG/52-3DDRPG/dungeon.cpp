@@ -27,7 +27,7 @@ Dungeon_c::~Dungeon_c()
 {
 }
 
-void Dungeon_c::KeyUpdata(int Key[256])
+void Dungeon_c::KeyUpdate(int Key[256])
 {
 	for (int i = 0; i < 256; i++) {
 		mKey[i] = Key[i];
