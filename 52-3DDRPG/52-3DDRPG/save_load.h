@@ -15,6 +15,7 @@ private:
 	int SE[4];
 	bool first = true;
 	int bright = 0;
+	int dataCheck[4] = {};
 
 	FILE *sdfp;
 
@@ -43,6 +44,7 @@ public:
 	bool LoadScreen(const int*, int*, int*, int*, const int);
 	void Save(const int, OriginData_t);
 	void Load(const int, OriginData_t);
+	void FileCheck(void);
 };
 
 typedef enum {
