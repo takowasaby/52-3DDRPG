@@ -1,15 +1,41 @@
+<<<<<<< HEAD
 #include "Define.h"
+using namespace std;
+=======
+#include "define.h"
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 
 BattleManager::BattleManager()
-	: phase(0)
+	: isPause(false)
 {
-	//GData.CharacterLoad(0);
+<<<<<<< HEAD
+=======
+	for (int i = 0; i < 3; i++) phase[i] = 0;
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 	PlayerWindow = new TextBox();
-	for (int i = 0; i < 2; i++) OpinionWindow[i] = new TextBox();
+	for (int i = 0; i < 2; i++) {
+		OpinionWindow[i] = new TextBox();
+		OpinionWindow[i]->SetWindowMode(pageMode);
+	}
+	OpinionWindow[0]->SetSize(200, 5);
+	OpinionWindow[0]->SetPositon(0, 480 - OpinionWindow[0]->GetHeight());
+	OpinionWindow[0]->AddMessage("UŒ‚");
+	OpinionWindow[0]->AddMessage("ƒXƒLƒ‹");
+	OpinionWindow[0]->AddMessage("“¹‹ï");
+	OpinionWindow[0]->AddMessage("–hŒä");
+	OpinionWindow[0]->AddMessage("î•ñ");
+	OpinionWindow[1]->SetSize(640 - OpinionWindow[0]->GetWidth(), 5);
+	OpinionWindow[1]->SetPositon(OpinionWindow[0]->GetWidth(), 480 - OpinionWindow[0]->GetHeight());
 	
+	MessageWindow = new TextBox();
+	MessageWindow->SetWindowMode(logMode);
+	MessageWindow->SetSize(640, 6);
+	MessageWindow->SetPositon(0, 480 - MessageWindow->GetHeight() * 2);
+
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
 		LoadPlayer(i);
 	}
+	LoadEnemy();
 }
 
 
@@ -19,7 +45,7 @@ BattleManager::~BattleManager()
 
 void BattleManager::Update()
 {
-	switch (phase)
+	switch (phase[0])
 	{
 	case 0:
 		BattleInitialize();
@@ -43,7 +69,26 @@ void BattleManager::Update()
 
 void BattleManager::Draw()
 {
-	switch (phase)
+	//Debug
+	clsDx();
+	for (int i = 0; i < CHARACTER_SIZE; i++) {
+		printfDx("[%d] ", i + 1);
+		if (!player[i].flag) printfDx("NONE\n");
+		else {
+			printfDx("%-8s HP:%4d/%4d MP:%4d/%4d ( %3d %3d %3d %3d )\n"
+				, player[i].name.c_str(), player[i].hp.current, player[i].hp.base
+				, player[i].mp.current, player[i].mp.base, player[i].str.current
+				, player[i].vit.current, player[i].agi.current, player[i].intel.current);
+		}
+	}
+	printfDx("[E] %-8s HP:%4d/%4d MP:%4d/%4d ( %3d %3d %3d %3d )\n"
+		, enemy.name.c_str(), enemy.hp.current, enemy.hp.base
+		, enemy.mp.current, enemy.mp.base, enemy.str.current
+		, enemy.vit.current, enemy.agi.current, enemy.intel.current);
+	printfDx("Phase[0] = %d\t", phase[0]);
+	printfDx("Phase[1] = %d\n", phase[1]);
+
+	switch (phase[0])
 	{
 	case 0:
 		break;
@@ -54,6 +99,7 @@ void BattleManager::Draw()
 	}
 
 	//PlayerWindow->Draw();
+<<<<<<< HEAD
 	//Debug
 	clsDx();
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
@@ -61,36 +107,100 @@ void BattleManager::Draw()
 		if (player[i].flag) printfDx("NONE\n");
 		else {
 			printfDx("%s %d/%d %d/%d %d/%d %d/%d %d/%d %d/%d\n"
-				,player[i].name, player[i].hp.current, player[i].hp.base
+				, player[i].name , player[i].hp.current, player[i].hp.base
 				, player[i].mp.current, player[i].mp.base, player[i].str.current
 				, player[i].str.base, player[i].vit.current, player[i].vit.base
 				, player[i].agi.current, player[i].agi.base
 				, player[i].intel.current, player[i].intel.base);
 		}
 	}
+=======
+	for (int i = 0; i < 2; i++) OpinionWindow[i]->Draw();
+	MessageWindow->Draw();
+
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 }
 
 void BattleManager::LoadPlayer(int index)
 {
 	//for Debug
-	player[index].name = "PLAYER" + to_string(index);
+<<<<<<< HEAD
+	//player[index].name = "PLAYER";
+	player[index].flag = true;
+	player[index].hp.base = GetRand(1000) + 1000;
+	player[index].hp.current = GetRand(1000);
+	player[index].mp.base = GetRand(500) + 500;
+	player[index].mp.current = GetRand(500);
+	player[index].str.base = GetRand(500) + 500;
+	player[index].str.current = GetRand(500) + 500;
+	player[index].vit.base = GetRand(500) + 500;
+	player[index].vit.current = GetRand(500) + 500;
+	player[index].agi.base = GetRand(500) + 500;
+	player[index].agi.current = GetRand(500) + 500;
+	player[index].intel.base = GetRand(500) + 500;
+	player[index].intel.current = GetRand(500) + 500;
+=======
+	player[index].name = "PLAYER" + to_string(index + 1);
+	player[index].flag = true;
+	player[index].hp.base = GetRand(1000) + 1000;
+	player[index].hp.current = GetRand(999);
+	player[index].mp.base = GetRand(500) + 499;
+	player[index].mp.current = GetRand(500);
+	player[index].str.base = GetRand(500) + 499;
+	player[index].str.current = GetRand(500);
+	player[index].vit.base = GetRand(500) + 499;
+	player[index].vit.current = GetRand(500);
+	player[index].agi.base = GetRand(500) + 499;
+	player[index].agi.current = GetRand(500);
+	player[index].intel.base = GetRand(500) + 499;
+	player[index].intel.current = GetRand(500);
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
+}
+
+void BattleManager::LoadEnemy()
+{
+	//for Debug
+	enemy.name = "ENEMY";
+	enemy.flag = true;
+	enemy.hp.base = GetRand(1000) + 1000;
+	enemy.hp.current = GetRand(999);
+	enemy.mp.base = GetRand(500) + 499;
+	enemy.mp.current = GetRand(500);
+	enemy.str.base = GetRand(500) + 499;
+	enemy.str.current = GetRand(500);
+	enemy.vit.base = GetRand(500) + 499;
+	enemy.vit.current = GetRand(500);
+	enemy.agi.base = GetRand(500) + 499;
+	enemy.agi.current = GetRand(500);
+	enemy.intel.base = GetRand(500) + 499;
+	enemy.intel.current = GetRand(500);
 }
 
 void BattleManager::BattleInitialize()
 {
+	if (!isPause) {
+		isPause = true;
+		MessageWindow->AddMessage("“G‚ªŒ»‚ê‚½!!!");
+	}
+	else if (mKey[KEY_INPUT_Z] == 1) {
+		MessageWindow->ClearMessage();
+		phase[0]++;
+	}
 }
 
 void BattleManager::PlayerSelection()
 {
-	if (mKey[KEY_INPUT_W] == 1) {
-	}
-	else if (mKey[KEY_INPUT_A] == 1) {
-	}
-	else if (mKey[KEY_INPUT_S] == 1) {
-	}
-	else if (mKey[KEY_INPUT_D] == 1) {
-	}
-	else if (mKey[KEY_INPUT_Z] == 1) {
+	switch (phase[1])
+	{
+	case 0:
+		MessageWindow->AddMessage(player[phase[2]].name + "‚Í‚Ç‚¤‚·‚éH");
+		phase[1]++;
+		break;
+	case 1:
+		OpinionWindow[0]->Update();
+		break;
+	default:
+		break;
 	}
 }
 

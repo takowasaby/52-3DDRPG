@@ -9,11 +9,14 @@ private:
 	int mKey[256]; // 0:“ü—Í‚³‚ê‚Ä‚¢‚È‚¢ 1:“ü—Í‚³‚ê‚½uŠÔ 2:“ü—Í‚³‚ê‚Ä‚¢‚é
 
 	CharacterData player[CHARACTER_SIZE];
+	CharacterData enemy;
 
 	TextBox* PlayerWindow;
 	TextBox* OpinionWindow[2];
+	TextBox* MessageWindow;
 
-	int phase;
+	int phase[3];
+	bool isPause;
 public:
 	BattleManager();
 	~BattleManager();
@@ -22,6 +25,7 @@ public:
 	void Draw();
 
 	void LoadPlayer(int);
+	void LoadEnemy();
 
 	void BattleInitialize();
 	void PlayerSelection();

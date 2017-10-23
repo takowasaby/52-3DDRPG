@@ -7,6 +7,16 @@
 #include <vector>
 #include <string>
 
+//TextBox用--------------------------------------------------------------
+//ウィンドウモードに関する列挙体
+enum WindowMode {
+	readMode,	//選択できないメッセージ用
+	pageMode,	//上下で選択、左右でページ移動
+	scrollMode,	//スクロールで移動
+	logMode		//最後から表示
+};
+//-------------------------------------------------------------------------
+
 //dungeon用--------------------------------------------------------------
 const int MAP_SIZE_X = 25;
 const int MAP_SIZE_Y = 25;
@@ -49,7 +59,6 @@ const int EVENT_SIZE = 64;
 //------------------------------------------------------------------------
 
 //BattleScene用-----------------------------------------------------------------
-using namespace std;
 struct Param {
 	int current, base;
 };
@@ -63,10 +72,14 @@ struct Character_t {
 	int Image;
 };
 struct CharacterData {
-	int flag;
+	bool flag;
 	int soubi[2];
 	Param hp, mp, str, vit, agi, intel;
-	string name;
+<<<<<<< HEAD
+	char name[NAME_SIZE];
+=======
+	std::string name;
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 	int skillCode[SKILL_CODE_SIZE];
 	int Image;
 };
