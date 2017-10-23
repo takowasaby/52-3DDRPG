@@ -1,6 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "Define.h"
 using namespace std;
+=======
+#include "define.h"
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 =======
 #include "define.h"
 >>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
@@ -9,6 +13,10 @@ BattleManager::BattleManager()
 	: isPause(false)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	for (int i = 0; i < 3; i++) phase[i] = 0;
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 =======
 	for (int i = 0; i < 3; i++) phase[i] = 0;
 >>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
@@ -100,6 +108,7 @@ void BattleManager::Draw()
 
 	//PlayerWindow->Draw();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//Debug
 	clsDx();
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
@@ -119,11 +128,17 @@ void BattleManager::Draw()
 	MessageWindow->Draw();
 
 >>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
+=======
+	for (int i = 0; i < 2; i++) OpinionWindow[i]->Draw();
+	MessageWindow->Draw();
+
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 }
 
 void BattleManager::LoadPlayer(int index)
 {
 	//for Debug
+<<<<<<< HEAD
 <<<<<<< HEAD
 	//player[index].name = "PLAYER";
 	player[index].flag = true;
@@ -140,6 +155,8 @@ void BattleManager::LoadPlayer(int index)
 	player[index].intel.base = GetRand(500) + 500;
 	player[index].intel.current = GetRand(500) + 500;
 =======
+=======
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 	player[index].name = "PLAYER" + to_string(index + 1);
 	player[index].flag = true;
 	player[index].hp.base = GetRand(1000) + 1000;
@@ -154,6 +171,9 @@ void BattleManager::LoadPlayer(int index)
 	player[index].agi.current = GetRand(500);
 	player[index].intel.base = GetRand(500) + 499;
 	player[index].intel.current = GetRand(500);
+<<<<<<< HEAD
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
+=======
 >>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 }
 

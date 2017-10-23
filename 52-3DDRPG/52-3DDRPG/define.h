@@ -76,7 +76,11 @@ struct CharacterData {
 	int soubi[2];
 	Param hp, mp, str, vit, agi, intel;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char name[NAME_SIZE];
+=======
+	std::string name;
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 =======
 	std::string name;
 >>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
