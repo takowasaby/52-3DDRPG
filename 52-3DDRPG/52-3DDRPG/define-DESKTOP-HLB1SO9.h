@@ -13,8 +13,7 @@ enum WindowMode {
 	readMode,	//選択できないメッセージ用
 	pageMode,	//上下で選択、左右でページ移動
 	scrollMode,	//スクロールで移動
-	logMode,		//最後から表示
-	infoMode		//情報表示
+	logMode		//最後から表示
 };
 //-------------------------------------------------------------------------
 
@@ -76,7 +75,15 @@ struct CharacterData {
 	bool flag;
 	int soubi[2];
 	Param hp, mp, str, vit, agi, intel;
+<<<<<<< HEAD
+<<<<<<< HEAD
+	char name[NAME_SIZE];
+=======
 	std::string name;
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
+=======
+	std::string name;
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 	int skillCode[SKILL_CODE_SIZE];
 	int Image;
 };

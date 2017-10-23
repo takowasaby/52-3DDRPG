@@ -203,9 +203,15 @@ void TextBox::PageDown()
 	}
 	else {
 		topOfPage += (message.size() - (message.size() % raw));
+		if (topOfPage > message.size() - 1) topOfPage = 0;
 		if (topOfPage + position < message.size() - 1) position += topOfPage;
 		else position = message.size() - 1;
 	}
+}
+
+string TextBox::Enter()
+{
+	return message[position];
 }
 
 string TextBox::GetText(int index)

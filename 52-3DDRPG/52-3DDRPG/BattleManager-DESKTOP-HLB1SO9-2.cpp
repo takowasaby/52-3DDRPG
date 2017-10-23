@@ -1,9 +1,25 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+#include "Define.h"
+using namespace std;
+=======
 #include "define.h"
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
+=======
+#include "define.h"
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 
 BattleManager::BattleManager()
 	: isPause(false)
 {
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 	for (int i = 0; i < 3; i++) phase[i] = 0;
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
+=======
+	for (int i = 0; i < 3; i++) phase[i] = 0;
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 	PlayerWindow = new TextBox();
 	for (int i = 0; i < 2; i++) {
 		OpinionWindow[i] = new TextBox();
@@ -78,8 +94,7 @@ void BattleManager::Draw()
 		, enemy.mp.current, enemy.mp.base, enemy.str.current
 		, enemy.vit.current, enemy.agi.current, enemy.intel.current);
 	printfDx("Phase[0] = %d\t", phase[0]);
-	printfDx("Phase[1] = %d\t", phase[1]);
-	printfDx("Phase[2] = %d\n", phase[2]);
+	printfDx("Phase[1] = %d\n", phase[1]);
 
 	switch (phase[0])
 	{
@@ -92,14 +107,56 @@ void BattleManager::Draw()
 	}
 
 	//PlayerWindow->Draw();
+<<<<<<< HEAD
+<<<<<<< HEAD
+	//Debug
+	clsDx();
+	for (int i = 0; i < CHARACTER_SIZE; i++) {
+		printfDx("Player%d : ", i+1);
+		if (player[i].flag) printfDx("NONE\n");
+		else {
+			printfDx("%s %d/%d %d/%d %d/%d %d/%d %d/%d %d/%d\n"
+				, player[i].name , player[i].hp.current, player[i].hp.base
+				, player[i].mp.current, player[i].mp.base, player[i].str.current
+				, player[i].str.base, player[i].vit.current, player[i].vit.base
+				, player[i].agi.current, player[i].agi.base
+				, player[i].intel.current, player[i].intel.base);
+		}
+	}
+=======
 	for (int i = 0; i < 2; i++) OpinionWindow[i]->Draw();
 	MessageWindow->Draw();
 
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
+=======
+	for (int i = 0; i < 2; i++) OpinionWindow[i]->Draw();
+	MessageWindow->Draw();
+
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 }
 
 void BattleManager::LoadPlayer(int index)
 {
 	//for Debug
+<<<<<<< HEAD
+<<<<<<< HEAD
+	//player[index].name = "PLAYER";
+	player[index].flag = true;
+	player[index].hp.base = GetRand(1000) + 1000;
+	player[index].hp.current = GetRand(1000);
+	player[index].mp.base = GetRand(500) + 500;
+	player[index].mp.current = GetRand(500);
+	player[index].str.base = GetRand(500) + 500;
+	player[index].str.current = GetRand(500) + 500;
+	player[index].vit.base = GetRand(500) + 500;
+	player[index].vit.current = GetRand(500) + 500;
+	player[index].agi.base = GetRand(500) + 500;
+	player[index].agi.current = GetRand(500) + 500;
+	player[index].intel.base = GetRand(500) + 500;
+	player[index].intel.current = GetRand(500) + 500;
+=======
+=======
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 	player[index].name = "PLAYER" + to_string(index + 1);
 	player[index].flag = true;
 	player[index].hp.base = GetRand(1000) + 1000;
@@ -114,7 +171,10 @@ void BattleManager::LoadPlayer(int index)
 	player[index].agi.current = GetRand(500);
 	player[index].intel.base = GetRand(500) + 499;
 	player[index].intel.current = GetRand(500);
-	for (int i = 0; i < SKILL_CODE_SIZE; i++) player[index].skillCode[i] = (int)GetRand(1);
+<<<<<<< HEAD
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
+=======
+>>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 }
 
 void BattleManager::LoadEnemy()
@@ -134,17 +194,6 @@ void BattleManager::LoadEnemy()
 	enemy.agi.current = GetRand(500);
 	enemy.intel.base = GetRand(500) + 499;
 	enemy.intel.current = GetRand(500);
-	for (int i = 0; i < SKILL_CODE_SIZE; i++) enemy.skillCode[i] = (int)GetRand(1);
-}
-
-void BattleManager::LoadSkill(int index)
-{
-	for (int i = 0; i < SKILL_CODE_SIZE; i++) {
-		if (player[index].skillCode[i]) {
-			//for debug
-			OpinionWindow[1]->AddMessage("SkillCode[" + to_string(i) + "]");
-		}
-	}
 }
 
 void BattleManager::BattleInitialize()
@@ -168,32 +217,7 @@ void BattleManager::PlayerSelection()
 		phase[1]++;
 		break;
 	case 1:
-	case 2:
-		if (mKey[KEY_INPUT_W] == 1) OpinionWindow[phase[1]-1]->ScrollUp();
-		else if (mKey[KEY_INPUT_A] == 1) OpinionWindow[phase[1]-1]->PageDown();
-		else if (mKey[KEY_INPUT_S] == 1) OpinionWindow[phase[1]-1]->ScrollDown();
-		else if (mKey[KEY_INPUT_D] == 1) OpinionWindow[phase[1]-1]->PageUp();
-		else if (mKey[KEY_INPUT_Z] == 1) {
-			MessageWindow->AddMessage(OpinionWindow[phase[1]-1]->Enter() + "‚ð‘I‘ð");
-			if (phase[1] == 1) {
-				if (OpinionWindow[0]->Enter() == "UŒ‚") phase[1]++;
-				else if (OpinionWindow[0]->Enter() == "ƒXƒLƒ‹") LoadSkill(phase[2]);
-				else if (OpinionWindow[0]->Enter() == "“¹‹ï");
-				else if (OpinionWindow[0]->Enter() == "–hŒä");
-				else if (OpinionWindow[0]->Enter() == "î•ñ");
-			}
-			phase[1]++;
-		}
-		break;
-	case 3:
-		MessageWindow->ClearMessage();
-		OpinionWindow[1]->ClearMessage();
-		phase[2]++;
-		phase[1] = 0;
-		if (phase[2] >= CHARACTER_SIZE) {
-			phase[2] = 0;
-			phase[0]++;
-		}
+		OpinionWindow[0]->Update();
 		break;
 	default:
 		break;

@@ -50,6 +50,8 @@ public:
 	void PageUp();
 	void PageDown();
 
+	string Enter();
+
 	string GetText(int);
 };
 

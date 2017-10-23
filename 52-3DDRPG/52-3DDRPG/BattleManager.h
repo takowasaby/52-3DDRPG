@@ -27,6 +27,8 @@ public:
 	void LoadPlayer(int);
 	void LoadEnemy();
 
+	void LoadSkill(int);
+
 	void BattleInitialize();
 	void PlayerSelection();
 	void EnemySelection();
