@@ -101,6 +101,7 @@ public:
 	int GetItemPoint(int num, int sort);			//0:num 1:type 2:effect1 3:effect2 4:point1 5:point2 6:area
 	void SetItemPoint(int num, int sort, int point);
 	string GetItemText(int num, int sort);			//0:name 1:explain
+	int ItemStringToNum(string name);
 
 	int GetSoubiPoint(int num, int sort);			//0:num 1:type 2:effect 3:point 4:area
 	void SetSoubiPoint(int num, int sort, int point);
@@ -109,12 +110,13 @@ public:
 	int GetSkillPoint(int num, int sort);			//0:num 1:MP 2:effect 3:status 4:magnification 5:area
 	void SetSkillPoint(int num, int sort, int point);
 	string GetSkillText(int num, int sort);			//0:name 1:explain
+	int SkillStringToNum(string name);
 
 	int GetCharacterStatus(int num, int sort, int value);				//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
 	void SetCharacterStatus(int num, int sort, int point, int value);	//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
 	int GetCharacterImage(int num);
-	int GetChatarcterSoubi(int num, int type);
-	void SetChatarcterSoubi(int num, int type, int soubi);
+	int GetCharacterSoubi(int num, int type);
+	void SetCharacterSoubi(int num, int type, int soubi);
 	bool GetCharacterState(int num, int state);
 	void ChangeCharacterState(int num, int state);
 	int GetCharacterSkillCode(int num, int order);

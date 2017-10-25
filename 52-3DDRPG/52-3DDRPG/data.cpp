@@ -135,9 +135,17 @@ void Data_c::ItemLoad(int s)
 			item[n].num = atoi(inputc);
 			dataNum = atoi(inputc);	
 			break;
-		case 1: item[n].name = dataNum;				break;
+		case 1: item[n].name = inputc;				break;
 		case 2: item[n].type = atoi(inputc);		break;
-		case 3: item[n].effect1 = atoi(inputc);		break;
+		case 3:
+			item[n].effect1 = atoi(inputc);		
+			if (atoi(inputc) >= 1) {
+				item[n].target = 0;
+			}
+			else {
+				item[n].target = 1;
+			}
+			break;
 		case 4: item[n].point1 = atoi(inputc);		break;
 		case 5: item[n].area = atoi(inputc);		break;
 		case 6: item[n].effect2 = atoi(inputc);		break;
@@ -194,7 +202,7 @@ void Data_c::SoubiLoad(int s)
 			item[n].num = atoi(inputc);
 			dataNum = atoi(inputc);
 			break;
-		case 1: soubi[n].name = dataNum;	break;
+		case 1: soubi[n].name = inputc;				break;
 		case 2: soubi[n].type = atoi(inputc);		break;
 		case 3: soubi[n].effect = atoi(inputc);		break;
 		case 4: soubi[n].point = atoi(inputc);		break;
@@ -251,9 +259,17 @@ void Data_c::SkillLoad(int s)
 			item[n].num = atoi(inputc);
 			dataNum = atoi(inputc);
 			break;
-		case 1: skill[n].name = dataNum;				break;
+		case 1: skill[n].name = inputc;					break;
 		case 2: skill[n].mp = atoi(inputc);				break;
-		case 3: skill[n].effect = atoi(inputc);			break;
+		case 3:
+			skill[n].effect = atoi(inputc);	
+			if (atoi(inputc) >= 1) {
+				skill[n].target = 0;
+			}
+			else {
+				skill[n].target = 1;
+			}
+			break;
 		case 4: skill[n].status = atoi(inputc);			break;
 		case 5: skill[n].magnification = atof(inputc);	break;
 		case 6: skill[n].area = atoi(inputc);			break;
@@ -303,7 +319,7 @@ void Data_c::CharacterLoad(int s)
 		switch (num) {
 		case 0:
 			item[n].num = num;
-			character[n].name = n;							
+			character[n].name = inputc;							
 			break;
 		case 1:		
 			character[n].hp.base = atoi(inputc);
@@ -395,6 +411,9 @@ int Data_c::GetItemPoint(int num, int sort)
 	case 6:
 		return item[num].area;
 		break;
+	case 7:
+		return item[num].target;
+		break;
 	}
 	return 0;
 }
@@ -422,6 +441,9 @@ void Data_c::SetItemPoint(int num, int sort, int point)
 	case 6:
 		item[num].area = point;
 		break;
+	case 7:
+		item[num].target = point;
+		break;
 	}
 }
 string Data_c::GetItemText(int num, int sort)
@@ -435,6 +457,15 @@ string Data_c::GetItemText(int num, int sort)
 		break;
 	}
 	return 0;
+}
+int Data_c::ItemStringToNum(string name)
+{
+	for (int i = 0; i < ITEM_SIZE; i++) {
+		if (name == item[i].name) {
+			return i;
+		}
+	}
+	return -1;
 }
 int Data_c::GetSoubiPoint(int num, int sort)
 {
@@ -510,6 +541,9 @@ int Data_c::GetSkillPoint(int num, int sort)
 	case 5:
 		return skill[num].area;
 		break;
+	case 6:
+		return skill[num].target;
+		break;
 	}
 	return 0;
 }
@@ -534,6 +568,9 @@ void Data_c::SetSkillPoint(int num, int sort, int point)
 	case 5:
 		skill[num].area = point;
 		break;
+	case 6:
+		skill[num].target = point;
+		break;
 	}
 }
 string Data_c::GetSkillText(int num, int sort)
@@ -547,6 +584,15 @@ string Data_c::GetSkillText(int num, int sort)
 		break;
 	}
 	return 0;
+}
+int Data_c::SkillStringToNum(string name)
+{
+	for (int i = 0; i < SKILL_SIZE; i++) {
+		if (name == skill[i].name) {
+			return i;
+		}
+	}
+	return -1;
 }
 int Data_c::GetCharacterStatus(int num, int sort, int value)
 {
@@ -584,6 +630,7 @@ void Data_c::SetCharacterStatus(int num, int sort, int point, int value)
 	case 0:
 		if (value == 0) character[num].hp.base = point;
 		else character[num].hp.calc = point;
+		if (point == 0) character[num].state[0] = 1;
 		break;
 	case 1:
 		if (value == 0) character[num].mp.base = point;
@@ -611,11 +658,11 @@ int Data_c::GetCharacterImage(int num)
 {
 	return character[num].image;
 }
-int Data_c::GetChatarcterSoubi(int num, int type)
+int Data_c::GetCharacterSoubi(int num, int type)
 {
 	return character[num].soubi[type];
 }
-void Data_c::SetChatarcterSoubi(int num, int type, int soubi)
+void Data_c::SetCharacterSoubi(int num, int type, int soubi)
 {
 	character[num].soubi[type] = soubi;
 }
