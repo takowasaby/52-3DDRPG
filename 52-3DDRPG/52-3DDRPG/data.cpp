@@ -11,10 +11,10 @@ Data_c::Data_c() :
 	BScene(0),
 	EventCallFlag(0)
 {
-	controlMode = 1;
+	controlMode = 2;
 	eventScene = 0;
 	titleScene = 2;
-	gameScene = 1;
+	gameScene = 3;
 
 	for (int i = 0; i < MAP_SIZE_X; i++) {
 		for (int j = 0; j < MAP_SIZE_Y; j++) {
@@ -308,7 +308,7 @@ void Data_c::CharacterLoad(int s)
 		character[n].flag = 1;
 		//
 		num++;
-		if (num == 16) {
+		if (num == 15) {
 			num = 0;
 			n++;
 		}
