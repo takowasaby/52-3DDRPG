@@ -2,6 +2,14 @@
 
 #include "DxLib.h"
 
+#include <vector>
+#include <map>
+#include <string>
+#include <list>
+#include <fstream>
+
+using namespace std;
+
 //dungeon用--------------------------------------------------------------
 const int MAP_SIZE_X = 25;
 const int MAP_SIZE_Y = 25;
@@ -41,6 +49,55 @@ const int SOUBI_FLAG_MAX = 99;
 const int SKILL_SIZE = 64;
 const int CHARACTER_SIZE = 4;
 const int EVENT_SIZE = 64;
+const int STATE_SIZE = 1;
+
+struct value {
+	int base, calc;
+};
+struct characterData {
+	int num;								//キャラクターのナンバリング
+	string name;							//キャラクターの名前
+	int flag;								//キャラクターがパーティにいるかどうか
+	int soubi[2] = {-1, -1};				//キャラクターの装備
+	value hp, mp, str, vit, agi, intel;		//キャラクターのステータス
+	int skillCode[SKILL_SIZE] = {};			//キャラクターがスキルを覚えているかどうか
+	bool state[STATE_SIZE] = {};			//キャラクターの状態異常(0:死亡)
+	int image;								//キャラクターの画像ハンドル
+};
+struct skillData{
+	int num;						//スキルのナンバリング
+	string name;					//スキルの名前
+	bool target;					//スキルの対象(0:味方、1:敵)
+	int mp;							//スキルの消費MP	
+	int effect;						//スキルの効果(0:ダメージ、 1:HP回復、2:MP回復、3:STR上昇、4:VIT上昇、5:AGI上昇、6:INT上昇、7:蘇生)
+	int status;						//スキルの効果に依存されるステータス
+	int magnification;				//スキル効果のステータス依存の倍率*1000
+	int area;						//スキル効果の範囲(0:単体、1:全体)
+	string explain;					//スキルの説明文
+};
+struct itemData {
+	int num;						//アイテムのナンバリング
+	string name;					//アイテムの名前
+	int flag;						//アイテムを所持している個数
+	bool target;					//アイテムの対象(0:味方、1:敵)
+	int type;						//アイテムの種類(0:消耗品、1:だいじなもの)
+	int effect1, effect2;			//アイテムの効果(0:ダメージ、 1:HP回復、2:MP回復、3:STR上昇、4:VIT上昇、5:AGI上昇、6:INT上昇、7:蘇生)
+	int point1, point2;				//アイテム効果の固定値
+	int area;						//アイテム効果の範囲(0:単体、1:全体)
+	string explain;					//アイテムの説明文
+};
+struct soubiData {
+	int num;						//装備のナンバリング
+	string name;					//装備の名前
+	int flag;						//装備を所持している個数
+	int type;						//装備の種類(0:武器、1:アクセサリー)
+	int effect;						//装備の効果(0:HP上昇、1:MP上昇、2:STR上昇、3:VIT上昇、4:AGI上昇、5:INT上昇)
+	int point;						//装備効果の固定値
+	int area;						//武器の攻撃範囲(0:単体、1:全体)
+	string explain;					//装備の説明文
+};
+
+
 //------------------------------------------------------------------------
 
 //room用-----------------------------------------------------------------

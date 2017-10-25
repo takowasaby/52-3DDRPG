@@ -6,6 +6,8 @@ Control_c::Control_c() {
 	mMenu = new Menu_c();
 	mDungeon = new Dungeon_c();
 	mRoom = new Room_c();
+
+	GData.LoadAll(0);
 }
 
 Control_c::~Control_c() {
@@ -93,6 +95,7 @@ bool Control_c::All() {
 			break;
 		case menu:
 			mMenu->KeyUpdate(Key);
+			mMenu->MenuAll();
 			//ƒƒjƒ…[
 			break;
 		}

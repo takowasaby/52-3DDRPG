@@ -1,11 +1,11 @@
 #include "define.h"
 
 Data_c::Data_c() :
-	scenario(0),
+	scenario(4),
 	stage(0),
 	dir(0),
 	dungeonX(1),
-	dungeonY(2),
+	dungeonY(3),
 	playCount(0),
 	BMode(0),
 	BScene(0),
@@ -103,6 +103,7 @@ void Data_c::ItemLoad(int s)
 	char fname[32];
 	int input[512];
 	char inputc[512];
+	int dataNum = 0;
 
 	sprintf_s(fname, "resource/data/item_%d.csv", s);
 
@@ -130,21 +131,24 @@ void Data_c::ItemLoad(int s)
 			}
 		}
 		switch (num) {
-		case 0: item[n].num = atoi(inputc);			break;
-		case 1: strcpy_s(item[n].name, inputc);		break;
+		case 0:
+			item[n].num = atoi(inputc);
+			dataNum = atoi(inputc);	
+			break;
+		case 1: item[n].name = dataNum;				break;
 		case 2: item[n].type = atoi(inputc);		break;
 		case 3: item[n].effect1 = atoi(inputc);		break;
 		case 4: item[n].point1 = atoi(inputc);		break;
 		case 5: item[n].area = atoi(inputc);		break;
 		case 6: item[n].effect2 = atoi(inputc);		break;
 		case 7: item[n].point2 = atoi(inputc);		break;
-		case 8: strcpy_s(item[n].explain, inputc);	break;
+		case 8: item[n].explain = inputc;			break;
 		}
 		//
 		item[n].flag = 1;
 		//
 		num++;
-		if (num == 9) {
+		if (input[i] == '\n') {
 			num = 0;
 			n++;
 		}
@@ -158,7 +162,7 @@ void Data_c::SoubiLoad(int s)
 	char fname[32];
 	int input[512];
 	char inputc[512];
-	int length = 0;
+	int dataNum;
 
 	sprintf_s(fname, "resource/data/soubi_%d.csv", s);
 
@@ -184,22 +188,24 @@ void Data_c::SoubiLoad(int s)
 			if (input[i] == EOF) {//ファイルの終わりなら
 				goto EXFILE;//終了
 			}
-			length++;
 		}
 		switch (num) {
-		case 0: soubi[n].num = atoi(inputc);		break;
-		case 1: strcpy_s(soubi[n].name, inputc);	break;
+		case 0:
+			item[n].num = atoi(inputc);
+			dataNum = atoi(inputc);
+			break;
+		case 1: soubi[n].name = dataNum;	break;
 		case 2: soubi[n].type = atoi(inputc);		break;
 		case 3: soubi[n].effect = atoi(inputc);		break;
 		case 4: soubi[n].point = atoi(inputc);		break;
 		case 5: soubi[n].area = atoi(inputc);		break;
-		case 6: strcpy_s(soubi[n].explain, inputc);	break;
+		case 6: soubi[n].explain = inputc;			break;
 		}
 		//
 		soubi[n].flag = 1;
 		//
 		num++;
-		if (num == 7) {
+		if (input[i] == '\n') {
 			num = 0;
 			n++;
 		}
@@ -213,6 +219,7 @@ void Data_c::SkillLoad(int s)
 	char fname[32];
 	int input[512];
 	char inputc[512];
+	int dataNum;
 
 	sprintf_s(fname, "resource/data/skill_%d.csv", s);
 
@@ -240,17 +247,20 @@ void Data_c::SkillLoad(int s)
 			}
 		}
 		switch (num) {
-		case 0: skill[n].num = atoi(inputc);			break;
-		case 1: strcpy_s(skill[n].name, inputc);		break;
-		case 2: skill[n].MP = atoi(inputc);				break;
+		case 0:
+			item[n].num = atoi(inputc);
+			dataNum = atoi(inputc);
+			break;
+		case 1: skill[n].name = dataNum;				break;
+		case 2: skill[n].mp = atoi(inputc);				break;
 		case 3: skill[n].effect = atoi(inputc);			break;
 		case 4: skill[n].status = atoi(inputc);			break;
 		case 5: skill[n].magnification = atof(inputc);	break;
 		case 6: skill[n].area = atoi(inputc);			break;
-		case 7: strcpy_s(skill[n].explain, inputc);		break;
+		case 7: skill[n].explain = inputc;				break;
 		}
 		num++;
-		if (num == 8) {
+		if (input[i] == '\n') {
 			num = 0;
 			n++;
 		}
@@ -291,13 +301,34 @@ void Data_c::CharacterLoad(int s)
 			}
 		}
 		switch (num) {
-		case 0:		strcpy_s(character[n].name, inputc);				break;
-		case 1:		character[n].HPMAX = atoi(inputc);					break;
-		case 2:		character[n].MPMAX = atoi(inputc);					break;
-		case 3:		character[n].STR = atoi(inputc);					break;
-		case 4:		character[n].VIT = atoi(inputc);					break;
-		case 5:		character[n].AGI = atoi(inputc);					break;
-		case 6:		character[n].INT = atoi(inputc);					break;
+		case 0:
+			item[n].num = num;
+			character[n].name = n;							
+			break;
+		case 1:		
+			character[n].hp.base = atoi(inputc);
+			character[n].hp.calc = atoi(inputc); 
+			break;
+		case 2:		
+			character[n].mp.base = atoi(inputc);
+			character[n].mp.calc = atoi(inputc);
+			break;
+		case 3:		
+			character[n].str.base = atoi(inputc);
+			character[n].str.calc = atoi(inputc);
+			break;
+		case 4:		
+			character[n].vit.base = atoi(inputc);
+			character[n].vit.calc = atoi(inputc);
+			break;
+		case 5:		
+			character[n].agi.base = atoi(inputc);
+			character[n].agi.calc = atoi(inputc);
+			break;
+		case 6:		
+			character[n].intel.base = atoi(inputc);
+			character[n].intel.calc = atoi(inputc);
+			break;
 		default:	
 			if (atoi(inputc) != -1) {
 				character[n].skillCode[atoi(inputc)] = 1;
@@ -308,7 +339,7 @@ void Data_c::CharacterLoad(int s)
 		character[n].flag = 1;
 		//
 		num++;
-		if (num == 15) {
+		if (input[i] == '\n') {
 			num = 0;
 			n++;
 		}
@@ -320,7 +351,7 @@ EXFILE:
 
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
 		sprintf_s(gname, "resource/data/%d_chara%d.png", scenario, i);
-		character[i].Image = LoadGraph(gname);
+		character[i].image = LoadGraph(gname);
 	}
 }
 
@@ -340,6 +371,8 @@ int Data_c::GetCharacterFlag(int num)
 }
 int Data_c::GetItemPoint(int num, int sort)
 {
+	map<string, int>::iterator itr;
+
 	switch (sort) {
 	case 0:
 		return item[num].num;
@@ -448,7 +481,7 @@ string Data_c::GetSoubiText(int num, int sort)
 {
 	switch (sort) {
 	case 0:
-		return string(soubi[num].name);
+		return soubi[num].name;
 		break;
 	case 1:
 		return string(soubi[num].explain);
@@ -463,7 +496,7 @@ int Data_c::GetSkillPoint(int num, int sort)
 		return skill[num].num;
 		break;
 	case 1:
-		return skill[num].MP;
+		return skill[num].mp;
 		break;
 	case 2:
 		return skill[num].effect;
@@ -487,7 +520,7 @@ void Data_c::SetSkillPoint(int num, int sort, int point)
 		skill[num].num = point;
 		break;
 	case 1:
-		skill[num].MP = point;
+		skill[num].mp = point;
 		break;
 	case 2:
 		skill[num].effect = point;
@@ -515,82 +548,85 @@ string Data_c::GetSkillText(int num, int sort)
 	}
 	return 0;
 }
-int Data_c::GetCharacterPoint(int num, int sort)
+int Data_c::GetCharacterStatus(int num, int sort, int value)
 {
 	switch (sort) {
 	case 0:
-		return character[num].HPMAX;
+		if (value == 0) return character[num].hp.base;
+		else return character[num].hp.calc;
 		break;
 	case 1:
-		return character[num].MPMAX;
+		if (value == 0) return character[num].mp.base;
+		else return character[num].mp.calc;
 		break;
 	case 2:
-		return character[num].HP;
+		if (value == 0) return character[num].str.base;
+		else return character[num].str.calc;
 		break;
 	case 3:
-		return character[num].MP;
+		if (value == 0) return character[num].vit.base;
+		else return character[num].vit.calc;
 		break;
 	case 4:
-		return character[num].STR;
+		if (value == 0) return character[num].agi.base;
+		else return character[num].agi.calc;
 		break;
 	case 5:
-		return character[num].VIT;
-		break;
-	case 6:
-		return character[num].AGI;
-		break;
-	case 7:
-		return character[num].INT;
-		break;
-	case 8:
-		return character[num].Image;
-		break;
-	case 9:
-		return character[num].soubi[0];
-		break;
-	case 10:
-		return character[num].soubi[1];
+		if (value == 0) return character[num].intel.base;
+		else return character[num].intel.calc;
 		break;
 	}
 	return 0;
 }
-void Data_c::SetCharacterPoint(int num, int sort, int point)
+void Data_c::SetCharacterStatus(int num, int sort, int point, int value)
 {
 	switch (sort) {
 	case 0:
-		character[num].HPMAX = point;
+		if (value == 0) character[num].hp.base = point;
+		else character[num].hp.calc = point;
 		break;
 	case 1:
-		character[num].MPMAX = point;
+		if (value == 0) character[num].mp.base = point;
+		else character[num].mp.calc = point;
 		break;
 	case 2:
-		character[num].HP = point;
+		if (value == 0) character[num].str.base = point;
+		else character[num].str.calc = point;
 		break;
 	case 3:
-		character[num].MP = point;
+		if (value == 0) character[num].vit.base = point;
+		else character[num].vit.calc = point;
 		break;
 	case 4:
-		character[num].STR = point;
+		if (value == 0) character[num].agi.base = point;
+		else character[num].agi.calc = point;
 		break;
 	case 5:
-		character[num].VIT = point;
-		break;
-	case 6:
-		character[num].AGI = point;
-		break;
-	case 7:
-		character[num].INT = point;
-		break;
-	case 8:
-		character[num].Image = point;
-		break;
-	case 9:
-		character[num].soubi[0] = point;
-		break;
-	case 10:
-		character[num].soubi[1] = point;
+		if (value == 0) character[num].intel.base = point;
+		else character[num].intel.calc = point;
 		break;
 	}
+}
+int Data_c::GetCharacterImage(int num)
+{
+	return character[num].image;
+}
+int Data_c::GetChatarcterSoubi(int num, int type)
+{
+	return character[num].soubi[type];
+}
+void Data_c::SetChatarcterSoubi(int num, int type, int soubi)
+{
+	character[num].soubi[type] = soubi;
+}
+bool Data_c::GetCharacterState(int num, int state)
+{
+	return character[num].state[state];
+}
+void Data_c::ChangeCharacterState(int num, int state)
+{
+	if (character[num].state[state] == TRUE) character[num].state[state] = FALSE;
+	else character[num].state[state] = TRUE;
 }
 int Data_c::GetCharacterSkillCode(int num, int order)
 {

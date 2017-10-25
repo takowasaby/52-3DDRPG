@@ -2,8 +2,6 @@
 
 //#include <string>
 
-using namespace std;
-
 class Data_c {
 private:
 	int scenario;
@@ -24,10 +22,16 @@ private:
 	int eventScene;
 	int titleScene;
 	int gameScene;
-
+	
+	characterData character[CHARACTER_SIZE];
+	skillData skill[SKILL_SIZE];
+	itemData item[ITEM_SIZE];
+	soubiData soubi[SOUBI_SIZE];
+	
+	/*
 	struct Skill_t {
-		int num;				//スキル固有の数字
-		char name[64];			//スキルの名前
+		int num;				//スキルのナンバリング
+		string name;			//スキルの名前
 		int MP;					//スキルの消費MP
 		int effect;				//スキルの効果(0:HP回復、1:MP回復、2:STR上昇、3:VIT上昇、4:AGI上昇、5:INT上昇、6:ダメージ)
 		int status;				//スキルの効果に依存されるステータス
@@ -38,7 +42,7 @@ private:
 	Skill_t skill[SKILL_SIZE];
 
 	struct Item_t {
-		int flag;				//アイテムを所持している個数
+		int flag;				//アイテムのナンバリング
 		int num;				//アイテム固有の数字
 		char name[64];			//アイテムの名前
 		int type;				//アイテムの種類(0:消耗品、1:だいじなもの)
@@ -51,7 +55,7 @@ private:
 
 	struct Soubi_t {
 		int flag;				//装備を所持している個数
-		int num;				//装備固有の数字
+		int num;				//装備のナンバリング
 		char name[64];			//装備の名前
 		int type;				//装備の種類(0:武器、1:アクセサリー)
 		int effect;				//装備の効果(0:HP上昇、1:MP上昇、2:STR上昇、3:VIT上昇、4:AGI上昇、5:INT上昇)
@@ -71,7 +75,7 @@ private:
 		int Image;
 	};
 	Character_t character[CHARACTER_SIZE];
-
+	*/
 public:
 	Data_c();		//コンストラクタ
 					//	Data_c(int* mode, int* event_scene, int* title_scene, int* game_scene);
@@ -106,8 +110,13 @@ public:
 	void SetSkillPoint(int num, int sort, int point);
 	string GetSkillText(int num, int sort);			//0:name 1:explain
 
-	int GetCharacterPoint(int num, int sort);		//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image 9:soubi[1] 10:soubi[2]
-	void SetCharacterPoint(int num, int sort, int point);	//0:HPMAX 1:MPMAX 2:HP 3:MP 4:STR 5:VIT 6:AGI 7:INT 8:Image 9:soubi[1] 10:soubi[2]
+	int GetCharacterStatus(int num, int sort, int value);				//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
+	void SetCharacterStatus(int num, int sort, int point, int value);	//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
+	int GetCharacterImage(int num);
+	int GetChatarcterSoubi(int num, int type);
+	void SetChatarcterSoubi(int num, int type, int soubi);
+	bool GetCharacterState(int num, int state);
+	void ChangeCharacterState(int num, int state);
 	int GetCharacterSkillCode(int num, int order);
 	string GetCharacterName(int num);
 
