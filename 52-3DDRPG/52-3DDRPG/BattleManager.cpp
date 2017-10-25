@@ -1,25 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "Define.h"
-using namespace std;
-=======
+
 #include "define.h"
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
-=======
-#include "define.h"
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 
 BattleManager::BattleManager()
 	: isPause(false)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 	for (int i = 0; i < 3; i++) phase[i] = 0;
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
-=======
-	for (int i = 0; i < 3; i++) phase[i] = 0;
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 	PlayerWindow = new TextBox();
 	for (int i = 0; i < 2; i++) {
 		OpinionWindow[i] = new TextBox();
@@ -107,57 +93,13 @@ void BattleManager::Draw()
 		break;
 	}
 
-	//PlayerWindow->Draw();
-<<<<<<< HEAD
-<<<<<<< HEAD
-	//Debug
-	clsDx();
-	for (int i = 0; i < CHARACTER_SIZE; i++) {
-		printfDx("Player%d : ", i+1);
-		if (player[i].flag) printfDx("NONE\n");
-		else {
-			printfDx("%s %d/%d %d/%d %d/%d %d/%d %d/%d %d/%d\n"
-				, player[i].name , player[i].hp.current, player[i].hp.base
-				, player[i].mp.current, player[i].mp.base, player[i].str.current
-				, player[i].str.base, player[i].vit.current, player[i].vit.base
-				, player[i].agi.current, player[i].agi.base
-				, player[i].intel.current, player[i].intel.base);
-		}
-	}
-=======
 	for (int i = 0; i < 2; i++) OpinionWindow[i]->Draw();
 	MessageWindow->Draw();
-
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
-=======
-	for (int i = 0; i < 2; i++) OpinionWindow[i]->Draw();
-	MessageWindow->Draw();
-
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 }
 
 void BattleManager::LoadPlayer(int index)
 {
 	//for Debug
-<<<<<<< HEAD
-<<<<<<< HEAD
-	//player[index].name = "PLAYER";
-	player[index].flag = true;
-	player[index].hp.base = GetRand(1000) + 1000;
-	player[index].hp.current = GetRand(1000);
-	player[index].mp.base = GetRand(500) + 500;
-	player[index].mp.current = GetRand(500);
-	player[index].str.base = GetRand(500) + 500;
-	player[index].str.current = GetRand(500) + 500;
-	player[index].vit.base = GetRand(500) + 500;
-	player[index].vit.current = GetRand(500) + 500;
-	player[index].agi.base = GetRand(500) + 500;
-	player[index].agi.current = GetRand(500) + 500;
-	player[index].intel.base = GetRand(500) + 500;
-	player[index].intel.current = GetRand(500) + 500;
-=======
-=======
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 	player[index].name = "PLAYER" + to_string(index + 1);
 	player[index].flag = true;
 	player[index].hp.base = GetRand(1000) + 1000;
@@ -172,14 +114,8 @@ void BattleManager::LoadPlayer(int index)
 	player[index].agi.current = GetRand(500);
 	player[index].intel.base = GetRand(500) + 499;
 	player[index].intel.current = GetRand(500);
-<<<<<<< HEAD
+
 	for (int i = 0; i < SKILL_CODE_SIZE; i++) player[index].skillCode[i] = (int)GetRand(1);
-=======
-<<<<<<< HEAD
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
-=======
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
->>>>>>> b377ede2ee2be730612747a502aeb8509b198785
 }
 
 void BattleManager::LoadEnemy()
@@ -212,6 +148,14 @@ void BattleManager::LoadSkill(int index)
 	}
 }
 
+void BattleManager::SetSkill(int sIndex, int pIndex)
+{
+	//for debug
+	aPlayer[pIndex].cost = GetRand(100);
+	aPlayer[pIndex].target = 0;
+	for (int i = 0; i < EFFECT_SIZE; i++) if (GetRand(1) == 0) aPlayer[pIndex].value[i] = GetRand(99) + 1;
+}
+
 void BattleManager::BattleInitialize()
 {
 	if (!isPause) {
@@ -220,6 +164,7 @@ void BattleManager::BattleInitialize()
 	}
 	else if (mKey[KEY_INPUT_Z] == 1) {
 		MessageWindow->ClearMessage();
+		isPause = false;
 		phase[0]++;
 	}
 }
@@ -241,17 +186,24 @@ void BattleManager::PlayerSelection()
 		else if (mKey[KEY_INPUT_Z] == 1) {
 			MessageWindow->AddMessage(OpinionWindow[phase[1]-1]->Enter() + "を選択");
 			if (phase[1] == 1) {
-				if (OpinionWindow[0]->Enter() == "攻撃") phase[1]++;
+				if (OpinionWindow[0]->Enter() == "攻撃") {
+					aPlayer[phase[2]].forParty = false;
+					aPlayer[phase[2]].value[attack] = GetRand(600);
+					phase[1]++;
+				}
 				else if (OpinionWindow[0]->Enter() == "スキル") LoadSkill(phase[2]);
 				else if (OpinionWindow[0]->Enter() == "道具");
 				else if (OpinionWindow[0]->Enter() == "防御");
 				else if (OpinionWindow[0]->Enter() == "情報");
 			}
+			else if (phase[2] == 2) {
+				if (OpinionWindow[0]->Enter() == "スキル") SetSkill(GetRand(SKILL_CODE_SIZE), phase[2]);
+				else if (OpinionWindow[0]->Enter() == "道具");
+			}
 			phase[1]++;
 		}
 		break;
 	case 3:
-		MessageWindow->ClearMessage();
 		OpinionWindow[1]->ClearMessage();
 		phase[2]++;
 		phase[1] = 0;
@@ -267,10 +219,37 @@ void BattleManager::PlayerSelection()
 
 void BattleManager::EnemySelection()
 {
+	int r = GetRand(100);
+	if (r < 50) MessageWindow->AddMessage("ENEMYは攻撃を選択");
+	else {
+		MessageWindow->AddMessage("ENEMYはスキルを選択");
+	}
+	phase[0]++;
 }
 
 void BattleManager::PlayerCalc()
 {
+	switch (phase[1])
+	{
+	case 0:
+		
+		phase[1]++;
+		break;
+	case 1:
+	case 2:
+		phase[1]++;
+		break;
+	case 3:
+		phase[2]++;
+		phase[1] = 0;
+		if (phase[2] >= CHARACTER_SIZE) {
+			phase[2] = 0;
+			phase[0]++;
+		}
+		break;
+	default:
+		break;
+	}
 }
 
 void BattleManager::EnemyCalc()

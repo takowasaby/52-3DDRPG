@@ -9,7 +9,9 @@ private:
 	int mKey[256]; // 0:“ü—Í‚³‚ê‚Ä‚¢‚È‚¢ 1:“ü—Í‚³‚ê‚½uŠÔ 2:“ü—Í‚³‚ê‚Ä‚¢‚é
 
 	CharacterData player[CHARACTER_SIZE];
+	Attack aPlayer[CHARACTER_SIZE];
 	CharacterData enemy;
+	Attack aEnemy;
 
 	TextBox* PlayerWindow;
 	TextBox* OpinionWindow[2];
@@ -28,6 +30,8 @@ public:
 	void LoadEnemy();
 
 	void LoadSkill(int);
+
+	void SetSkill(int,int);
 
 	void BattleInitialize();
 	void PlayerSelection();

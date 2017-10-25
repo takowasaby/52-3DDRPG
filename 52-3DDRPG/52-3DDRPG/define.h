@@ -51,17 +51,34 @@ const int ITEM_TYPE_SIZE = 3;
 const int ITEM_FLAG_MAX = 99;
 const int NAME_SIZE = 32;
 const int SKILL_CODE_SIZE = 8;
+const int EFFECT_SIZE = 8;
 const int ITEM_SIZE = 64;
 const int SOUBI_SIZE = 64;
 const int SOUBI_FLAG_MAX = 99;
 const int SKILL_SIZE = 64;
 const int CHARACTER_SIZE = 4;
 const int EVENT_SIZE = 64;
+enum Effect{
+	attack,
+	healHp,
+	healMp,
+	buffStr,
+	buffVit,
+	buffAgi,
+	buffInt,
+	reviv
+};
 //------------------------------------------------------------------------
 
 //BattleScene用-----------------------------------------------------------------
 struct Param {
 	int current, base;
+};
+struct Attack {
+	int cost;
+	bool forParty;
+	int target;	//敵か味方か,何番目か(マイナス値なら全体)
+	int value[EFFECT_SIZE];
 };
 struct Character_t {
 	int flag;
@@ -76,15 +93,7 @@ struct CharacterData {
 	bool flag;
 	int soubi[2];
 	Param hp, mp, str, vit, agi, intel;
-<<<<<<< HEAD
-<<<<<<< HEAD
-	char name[NAME_SIZE];
-=======
 	std::string name;
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
-=======
-	std::string name;
->>>>>>> 341f3fc2f81a5b7ad244d3f7122d276a83758e3d
 	int skillCode[SKILL_CODE_SIZE];
 	int Image;
 };
