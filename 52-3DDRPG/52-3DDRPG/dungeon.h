@@ -1,5 +1,7 @@
 #pragma once
 
+class TextBox;
+
 class Dungeon_c {
 private:
 	int x, y, dir;
@@ -24,6 +26,8 @@ private:
 		int type;
 	};
 	WallData_t wallData[MAP_SIZE_X][MAP_SIZE_Y];
+
+	TextBox *textBox;
 
 public:
 	Dungeon_c();
