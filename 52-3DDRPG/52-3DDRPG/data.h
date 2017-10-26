@@ -7,6 +7,7 @@ private:
 	int scenario;
 	int stage;
 	int dir;
+	int room;
 	int dungeonX, dungeonY;
 	int wallType[MAP_SIZE_X][MAP_SIZE_Y];
 	int mapFlag[SCENARIO_SIZE][STAGE_SIZE][MAP_SIZE_X][MAP_SIZE_Y];
@@ -128,6 +129,7 @@ public:
 	int GetDungeonY();
 	int GetDir();
 	int GetEventFlag();
+	int GetRoom();
 
 	void SetScenario(int i);
 	void SetStage(int i);
@@ -135,6 +137,7 @@ public:
 	void SetDungeonY(int i);
 	void SetDir(int i);
 	void SetEventFlag(int i);
+	void SetRoom(int i);
 
 	int GetMapFlag(int scenario, int stage, int x, int y);
 	int GetEventFlag(int scenario, int num);

@@ -4,6 +4,7 @@ Data_c::Data_c() :
 	scenario(4),
 	stage(0),
 	dir(0),
+	room(-1),
 	dungeonX(1),
 	dungeonY(3),
 	playCount(0),
@@ -711,6 +712,11 @@ int Data_c::GetEventFlag()
 	return EventCallFlag;
 }
 
+int Data_c::GetRoom()
+{
+	return room;
+}
+
 
 void Data_c::SetScenario(int i)
 {
@@ -737,6 +743,11 @@ void Data_c::SetDir(int i)
 void Data_c::SetEventFlag(int i)
 {
 	EventCallFlag = i;
+}
+
+void Data_c::SetRoom(int i)
+{
+	room = i;
 }
 
 int Data_c::GetMapFlag(int scenario, int stage, int x, int y)

@@ -38,8 +38,10 @@ void Room_c::KeyUpdate(int Key[256])
 
 void Room_c::RoomAll() 
 {
+	mroom = GData.GetRoom();
 	RoomDraw();
 	WaitKey();
+	GData.SetRoom(mroom);
 }
 
 void Room_c::DataLoad(int scenario, int stage, int room)
