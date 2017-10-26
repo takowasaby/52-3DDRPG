@@ -28,9 +28,12 @@ Menu_c::Menu_c() :
 	for (int i = 0; i < SKILL_SIZE; i++) {
 		skillNum[i] = -1;
 	}
+
+	textBox = new TextBox;
 }
 Menu_c::~Menu_c()
 {
+	delete textBox;
 }
 
 void Menu_c::KeyUpdate(int Key[256])
@@ -78,12 +81,12 @@ void Menu_c::DrawBack()
 }
 void Menu_c::DrawLeft()
 {
-	DrawExtendGraph(60, 40, 161, 321, windowH, TRUE);
-	DrawExtendGraph(60, 320, 161, 441, windowH, TRUE);
+	textBox->DrawWindow(56, 40, 104, 280);
+	textBox->DrawWindow(56, 320, 104, 120);
 
 	row = 40;
 	stringX = 65;
-	stringY = 45;
+	stringY = 50;
 
 	if (mode == 0) DrawFormatString(stringX, stringY + row * 0, colorY, "マップ");
 	else DrawFormatString(stringX, stringY + row * 0, colorW, "マップ");
@@ -108,7 +111,7 @@ void Menu_c::DrawLeft()
 
 	row = 50;
 	stringX = 65;
-	stringY = 325;
+	stringY = 330;
 
 	DrawFormatString(stringX, stringY + row * 0, colorW, "プレイ時間");
 	DrawFormatString(stringX, stringY + row * 1, colorW, "シナリオ");
@@ -135,7 +138,7 @@ void Menu_c::DrawRight()
 		switch (mode) {
 		case map:
 //			DrawGoal	
-			DrawExtendGraph(160, 40, 581, 441, windowW, TRUE);
+			textBox->DrawWindow(160, 40, 424, 400);
 
 			mscenario = GData.GetScenario();
 			mdir = GData.GetDir();
@@ -174,7 +177,7 @@ void Menu_c::DrawRight()
 			break;
 		case status:
 
-			DrawExtendGraph(160, 40, 581, 441, windowW, TRUE);
+			textBox->DrawWindow(160, 40, 424, 400);
 
 			row = 100;
 			stringX = 190;
@@ -199,7 +202,7 @@ void Menu_c::DrawRight()
 
 			break;
 		case soubi:
-			DrawExtendGraph(160, 40, 581, 441, windowW, TRUE);
+			textBox->DrawWindow(160, 40, 424, 400);
 
 			row = 100;
 			stringX = 190;
@@ -221,8 +224,8 @@ void Menu_c::DrawRight()
 			}
 			break;
 		case item:
-			DrawExtendGraph(160, 40, 581, 81, windowW, TRUE);
-			DrawExtendGraph(160, 80, 581, 441, windowW, TRUE);
+			textBox->DrawWindow(160, 40, 424, 40);
+			textBox->DrawWindow(160, 80, 424, 360);
 
 			stringX = 175;
 			stringY = 50;
@@ -233,10 +236,10 @@ void Menu_c::DrawRight()
 			else DrawFormatString(stringX + 210, stringY + row * 0, colorW, "だいじなもの");
 			break;
 		case library:
-			DrawExtendGraph(160, 40, 581, 441, windowW, TRUE);
+			textBox->DrawWindow(160, 40, 424, 400);
 			break;
 		default: 
-			DrawExtendGraph(160, 40, 581, 441, windowW, TRUE);
+			textBox->DrawWindow(160, 40, 424, 400);
 			break;
 		}
 		break;
@@ -245,9 +248,9 @@ void Menu_c::DrawRight()
 		case map:
 			break;
 		case status:
-			DrawExtendGraph(160, 40, 581, 241, windowW, TRUE);
-			DrawExtendGraph(160, 240, 581, 401, windowW, TRUE);
-			DrawExtendGraph(160, 400, 581, 441, windowW, TRUE);
+			textBox->DrawWindow(160, 40, 424, 200);
+			textBox->DrawWindow(160, 240, 424, 160);
+			textBox->DrawWindow(160, 400, 424, 40);
 
 			row = 30;
 			stringX = 175;
@@ -291,9 +294,9 @@ void Menu_c::DrawRight()
 
 		case soubi:
 
-			DrawExtendGraph(160, 40, 581, 81, windowW, TRUE);
-			DrawExtendGraph(160, 80, 581, 401, windowW, TRUE);
-			DrawExtendGraph(160, 400, 581, 441, windowW, TRUE);
+			textBox->DrawWindow(160, 40, 424, 40);
+			textBox->DrawWindow(160, 80, 424, 320);
+			textBox->DrawWindow(160, 400, 424, 40);
 
 			stringX = 175;
 			stringY = 50;
@@ -336,9 +339,9 @@ void Menu_c::DrawRight()
 			break;
 
 		case item:
-			DrawExtendGraph(160, 40, 581, 81, windowW, TRUE);
-			DrawExtendGraph(160, 80, 581, 401, windowW, TRUE);
-			DrawExtendGraph(160, 400, 581, 441, windowW, TRUE);
+			textBox->DrawWindow(160, 40, 424, 81);
+			textBox->DrawWindow(160, 80, 424, 320);
+			textBox->DrawWindow(160, 400, 424, 40);
 
 			stringX = 175;
 			stringY = 50;
@@ -386,8 +389,8 @@ void Menu_c::DrawRight()
 		DrawGraph(0, 0, menuScreen, TRUE);
 		switch (mode) {
 		case status:
-			DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
-			DrawExtendGraph(460, 220, 541, 281, windowW, TRUE);
+			textBox->DrawWindow(220, 140, 324, 80);
+			textBox->DrawWindow(460, 220, 80, 64);
 
 			stringX = 230;
 			stringY = 170;
@@ -405,8 +408,8 @@ void Menu_c::DrawRight()
 			else DrawFormatString(stringX, stringY + row * 1, colorW, "いいえ");
 			break;
 		case soubi:
-			DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
-			DrawExtendGraph(460, 220, 541, 281, windowW, TRUE);
+			textBox->DrawWindow(220, 140, 324, 80);
+			textBox->DrawWindow(460, 220, 80, 64);
 
 			stringX = 230;
 			stringY = 170;
@@ -424,8 +427,8 @@ void Menu_c::DrawRight()
 			else DrawFormatString(stringX, stringY + row * 1, colorW, "いいえ");
 			break;
 		case item:
-			DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
-			DrawExtendGraph(460, 220, 541, 281, windowW, TRUE);
+			textBox->DrawWindow(220, 140, 324, 80);
+			textBox->DrawWindow(460, 220, 80, 64);
 
 			stringX = 230;
 			stringY = 170;
@@ -448,8 +451,8 @@ void Menu_c::DrawRight()
 		DrawGraph(0, 0, menuScreen, TRUE);
 		switch (mode) {
 		case status:
-			DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
-			DrawExtendGraph(460, 220, 541, 331, windowW, TRUE);
+			textBox->DrawWindow(220, 140, 324, 80);
+			textBox->DrawWindow(460, 220, 80, 128);
 
 			stringX = 230;
 			stringY = 170;
@@ -470,8 +473,8 @@ void Menu_c::DrawRight()
 			}
 			break;
 		case item:
-			DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
-			DrawExtendGraph(460, 220, 541, 331, windowW, TRUE);
+			textBox->DrawWindow(220, 140, 324, 80);
+			textBox->DrawWindow(460, 220, 80, 128);
 
 			stringX = 230;
 			stringY = 170;
@@ -495,7 +498,7 @@ void Menu_c::DrawRight()
 		break;
 	case 5:
 		DrawGraph(0, 0, menuScreen, TRUE);		
-		DrawExtendGraph(220, 140, 541, 221, windowW, TRUE);
+		textBox->DrawWindow(220, 140, 324, 80);
 
 		stringX = 230;
 		stringY = 170;

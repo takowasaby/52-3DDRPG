@@ -12,11 +12,13 @@ Event_c::Event_c():
 	m_allend(0)
 {
 	reset();
+
+	textBox = new TextBox;
 }
 
 Event_c::~Event_c()
 {
-
+	delete textBox;
 }
 
 void Event_c::keyCheck()
@@ -193,6 +195,7 @@ int Event_c::call()
 {
 	keyCheck();
 	clsDx();
+	string onceStr = "";
 	for (m_elit = m_eventList.begin(); m_elit != m_eventList.end();)
 	{
 		m_EQPcall = &(*m_elit);
@@ -218,8 +221,8 @@ int Event_c::call()
 			m_EDScall->setSizeWH(m_EQPcall->getCurrentNumber(),m_EDScall->getPictureID());
 			break;
 		case EVENT_ACTION_TEXT:
-			printfDx("comment:\n");
-			printfDx("%s\n", m_EQPcall->getName().c_str());
+			//printfDx("comment:\n");
+			onceStr = m_EQPcall->getName();
 			break;
 		case EVENT_ACTION_TURN:
 			drawRequestSetDirection(m_EQPcall->getName());
@@ -301,6 +304,12 @@ int Event_c::call()
 			break;
 		}
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
+	if (onceStr != "")
+	{
+		textBox->DrawWindow(0, 360, 640, 120);
+		DrawFormatString(20, 400, GetColor(255, 255, 255), "%s\n", onceStr.c_str());
+
 	}
 	return 1;
 }

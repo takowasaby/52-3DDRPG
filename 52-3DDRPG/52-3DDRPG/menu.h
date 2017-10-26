@@ -1,5 +1,7 @@
 #pragma once
 
+class TextBox;
+
 const int MENU_MAP_UP = 65;
 const int MENU_MAP_LEFT = 195;
 const int MENU_MAP_SIZE = 12;
@@ -46,6 +48,8 @@ private:
 		save,
 		option,
 	}Mode;
+
+	TextBox *textBox;
 
 public:
 	Menu_c();

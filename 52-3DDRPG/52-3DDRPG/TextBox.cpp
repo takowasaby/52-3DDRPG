@@ -6,6 +6,7 @@ TextBox::TextBox()
 	isActivated(false), isVisible(true), isSelected(false),
 	position(0), topOfPage(0)
 {
+	LoadWindow();
 }
 
 TextBox::~TextBox()
@@ -80,7 +81,8 @@ void TextBox::Draw()
 	if (!isVisible) return;		//非表示状態なら描画はしない
 
 	//座標とサイズを元にウィンドウを描画する
-	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
+	//DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
+	DrawWindow(x, y, w, h);
 
 	//ウィンドウにメッセージを描画する
 	for (int i = topOfPage; i < topOfPage + raw; i++) {
@@ -171,6 +173,33 @@ void TextBox::PageDown()
 		topOfPage += (message.size() - (message.size() % raw));
 		if (topOfPage + position < message.size() - 1) position += topOfPage;
 		else position = message.size() - 1;
+	}
+}
+
+void TextBox::LoadWindow()
+{
+	LoadDivGraph("resource/window/枠.png", 9, 3, 3, 8, 8, windowEdge);
+	windowBack = LoadGraph("resource/window/背景.png");
+}
+void TextBox::DrawWindow(int x, int y, int w, int h)
+{
+//	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
+	DrawExtendGraph(x + 3, y + 3, x + w - 2, y + h - 2, windowBack, TRUE);
+
+	int edgeType = 0;
+	for (int i = 0; i < w / 8; i++) {
+		for (int j = 0; j < h / 8; j++) {
+			if (i == 0 && j == 0) edgeType = 0;
+			else if (i == 0 && j == h / 8 - 1) edgeType = 6;
+			else if (i == w / 8 - 1 && j == 0) edgeType = 2;
+			else if (i == w / 8 - 1 && j == h / 8 - 1) edgeType = 8;
+			else if (i == 0) edgeType = 3;
+			else if (j == 0) edgeType = 1;
+			else if (i == w / 8 - 1) edgeType = 5;
+			else if (j == h / 8 - 1) edgeType = 7;
+			else edgeType = 4;
+			DrawGraph(x + 8 * i, y + 8 * j, windowEdge[edgeType], TRUE);
+		}
 	}
 }
 

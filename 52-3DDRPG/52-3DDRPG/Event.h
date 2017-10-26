@@ -10,6 +10,8 @@
 #include <list>
 #include <fstream>
 
+class TextBox;
+
 using namespace std;
 
 class Event_c
@@ -33,6 +35,8 @@ private:
 	int m_keyPushed;
 	int m_keyPushContinuanceTempo;
 	int m_keyPushContinuanceFirst;
+
+	TextBox *textBox;
 public:
 	Event_c();
 	~Event_c();

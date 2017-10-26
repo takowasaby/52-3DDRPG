@@ -23,6 +23,9 @@ private:
 	bool isVisible;	//可視状態か
 	bool isSelected;	//選択状態か
 
+	int windowEdge[9];
+	int windowBack;
+
 	//キー入力用変数
 	int key[256]; // 0:入力されていない 1:入力された瞬間 2:入力されている
 public:
@@ -50,6 +53,9 @@ public:
 	void ScrollDown();
 	void PageUp();
 	void PageDown();
+
+	void LoadWindow();
+	void DrawWindow(int x, int y, int w, int h);
 
 	string GetText(int);
 };
