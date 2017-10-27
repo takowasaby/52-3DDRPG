@@ -263,7 +263,7 @@ void BattleManager::EnemyCalc()
 
 void BattleManager::Escape()
 {
-
+	GData.SceneBackRequest();
 }
 
 void BattleManager::KeyUpdata(int Key[256])
