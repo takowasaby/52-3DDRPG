@@ -39,6 +39,8 @@ public:
 	void PlayerCalc();
 	void EnemyCalc();
 
+	void Escape();
+
 
 	void KeyUpdata(int[256]);
 };

@@ -17,7 +17,7 @@ BattleManager::BattleManager()
 	OpinionWindow[0]->AddMessage("スキル");
 	OpinionWindow[0]->AddMessage("道具");
 	OpinionWindow[0]->AddMessage("防御");
-	OpinionWindow[0]->AddMessage("情報");
+	OpinionWindow[0]->AddMessage("逃亡");
 	OpinionWindow[1]->SetSize(640 - OpinionWindow[0]->GetWidth(), 5);
 	OpinionWindow[1]->SetPositon(OpinionWindow[0]->GetWidth(), 480 - OpinionWindow[0]->GetHeight());
 	
@@ -194,7 +194,7 @@ void BattleManager::PlayerSelection()
 				else if (OpinionWindow[0]->Enter() == "スキル") LoadSkill(phase[2]);
 				else if (OpinionWindow[0]->Enter() == "道具");
 				else if (OpinionWindow[0]->Enter() == "防御");
-				else if (OpinionWindow[0]->Enter() == "情報");
+				else if (OpinionWindow[0]->Enter() == "逃亡") Escape();
 			}
 			else if (phase[2] == 2) {
 				if (OpinionWindow[0]->Enter() == "スキル") SetSkill(GetRand(SKILL_CODE_SIZE), phase[2]);
@@ -219,11 +219,16 @@ void BattleManager::PlayerSelection()
 
 void BattleManager::EnemySelection()
 {
+	//for debug
 	int r = GetRand(100);
-	if (r < 50) MessageWindow->AddMessage("ENEMYは攻撃を選択");
+	if (r < 50) {
+		MessageWindow->AddMessage("ENEMYは攻撃を選択");
+	}
 	else {
 		MessageWindow->AddMessage("ENEMYはスキルを選択");
 	}
+	aEnemy.forParty = false;
+	aEnemy.value[attack] = GetRand(600);
 	phase[0]++;
 }
 
@@ -254,6 +259,11 @@ void BattleManager::PlayerCalc()
 
 void BattleManager::EnemyCalc()
 {
+}
+
+void BattleManager::Escape()
+{
+
 }
 
 void BattleManager::KeyUpdata(int Key[256])
