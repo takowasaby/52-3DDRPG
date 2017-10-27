@@ -15,9 +15,10 @@ TextBox::~TextBox()
 
 void TextBox::Update()
 {
-	if (!isActivated) return;		//非アクティブ状態なら更新はしない
+	//if (!isActivated) return;		//非アクティブ状態なら更新はしない
 
 	//キー入力の検知
+	
 	static char buf[256];
 	GetHitKeyStateAll(buf);
 	for (int i = 0; i < 256; i++) {
@@ -28,15 +29,16 @@ void TextBox::Update()
 	//2017/9/19 メッセージモードの実装開始
 	if (windowMode == readMode) {
 		//決定キーを押したときの動作
+		/*
 		if (key[KEY_INPUT_Z] == 1) {
 			if (topOfPage < message.size()) topOfPage++;
-		}
+		}*/
 	}
 
 	//2017/9/17 スクロールモードのみ実装開始
 	//2017/10/11 すべてのキー入力をクラス外操作に移行
-	if (windowMode == scrollMode) {
-		/*
+	if (windowMode == pageMode) {
+		
 		//キー入力によるページ移動
 		if (key[KEY_INPUT_W] == 1) {
 			if (topOfPage < position) position--;
@@ -50,6 +52,7 @@ void TextBox::Update()
 			}
 			else {
 				topOfPage += (message.size() - (message.size() % raw));
+				if (topOfPage > message.size() - 1) topOfPage = 0;
 				if (topOfPage + position < message.size() - 1) position += topOfPage;
 				else position = message.size() - 1;
 			}
@@ -68,11 +71,11 @@ void TextBox::Update()
 				position = position - topOfPage;
 				topOfPage = 0;
 			}
-		}*/
+		}
 
 		//決定キーを押したときの動作
-		if (key[KEY_INPUT_Z] == 1) isSelected = true;
-		else isSelected = false;
+		//if (key[KEY_INPUT_Z] == 1) isSelected = true;
+		//else isSelected = false;
 	}
 }
 
@@ -85,11 +88,27 @@ void TextBox::Draw()
 	DrawWindow(x, y, w, h);
 
 	//ウィンドウにメッセージを描画する
-	for (int i = topOfPage; i < topOfPage + raw; i++) {
-		if (i > message.size() - 1) break;
-		int color = GetColor(255, 255, 255);
-		if (i == position && windowMode != readMode) color = GetColor(255, 191, 0);
-		DrawFormatString(x + 5, y + 5 + ((i-topOfPage) * 17), color, message[i].c_str());
+	if (message.size() > 0) {
+		switch (windowMode) {
+		case readMode:
+			break;
+		case pageMode:
+			for (int i = topOfPage; i < topOfPage + raw; i++) {
+				if (i >(message.size() - 1)) break;
+				int color = GetColor(255, 255, 255);
+				if (i == position) color = GetColor(255, 191, 0);
+				DrawFormatString(x + 5, y + 5 + ((i - topOfPage) * 17), color, message[i].c_str());
+			}
+			break;
+		case scrollMode:
+			break;
+		case logMode:
+			for (int i = 0; i < raw; i++) {
+				if (message.size() - i < 1) break;
+				DrawFormatString(x + 5, y + 5 + (i * 17), GetColor(255, 255, 255), message[message.size() - i - 1].c_str());
+			}
+			break;
+		}
 	}
 }
 
@@ -119,11 +138,21 @@ void TextBox::SetPositon(int px, int py)
 	y = py;	//y座標の設定
 }
 
-void TextBox::SetSize(int pw, int ph, int praw)
+void TextBox::SetSize(int pw, int praw)
 {
 	w = pw;	//幅の設定
 	raw = praw;	//行数の設定
 	h = 5 + praw*17 + 5;	//高さの設定
+}
+
+int TextBox::GetHeight()
+{
+	return h;
+}
+
+int TextBox::GetWidth()
+{
+	return w;
 }
 
 void TextBox::AddMessage(string text)
@@ -135,6 +164,11 @@ void TextBox::SetMessage(string text, int index)
 {
 	if (message.size() > index) message[index] = text;
 	else message.push_back(text);
+}
+
+void TextBox::ClearMessage()
+{
+	message.clear();
 }
 
 void TextBox::ScrollUp()
@@ -171,11 +205,13 @@ void TextBox::PageDown()
 	}
 	else {
 		topOfPage += (message.size() - (message.size() % raw));
+		if (topOfPage > message.size() - 1) topOfPage = 0;
 		if (topOfPage + position < message.size() - 1) position += topOfPage;
 		else position = message.size() - 1;
 	}
 }
 
+<<<<<<< HEAD
 void TextBox::LoadWindow()
 {
 	LoadDivGraph("resource/window/枠.png", 9, 3, 3, 8, 8, windowEdge);
@@ -201,6 +237,11 @@ void TextBox::DrawWindow(int x, int y, int w, int h)
 			DrawGraph(x + 8 * i, y + 8 * j, windowEdge[edgeType], TRUE);
 		}
 	}
+=======
+string TextBox::Enter()
+{
+	return message[position];
+>>>>>>> BattleScene
 }
 
 string TextBox::GetText(int index)

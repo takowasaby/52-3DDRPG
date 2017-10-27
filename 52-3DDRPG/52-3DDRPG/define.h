@@ -2,6 +2,7 @@
 
 #include "DxLib.h"
 
+<<<<<<< HEAD
 #include <vector>
 #include <map>
 #include <string>
@@ -9,6 +10,23 @@
 #include <fstream>
 
 using namespace std;
+=======
+#include <math.h>
+#include <map>
+#include <vector>
+#include <string>
+
+//TextBox用--------------------------------------------------------------
+//ウィンドウモードに関する列挙体
+enum WindowMode {
+	readMode,	//選択できないメッセージ用
+	pageMode,	//上下で選択、左右でページ移動
+	scrollMode,	//スクロールで移動
+	logMode,		//最後から表示
+	infoMode		//情報表示
+};
+//-------------------------------------------------------------------------
+>>>>>>> BattleScene
 
 //dungeon用--------------------------------------------------------------
 const int MAP_SIZE_X = 25;
@@ -43,12 +61,14 @@ const int ITEM_TYPE_SIZE = 3;
 const int ITEM_FLAG_MAX = 99;
 const int NAME_SIZE = 32;
 const int SKILL_CODE_SIZE = 8;
+const int EFFECT_SIZE = 8;
 const int ITEM_SIZE = 64;
 const int SOUBI_SIZE = 64;
 const int SOUBI_FLAG_MAX = 99;
 const int SKILL_SIZE = 64;
 const int CHARACTER_SIZE = 4;
 const int EVENT_SIZE = 64;
+<<<<<<< HEAD
 const int STATE_SIZE = 1;
 
 struct value {
@@ -120,12 +140,49 @@ const int ROOM_FURNITURE_MAX = 100;
 const int ROOM_FURNITURE_LENGTH = ROOM_WALL_SIZE_X * 2;
 const int ROOM_POINT_X = 320;
 const int ROOM_POINT_Y = 240;
+=======
+enum Effect{
+	attack,
+	healHp,
+	healMp,
+	buffStr,
+	buffVit,
+	buffAgi,
+	buffInt,
+	reviv
+};
 //------------------------------------------------------------------------
 
-#include <math.h>
-#include <map>
-#include <vector>
-#include <string>
+//BattleScene用-----------------------------------------------------------------
+struct Param {
+	int current, base;
+};
+struct Attack {
+	int cost;
+	bool forParty;
+	int target;	//敵か味方か,何番目か(マイナス値なら全体)
+	int value[EFFECT_SIZE];
+};
+struct Character_t {
+	int flag;
+	int soubi[2];
+	int HPMAX, MPMAX, STR, VIT, AGI, INT;
+	int HP, MP;
+	char name[NAME_SIZE];
+	int skillCode[SKILL_CODE_SIZE];
+	int Image;
+};
+struct CharacterData {
+	bool flag;
+	int soubi[2];
+	Param hp, mp, str, vit, agi, intel;
+	std::string name;
+	int skillCode[SKILL_CODE_SIZE];
+	int Image;
+};
+>>>>>>> BattleScene
+//------------------------------------------------------------------------
+
 #include "control.h"
 #include "data.h"
 #include "dungeon.h"
@@ -140,4 +197,8 @@ const int ROOM_POINT_Y = 240;
 #include "title.h"
 #include "menu.h"
 #include "Sound.h"
+<<<<<<< HEAD
 #include"room.h"
+=======
+#include "BattleManager.h"
+>>>>>>> BattleScene

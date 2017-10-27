@@ -4,13 +4,8 @@ class Data_c; //仮
 class TextBox
 {
 private:
-	//ウィンドウモードに関する列挙体
-	enum WindowMode {
-		readMode,	//選択できないメッセージ用
-		pageMode,	//上下で選択、左右でページ移動
-		scrollMode	//スクロールで移動
-	};
 	WindowMode windowMode;
+	int key[256];
 
 	Data_c* originalData;		// データクラスから一覧を読み込む用
 
@@ -27,7 +22,7 @@ private:
 	int windowBack;
 
 	//キー入力用変数
-	int key[256]; // 0:入力されていない 1:入力された瞬間 2:入力されている
+	//int key[256]; // 0:入力されていない 1:入力された瞬間 2:入力されている
 public:
 	TextBox();
 	~TextBox();
@@ -42,11 +37,15 @@ public:
 	//ウィンドウ編集用関数
 	void SetWindowMode(WindowMode);
 	void SetPositon(int,int);
-	void SetSize(int,int,int);
+	void SetSize(int,int);
+
+	int GetHeight();
+	int GetWidth();
 
 	//メッセージ編集用関数
 	void AddMessage(string);
 	void SetMessage(string,int);
+	void ClearMessage();
 
 	//ページめくり関数
 	void ScrollUp();
@@ -54,8 +53,12 @@ public:
 	void PageUp();
 	void PageDown();
 
+<<<<<<< HEAD
 	void LoadWindow();
 	void DrawWindow(int x, int y, int w, int h);
+=======
+	string Enter();
+>>>>>>> BattleScene
 
 	string GetText(int);
 };

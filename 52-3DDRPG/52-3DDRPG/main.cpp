@@ -1,6 +1,10 @@
 #include "define.h"
 
 Data_c GData;
+<<<<<<< HEAD
+=======
+char Key[256];
+>>>>>>> BattleScene
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
@@ -15,6 +19,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetDrawScreen(DX_SCREEN_BACK);        //— ‰æ–Ê‚Éİ’è
 
 	Control_c control;
+	GData.CharacterLoad(0);
 
 	while (!ProcessMessage() && !ClearDrawScreen() && control.All()) {
 		//ªÒ¯¾°¼Şˆ—         ª‰æ–Ê‚ğ¸Ø±          

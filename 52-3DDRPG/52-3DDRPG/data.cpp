@@ -685,6 +685,11 @@ string Data_c::GetCharacterName(int num)
 	return string(character[num].name);
 }
 
+Character_t Data_c::GetCharacter(int num)
+{
+	return character[num];
+}
+
 int Data_c::GetScenario()
 {
 	return scenario;

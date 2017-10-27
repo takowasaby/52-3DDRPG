@@ -27,7 +27,11 @@ mGame_scene(game_scene)
 */
 Dungeon_c::~Dungeon_c()
 {
+<<<<<<< HEAD
 	delete textBox;
+=======
+	//delete mData;
+>>>>>>> BattleScene
 }
 
 void Dungeon_c::KeyUpdate(int Key[256])
@@ -62,7 +66,7 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 
 	mfp = FileRead_open(fname);
 	if (mfp == NULL) {
-		printfDx("read error\n");
+		//printfDx("read error\n");
 		return;
 	}
 	//	for (int i = 0; i < 1; i++)//Å‰‚Ì2s“Ç‚Ý”ò‚Î‚·
