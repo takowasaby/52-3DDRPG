@@ -70,15 +70,15 @@ void BattleManager::Draw()
 		if (!player[i].flag) printfDx("NONE\n");
 		else {
 			printfDx("%-8s HP:%4d/%4d MP:%4d/%4d ( %3d %3d %3d %3d )\n"
-				, player[i].name.c_str(), player[i].hp.current, player[i].hp.base
-				, player[i].mp.current, player[i].mp.base, player[i].str.current
-				, player[i].vit.current, player[i].agi.current, player[i].intel.current);
+				, player[i].name.c_str(), player[i].hp.calc, player[i].hp.base
+				, player[i].mp.calc, player[i].mp.base, player[i].str.calc
+				, player[i].vit.calc, player[i].agi.calc, player[i].intel.calc);
 		}
 	}
 	printfDx("[E] %-8s HP:%4d/%4d MP:%4d/%4d ( %3d %3d %3d %3d )\n"
-		, enemy.name.c_str(), enemy.hp.current, enemy.hp.base
-		, enemy.mp.current, enemy.mp.base, enemy.str.current
-		, enemy.vit.current, enemy.agi.current, enemy.intel.current);
+		, enemy.name.c_str(), enemy.hp.calc, enemy.hp.base
+		, enemy.mp.calc, enemy.mp.base, enemy.str.calc
+		, enemy.vit.calc, enemy.agi.calc, enemy.intel.calc);
 	printfDx("Phase[0] = %d\t", phase[0]);
 	printfDx("Phase[1] = %d\t", phase[1]);
 	printfDx("Phase[2] = %d\n", phase[2]);
@@ -103,17 +103,17 @@ void BattleManager::LoadPlayer(int index)
 	player[index].name = "PLAYER" + to_string(index + 1);
 	player[index].flag = true;
 	player[index].hp.base = GetRand(1000) + 1000;
-	player[index].hp.current = GetRand(999);
+	player[index].hp.calc = GetRand(999);
 	player[index].mp.base = GetRand(500) + 499;
-	player[index].mp.current = GetRand(500);
+	player[index].mp.calc = GetRand(500);
 	player[index].str.base = GetRand(500) + 499;
-	player[index].str.current = GetRand(500);
+	player[index].str.calc = GetRand(500);
 	player[index].vit.base = GetRand(500) + 499;
-	player[index].vit.current = GetRand(500);
+	player[index].vit.calc = GetRand(500);
 	player[index].agi.base = GetRand(500) + 499;
-	player[index].agi.current = GetRand(500);
+	player[index].agi.calc = GetRand(500);
 	player[index].intel.base = GetRand(500) + 499;
-	player[index].intel.current = GetRand(500);
+	player[index].intel.calc = GetRand(500);
 
 	for (int i = 0; i < SKILL_CODE_SIZE; i++) player[index].skillCode[i] = (int)GetRand(1);
 }
@@ -124,17 +124,17 @@ void BattleManager::LoadEnemy()
 	enemy.name = "ENEMY";
 	enemy.flag = true;
 	enemy.hp.base = GetRand(1000) + 1000;
-	enemy.hp.current = GetRand(999);
+	enemy.hp.calc = GetRand(999);
 	enemy.mp.base = GetRand(500) + 499;
-	enemy.mp.current = GetRand(500);
+	enemy.mp.calc = GetRand(500);
 	enemy.str.base = GetRand(500) + 499;
-	enemy.str.current = GetRand(500);
+	enemy.str.calc = GetRand(500);
 	enemy.vit.base = GetRand(500) + 499;
-	enemy.vit.current = GetRand(500);
+	enemy.vit.calc = GetRand(500);
 	enemy.agi.base = GetRand(500) + 499;
-	enemy.agi.current = GetRand(500);
+	enemy.agi.calc = GetRand(500);
 	enemy.intel.base = GetRand(500) + 499;
-	enemy.intel.current = GetRand(500);
+	enemy.intel.calc = GetRand(500);
 	for (int i = 0; i < SKILL_CODE_SIZE; i++) enemy.skillCode[i] = (int)GetRand(1);
 }
 

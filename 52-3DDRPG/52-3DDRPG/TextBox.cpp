@@ -211,7 +211,6 @@ void TextBox::PageDown()
 	}
 }
 
-<<<<<<< HEAD
 void TextBox::LoadWindow()
 {
 	LoadDivGraph("resource/window/˜g.png", 9, 3, 3, 8, 8, windowEdge);
@@ -219,7 +218,7 @@ void TextBox::LoadWindow()
 }
 void TextBox::DrawWindow(int x, int y, int w, int h)
 {
-//	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
+	//	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
 	DrawExtendGraph(x + 3, y + 3, x + w - 2, y + h - 2, windowBack, TRUE);
 
 	int edgeType = 0;
@@ -237,11 +236,11 @@ void TextBox::DrawWindow(int x, int y, int w, int h)
 			DrawGraph(x + 8 * i, y + 8 * j, windowEdge[edgeType], TRUE);
 		}
 	}
-=======
+}
+
 string TextBox::Enter()
 {
 	return message[position];
->>>>>>> BattleScene
 }
 
 string TextBox::GetText(int index)

@@ -20,11 +20,8 @@ private:
 	Dungeon_c* mDungeon;
 	SaveLoad_c* mSaveLoad;
 	Option_c* mOption;
-<<<<<<< HEAD
 	Room_c* mRoom;
-=======
 	BattleManager* battleManager;
->>>>>>> BattleScene
 
 	int Key[256];
 

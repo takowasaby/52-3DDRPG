@@ -2,7 +2,6 @@
 
 #include "DxLib.h"
 
-<<<<<<< HEAD
 #include <vector>
 #include <map>
 #include <string>
@@ -10,11 +9,6 @@
 #include <fstream>
 
 using namespace std;
-=======
-#include <math.h>
-#include <map>
-#include <vector>
-#include <string>
 
 //TextBox用--------------------------------------------------------------
 //ウィンドウモードに関する列挙体
@@ -26,7 +20,6 @@ enum WindowMode {
 	infoMode		//情報表示
 };
 //-------------------------------------------------------------------------
->>>>>>> BattleScene
 
 //dungeon用--------------------------------------------------------------
 const int MAP_SIZE_X = 25;
@@ -68,7 +61,6 @@ const int SOUBI_FLAG_MAX = 99;
 const int SKILL_SIZE = 64;
 const int CHARACTER_SIZE = 4;
 const int EVENT_SIZE = 64;
-<<<<<<< HEAD
 const int STATE_SIZE = 1;
 
 struct value {
@@ -140,7 +132,7 @@ const int ROOM_FURNITURE_MAX = 100;
 const int ROOM_FURNITURE_LENGTH = ROOM_WALL_SIZE_X * 2;
 const int ROOM_POINT_X = 320;
 const int ROOM_POINT_Y = 240;
-=======
+
 enum Effect{
 	attack,
 	healHp,
@@ -163,7 +155,7 @@ struct Attack {
 	int target;	//敵か味方か,何番目か(マイナス値なら全体)
 	int value[EFFECT_SIZE];
 };
-struct Character_t {
+/*struct Character_t {
 	int flag;
 	int soubi[2];
 	int HPMAX, MPMAX, STR, VIT, AGI, INT;
@@ -179,8 +171,7 @@ struct CharacterData {
 	std::string name;
 	int skillCode[SKILL_CODE_SIZE];
 	int Image;
-};
->>>>>>> BattleScene
+};*/
 //------------------------------------------------------------------------
 
 #include "control.h"
@@ -197,8 +188,5 @@ struct CharacterData {
 #include "title.h"
 #include "menu.h"
 #include "Sound.h"
-<<<<<<< HEAD
 #include"room.h"
-=======
 #include "BattleManager.h"
->>>>>>> BattleScene

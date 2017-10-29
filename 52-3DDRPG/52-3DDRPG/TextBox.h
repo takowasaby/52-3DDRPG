@@ -53,12 +53,10 @@ public:
 	void PageUp();
 	void PageDown();
 
-<<<<<<< HEAD
 	void LoadWindow();
 	void DrawWindow(int x, int y, int w, int h);
-=======
+
 	string Enter();
->>>>>>> BattleScene
 
 	string GetText(int);
 };

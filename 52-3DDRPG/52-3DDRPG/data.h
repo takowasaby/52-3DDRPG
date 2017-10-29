@@ -75,8 +75,8 @@ private:
 		int skillCode[SKILL_SIZE] = {};
 		int Image;
 	};*/
-	Character_t character[CHARACTER_SIZE];
-	*/
+	//Character_t character[CHARACTER_SIZE];
+	
 public:
 	Data_c();		//コンストラクタ
 					//	Data_c(int* mode, int* event_scene, int* title_scene, int* game_scene);
@@ -113,7 +113,36 @@ public:
 	string GetSkillText(int num, int sort);			//0:name 1:explain
 	int SkillStringToNum(string name);
 
-	int GetCharacterStatus(int num, int sort, int value);				//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
+	int GetCharacterStatus(int num, int sort, int value)
+	{
+		switch (sort) {
+		case 0:
+			if (value == 0) return character[num].hp.base;
+			else return character[num].hp.calc;
+			break;
+		case 1:
+			if (value == 0) return character[num].mp.base;
+			else return character[num].mp.calc;
+			break;
+		case 2:
+			if (value == 0) return character[num].str.base;
+			else return character[num].str.calc;
+			break;
+		case 3:
+			if (value == 0) return character[num].vit.base;
+			else return character[num].vit.calc;
+			break;
+		case 4:
+			if (value == 0) return character[num].agi.base;
+			else return character[num].agi.calc;
+			break;
+		case 5:
+			if (value == 0) return character[num].intel.base;
+			else return character[num].intel.calc;
+			break;
+		}
+		return 0;
+	}				//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
 	void SetCharacterStatus(int num, int sort, int point, int value);	//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
 	int GetCharacterImage(int num);
 	int GetCharacterSoubi(int num, int type);
@@ -123,7 +152,7 @@ public:
 	int GetCharacterSkillCode(int num, int order);
 	string GetCharacterName(int num);
 
-	Character_t GetCharacter(int);
+	//Character_t GetCharacter(int);
 
 	int GetScenario();
 	int GetStage();

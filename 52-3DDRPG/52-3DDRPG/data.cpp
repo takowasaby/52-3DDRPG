@@ -595,36 +595,6 @@ int Data_c::SkillStringToNum(string name)
 	}
 	return -1;
 }
-int Data_c::GetCharacterStatus(int num, int sort, int value)
-{
-	switch (sort) {
-	case 0:
-		if (value == 0) return character[num].hp.base;
-		else return character[num].hp.calc;
-		break;
-	case 1:
-		if (value == 0) return character[num].mp.base;
-		else return character[num].mp.calc;
-		break;
-	case 2:
-		if (value == 0) return character[num].str.base;
-		else return character[num].str.calc;
-		break;
-	case 3:
-		if (value == 0) return character[num].vit.base;
-		else return character[num].vit.calc;
-		break;
-	case 4:
-		if (value == 0) return character[num].agi.base;
-		else return character[num].agi.calc;
-		break;
-	case 5:
-		if (value == 0) return character[num].intel.base;
-		else return character[num].intel.calc;
-		break;
-	}
-	return 0;
-}
 void Data_c::SetCharacterStatus(int num, int sort, int point, int value)
 {
 	switch (sort) {
