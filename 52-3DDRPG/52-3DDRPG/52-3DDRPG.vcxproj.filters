@@ -52,6 +52,7 @@
     <ClCompile Include="BattleManager.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="scenario.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="control.h">
@@ -96,6 +97,7 @@
     <ClInclude Include="BattleManager.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
+    <ClInclude Include="scenario.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダーファイル">

@@ -190,3 +190,4 @@ struct CharacterData {
 #include "Sound.h"
 #include"room.h"
 #include "BattleManager.h"
+#include "scenario.h "

@@ -89,22 +89,18 @@ public:
 	void SkillLoad(int s);
 	void CharacterLoad(int s);
 
-	int GetItemFlag(int num);
-	int GetSoubiFlag(int num);
-	int GetCharacterFlag(int num);
-
 	void CalcItemFlag(int num, int vary);
 	void CalcSoubiFlag(int num, int vary);
 	void SetCharacterFlag(int num, int vary);
 
 	string GetGoalText(int s, int num);
 
-	int GetItemPoint(int num, int sort);			//0:num 1:type 2:effect1 3:effect2 4:point1 5:point2 6:area
+	int GetItemPoint(int num, int sort);			//0:num 1:type 2:effect1 3:effect2 4:point1 5:point2 6:area 7:target 8:flag
 	void SetItemPoint(int num, int sort, int point);
 	string GetItemText(int num, int sort);			//0:name 1:explain
 	int ItemStringToNum(string name);
 
-	int GetSoubiPoint(int num, int sort);			//0:num 1:type 2:effect 3:point 4:area
+	int GetSoubiPoint(int num, int sort);			//0:num 1:type 2:effect 3:point 4:area 5:flag
 	void SetSoubiPoint(int num, int sort, int point);
 	string GetSoubiText(int num, int sort);			//0:name 1:explain
 
@@ -113,36 +109,7 @@ public:
 	string GetSkillText(int num, int sort);			//0:name 1:explain
 	int SkillStringToNum(string name);
 
-	int GetCharacterStatus(int num, int sort, int value)
-	{
-		switch (sort) {
-		case 0:
-			if (value == 0) return character[num].hp.base;
-			else return character[num].hp.calc;
-			break;
-		case 1:
-			if (value == 0) return character[num].mp.base;
-			else return character[num].mp.calc;
-			break;
-		case 2:
-			if (value == 0) return character[num].str.base;
-			else return character[num].str.calc;
-			break;
-		case 3:
-			if (value == 0) return character[num].vit.base;
-			else return character[num].vit.calc;
-			break;
-		case 4:
-			if (value == 0) return character[num].agi.base;
-			else return character[num].agi.calc;
-			break;
-		case 5:
-			if (value == 0) return character[num].intel.base;
-			else return character[num].intel.calc;
-			break;
-		}
-		return 0;
-	}				//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
+	int GetCharacterStatus(int num, int sort, int value);				//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
 	void SetCharacterStatus(int num, int sort, int point, int value);	//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
 	int GetCharacterImage(int num);
 	int GetCharacterSoubi(int num, int type);
@@ -152,7 +119,7 @@ public:
 	int GetCharacterSkillCode(int num, int order);
 	string GetCharacterName(int num);
 
-	//Character_t GetCharacter(int);
+	characterData GetCharacter(int);
 
 	int GetScenario();
 	int GetStage();
