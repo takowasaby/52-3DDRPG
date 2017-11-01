@@ -6,7 +6,11 @@ Control_c::Control_c() {
 	mMenu = new Menu_c();
 	mDungeon = new Dungeon_c();
 	mRoom = new Room_c();
+<<<<<<< HEAD
 	mEventlist = new EventList();
+=======
+	mScenario = new Scenario_c();
+>>>>>>> scenario
 
 	GData.LoadAll(0);
 	battleManager = new BattleManager();
@@ -55,34 +59,35 @@ bool Control_c::All() {
 			break;
 		case scenario: 
 			//シナリオ選択画面
-			DrawFormatString(150, 100, GetColor(255, 255, 255), "シナリオ選択"); //デバッグ用
+			mScenario->KeyUpdate(Key);
+			mScenario->ScenarioAll();
 			break;
 		case start: {
 			//タイトル画面
 			if (titleStart == false) { titleStart = true; mTitle = new Title_c; }
 			titleEnd = mTitle->TitleScreen(Key);
-			if (titleEnd == true) { titleEnd = false; delete mTitle; }
+			if (titleEnd == true) { titleEnd = false; titleStart = false; delete mTitle; }
 			}
 			break;
 		case save: {
 			//セーブ
 			if (SaveLoadStart == false) { SaveLoadStart = true; mSaveLoad = new SaveLoad_c; }
 			SaveLoadEnd = mSaveLoad->SaveScreen(Key, CharX, CharY, Status, 10);
-			if (SaveLoadEnd == true) { SaveLoadEnd = false; delete mSaveLoad; }
+			if (SaveLoadEnd == true) { SaveLoadEnd = false; SaveLoadStart = false; delete mSaveLoad; }
 			}
 			break;
 		case load: {
 			//ロード
 			if (SaveLoadStart == false) { SaveLoadStart = true; mSaveLoad = new SaveLoad_c; }
 			SaveLoadEnd = mSaveLoad->LoadScreen(Key, CharX, CharY, Status, 10);
-			if (SaveLoadEnd == true) { SaveLoadEnd = false; delete mSaveLoad; }
+			if (SaveLoadEnd == true) { SaveLoadEnd = false; SaveLoadStart = false; delete mSaveLoad; }
 			}
 			break;
 		case option:
 			//オプション
 			if (optionStart == false) { optionStart = true; mOption = new Option_c; }
 			optionEnd = mOption->Main(Key);
-			if (optionEnd == true) { optionEnd = false; delete mOption; }
+			if (optionEnd == true) { optionEnd = false; optionStart = false; delete mOption; }
 			break;
 		}
 		break;

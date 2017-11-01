@@ -70,6 +70,7 @@ bool Title_c::TitleScreen(int* Key) {
 				ScreenFlip();
 			} while (bright > 0);
 			SetDrawBright(255, 255, 255);
+			bright = 0;
 			GData.SceneRequest(1, 1);//ニューゲーム(シナリオ選択)
 			return true;
 		}
