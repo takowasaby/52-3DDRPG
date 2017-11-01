@@ -293,11 +293,7 @@ void Dungeon_c::UIDraw()
 	int stringY = 344;
 
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
-<<<<<<< HEAD
-		if (GData.GetCharacterFlag(i)&& GData.GetCharacterStatus(i, 0, 0) != 0) {
-=======
 		if (GData.GetCharacterFlag(i) && GData.GetCharacterStatus(i, 0, 0) != 0 && GData.GetCharacterStatus(i, 1, 0) != 0) {
->>>>>>> scenario
 
 			DrawBox(stringX + 122, stringY + 8 + row * i, stringX + 222, stringY + 17 + row * i, GetColor(0, 0, 0), TRUE);
 			DrawBox(stringX + 125, stringY + 5 + row * i, stringX + 125 + 100 * (GData.GetCharacterStatus(i, 0, 1) / GData.GetCharacterStatus(i, 0, 0)), stringY + 15 + row * i, GetColor(0, 255, 0), TRUE);

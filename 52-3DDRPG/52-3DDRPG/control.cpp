@@ -6,11 +6,8 @@ Control_c::Control_c() {
 	mMenu = new Menu_c();
 	mDungeon = new Dungeon_c();
 	mRoom = new Room_c();
-<<<<<<< HEAD
 	mEventlist = new EventList();
-=======
 	mScenario = new Scenario_c();
->>>>>>> scenario
 
 	GData.LoadAll(0);
 	battleManager = new BattleManager();

@@ -14,15 +14,10 @@ public:
 	Scenario_c();
 	~Scenario_c();
 
-<<<<<<< HEAD
-	void scenarioAll();
-	void LoadGraph();
-=======
 	void ScenarioAll();
 	void Load();
 	void Update();
 	void Draw();
 	void Reset();
 	void KeyUpdate(int Key[256]);
->>>>>>> scenario
 };

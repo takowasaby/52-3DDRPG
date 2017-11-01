@@ -24,11 +24,8 @@ private:
 	Option_c* mOption;
 	Room_c* mRoom;
 	BattleManager* battleManager;
-<<<<<<< HEAD
 	EventList* mEventlist;
-=======
 	Scenario_c* mScenario;
->>>>>>> scenario
 
 	int Key[256];
 
