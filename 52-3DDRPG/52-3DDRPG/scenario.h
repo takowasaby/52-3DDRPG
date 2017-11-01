@@ -11,5 +11,4 @@ public:
 
 	void scenarioAll();
 	void LoadGraph();
-	void 
 };

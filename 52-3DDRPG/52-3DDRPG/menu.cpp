@@ -309,7 +309,7 @@ void Menu_c::DrawRight()
 
 			for (int i = 0; i < SOUBI_SIZE; i++) {
 				soubiNum[i] = -1;
-				if (GData.GetSoubiFlag(i) >= 1) {
+				if (GData.GetSoubiPoint(i,5) >= 1) {
 					if (soubiType == GData.GetSoubiPoint(i, 1)) {
 						if (i != GData.GetCharacterSoubi(0, soubiType)
 							&& i != GData.GetCharacterSoubi(1, soubiType)
@@ -317,11 +317,11 @@ void Menu_c::DrawRight()
 							&& i != GData.GetCharacterSoubi(3, soubiType)) {
 							if (drawCount == chooseSoubi) {
 								DrawFormatString(stringX, stringY + row * drawCount, colorY, "%s", GData.GetSoubiText(i, 0).c_str());
-								DrawFormatString(stringX + 300, stringY + row * drawCount, colorY, "X%d", GData.GetSoubiFlag(i));
+								DrawFormatString(stringX + 300, stringY + row * drawCount, colorY, "X%d", GData.GetSoubiPoint(i, 5));
 							}
 							else {
 								DrawFormatString(stringX, stringY + row * drawCount, colorW, "%s", GData.GetSoubiText(i, 0).c_str());
-								DrawFormatString(stringX + 300, stringY + row * drawCount, colorW, "X%d", GData.GetSoubiFlag(i));
+								DrawFormatString(stringX + 300, stringY + row * drawCount, colorW, "X%d", GData.GetSoubiPoint(i, 5));
 							}
 							drawCount++;
 							soubiNum[drawCount - 1] = i;
@@ -357,15 +357,15 @@ void Menu_c::DrawRight()
 
 			for (int i = 0; i < ITEM_SIZE; i++) {
 				itemNum[i] = -1;
-				if (GData.GetItemFlag(i) >= 1) {
+				if (GData.GetItemPoint(i,8) >= 1) {
 					if (itemType == GData.GetItemPoint(i, 1)) {
 						if (drawCount == chooseItem) {
 							DrawFormatString(stringX, stringY + row * drawCount, colorY, "%s", GData.GetItemText(i, 0).c_str());
-							DrawFormatString(stringX + 300, stringY + row * drawCount, colorY, "X%d", GData.GetItemFlag(i));
+							DrawFormatString(stringX + 300, stringY + row * drawCount, colorY, "X%d", GData.GetItemPoint(i, 8));
 						}
 						else {
 							DrawFormatString(stringX, stringY + row * drawCount, colorW, "%s", GData.GetItemText(i, 0).c_str());
-							DrawFormatString(stringX + 300, stringY + row * drawCount, colorW, "X%d", GData.GetItemFlag(i));
+							DrawFormatString(stringX + 300, stringY + row * drawCount, colorW, "X%d", GData.GetItemPoint(i, 8));
 						}
 						drawCount++;
 						itemNum[drawCount - 1] = i;

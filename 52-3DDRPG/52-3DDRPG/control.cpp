@@ -6,9 +6,17 @@ Control_c::Control_c() {
 	mMenu = new Menu_c();
 	mDungeon = new Dungeon_c();
 	mRoom = new Room_c();
+	mEventlist = new EventList();
 
 	GData.LoadAll(0);
 	battleManager = new BattleManager();
+
+	mEventlist->Initialize(mEvents);
+	mEventlist->setListFileName("resource/data/eventlist.csv");
+	mEventlist->readList();
+	mEventlist->Event(0);
+	mEventlist->Event(1);
+	mEventlist->Event(2);
 }
 
 Control_c::~Control_c() {
@@ -106,7 +114,9 @@ bool Control_c::All() {
 		break;
 	}
 
-	mFps->Draw();	//fps•\Ž¦
+	mEventlist->call();
+
+	//mFps->Draw();	//fps•\Ž¦
 	mFps->Wait();	//‘Ò‹@
 
 	if (Key[KEY_INPUT_ESCAPE] == 1) {

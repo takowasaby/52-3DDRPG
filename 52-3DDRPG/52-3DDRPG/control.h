@@ -10,6 +10,7 @@ class Option_c;
 class Room_c;
 
 class BattleManager;
+class EventList;
 
 class Control_c {
 private:
@@ -22,6 +23,7 @@ private:
 	Option_c* mOption;
 	Room_c* mRoom;
 	BattleManager* battleManager;
+	EventList* mEventlist;
 
 	int Key[256];
 

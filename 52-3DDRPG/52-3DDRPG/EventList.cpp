@@ -195,6 +195,7 @@ void EventList::Event(int num)
 	int i;
 	int flag;
 	string filename;
+	printfDx("event");
 	for (int i = 0; i < m_list[num].size(); i++)
 	{
 		printfDx("%d : %d\n", num, m_list[num].index(i).getType());

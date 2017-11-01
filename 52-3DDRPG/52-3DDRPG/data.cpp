@@ -596,7 +596,7 @@ int Data_c::SkillStringToNum(string name)
 	}
 	return -1;
 }
-inline int Data_c::GetCharacterStatus(int num, int sort, int value)
+int Data_c::GetCharacterStatus(int num, int sort, int value)
 {
 	switch (sort) {
 	case 0:
@@ -680,6 +680,10 @@ void Data_c::ChangeCharacterState(int num, int state)
 int Data_c::GetCharacterSkillCode(int num, int order)
 {
 	return character[num].skillCode[order];
+}
+int Data_c::GetCharacterFlag(int num)
+{
+	return character[num].flag;
 }
 string Data_c::GetCharacterName(int num)
 {

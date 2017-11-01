@@ -117,6 +117,7 @@ public:
 	bool GetCharacterState(int num, int state);
 	void ChangeCharacterState(int num, int state);
 	int GetCharacterSkillCode(int num, int order);
+	int GetCharacterFlag(int num);
 	string GetCharacterName(int num);
 
 	characterData GetCharacter(int);
