@@ -27,11 +27,7 @@ mGame_scene(game_scene)
 */
 Dungeon_c::~Dungeon_c()
 {
-<<<<<<< HEAD
 	delete textBox;
-=======
-	//delete mData;
->>>>>>> BattleScene
 }
 
 void Dungeon_c::KeyUpdate(int Key[256])

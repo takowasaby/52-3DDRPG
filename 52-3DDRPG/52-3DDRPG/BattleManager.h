@@ -8,9 +8,9 @@ private:
 	//ƒL[“ü—Í—p•Ï”
 	int mKey[256]; // 0:“ü—Í‚³‚ê‚Ä‚¢‚È‚¢ 1:“ü—Í‚³‚ê‚½uŠÔ 2:“ü—Í‚³‚ê‚Ä‚¢‚é
 
-	CharacterData player[CHARACTER_SIZE];
+	characterData player[CHARACTER_SIZE];
 	Attack aPlayer[CHARACTER_SIZE];
-	CharacterData enemy;
+	characterData enemy;
 	Attack aEnemy;
 
 	TextBox* PlayerWindow;

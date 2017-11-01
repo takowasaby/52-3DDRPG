@@ -1,7 +1,7 @@
 #include "define.h"
 
 Data_c::Data_c() :
-	scenario(4),
+	scenario(0),
 	stage(0),
 	dir(0),
 	room(-1),
@@ -15,7 +15,7 @@ Data_c::Data_c() :
 	controlMode = 2;
 	eventScene = 0;
 	titleScene = 2;
-	gameScene = 3;
+	gameScene = 0;
 
 	for (int i = 0; i < MAP_SIZE_X; i++) {
 		for (int j = 0; j < MAP_SIZE_Y; j++) {
@@ -374,18 +374,6 @@ EXFILE:
 
 
 
-int Data_c::GetItemFlag(int num)
-{
-	return item[num].flag;
-}
-int Data_c::GetSoubiFlag(int num)
-{
-	return soubi[num].flag;
-}
-int Data_c::GetCharacterFlag(int num)
-{
-	return character[num].flag;
-}
 int Data_c::GetItemPoint(int num, int sort)
 {
 	map<string, int>::iterator itr;
@@ -415,7 +403,11 @@ int Data_c::GetItemPoint(int num, int sort)
 	case 7:
 		return item[num].target;
 		break;
+	case 8:
+		return item[num].flag;
+		break;
 	}
+
 	return 0;
 }
 void Data_c::SetItemPoint(int num, int sort, int point)
@@ -444,6 +436,9 @@ void Data_c::SetItemPoint(int num, int sort, int point)
 		break;
 	case 7:
 		item[num].target = point;
+		break;
+	case 8:
+		item[num].flag = point;
 		break;
 	}
 }
@@ -486,6 +481,9 @@ int Data_c::GetSoubiPoint(int num, int sort)
 	case 4:
 		return soubi[num].area;
 		break;
+	case 5:
+		return soubi[num].flag;
+		break;
 	}
 	return 0;
 }
@@ -506,6 +504,9 @@ void Data_c::SetSoubiPoint(int num, int sort, int point)
 		break;
 	case 4:
 		soubi[num].area = point;
+		break;
+	case 5:
+		soubi[num].flag = point;
 		break;
 	}
 }
@@ -595,7 +596,7 @@ int Data_c::SkillStringToNum(string name)
 	}
 	return -1;
 }
-int Data_c::GetCharacterStatus(int num, int sort, int value)
+inline int Data_c::GetCharacterStatus(int num, int sort, int value)
 {
 	switch (sort) {
 	case 0:
@@ -685,7 +686,7 @@ string Data_c::GetCharacterName(int num)
 	return string(character[num].name);
 }
 
-Character_t Data_c::GetCharacter(int num)
+characterData Data_c::GetCharacter(int num)
 {
 	return character[num];
 }

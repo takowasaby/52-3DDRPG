@@ -75,8 +75,8 @@ private:
 		int skillCode[SKILL_SIZE] = {};
 		int Image;
 	};*/
-	Character_t character[CHARACTER_SIZE];
-	*/
+	//Character_t character[CHARACTER_SIZE];
+	
 public:
 	Data_c();		//コンストラクタ
 					//	Data_c(int* mode, int* event_scene, int* title_scene, int* game_scene);
@@ -89,22 +89,18 @@ public:
 	void SkillLoad(int s);
 	void CharacterLoad(int s);
 
-	int GetItemFlag(int num);
-	int GetSoubiFlag(int num);
-	int GetCharacterFlag(int num);
-
 	void CalcItemFlag(int num, int vary);
 	void CalcSoubiFlag(int num, int vary);
 	void SetCharacterFlag(int num, int vary);
 
 	string GetGoalText(int s, int num);
 
-	int GetItemPoint(int num, int sort);			//0:num 1:type 2:effect1 3:effect2 4:point1 5:point2 6:area
+	int GetItemPoint(int num, int sort);			//0:num 1:type 2:effect1 3:effect2 4:point1 5:point2 6:area 7:target 8:flag
 	void SetItemPoint(int num, int sort, int point);
 	string GetItemText(int num, int sort);			//0:name 1:explain
 	int ItemStringToNum(string name);
 
-	int GetSoubiPoint(int num, int sort);			//0:num 1:type 2:effect 3:point 4:area
+	int GetSoubiPoint(int num, int sort);			//0:num 1:type 2:effect 3:point 4:area 5:flag
 	void SetSoubiPoint(int num, int sort, int point);
 	string GetSoubiText(int num, int sort);			//0:name 1:explain
 
@@ -123,7 +119,7 @@ public:
 	int GetCharacterSkillCode(int num, int order);
 	string GetCharacterName(int num);
 
-	Character_t GetCharacter(int);
+	characterData GetCharacter(int);
 
 	int GetScenario();
 	int GetStage();

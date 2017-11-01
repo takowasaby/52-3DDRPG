@@ -5,13 +5,10 @@ Control_c::Control_c() {
 	mFps = new Fps_c;
 	mMenu = new Menu_c();
 	mDungeon = new Dungeon_c();
-<<<<<<< HEAD
 	mRoom = new Room_c();
 
 	GData.LoadAll(0);
-=======
 	battleManager = new BattleManager();
->>>>>>> BattleScene
 }
 
 Control_c::~Control_c() {
