@@ -286,20 +286,20 @@ void Dungeon_c::WallDraw()
 
 void Dungeon_c::UIDraw()
 {
-	textBox->DrawWindow(0, 320, 640, 160);
+	textBox->DrawWindow(0, 320, 480, 160);
 
 	int row = 32;
 	int stringX = 24;
 	int stringY = 344;
 
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
-		if (GData.GetCharacterFlag(i)) {
+		if (GData.GetCharacterFlag(i) && GData.GetCharacterStatus(i, 0, 0) != 0 && GData.GetCharacterStatus(i, 1, 0) != 0) {
 
 			DrawBox(stringX + 122, stringY + 8 + row * i, stringX + 222, stringY + 17 + row * i, GetColor(0, 0, 0), TRUE);
 			DrawBox(stringX + 125, stringY + 5 + row * i, stringX + 125 + 100 * (GData.GetCharacterStatus(i, 0, 1) / GData.GetCharacterStatus(i, 0, 0)), stringY + 15 + row * i, GetColor(0, 255, 0), TRUE);
 
 			DrawBox(stringX + 282, stringY + 8 + row * i, stringX + 382, stringY + 17 + row * i, GetColor(0, 0, 0), TRUE);
-			DrawBox(stringX + 285, stringY + 5 + row * i, stringX + 285 + 100 * (GData.GetCharacterStatus(i, 0, 1) / GData.GetCharacterStatus(i, 0, 0)), stringY + 15 + row * i, GetColor(255, 51, 153), TRUE);
+			DrawBox(stringX + 285, stringY + 5 + row * i, stringX + 285 + 100 * (GData.GetCharacterStatus(i, 1, 1) / GData.GetCharacterStatus(i, 1, 0)), stringY + 15 + row * i, GetColor(255, 51, 153), TRUE);
 
 			DrawFormatString(stringX, stringY + row * i, GetColor(255, 255, 255), "%s ", GData.GetCharacterName(i).c_str());
 			DrawFormatString(stringX + 100, stringY + row * i, GetColor(255, 255, 255), "HP:%d/%d ", GData.GetCharacterStatus(i, 0, 1), GData.GetCharacterStatus(i, 0, 0));
@@ -309,7 +309,8 @@ void Dungeon_c::UIDraw()
 	}
 
 	int xLeft, yUp, size;
-	DrawBox(487, 327, 633, 473, 0, TRUE);
+//	DrawBox(487, 327, 633, 473, 0, TRUE);
+	textBox->DrawWindow(480, 320, 160, 160);
 
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 9; j++) {
@@ -320,19 +321,19 @@ void Dungeon_c::UIDraw()
 			if (x - 4 + j >= 0 && y - 4 + i >= 0 && x - 4 + j < 25 && y - 4 + i < 25) {
 				switch (wallData[x - 4 + j][y - 4 + i].type) {
 				case 1: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(255, 255, 255), TRUE);	break;
-				case 2: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(255, 0, 0), TRUE);		break;
+				case 2: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(0, 0, 255), TRUE);		break;
 				case 3: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(0, 255, 0), TRUE);		break;
-				case 4: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(0, 0, 255), TRUE);		break;
+				case 4: DrawBox(xLeft, yUp, xLeft + size, yUp + size, GetColor(255, 0, 0), TRUE);		break;
 				}
 			}
 		}
 	}
 
 	switch (dir) {
-	case 0:	DrawTriangle(553, 407, 560, 393, 567, 407, GetColor(255, 255, 0), TRUE); break;
-	case 1: DrawTriangle(553, 393, 567, 400, 553, 407, GetColor(255, 255, 0), TRUE); break;
-	case 2: DrawTriangle(553, 393, 567, 393, 560, 407, GetColor(255, 255, 0), TRUE); break;
-	case 3: DrawTriangle(567, 393, 553, 400, 567, 407, GetColor(255, 255, 0), TRUE); break;
+	case 0:	DrawTriangle(553, 407, 560, 393, 567, 407, GetColor(255, 0, 0), TRUE); break;
+	case 1: DrawTriangle(553, 393, 567, 400, 553, 407, GetColor(255, 0, 0), TRUE); break;
+	case 2: DrawTriangle(553, 393, 567, 393, 560, 407, GetColor(255, 0, 0), TRUE); break;
+	case 3: DrawTriangle(567, 393, 553, 400, 567, 407, GetColor(255, 0 ,0), TRUE); break;
 	}
 }
 

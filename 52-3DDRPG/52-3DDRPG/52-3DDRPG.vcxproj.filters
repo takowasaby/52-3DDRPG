@@ -52,7 +52,9 @@
     <ClCompile Include="BattleManager.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="scenario.cpp" />
+    <ClCompile Include="scenario.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="control.h">
@@ -97,7 +99,9 @@
     <ClInclude Include="BattleManager.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="scenario.h" />
+    <ClInclude Include="scenario.h">
+      <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダーファイル">

@@ -8,6 +8,7 @@ class Dungeon_c;
 class SaveLoad_c;
 class Option_c;
 class Room_c;
+class Scenario_c;
 
 class BattleManager;
 
@@ -22,6 +23,7 @@ private:
 	Option_c* mOption;
 	Room_c* mRoom;
 	BattleManager* battleManager;
+	Scenario_c* mScenario;
 
 	int Key[256];
 
