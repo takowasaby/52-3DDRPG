@@ -191,3 +191,4 @@ struct CharacterData {
 #include"room.h"
 #include "BattleManager.h"
 #include "scenario.h "
+#include "EventList.h"
