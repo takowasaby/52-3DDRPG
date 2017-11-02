@@ -18,6 +18,8 @@ private:
 	string GoalText[SCENARIO_SIZE][EVENT_SIZE];
 	//	int itemFlag[SCENARIO_SIZE][ITEM_TYPE_SIZE][ITEM_SIZE];
 	int EventCallFlag;
+	bool dungeonLoadFlag;
+	bool roomLoadFlag;
 
 	int BMode;
 	int BScene;
@@ -162,6 +164,12 @@ public:
 
 	int GetMode();
 	int GetScene(int mode);
+
+	int GetDungeonLoadFlag();
+	int GetRoomLoadFlag();
+
+	void SetDungeonLoadFlag(int i);
+	void SetRoomLoadFlag(int i);
 };
 
 extern Data_c GData;

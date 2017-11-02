@@ -10,7 +10,9 @@ Data_c::Data_c() :
 	playCount(0),
 	BMode(0),
 	BScene(0),
-	EventCallFlag(0)
+	EventCallFlag(0),
+	dungeonLoadFlag(0),
+	roomLoadFlag(0)
 {
 	controlMode = 1;
 	eventScene = 0;
@@ -822,6 +824,7 @@ void Data_c::SetScenario(int i)
 }
 void Data_c::SetStage(int i)
 {
+	if (stage != i) dungeonLoadFlag = TRUE;
 	stage = i;
 }
 void Data_c::SetDungeonX(int i)
@@ -845,6 +848,7 @@ void Data_c::SetEventFlag(int i)
 
 void Data_c::SetRoom(int i)
 {
+	if (room != i) roomLoadFlag = TRUE;
 	room = i;
 }
 
@@ -937,6 +941,24 @@ int Data_c::GetScene(int mode)
 	case 1: return titleScene; break;
 	case 2: return gameScene; break;
 	}
+}
+
+int Data_c::GetDungeonLoadFlag()
+{
+	return dungeonLoadFlag;
+}
+int Data_c::GetRoomLoadFlag()
+{
+	return roomLoadFlag;
+}
+
+void Data_c::SetDungeonLoadFlag(int i)
+{
+	dungeonLoadFlag = i;
+}
+void Data_c::SetRoomLoadFlag(int i)
+{
+	roomLoadFlag - i;
 }
 
 void Data_c::CalcItemFlag(int num, int vary)
