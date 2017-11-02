@@ -168,6 +168,16 @@ int EventDrawSetting_c::getDark()
 	return m_dark;
 }
 
+void EventDrawSetting_c::setOutName(string name)
+{
+	m_outname = name;
+}
+
+string EventDrawSetting_c::getOutName()
+{
+	return m_outname;
+}
+
 void EventDrawSetting_c::debugOutput()
 {
 	printfDx("Name[ x, y, w, h, n, pn, mode, turn, opacity, dark]\n");

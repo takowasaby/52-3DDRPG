@@ -38,9 +38,12 @@ int EventList::callEvent()
 	return m_event->call();
 }
 
-void EventList::setListFileName(string listfile)
+void EventList::setListFileName(int listfile)
 {
-	m_ListFileName = listfile;
+	m_scenario = listfile;
+	string name = "resource/data/eventlist" + to_string(listfile) + ".csv";
+	name == "resource/data/eventlist0.csv";
+	m_ListFileName = name;
 }
 
 void EventList::readList()
@@ -54,9 +57,8 @@ void EventList::readList()
 	ListAction laction;
 	Action     action;
 	char ch;
-	//m_filelist = FileRead_open(m_ListFileName.c_str());
-	m_filelist = FileRead_open("resource/data/eventlist.csv");
-
+	m_filelist = FileRead_open(m_ListFileName.c_str());
+	m_filelist = FileRead_open("resource/data/eventlist0.csv");
 	if (m_filelist == NULL)
 	{
 		printfDx("read error2\n");
@@ -195,9 +197,18 @@ void EventList::Event(int num)
 	int i;
 	int flag;
 	string filename;
+	string str;
 	printfDx("event");
 	for (int i = 0; i < m_list[num].size(); i++)
 	{
+		if (m_list[num].index(i).index(0) <= 9)
+		{
+			str = "0" + to_string(m_list[num].index(i).index(0));
+		}
+		else
+		{
+			str = to_string(m_list[num].index(i).index(0));
+		}
 		printfDx("%d : %d\n", num, m_list[num].index(i).getType());
 		flag = 1;
 		
@@ -226,10 +237,10 @@ void EventList::Event(int num)
 			m_flag[ABS(m_list[num].index(i).index(0))] = m_list[num].index(i).index(1);
 			break;
 		case 1://Event
-			
 			m_callEventFlag = 1;
-			filename = "resource/text/event-" +to_string(m_list[num].index(i).index(0)) + ".txt";
+			filename = "resource/text/"+to_string(m_scenario)+ "-" + str + ".txt";
 			printfDx("%s\n", filename.c_str());
+			
 			readEvent(filename);
 			break;
 		case 2://Item
@@ -248,6 +259,7 @@ void EventList::Event(int num)
 			GData.SetCharacterFlag(m_list[num].index(i).index(0), m_list[num].index(i).index(1));
 			break;
 		case 5://skill
+
 			break;
 		case 6://move
 			GData.SetDungeonX(m_list[num].index(i).index(0));

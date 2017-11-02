@@ -44,6 +44,16 @@ int EventChara_c::getID()
 	return m_ID;
 }
 
+void EventChara_c::setOutName(string name)
+{
+	m_outName = name;
+}
+
+string EventChara_c::getOutName()
+{
+	return m_outName;
+}
+
 map<string, int>* EventChara_c::getPictureMap()
 {
 	return &m_picture;

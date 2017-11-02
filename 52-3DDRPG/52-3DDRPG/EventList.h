@@ -19,8 +19,8 @@ public:
 	void Initialize(Event_c*);
 	void readEvent(string filename);
 	void call();
-	int callEvent();
-	void setListFileName(string listfile);
+	int  callEvent();
+	void setListFileName(int listfile);
 	void readList();
 	void addList(ListAction la, int num);
 	void Event(int num);
@@ -32,6 +32,7 @@ private:
 	string m_ListFileName;
 	int m_filelist;
 	int m_callEventFlag;
+	int m_scenario;
 };
 
 #endif // EVENTLIST_H

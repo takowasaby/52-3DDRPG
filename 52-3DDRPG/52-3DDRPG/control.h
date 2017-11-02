@@ -8,6 +8,7 @@ class Dungeon_c;
 class SaveLoad_c;
 class Option_c;
 class Room_c;
+class Scenario_c;
 
 class BattleManager;
 class EventList;
@@ -24,6 +25,7 @@ private:
 	Room_c* mRoom;
 	BattleManager* battleManager;
 	EventList* mEventlist;
+	Scenario_c* mScenario;
 
 	int Key[256];
 

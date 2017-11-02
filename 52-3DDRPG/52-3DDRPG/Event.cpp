@@ -8,8 +8,10 @@ Event_c::Event_c():
 	m_keyPushed(0),
 	m_keyPushContinuanceTempo(10),
 	m_keyPushContinuanceFirst(5),
-	m_waitingTime(60000),
-	m_allend(0)
+	m_waitingTime(1000000),
+	m_allend(0),
+	m_speakerFlag(0),
+	m_writeStyle(EVENT_WRITESTYLE_DEFAULT)
 {
 	reset();
 
@@ -66,8 +68,12 @@ void Event_c::readDataFromFile(string filename)
 		readEach = splitString(readLineBuffer, ' ');
 		if (readEach.at(0) == "addchara")
 		{
-			addCharacter(readEach.at(1) );
+			addCharacter(readEach.at(1) , readEach.at(2));
 			printfDx("addchara\n");
+		}
+		else if (readEach.at(0) == "addsound")
+		{
+			m_soundData[readEach.at(1)] = LoadSoundMem(readEach.at(2).c_str());
 		}
 		else if (readEach.at(0) == "addcharapicture")
 		{
@@ -94,11 +100,11 @@ void Event_c::readDataFromFile(string filename)
 		}
 		else if (readEach.at(0) == "dark")
 		{
-			addEventAction(readEach.at(1) , EVENT_ACTION_DARK, 0, 0, 0, 0);
+			addEventAction(readEach.at(1) , EVENT_ACTION_DARK, 0, 0, 0, 1);
 		}
 		else if (readEach.at(0) == "light")
 		{
-			addEventAction(readEach.at(1), EVENT_ACTION_LIGHT, 0, 0, 0, 0);
+			addEventAction(readEach.at(1), EVENT_ACTION_LIGHT, 0, 0, 0, 1);
 		}
 		else if (readEach.at(0) == "move")
 		{
@@ -136,14 +142,105 @@ void Event_c::readDataFromFile(string filename)
 				stoi(readEach.at(7) )
 			);
 		}
+		else if (readEach.at(0) == "playsound")
+		{
+			addEventAction(readEach.at(1),
+				EVENT_ACTION_SOUND,
+				0, 0, 0, 0,
+				0,
+				1
+			);
+		}
+		else if (readEach.at(0) == "stopsound")
+		{
+			addEventAction(readEach.at(1),
+				EVENT_ACTION_STOPSOUND,
+				0, 0, 0, 0,
+				0,
+				1
+			);
+		}
+		else if (readEach.at(0) == "loopsound")
+		{
+			addEventAction(readEach.at(1),
+				EVENT_ACTION_LOOPSOUND,
+				0, 0, 0, 0,
+				0,
+				1
+			);
+		}
 		else if (readEach.at(0)  == "text")
 		{
-			addEventAction(readEach.at(1) ,
-				EVENT_ACTION_TEXT,
-				0,0,0,0,
-				m_waitingTime,
-				1
+			switch (m_writeStyle)
+			{
+			case EVENT_WRITESTYLE_DEFAULT:
+				addEventAction(readEach.at(1),
+					EVENT_ACTION_TEXT,
+					0, 0, 0, 0,
+					m_waitingTime/2,
+					1
 				);
+				break;
+			case EVENT_WRITESTYLE_ONEBYONE:
+				addEventAction(readEach.at(1),
+					EVENT_ACTION_TEXT,
+					0, m_writeTime * readEach.at(1).size(),
+					m_writeTime * readEach.at(1).size(),
+					1
+				);
+				addEventAction("NULL",
+					EVENT_ACTION_WAIT,
+					0, 0,
+					m_writeTime * readEach.at(1).size(),
+					0
+				);
+				addEventAction("default",
+					EVENT_ACTION_STYLE,
+					0, 0, 0, 0,
+					m_waitingTime, 1
+				);
+				addEventAction(readEach.at(1),
+					EVENT_ACTION_TEXT,
+					0, 0, 0, 0,
+					m_waitingTime,
+					1
+				);
+				addEventAction("onebyone",
+					EVENT_ACTION_STYLE,
+					m_writeTime, m_writeTime,
+					m_waitingTime, 1
+				);
+				break;
+			case EVENT_WRITESTYLE_BLACK:
+				addEventAction(readEach.at(1),
+					EVENT_ACTION_TEXT,
+					0, m_writeTime * readEach.at(1).size(),
+					m_writeTime * readEach.at(1).size(),
+					1
+				);
+				addEventAction("NULL",
+					EVENT_ACTION_WAIT,
+					0, 0,
+					m_writeTime * readEach.at(1).size(), 0
+				);
+				addEventAction("default",
+					EVENT_ACTION_STYLE,
+					0, 0, 0, 0,
+					m_waitingTime, 1
+				);
+				addEventAction(readEach.at(1),
+					EVENT_ACTION_TEXT,
+					0, 0, 0, 0,
+					m_waitingTime,
+					1
+				);
+				addEventAction("black",
+					EVENT_ACTION_STYLE,
+					m_writeTime, m_writeTime,
+					m_waitingTime, 1
+				);
+				break;
+			}
 		}
 		else if (readEach.at(0) == "textclear")
 		{
@@ -172,6 +269,39 @@ void Event_c::readDataFromFile(string filename)
 				);
 			}
 		}
+		else if (readEach.at(0) == "wordstyle")
+		{
+			if (readEach.at(1) == "default")
+			{
+				m_writeStyle = EVENT_WRITESTYLE_DEFAULT;
+				addEventAction("default",
+					EVENT_ACTION_STYLE,
+					0, 0, 0, 0,
+					0, 1
+				);
+			}
+			else if (readEach.at(1) == "onebyone")
+			{
+				m_writeStyle = EVENT_WRITESTYLE_ONEBYONE;
+				m_writeTime = stoi(readEach.at(2));
+				addEventAction("onebyone",
+					EVENT_ACTION_STYLE,
+					stoi(readEach.at(2)), stoi(readEach.at(2)),
+					0, 1
+				);
+
+			}
+			else if (readEach.at(1) == "backblack")
+			{
+				m_writeStyle = EVENT_WRITESTYLE_BLACK;
+				m_writeTime = stoi(readEach.at(2));
+				addEventAction("black",
+					EVENT_ACTION_STYLE,
+					stoi(readEach.at(2)), stoi(readEach.at(2)),
+					0, 1
+				);
+			}
+		}
 		else  if (readEach.at(0) == "end")
 		{
 			addEventAction("NULL",
@@ -189,6 +319,7 @@ void Event_c::readDataFromFile(string filename)
 		*/
 		readEach.clear();
 	}
+	m_writeStyle = EVENT_WRITESTYLE_DEFAULT;
 }
 
 int Event_c::call()
@@ -196,6 +327,7 @@ int Event_c::call()
 	keyCheck();
 	clsDx();
 	string onceStr = "";
+	int len;
 	for (m_elit = m_eventList.begin(); m_elit != m_eventList.end();)
 	{
 		m_EQPcall = &(*m_elit);
@@ -222,24 +354,75 @@ int Event_c::call()
 			break;
 		case EVENT_ACTION_TEXT:
 			//printfDx("comment:\n");
-			onceStr = m_EQPcall->getName();
+			if (m_writeStyle == EVENT_WRITESTYLE_DEFAULT)
+			{
+				onceStr = m_EQPcall->getName();
+			}
+			else if (m_writeStyle == EVENT_WRITESTYLE_ONEBYONE)
+			{
+				len = m_EQPcall->getCurrentNumber()/ m_writeTime;
+				if (len > m_EQPcall->getName().length())
+					len = m_EQPcall->getName().length();
+				onceStr = m_EQPcall->getName().substr(0, len);
+			}
+			else if (m_writeStyle == EVENT_WRITESTYLE_BLACK)
+			{
+				len = m_EQPcall->getCurrentNumber() / m_writeTime;
+				if (len > m_EQPcall->getName().length())
+					len = m_EQPcall->getName().length();
+				onceStr = m_EQPcall->getName().substr(0, len);
+			}
 			break;
 		case EVENT_ACTION_TURN:
 			drawRequestSetDirection(m_EQPcall->getName());
 			break;
 		case EVENT_ACTION_LIGHT:
+			m_speaker = m_EDScall;
 			m_EDScall->setDark(0);
+			m_speakerFlag = 1;
 			break;
 		case EVENT_ACTION_DARK:
+			if (m_speakerFlag == 1)
+			{
+				if (m_speaker->getName() == m_EDScall->getName())
+				{
+					m_speakerFlag = 0;
+				}
+			}
 			m_EDScall->setDark(1);
 			break;
 		case EVENT_ACTION_TEXTCLEAR:
+			break;
+		case EVENT_ACTION_STYLE:
+			if (m_EQPcall->getName() == "default")
+			{
+				m_writeStyle = EVENT_WRITESTYLE_DEFAULT;
+			}
+			else if (m_EQPcall->getName() == "onebyone")
+			{
+				m_writeStyle = EVENT_WRITESTYLE_ONEBYONE;
+				m_writeTime = m_EQPcall->getCurrentNumber();
+			}
+			else if (m_EQPcall->getName() == "black")
+			{
+				m_writeStyle = EVENT_WRITESTYLE_BLACK;
+				m_writeTime = m_EQPcall->getCurrentNumber();
+			}
 			break;
 		case EVENT_ACTION_WAIT:
 			if(m_EQPcall->getTakeTime() == m_waitingTime)
 			{
 				printfDx("click Z!\n");
 			}
+			break;
+		case EVENT_ACTION_SOUND:
+			PlaySoundMem(m_soundData[m_EQPcall->getName()], DX_PLAYTYPE_BACK);
+			break;
+		case EVENT_ACTION_LOOPSOUND:
+			PlaySoundMem(m_soundData[m_EQPcall->getName()], DX_PLAYTYPE_LOOP);
+			break;
+		case EVENT_ACTION_STOPSOUND:
+			StopSoundMem(m_soundData[m_EQPcall->getName()]);
 			break;
 		case EVENT_ACTION_END:
 			m_allend = 1;
@@ -305,19 +488,37 @@ int Event_c::call()
 		}
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
-	if (onceStr != "")
+	if (m_writeStyle == EVENT_WRITESTYLE_BLACK)
+	{
+		DrawBox(0, 0, 640, 480, GetColor(0, 0, 0), TRUE);
+		if (onceStr != "")
+		{
+			DrawFormatString(20, 100, GetColor(255, 255, 255), "%s\n", onceStr.c_str());
+		}
+
+	}
+	else
 	{
 		textBox->DrawWindow(0, 360, 640, 120);
-		DrawFormatString(20, 400, GetColor(255, 255, 255), "%s\n", onceStr.c_str());
+		if (onceStr != "")
+		{
+			if (m_speakerFlag == 1)
+			{
+				textBox->DrawWindow(0, 320, 160, 40);
+				DrawFormatString(22, 332, GetColor(255, 255, 255), "%s\n", m_speaker->getOutName().c_str());
+			}
+			DrawFormatString(20, 400, GetColor(255, 255, 255), "%s\n", onceStr.c_str());
 
+		}
 	}
 	return 1;
 }
 
-int Event_c::addCharacter(string name)
+int Event_c::addCharacter(string name, string out)
 {
 	m_charaData[name] = EventChara_c(name);
 	m_charaData[name].setID(m_totalID);
+	m_charaData[name].setOutName(out);
 	m_totalID ++;
 	return m_totalID - 1;
 }
@@ -414,6 +615,7 @@ int Event_c::drawRequest(string drawName, string name, string pictureName, int m
 {
 	m_drawData[drawName] = EventDrawSetting_c(x, y, name, pictureName, mode);
 	m_drawData[drawName].setPictureID(m_charaData[name].getPictureID(pictureName));
+	m_drawData[drawName].setOutName(m_charaData[name].getOutName());
 	drawRequestSetSize(drawName, width, height);
 	return 0;
 }
@@ -426,6 +628,12 @@ int Event_c::eraseRequest(string drawName)
 
 int Event_c::eraseAllRequest()
 {
+	map<string, EventDrawSetting_c>::iterator edi;
+	for (m_ddit = m_drawData.begin(); m_ddit != m_drawData.end(); ++m_ddit);
+	for (edi = m_drawData.begin(); edi != m_drawData.end(); ++edi)
+	{
+		DeleteGraph(edi->second.getPictureID());
+	}
 	m_drawData.clear();
 	return 0;
 }
@@ -438,6 +646,11 @@ int Event_c::reset()
 		{
 			DeleteGraph(ed->second);
 		}
+	}
+	for (map<string, int>::iterator edd = m_soundData.begin(); edd != m_soundData.end(); edd++)
+	{
+		StopSoundMem(edd->second);
+		DeleteSoundMem(edd->second);
 	}
 	m_charaData.clear();
 	m_drawData.clear();

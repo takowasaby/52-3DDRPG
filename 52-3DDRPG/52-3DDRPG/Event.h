@@ -23,8 +23,14 @@ private:
 	map<string, EventChara_c> m_charaData;
 	map<string, EventDrawSetting_c> m_drawData;
 	map<string, EventDrawSetting_c>::iterator m_ddit;
+	map<string, int> m_soundData;
 	list<EventQueuePrototype> m_eventList;
 	list<EventQueuePrototype>::iterator m_elit;
+	EventDrawSetting_c *m_speaker;
+
+	int m_writeStyle;
+	int m_writeTime;
+	int m_speakerFlag;
 	int m_totalID;
 	int m_waitingTime;
 	int m_allend;
@@ -43,7 +49,7 @@ public:
 	void keyCheck();
 	void readDataFromFile(string filename);
 	int call();
-	int addCharacter(string name);//“oê‚·‚éƒLƒƒƒ‰ƒNƒ^[–¼‚Ì“o˜^
+	int addCharacter(string name, string out);//“oê‚·‚éƒLƒƒƒ‰ƒNƒ^[–¼‚Ì“o˜^
 	int addCharacterPicture(string filename, string name, string pictureName);//“oê‚·‚éƒLƒƒƒ‰ƒNƒ^[–¼‚É‘Î‰‚·‚é‰æ‘œ‚Ì“o˜^
 	int addEventAction(string name, int actionType, int from, int to, int takeTime, int afterOn);
 	int addEventAction(string name, int actionType, int from1, int from2, int to1, int to2, int takeTime, int afterOn);

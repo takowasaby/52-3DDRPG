@@ -12,10 +12,10 @@ Data_c::Data_c() :
 	BScene(0),
 	EventCallFlag(0)
 {
-	controlMode = 2;
+	controlMode = 1;
 	eventScene = 0;
 	titleScene = 2;
-	gameScene = 0;
+	gameScene = 3;
 
 	for (int i = 0; i < MAP_SIZE_X; i++) {
 		for (int j = 0; j < MAP_SIZE_Y; j++) {

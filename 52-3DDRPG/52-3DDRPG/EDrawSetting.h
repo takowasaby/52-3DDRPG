@@ -18,6 +18,7 @@ private:
 
 	string m_name;
 	string m_pictureName;
+	string m_outname;
 	int m_pictureID;
 	int m_mode;
 	int m_turn;
@@ -51,5 +52,7 @@ public:
 	int getMode();
 	void setDark(int i);
 	int getDark();
+	void setOutName(string name);
+	string getOutName();
 	void debugOutput();
 };

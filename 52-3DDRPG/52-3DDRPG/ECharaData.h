@@ -10,6 +10,7 @@ class EventChara_c
 private:
 	int m_ID;
 	string m_name;
+	string m_outName;
 	map<string, int> m_picture;
 	int m_direction;
 public:
@@ -21,5 +22,8 @@ public:
 	int getPictureID(string pictureName);
 	void setID(int n);
 	int  getID();
+	void setOutName(string name);
+	string getOutName();
+
 	map<string, int>* getPictureMap();
 };
