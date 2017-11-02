@@ -1,6 +1,7 @@
 #pragma once
 
 class TextBox;
+class EventList;
 
 class Dungeon_c {
 private:
@@ -11,6 +12,7 @@ private:
 	int input[MAP_SIZE_X * MAP_SIZE_Y];
 	char inputc[MAP_SIZE_X * MAP_SIZE_Y];
 	int wall[SCENARIO_SIZE][WALL_SIDE][WALL_TYPE];
+	int eventNum[MAP_SIZE_X][MAP_SIZE_Y] = {};
 	int back;
 	char gname[32];
 	int wallForDraw[10];
@@ -28,6 +30,7 @@ private:
 	WallData_t wallData[MAP_SIZE_X][MAP_SIZE_Y];
 
 	TextBox *textBox;
+	EventList *eventList;
 
 public:
 	Dungeon_c();
@@ -38,7 +41,7 @@ public:
 	void DataSet();
 	void DataLoad(int scenario, int stage);
 	void GraphLoad(int scenario, int stage);
-	void SetData(Data_c *d);
+	void SetEventList(EventList *e);
 	void BackDraw();
 	void WallDrawSet();
 	void WallDraw();

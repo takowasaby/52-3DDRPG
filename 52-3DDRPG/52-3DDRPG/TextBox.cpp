@@ -85,7 +85,7 @@ void TextBox::Draw()
 
 	//座標とサイズを元にウィンドウを描画する
 	//DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
-	DrawWindow(x, y, w, h);
+//	DrawWindow(x, y, w, h);
 
 	//ウィンドウにメッセージを描画する
 	if (message.size() > 0) {
@@ -169,6 +169,7 @@ void TextBox::SetMessage(string text, int index)
 void TextBox::ClearMessage()
 {
 	message.clear();
+	position = 0;
 }
 
 void TextBox::ScrollUp()
@@ -218,7 +219,7 @@ void TextBox::LoadWindow()
 }
 void TextBox::DrawWindow(int x, int y, int w, int h)
 {
-	//	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
+//	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
 	DrawExtendGraph(x + 3, y + 3, x + w - 2, y + h - 2, windowBack, TRUE);
 
 	int edgeType = 0;
@@ -241,6 +242,11 @@ void TextBox::DrawWindow(int x, int y, int w, int h)
 string TextBox::Enter()
 {
 	return message[position];
+}
+
+int TextBox::EnterInt()
+{
+	return position;
 }
 
 string TextBox::GetText(int index)
