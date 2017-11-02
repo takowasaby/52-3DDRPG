@@ -12,6 +12,8 @@ Control_c::Control_c() {
 	GData.LoadAll(0);
 	battleManager = new BattleManager();
 
+	mRoom->SetEventList(mEventlist);
+
 	mEventlist->Initialize(mEvents);
 	mEventlist->setListFileName("resource/data/eventlist.csv");
 	mEventlist->readList();
