@@ -10,7 +10,9 @@ Data_c::Data_c() :
 	playCount(0),
 	BMode(0),
 	BScene(0),
-	EventCallFlag(0)
+	EventCallFlag(0),
+	dungeonLoadFlag(0),
+	roomLoadFlag(0)
 {
 	controlMode = 1;
 	eventScene = 0;
@@ -60,6 +62,69 @@ void Data_c::LoadAll(int s)
 	SkillLoad(s);
 	CharacterLoad(s);
 }
+void Data_c::DeleteAll()
+{
+	for (int i = 0; i < CHARACTER_SIZE; i++) {
+		character[i].num = -1;
+		character[i].name = "";
+		character[i].flag = 0;
+		character[i].soubi[0] = -1;
+		character[i].soubi[1] = -1;
+		character[i].hp.base = 0;
+		character[i].hp.calc = 0;
+		character[i].mp.base = 0;
+		character[i].mp.calc = 0;
+		character[i].str.base = 0;
+		character[i].str.calc = 0;
+		character[i].vit.base = 0;
+		character[i].vit.calc = 0;
+		character[i].agi.base = 0;
+		character[i].agi.calc = 0;
+		character[i].intel.base = 0;
+		character[i].intel.calc = 0;
+		for (int j = 0; j < SKILL_SIZE; j++) {
+			character[i].skillCode[j] = 0;
+		}
+		for (int j = 0; j < STATE_SIZE; j++) {
+			character[i].state[j] = 0;
+		}
+		character[i].image = 0;
+	}
+	for (int i = 0; i < SKILL_SIZE; i++) {
+		skill[i].num = -1;
+		skill[i].name = "";
+		skill[i].target = -1;
+		skill[i].mp = 0;
+		skill[i].effect = -1;
+		skill[i].status = -1;
+		skill[i].magnification = 0;
+		skill[i].area = -1;
+		skill[i].explain = "";
+	}
+	for (int i = 0; i < ITEM_SIZE; i++) {
+		item[i].num = -1;
+		item[i].name = "";
+		item[i].flag = 0;
+		item[i].target = -1;
+		item[i].type = -1;
+		item[i].effect1 = -1;
+		item[i].point1 = -1;
+		item[i].effect2 = -1;
+		item[i].point2 = -1;
+		item[i].area = -1;
+		item[i].explain = "";
+	}
+	for (int i = 0; i < SOUBI_SIZE; i++) {
+		soubi[i].num = -1;
+		soubi[i].name = "";
+		soubi[i].flag = 0;
+		soubi[i].type = -1;
+		soubi[i].effect = -1;
+		soubi[i].point = -1;
+		soubi[i].area = -1;
+		soubi[i].explain = "";
+	}
+}
 void Data_c::GoalLoad(int s)
 {
 	int n, i, fp;
@@ -71,7 +136,7 @@ void Data_c::GoalLoad(int s)
 
 	fp = FileRead_open(fname);//ƒtƒ@ƒCƒ‹“Ç‚Ýž‚Ý
 	if (fp == NULL) {
-		printfDx("read error\n");
+//		printfDx("read error\n");
 		return;
 	}
 
@@ -367,12 +432,23 @@ EXFILE:
 	char gname[64];
 
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
-		sprintf_s(gname, "resource/data/%d_chara%d.png", scenario, i);
+		sprintf_s(gname, "resource/picture/%d/%d.png", scenario, i);
 		character[i].image = LoadGraph(gname);
 	}
 }
 
-
+int Data_c::GetItemFlag(int num)
+{
+	return item[num].flag;
+}
+int Data_c::GetSoubiFlag(int num)
+{
+	return soubi[num].flag;
+}
+int Data_c::GetCharacterFlag(int num)
+{
+	return character[num].flag;
+}
 
 int Data_c::GetItemPoint(int num, int sort)
 {
@@ -463,6 +539,7 @@ int Data_c::ItemStringToNum(string name)
 	}
 	return -1;
 }
+
 int Data_c::GetSoubiPoint(int num, int sort)
 {
 	switch (sort) {
@@ -522,6 +599,7 @@ string Data_c::GetSoubiText(int num, int sort)
 	}
 	return 0;
 }
+
 int Data_c::GetSkillPoint(int num, int sort)
 {
 	switch (sort) {
@@ -596,6 +674,7 @@ int Data_c::SkillStringToNum(string name)
 	}
 	return -1;
 }
+
 int Data_c::GetCharacterStatus(int num, int sort, int value)
 {
 	switch (sort) {
@@ -664,9 +743,19 @@ int Data_c::GetCharacterSoubi(int num, int type)
 {
 	return character[num].soubi[type];
 }
-void Data_c::SetCharacterSoubi(int num, int type, int soubi)
+void Data_c::SetCharacterSoubi(int num, int type, int soubiNum)
 {
-	character[num].soubi[type] = soubi;
+	for (int i = 0; i < 6; i++) {
+		if (i == soubi[character[num].soubi[type]].effect) {
+			SetCharacterStatus(num, i, GetCharacterStatus(num, i, 0), 1);
+		}
+	}
+	character[num].soubi[type] = soubiNum;
+	for (int i = 0; i < 6; i++) {
+		if (i == soubi[soubiNum].effect) {
+			SetCharacterStatus(num, i, GetCharacterStatus(num, i, 0) + soubi[soubiNum].point, 1);
+		}
+	}
 }
 bool Data_c::GetCharacterState(int num, int state)
 {
@@ -677,13 +766,13 @@ void Data_c::ChangeCharacterState(int num, int state)
 	if (character[num].state[state] == TRUE) character[num].state[state] = FALSE;
 	else character[num].state[state] = TRUE;
 }
-int Data_c::GetCharacterSkillCode(int num, int order)
+void Data_c::SetCharacterSkillCode(int num, int skillNum, int flag)
 {
-	return character[num].skillCode[order];
+	character[num].skillCode[skillNum] = flag;
 }
-int Data_c::GetCharacterFlag(int num)
+int Data_c::GetCharacterSkillCode(int num, int skillNum)
 {
-	return character[num].flag;
+	return character[num].skillCode[skillNum];
 }
 string Data_c::GetCharacterName(int num)
 {
@@ -727,13 +816,15 @@ int Data_c::GetRoom()
 	return room;
 }
 
-
 void Data_c::SetScenario(int i)
 {
+	GData.DeleteAll();
+	GData.LoadAll(i);
 	scenario = i;
 }
 void Data_c::SetStage(int i)
 {
+	if (stage != i) dungeonLoadFlag = TRUE;
 	stage = i;
 }
 void Data_c::SetDungeonX(int i)
@@ -757,6 +848,7 @@ void Data_c::SetEventFlag(int i)
 
 void Data_c::SetRoom(int i)
 {
+	if (room != i) roomLoadFlag = TRUE;
 	room = i;
 }
 
@@ -851,7 +943,23 @@ int Data_c::GetScene(int mode)
 	}
 }
 
+int Data_c::GetDungeonLoadFlag()
+{
+	return dungeonLoadFlag;
+}
+int Data_c::GetRoomLoadFlag()
+{
+	return roomLoadFlag;
+}
 
+void Data_c::SetDungeonLoadFlag(int i)
+{
+	dungeonLoadFlag = i;
+}
+void Data_c::SetRoomLoadFlag(int i)
+{
+	roomLoadFlag - i;
+}
 
 void Data_c::CalcItemFlag(int num, int vary)
 {

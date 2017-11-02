@@ -9,13 +9,17 @@ private:
 	int dir;
 	int room;
 	int dungeonX, dungeonY;
+	int playCount;
+
+	int eventFlag[SCENARIO_SIZE][EVENT_SIZE];
+
 	int wallType[MAP_SIZE_X][MAP_SIZE_Y];
 	int mapFlag[SCENARIO_SIZE][STAGE_SIZE][MAP_SIZE_X][MAP_SIZE_Y];
-	int eventFlag[SCENARIO_SIZE][EVENT_SIZE];
-	int playCount;
 	string GoalText[SCENARIO_SIZE][EVENT_SIZE];
 	//	int itemFlag[SCENARIO_SIZE][ITEM_TYPE_SIZE][ITEM_SIZE];
 	int EventCallFlag;
+	bool dungeonLoadFlag;
+	bool roomLoadFlag;
 
 	int BMode;
 	int BScene;
@@ -83,11 +87,17 @@ public:
 	~Data_c();		//デストラクタ
 
 	void LoadAll(int s);
+	void DeleteAll();
+
 	void GoalLoad(int s);
 	void ItemLoad(int s);
 	void SoubiLoad(int s);
 	void SkillLoad(int s);
 	void CharacterLoad(int s);
+
+	int GetItemFlag(int num);
+	int GetSoubiFlag(int num);
+	int GetCharacterFlag(int num);
 
 	void CalcItemFlag(int num, int vary);
 	void CalcSoubiFlag(int num, int vary);
@@ -113,11 +123,11 @@ public:
 	void SetCharacterStatus(int num, int sort, int point, int value);	//0:HP 1:MP 2:STR 3:VIT 4:AGI 5:INT
 	int GetCharacterImage(int num);
 	int GetCharacterSoubi(int num, int type);
-	void SetCharacterSoubi(int num, int type, int soubi);
+	void SetCharacterSoubi(int num, int type, int soubiNum);
 	bool GetCharacterState(int num, int state);
 	void ChangeCharacterState(int num, int state);
+	void SetCharacterSkillCode(int num, int skillNum, int flag);
 	int GetCharacterSkillCode(int num, int order);
-	int GetCharacterFlag(int num);
 	string GetCharacterName(int num);
 
 	characterData GetCharacter(int);
@@ -154,6 +164,12 @@ public:
 
 	int GetMode();
 	int GetScene(int mode);
+
+	int GetDungeonLoadFlag();
+	int GetRoomLoadFlag();
+
+	void SetDungeonLoadFlag(int i);
+	void SetRoomLoadFlag(int i);
 };
 
 extern Data_c GData;

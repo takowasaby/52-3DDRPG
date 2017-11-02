@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
     <ClCompile Include="BattleManager.cpp" />
     <ClCompile Include="control.cpp" />
     <ClCompile Include="data.cpp" />
@@ -159,7 +160,9 @@
     <ClCompile Include="EDrawSetting.cpp" />
     <ClCompile Include="EQueueData.cpp" />
     <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventList.cpp" />
     <ClCompile Include="fps.cpp" />
+    <ClCompile Include="ListAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="option.cpp" />
@@ -171,13 +174,16 @@
     <ClCompile Include="title.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
     <ClInclude Include="BattleManager.h" />
     <ClInclude Include="control.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="dungeon.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="EventList.h" />
     <ClInclude Include="fps.h" />
+    <ClInclude Include="ListAction.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="option.h" />
     <ClInclude Include="room.h" />

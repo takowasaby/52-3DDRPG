@@ -15,9 +15,9 @@ Control_c::Control_c() {
 	mEventlist->Initialize(mEvents);
 	mEventlist->setListFileName("resource/data/eventlist.csv");
 	mEventlist->readList();
-	mEventlist->Event(0);
-	mEventlist->Event(1);
-	mEventlist->Event(2);
+//	mEventlist->Event(0);
+//	mEventlist->Event(1);
+//	mEventlist->Event(2);
 }
 
 Control_c::~Control_c() {
@@ -117,6 +117,15 @@ bool Control_c::All() {
 	}
 
 	mEventlist->call();
+
+	if (GData.GetDungeonLoadFlag()) {
+		mDungeon->DataLoad(GData.GetScenario(), GData.GetStage());
+		GData.SetDungeonLoadFlag(FALSE);
+	}
+	else if (GData.GetRoomLoadFlag()) {
+		mRoom->DataLoad(GData.GetScenario(), GData.GetStage(), GData.GetRoom());
+		GData.SetRoomLoadFlag(FALSE);
+	}
 
 	//mFps->Draw();	//fps•\Ž¦
 	mFps->Wait();	//‘Ò‹@
