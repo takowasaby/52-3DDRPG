@@ -196,7 +196,7 @@ struct CharacterData {
 #include "title.h"
 #include "menu.h"
 #include "Sound.h"
-#include"room.h"
+#include "room.h"
 #include "BattleManager.h"
 #include "scenario.h "
 #include "EventList.h"
