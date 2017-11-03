@@ -15,8 +15,8 @@ private:
 	int select;
 	bool cflag = false;
 	Data_c *mData;
-	char gname[32];
-	char fname[32];
+	char gname[64];
+	char fname[64];
 	int gx, gy;
 	int furniture[ROOM_FURNITURE_MAX];
 	int furniturehight[ROOM_FURNITURE_MAX];

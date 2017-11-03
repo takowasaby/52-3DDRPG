@@ -2,7 +2,9 @@
 
 //
 
+addsound bgm resource/sounds/scenario2/独白(オルゴール風).wav
 wordstyle backblack 3
+loopsound bgm
 //
 
 text むかーしむかし、BBあるところに勇者がおりました。
@@ -26,4 +28,5 @@ wait
 text 7日目からはBB前を向いて歩き始めました
 wait
 text ～Fin～
+stopsound bgm
 end
