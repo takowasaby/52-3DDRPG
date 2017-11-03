@@ -9,8 +9,12 @@ Data_c::Data_c() :
 	dungeonLoadFlag(0),
 	roomLoadFlag(0)
 {
+<<<<<<< HEAD
 	//controlMode = 1;
 	controlMode = 2;
+=======
+	controlMode = 1;
+>>>>>>> master
 	eventScene = 0;
 	titleScene = 2;
 	gameScene = 2;
@@ -220,7 +224,7 @@ void Data_c::ItemLoad(int s)
 		case 5: item[n].area = atoi(inputc);		break;
 		case 6: item[n].effect2 = atoi(inputc);		break;
 		case 7: item[n].point2 = atoi(inputc);		break;
-		case 8: item[n].explain = inputc;			break;
+		case 9: item[n].explain = inputc;			break;
 		}
 		//
 		item[n].flag = 1;
@@ -828,7 +832,8 @@ void Data_c::SetScenario(int i)
 }
 void Data_c::SetStage(int i)
 {
-	if (stage[scenario] != i) dungeonLoadFlag = TRUE;
+//	if (stage[scenario] != i) 
+		dungeonLoadFlag = TRUE; 
 	stage[scenario] = i;
 }
 void Data_c::SetDungeonX(int i)

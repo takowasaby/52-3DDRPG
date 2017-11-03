@@ -11,9 +11,11 @@ private:
 	int graph[2][5];
 	char fname[64];
 	int mKey[256];
+  bool first;
   int end;
 	int bright;
 	int tempScreen;
+  int ScenarioBGM;
 public:
 	Scenario_c();
 	~Scenario_c();
