@@ -18,6 +18,8 @@ private:
 	bool isVisible;	//可視状態か
 	bool isSelected;	//選択状態か
 
+	bool isReverse;
+
 	int windowEdge[9];
 	int windowBack;
 
@@ -46,6 +48,7 @@ public:
 	void AddMessage(string);
 	void SetMessage(string,int);
 	void ClearMessage();
+	void Reset();
 	void DrawMessage(int x, int y, int w, int h, string str);
 
 	//ページめくり関数
@@ -58,7 +61,6 @@ public:
 	void DrawWindow(int x, int y, int w, int h);
 
 	string Enter();
-	int EnterInt();
 
 	string GetText(int);
 };
