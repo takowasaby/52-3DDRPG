@@ -12,7 +12,10 @@ private:
 	int Cursor = 300;
   int BGM;
 	bool first = true;
+  bool end = false;
+  bool flag = true;
 	int bright = 0;
+  int fade = 255;
 
 	void nowLoading(void);
 

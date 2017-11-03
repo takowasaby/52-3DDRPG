@@ -178,7 +178,7 @@ void EventList::readList()
 		}
 		else
 		{
-			printfDx("update\n");
+			//printfDx("update\n");
 			addList(laction, counter);
 			eventCount = num[0];
 			laction.reset();
@@ -198,6 +198,7 @@ void EventList::addList(ListAction la, int num)
 
 void EventList::Event(int num)
 {
+	int i;
 	int flag;
 	string filename;
 	string str;
@@ -240,8 +241,8 @@ void EventList::Event(int num)
 			m_flag[ABS(m_list[num].index(i).index(0))] = m_list[num].index(i).index(1);
 			break;
 		case 1://Event
-			filename = "resource/text/"+to_string(m_scenario)+ "-" + str + ".txt";
-			printfDx("%s\n", filename.c_str());			
+			filename = "resource/text/scenario"+to_string(m_scenario)+"/"+ to_string(m_scenario) + "-" + str + ".txt";
+			//printfDx("%s\n", filename.c_str());			
 			readEvent(filename);
 			break;
 		case 2://Item
