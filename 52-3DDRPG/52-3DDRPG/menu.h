@@ -44,7 +44,7 @@ private:
 		status,
 		soubi,
 		item,
-		title,
+		scenario,
 		save,
 		option,
 	}Mode;
