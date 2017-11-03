@@ -1,0 +1,92 @@
+addchara josei 女性
+addchara kage0 影
+addchara kage1 影
+addchara dansei 男性
+//
+//
+addcharapicture josei defaultstand resource/picture/scenario4/character/josei.png
+addcharapicture kage0 defaultstand resource/picture/scenario4/character/kage.png
+addcharapicture kage1 defaultstand resource/picture/scenario4/character/josei.png
+addcharapicture dansei defaultstand resource/picture/scenario4/character/dansei.png
+//
+//
+drawrequest josei01 josei defaultstand 10 20 0 70
+drawrequest dansei01 dansei defaultstand 60 20 0 70
+drawrequest kage01 kage0 defaultstand 100 20 0 70
+drawrequest kage02 kage1 defaultstand 100 20 0 70 
+turn josei01 0
+dark josei01
+dark dansei01
+dark kage 01
+dark kage02
+//
+wordstyle onebyone 3
+//
+light dansei01
+text やあ
+wait
+//
+dark dansei01
+light josei01
+text うん・・・
+wait
+//
+dark josei01
+light dansei01
+text その・・・言いにくいんだけど・・・BB僕はもう・・・
+wait
+//
+dark dansei01
+light josei01
+text 分かってる
+wait
+text ここに来る途中でちゃんと思い出した
+wait
+//
+dark josei01
+light dansei01
+text あれは君のせいなんかじゃないBBただの交通事故だったんだBB運が悪かっただけなんだ
+wait
+text 運悪く僕が君を見つけてしまったBB運悪く雨が降っていて視界が悪かったBB運悪く車の運転手が居眠りをしていたBB運悪く君に声をかけようとした僕の方へ車が走ってきた
+wait
+text ただ・・・ただそれだけなんだよ・・・
+wait
+//
+dark dansei01
+light josei01
+text うん、ありがとうBBでも、もう大丈夫
+wait
+text 私はここまで来られたBB私は思い出すことができた
+wait
+text それから、
+wait
+//
+move dansei01 60 20 100 20 100 0
+move kage01 100 20 60 20 100 0
+dark josei01
+light kage01
+text ・・・・・・
+wait
+//
+dark kage01
+light josei01
+text 私はあなたを知っている
+wait
+text あなたは私
+wait
+//
+move kage01 60 20 100 20 100 0
+move kage02 100 20 60 20 100 0
+dark josei01
+light kage02
+text ・・・・・・・・・
+wait
+//
+dark kage02
+light josei01
+text 大丈夫
+wait
+text 私は、私と向き合える
+wait
+//
+end

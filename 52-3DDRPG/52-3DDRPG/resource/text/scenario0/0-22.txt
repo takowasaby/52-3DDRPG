@@ -1,0 +1,23 @@
+addchara misu みすちゃん
+addchara sato SATO
+//
+addcharapicture misu defaultstand resource/picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png
+//
+drawrequest misu01 misu defaultstand 70 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+dark misu01
+dark sato01
+//
+wordstyle onebyone 3
+//
+light misu01
+text ここが目的のセクター？
+wait
+//
+dark misu01
+light sato01
+text そうBB休憩室でマップを手に入れて、消耗品の補給をしよう
+wait
+//
+end

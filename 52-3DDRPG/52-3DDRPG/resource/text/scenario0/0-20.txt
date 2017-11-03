@@ -1,0 +1,28 @@
+addchara misu みす
+addchara sato SATO
+addchara seinen 青年
+//
+addcharapicture misu defaultstand resource/picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png
+addcharapicture seinen defaultstand resource/picture/scenario0/character/seinen.png
+//
+drawrequest misu01 misu defaultstand 30 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+drawrequest seinen01 seinen defaultstand 70 20 0 70
+turn misu01 0
+dark misu01
+dark sato01
+dark seinen01
+//
+wordstyle onebyone 3
+//
+light seinen01
+text ハァ・・・ハァ・・・BBどういうことか説明してもらいましょうか
+wait
+//
+dark seinen01
+light sato01
+text ・・・私にも分からないんだBBとにかく中に入って研究ログをチェックしよう
+wait
+//
+end

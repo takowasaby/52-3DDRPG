@@ -1,0 +1,346 @@
+
+addchara himeno 媛乃
+addchara yuri 百合
+addchara you 洋
+addchara yumeto 梦人
+
+addcharapicture himeno defaultstand resource/picture/scenario1/character/1-himeno.png 
+addcharapicture yuri defaultstand resource/picture/scenario1/character/1-yuri.png
+addcharapicture you defaultstand resource/picture/scenario1/character/1-you.png
+addcharapicture yumeto defaultstand resource/picture/scenario1/character/1-yumeto.png
+
+drawrequest himeno01 himeno defaultstand 100 20 0 70
+drawrequest yuri01 yuri defaultstand 100 20 0 70
+drawrequest you01 you defaultstand 100 20 0 70
+drawrequest yumeto01 yumeto defaultstand 100 20 0 70
+
+wordstyle backblack 3 
+
+text　ふと気がつくと、こんなところにいた。
+wait
+text　『こんなところ』なんて意味深ぽく言ってBBみたけど、毎日通っている教室だ。
+wait
+text　きっちりと並んだ机、BB誰かが書いた黒板の落書き、BBしまい忘れられたホウキ。
+wait
+text　違うのは、BBすっかり闇に沈んでることだけ。
+wait
+move himeno01 100 20 10 20 0
+light himeno01
+
+text（……よく見えない）
+wait
+dark himeno01
+text　窓の外には月が赤々と輝いている。BBその光でなんとなく周りが見えるけど、BB隅のほうははっきりしない。
+wait
+text　ふと、その隅で何か動いた気がした。
+wait
+light himeno01
+text（誰か……いる？）
+wait
+dark himeno01
+text　じっと目を凝らす。BB後ろのドア、ひときわ光の届かない……
+wait
+
+wordstyle onebyone  3 
+
+move yuri01 100 20 60 20 0
+light yuri01
+text　あ、ヒメちゃん！
+wait
+light himeno01
+dark yuri01
+text　ひゃああああ！？
+wait
+light yuri01
+dark himeno01
+text　えっ、ええええ！？
+wait
+
+wordstyle backblack 3 
+
+dark yuri01
+text（……って、あれ？）
+wait
+text　警戒してたところに声かけられて、BBもう尋常じゃなくびっくりしちゃったけど、BB今の声って。
+wait
+
+wordstyle onebyone  3 
+
+light yuri01
+text　も、もう、いきなり叫ばないでよぉ。BBびっくりしたぁ
+wait
+move himeno01 10 20 100 20 0
+move yumeto01 100 20 10 20 0
+dark yuri01
+light yumeto01
+text　暗がりから声をかけないほうがいいよって、BB僕は忠告したよ？
+wait
+
+wordstyle backblack 3 
+
+dark yumeto01
+text　暗闇から、影が2つ現れる。BBその女の子のほうに、私は目を奪われた。
+wait
+
+wordstyle onebyone  3 
+
+move yumeto01 10 20 100 20 0
+move himeno01 100 20 10 20 0
+light himeno01
+text　……ユリちゃん？
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　二本にくくったおさげ髪、BBア○レちゃんみたいな大きい丸メガネ、BBいつもへにょっと下がったまゆげ。
+wait
+text　記憶そのままのユリちゃんは、BBぱっと顔を輝かせた。
+wait
+
+wordstyle onebyone  3 
+
+light yuri01
+text　すごい！　ヒメちゃんそのままだ！
+wait
+light himeno01
+dark yuri01
+text　え、うん……？
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　最後に会ってから半年しか経ってないし、BBそんなに変わってるはずもないけどな。
+wait
+text　おおげさな反応に首を捻って、BB彼女が私と同じ制服なのに気づいた。
+wait
+text（あれ？　なんでうちの制服なんだろ）
+wait
+text　白川百合（しらかわゆり）ちゃんは、BB去年のクラスメイトだ。
+wait
+text　いわゆる夢女子……BBん？　腐女子とどう違うんだろう？　
+wait
+text　私にはよくわかってないんだけど、BBとにかくアニメやゲームが大好きでヲタク。
+wait
+text　私もマンガはよく読むので、BBアニメ化した本の話をしたのがBB仲良くなったきっかけだ。
+wait
+text　本人いわくBB「男子同士のアレソレが好きなわけではない」BBらしい。
+wait
+text　けど、クラスの男子グループがBBおんぶしたり膝枕してるのをBBすごい目で見てたのは忘れられない。
+wait
+text　特に好みだった人にはいろいろ言ってたなBB女体化萌えとか触手責めとか……
+wait
+text　精神衛生上あまりよろしくない記憶までBB掘り起こされたので、遡るのはやめておく。BB私はまだまともだ。
+wait
+text　そんな彼女は、今年の春に転校した。BB春休みに一度遊んだきり、会っていない。
+wait
+text　「遊びたいね」とは言ってたし、BB頑張れば会えない距離じゃないんだけど……
+wait
+text（なんだかんだずっと忙しかったし……）
+wait
+text　そっと視線をそらしたとき、BB彼女が「あ！」と声を上げた。
+wait
+
+wordstyle onebyone  3 
+
+light yuri01
+text　青ぴょん！！！
+wait
+light himeno01
+dark yuri01
+text　え
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　その呼び方は。
+wait
+text　慌ててユリちゃんの見ているほうを向くと、
+wait
+
+wordstyle onebyone  3 
+
+move himeno01 10 20 100 20 0
+move you01 100 20 10 20 0
+light you01
+text　えっと……白川さん？
+wait
+light yuri01
+dark you01
+text　青ぴょんだあ゛あ゛あ゛！！！
+wait
+text　かわ゛ぃ゛ぃ゛！！！
+wait
+text　まし゛てん゛し゛ぃ゛ぃ゛！！！
+wait
+
+wordstyle backblack 3 
+
+dark yuri01
+text　突然絶叫したユリちゃんは、BB頭を抱えてスクワットし始めた。
+wait
+text　それを呆然と見つめる青井くんの顔にはBB「ごめんよくわからない」と書いてあった。
+wait
+text　友達であるはずの私にも理解できないからBBそれは正しいと思う。
+wait
+text　青井洋（あおいよう）くん。BB去年のクラスメイトにして、お察しだろうがBB例のユリちゃんの好みど真ん中の人だ。
+wait
+text　綺麗だけど決してキツそうではなく、BBむしろ柔和な顔立ち。
+wait
+text　深い藍に見えるほど黒い髪はBB信じられないくらいサラサラで、BB女子によくうらやましがられている。
+wait
+text　性格も優しいし、BB当然女子人気高いのに、BB男子にも嫌われないすごい人。
+wait
+text　ユリちゃんいわく、「そういう完璧超人をBBぐっちゃぐちゃにするのが楽しいんだよ！」BBと……
+wait
+text　……余計なことまで思い出しつつ。BB私も訊きたいんだけど、
+wait
+
+wordstyle onebyone  3 
+
+move himeno01 100 20 60 20 0
+move yuri01 60 20 100 20 0
+light himeno01
+text　……青井くん、だよね？
+wait
+dark himeno01
+light you01
+text　え、うん、そうだけど
+wait
+light himeno01
+dark you01
+text　なんで……メイド服なの？
+wait
+light you01
+dark himeno01
+text　…………
+wait
+
+wordstyle backblack 3 
+
+dark you01
+text　マンガか、その手のカフェぐらいでしかBB見たことないようなフリフリスカート。BBしかも膝上10センチ。
+wait
+text　うらやましい以上に心配なほど細い足はBB白いストッキングに覆われ、BBサラツヤ髪にはヘッドドレスまで載ってる。
+wait
+text　青井くんはたっぷり10秒もBB自分の姿を見下ろしていて、
+wait
+
+wordstyle onebyone  3
+
+light you01
+dark himeno01
+text　…………なんでだろうね？
+wait
+dark you01
+light himeno01
+text　…………
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　その間ユリちゃんはずっと、BB頭を抱えたりしゃがみこんだりBB踊り狂ったりしていた。
+wait
+text　青井くんはそっちをチラチラしながら、BBたぶんちょっとおびえていた。
+wait
+text 地味でおとなしめだった子がBBこんなのになってたら普通に怖いよね。
+wait
+
+wordstyle onebyone  3 
+
+move himeno01 60 20 100 20 0
+move yumeto01 100 20 60 20 0
+light yumeto01
+text　まぁ、夢だからね
+wait
+
+wordstyle backblack 3 
+
+dark yumeto01
+text　ふいに聞き慣れない声が混ざって、BB思わず息を呑む。
+wait
+text　いつの間にか後ろに人がいた。BBそういえば、ユリちゃんと一緒にBB誰かいたっけ……
+wait
+
+wordstyle onebyone  3 
+
+light you01
+text　黒山
+wait
+
+wordstyle backblack 3 
+
+dark you01
+text　青井くんが、驚いたように名前を呼ぶ。
+wait
+text　よくよく見ると、確かに黒山くんだ。BB確か去年、隣のクラスだったような……BB喋ったことないし、よく覚えてないけど。
+wait
+
+wordstyle onebyone  3 
+
+light yumeto01
+text　ユメトでいいよ
+wait
+
+wordstyle backblack 3 
+
+dark yumeto01
+text　彼はちょいちょいっと手を振った。
+wait
+
+wordstyle onebyone  3 
+
+light yumeto01
+text　どうせ夢なんだし、親しくいこうよ。ね？
+wait
+move you01 10 20 100 20 0
+move himeno01 100 20 10 20 0
+light himeno01
+dark yumeto01
+text　夢……？
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　これは夢なのか。
+wait
+text　あぁ、でも、考えてみたら当然か。BB転校した子がいて、クラスの男子はメイド、BB学校は真っ暗……
+wait
+
+wordstyle onebyone  3 
+
+light yumeto01
+text　そ、これは夢
+wait
+
+wordstyle backblack 3
+
+dark yumeto01
+text　ユメトくんは、歌うように続ける。
+wait
+
+wordstyle onebyone  3 
+
+light yumeto01
+text　君の心が作り出した、君のイメージの世界
+wait
+
+wordstyle backblack 3
+
+dark yumeto01
+text　夢の世界。BB私の心が作り出した、私のイメージの世界……
+wait
+text　身体がぶるっと震えた。
+wait
+text　はっちゃけたユリちゃんも、BBメイドの青井くんも、BB喋ったことないはずのユメトくんも、
+wait
+text　本人みたいだけどまるっきり私の想像で、BB実在してなくて。
+wait
+text　ふいに背筋が寒くなって、BB慌てて首を振って、頭から追い出した。
+wait
+
+end

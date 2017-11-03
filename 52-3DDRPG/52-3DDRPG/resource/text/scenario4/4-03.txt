@@ -1,0 +1,21 @@
+wordstyle backblack 3
+//
+text 傘を持つBB扉を開けて、家から出る
+wait
+//
+text 憂鬱な気分BB傘を開いて歩き出す
+wait
+//
+text 冷たい雨の中を歩くのは嫌いBBけれど胸の鼓動を感じるBB体の熱を感じる
+wait
+//
+text 今まで何回雨の中を歩いたろうBBでもこんな感覚一度もない
+wait
+//
+text 靴が冷たく濡れていくBB零れそうになる笑みを抑える
+wait
+//
+text 私は歩いているBBあなたを目で追いかけながら
+wait
+//
+end

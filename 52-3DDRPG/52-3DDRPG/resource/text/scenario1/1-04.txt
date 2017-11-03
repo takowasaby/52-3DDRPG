@@ -1,0 +1,257 @@
+addchara himeno 媛乃
+addchara you 洋
+
+addcharapicture himeno defaultstand resource/picture/scenario1/character/1-himeno.png 
+addcharapicture you defaultstand resource/picture/scenario1/character/1-you.png
+
+drawrequest himeno01 himeno defaultstand 100 20 0 70
+drawrequest you01 you defaultstand 100 20 0 70
+
+wordstyle backblack 3
+
+text　昇降口の観音扉に鍵を差しこみ、回す。BBガチャリ、と重たい手応えがあって、BB扉がほんの少し開いた。
+wait
+
+wordstyle onebyone  3 
+
+move you01 100 20 10 20 0
+light you01
+text　開いた！
+wait
+move himeno01 100 20 60 20 0
+light himeno01
+dark you01
+text　や、やった！　これで出られるよ！
+wait
+
+wordstyle backblack 3 
+
+dark himeno01 
+text　喜びいさんで振り向くと、
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　……あれ？
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　闇が続く廊下には、洋くんしかいない。
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　ユリちゃんと、ユメトくんは……？
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　声は暗闇に呑み込こまれて力なく消えた。
+wait
+text　見渡す限り、2人の姿はない。BB気配すらない。BBひたすらがらんとした廊下。
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　……さっきまで、そこにいたよね
+wait
+dark himeno01
+light you01
+text　うん。BB俺のすぐ後ろにいたはずだけど……
+wait
+light himeno01
+dark you01
+text　足音もしなかったし……BBたぶん、そのへんにいるよね？
+wait
+dark himeno01
+light you01
+text　トイレにでも行ったんじゃないかなBBたぶん
+wait
+light himeno01
+dark you01
+text　……そうだよね
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　私もそう思う。BBきっとふらっとどっか行っただけだろう、BB2人ともマイペースだから。
+wait
+text　なのに、声が震えていた。BB嫌な予感が足下からBBじわじわとはいのぼってくるようだった。
+wait
+text　そのとき、突然音がした。
+//　ティレリレティリン♪
+//　ティレリレティリン♪
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　……え、なにこの軽快な音楽
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　どうやら、昇降口の開いた隙間からBB聞こえてくるようだ。BB軽やか華やかすぎて、むしろなんだか怖い。
+wait
+text　すると洋くんが目を丸くした。
+wait
+
+wordstyle onebyone  3 
+
+light you01
+text　これ、俺の目覚ましのアラームだ
+wait
+light himeno01
+dark you01
+text　えっ
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　ずいぶん可愛らしいメロディーだ。
+wait
+text　でも洋くん意外と天然ぽいし、BB確かにしっくりくるかも。
+wait
+text（……ってこれ私の夢だった、そういえば）
+wait
+text　ということは、BBこの可愛い洋くんはBBしょせん私のイメージでしかないんだ。
+wait
+text　ちょっと残念なような。
+wait
+
+wordstyle onebyone  3 
+
+light you01
+text　もしかして、そろそろ起きる時間かな
+wait
+
+wordstyle backblack 3 
+
+dark you01
+text　洋くんが小首を傾げる。
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　あ、そっか……すっかり忘れてた
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　ここは夢の中だから、BBそのうち目覚める時がくる。
+wait
+text　なんだったら、しょせんは全て夢。
+wait
+text　ユリちゃんとユメトがいないのだって、BB展開の一つでしかない。BB現実の2人にはなんの関係もない。
+wait
+text　けれどどうしても、不安が拭えない……
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　…………
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　うつむいていると、BB洋くんがまた首を傾げた気配がした。
+wait
+
+wordstyle onebyone  3 
+
+light you01
+text　ヒメちゃん、眉間にすごいしわ寄ってるよ
+wait
+light himeno01
+dark you01
+text　しわ寄らせたくもなるよ……
+wait
+light you01
+dark himeno01
+text　じゃあ、探しにいこうか
+wait
+light himeno01
+dark you01
+text　えっ
+wait
+
+wordstyle backblack 3 
+
+dark  himeno01
+text　顔を上げると、BB洋くんは思案するように首を傾けていた。
+wait
+
+wordstyle onebyone  3 
+
+light you01
+text　たとえ夢でも、友達をほっとけないしね
+wait
+light himeno01
+dark you01
+text　…………
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　ともだち。
+wait
+text　その言葉がなんだか、胸に引っかかった。
+wait
+
+wordstyle onebyone  3 
+
+light you01
+text　ヒメちゃん？
+wait
+light himeno01
+dark you01
+text　あ、うん。行こっか
+wait
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+　今度は違う意味で絶句する。
+洋「なに？　何か言いたいの？」
+媛乃「……洋くんって、もうちょっとマイペースな人かと思ってた」
+　良くも悪くも自分のペースで、加えてかっこよすぎて近づきがたい感じの『王子』なのかな、と。
+　『友達』だなんて、言わなそうだな、と。
+洋「マイペースではあるよ。ほら、行こう、時間ないから」
+媛乃「う、うん」
+　
+
+
+
+
+
+
+
+
+　今さらだけど、この人が『王子』の理由、もしかして浮き世離れなだけじゃなかったんだろうか。
+洋「で、行く？」
+　微笑みに引きずられるように、私はうなずいた。

@@ -1,0 +1,24 @@
+wordstyle backblack 3
+//
+text 何度も、何度もBBナイフを腹に突き立てる
+wait
+//
+text 死ね、死んでしまえBB少ない語彙で罵倒を繋げる
+wait
+//
+text 雨の音BBその中に思考が、心が、囚われていく
+wait
+//
+text 叫ぶ、刺す、叫ぶ、刺す、叫ぶ、刺す
+wait
+//
+text 雨が強くなる
+wait
+//
+text 何度も、何度もBBナイフを、自らに突き立てる
+wait
+//
+text 心の中ではBBいくらだって自分を殺せるのだから
+wait
+// 
+end

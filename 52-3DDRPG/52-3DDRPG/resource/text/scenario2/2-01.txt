@@ -1,0 +1,50 @@
+addchara motoyuusya
+ 元勇者
+//
+
+//
+
+addpicture motoyuusya defaultstand resource/picture/scenario2/character/motoyuusha_normal.png
+//
+
+//
+
+//drawrequest (canvasname charaname picturename x y width height)
+drawrequest motoyuusya01 motoyuusya defaultstand 10 20 0 70
+dark motoyuusya01
+
+//
+
+wordstyle onebyone 3
+//
+
+light motoyuusya01
+text あいつが死んでもう4日目か。
+
+wait
+
+text 墓を建てたはいいが…BB供えもんの一つもない墓なんて、BBあいつが寂しがるだろうな。
+
+wait
+
+text 冒険だなんだってBB全然あいつにかまってやれなくて
+
+wait
+
+text ようやっと落ち着いたと思ったらBB今度はあいつが空の上に行ってBB俺にかまってくれないと来たもんだ。
+
+wait
+
+text …いなくなった後にこんなこと言ったってBBあいつが困るだけか。
+
+wait
+
+move　motoyuusya01 10 20 30 40 100 0
+
+text あいつのこと思い出しながら、BB少し散歩でもするか。
+
+wait
+
+text 頭を冷やしてる内にBBはなむけの一つや二つ、見つかればいいんだがな。
+
+end

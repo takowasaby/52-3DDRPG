@@ -1,0 +1,75 @@
+addchara misu みすちゃん
+addchara sato SATO
+addchara josei 女性
+addcahra kaibutu 怪物
+//
+addcharapicture misu defaultstand resource/picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png
+addcharapicture josei defaultstand resource/picture/scenario0/character/josei.png
+addcharapicture kaibutu defaultstand resource/picture/scenario0/character/kaibutu.png
+//
+drawrequest misu01 misu defaultstand 30 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+drawrequest josei01 josei defaultstand 70 20 0 70
+drawrequest kaibutu01 kaibutu defaultstand 100 20 0 70
+turn misu01 0
+dark misu01
+dark sato01
+dark josei01
+dark kaibutu01
+//
+wordstyle onebyone 3
+//
+light misu01
+text この３つのデータがあればBBその「確認したいこと」が確認できるんだよね？
+wait
+//
+dark misu01
+light sato01
+text ああBB確認、というか裏付けだBB正確なことが分かってから話したいんだ
+wait
+//
+dark sato01
+text ガシャン！BBゴン！ドン！BBガン、ガンガン！
+wait
+//
+light misu01
+text 何の音だろう？
+wait
+//
+dark misu01
+light josei01
+text ・・・少し下がってて
+wait
+//
+dark josei01
+turn josei01
+move josei01 70 20 40 20 10 0
+wait
+//
+move kaibutu01 100 20 60 20 10 0
+move kaibutu01 60 20 70 20 90 0
+wait
+//
+light kaibutu01
+text グリュリュリュリュリュリュリュリュリュリュ・・・
+wait 
+//
+dark kaibutu01
+light misu01
+text 機械がみんな・・・！
+wait
+//
+dark misu01
+light sato01
+text まずい！ターミナルが！
+wait
+//
+dark sato01
+light josei01
+text 我が守人よ！BB務めを果たしなさい！
+wait
+text 大丈夫、私とこの子に任せて
+wait
+//
+end

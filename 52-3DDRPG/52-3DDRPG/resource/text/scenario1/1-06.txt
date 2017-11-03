@@ -1,0 +1,98 @@
+
+addchara himeno 媛乃
+addchara yuri
+addchara you
+addchara yumeto 梦人
+addchara muma 夢魔
+
+
+addcharapicture himeno defaultstand resource/picture/scenario1/character/1-himeno.png 
+addcharapicture yuri defaultstand resource/picture/scenario1/character/1-yuri.png
+addcharapicture you defaultstand resource/picture/scenario1/character/1-you.png
+addcharapicture yumeto defaultstand resource/picture/scenario1/character/1-yumeto.png
+addcharapicture muma defaultstand resource/picture/scenario1/character/1-muma.png
+
+drawrequest himeno01 himeno defaultstand 100 20 0 70
+drawrequest yuri01 yuri defaultstand 100 20 0 70
+drawrequest you01 you defaultstand 100 20 0 70
+drawrequest yumeto01 yumeto defaultstand 100 20 0 70
+drawrequest muma01 muma defaultstand 100 20 0 70
+
+
+wordstyle backblack 3 
+
+text　いつもの教室。
+wait
+text　机に座っておしゃべりしている男子、BBそれを注意する女子、BB黒板に壮大な芸術を描いているグループ。
+wait
+text　もちろん窓からは太陽光が降り注ぎ、BB赤い月なんてどこにも見えない。
+wait
+text　平和だ。
+wait
+text　ぼんやり机に頬杖をつき、BBそんなことを思う。
+wait
+text　女子の一団が前を通った。BBさりげなく混ざってる髪のサラサラな男子にBB小さく手を振られる。
+wait
+text　もちろんスカートなんかBB穿いてないのを見やりながら、BB手を振り返す。
+wait
+text　結局、あの夢はなんだったのかというと、
+wait
+text　転校先で友達作りに失敗したユリちゃんが、BB夢でいいから友達と好きな人に会いたい、BBとお月さまに願ったんだとか。
+wait
+text　高校生にもなって『お月さま』とか、BBあの痛発言集とか、BBそりゃ友達もできないだろって感じだけど……
+wait
+text　あれでいい子だけどね、もちろん。BBと、『唯一の友達』認定されていた身としてBBかばっておく。
+wait
+text　なんだかんだ言っても、嫌いじゃないし。
+wait
+text　あと、あれから、BBユリちゃんと洋くんが急速に仲良くなった。
+wait
+text　女装した己の姿からBB男の娘文化に目覚めた洋くんは、BBユリちゃんにいろいろ教授されている。
+wait
+text　なんだか、２人がくっつく物語のBB脇役だった気がしないでもない、私は。
+wait
+text　教室の一角でBBキャアッと女子の悲鳴が上がった。
+wait
+text　わりと本気トーンだったので、BB洋くんがさらっと男の娘萌え発言したのか。BBあの人は意外と現実でも天然だった。
+wait
+
+wordstyle onebyone  3 
+
+move muma01 100 20 60 20 0
+move himeno01 100 20 10 20 0
+light himeno01
+dark muma01
+text　で、僕のことは語らないで終わるつもり？
+wait
+light himeno01
+dark muma01
+text　夢にお帰り
+wait
+dark himeno01
+light muma01
+text　えー、ヒドーい、『ヒメちゃん』ったらBBアタシのこと遊びだったのぉー？
+wait
+light himeno01
+dark muma01
+text　ふんっ
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　気合いを入れて腕を振ると、BB幻影はかき消えた。
+wait
+text　ちょうど前にいた本物の黒山くんが、BB一瞬おびえたような目でこちらを見る。
+wait
+text　あの夢魔、BBどうやら今度は私を狙ってるらしく、
+wait
+text　「友達２人が仲良くなっちゃったら、BB今度寂しくなるのは君だよねー」BBとか笑ってたけど、冗談じゃない。
+wait
+text　もしおばあちゃんになっちゃっても、BBきっと２人は助けに来てくれるだろうけど。
+wait
+text　終礼のチャイムが鳴る。
+wait
+
+end
+
+//〈エンド〉

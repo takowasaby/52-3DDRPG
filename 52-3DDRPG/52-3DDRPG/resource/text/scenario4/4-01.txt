@@ -1,0 +1,21 @@
+addchara josei 女性
+addchara kage 影
+//
+//
+addcharapicture josei defaultstand resource/picture/scenario4/character/josei.png
+//
+//
+drawrequest josei01 josei defaultstand 35 20 0 70
+dark josei01
+//
+wordstyle onebyone 3
+//
+light josei01
+text はあ・・・
+wait
+text 傘、壊れちゃったな・・・
+wait
+text なにやってんだろ、私
+wait
+//
+end

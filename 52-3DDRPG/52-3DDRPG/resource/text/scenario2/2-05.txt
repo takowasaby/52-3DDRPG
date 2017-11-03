@@ -1,0 +1,150 @@
+addchara motoyuusya 元勇者
+ 
+addchara syozyo 少女
+//
+
+//
+
+addpicture motoyuusya defaultstand resource/picture/scenario2/character/motoyuusha_battle.png
+//
+addcharapicture syouzyo defaultstand resource/picture/scenario2/character/shoujo.png
+//
+
+//
+drawrequest(canvasname charaname picturename x y width height)
+
+drawrequest motoyuusya02 motoyuusya defaultstand 10 20 0 70
+
+drawrequest syouzyo01 syozyo defaultstand 20 60 0 70
+
+//
+
+turn motoyuusya02
+turn syouzyo01
+dark motoyuusya02
+
+dark syouzyo01
+
+//
+
+wordstyle onebyone 3
+//
+
+light motoyuusya02
+text 裏山の山頂にある花を持ってきてやれば、BB殺風景なあの墓もBB少しはなんとかなるかもな。
+
+wait
+
+text こんなもんじゃ、BB埋め合わせにもならんだろうが…BBん？
+
+wait
+
+move motoyuuysa02 10 20 10 60 120 0
+
+text お前、こんなところで何してるんだ？BBこの山には魔物が出るんだぞ。
+
+wait
+
+//勇者に向き直る
+
+turn syouzyo01
+dark motoyuusya02
+light syouzyo01
+
+text 一緒にいた人とはぐれちゃったの。BBおじさんこそ、こんなところで何してるの？
+
+wait
+turn motoyuusya02
+
+dark syouzyo01
+light motoyuusya02
+
+
+text 俺は山頂に用があるんだ。BB迷子なら引き返した方がいいぞ。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text 上の方へ行くの？BB私も行きたい！つれて行って！
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text 魔物が出ると言っただろう？BB迷子をそんなところに連れて行ける訳がない。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text おじさんは剣を持ってるじゃない！BBついていけば安心でしょ？
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text　いや、だがな…
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text それに、私が探している人もBB途中で見つかるかもしれないし！
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text しかし…
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+
+text おねがい！
+
+wait
+
+move motoyuusya02 10 60 10 70 60 0
+
+dark syouzyo01
+light motoyuusya02
+text …まあそこまで言うなら仕方ないか。
+
+wait
+
+//少女に向き直る
+turn motoyuusya02
+
+text その代わり、俺のそばを離れるなよ。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+text わーい！BBありがとう、おじさん。
+
+wait
+
+//フレームアウト
+move motoyuusya02 10 70 10 100 100 0
+
+move syouzyo01 20 60 20 100 80 0
+wait
+end

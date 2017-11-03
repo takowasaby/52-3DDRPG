@@ -1,0 +1,57 @@
+addchara misu みすちゃん
+addchara sato SATO
+addchara otoko 男
+//
+addcharapicture misu defaultstand resource/picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png
+addcharapicture otoko defaultstand resource/picture/scenario0/character/motoyuusha_battle.png
+//
+drawrequest misu01 misu defaultstand 30 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+drawrequest otoko01 otoko defaultstand 70 20 0 70
+turn misu01 0
+dark misu01
+dark sato01
+dark otoko01
+//
+wordstyle onebyone 3
+//
+light otoko01
+text ふう・・・BBやれやれ、これで終わりか
+wait
+//
+dark otoko01
+light sato01
+text 驚異的な自然治癒能力BB完全に人間ではなかったな・・・
+wait
+//
+dark sato01
+light misu01
+text ねえ！どういうこと！？なんで・・・
+wait
+//
+dark misu01
+light sato01
+text みす・・・
+wait
+text すまない、私にも分からないんだ
+wait
+//
+dark sato01
+light otoko01
+text ここには答えはない、というわけだ
+wait
+text なら、今できることをするだけだBB今、自分たちにできる「ベスト」をな
+wait
+//
+dark otoko01
+light sato01
+text そうだなBBまずは中央管理室に向かおうBB電源を復旧させるんだ
+wait
+//
+dark sato01
+light misu01
+text わかった・・・
+wait
+//
+end

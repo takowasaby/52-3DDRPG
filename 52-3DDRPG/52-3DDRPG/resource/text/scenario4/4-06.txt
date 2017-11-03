@@ -1,0 +1,57 @@
+addchara josei 女性
+addchara kage 影
+//
+//
+addcharapicture josei defaultstand resource/picture/scenario4/character/josei.png
+addcharapicture kage defaultstand resource/picture/scenario4/character/kage.png
+//
+//
+drawrequest josei01 josei defaultstand 10 20 0 70
+drawrequest kage01 kage defaultstand 60 20 0 70
+turn josei01 0
+dark josei01
+dark kage 01
+//
+wordstyle onebyone 3
+//
+light josei01
+text 分かったBBもう・・・分かったから・・・
+wait
+//
+dark josei01
+light kage01
+text ・・・ワタ・・・シガ・・・
+wait
+//
+dark kage01
+light josei01
+text ・・・・・・・・・
+wait
+//
+dark josei01
+light kage01
+text ワタシガ　アノヒトヲ　コロシタ
+wait
+//
+dark kage01
+light josei01
+text う・・・あ・・・
+wait
+//
+dark josei01
+light kage01
+text コロシタ
+wait
+text コロシタ　コロシタ　コロシタ！
+wait
+text ワタシガ　アノヒトヲ
+wait
+//
+dark kage01
+light josei01
+text やめて！
+wait
+text もう・・・もう、全部思い出したから・・・
+wait
+//
+end

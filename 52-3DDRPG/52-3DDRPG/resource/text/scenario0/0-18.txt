@@ -1,0 +1,47 @@
+addchara misu みす
+addchara sato SATO
+addchara seinen 青年
+//
+addcharapicture misu defaultstand resource/picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png
+addcharapicture seinen defaultstand resource/picture/scenario0/character/seinen.png
+//
+drawrequest misu01 misu defaultstand 30 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+drawrequest seinen01 seinen defaultstand 70 20 0 70
+turn misu01 0
+dark misu01
+dark sato01
+dark seinen01
+//
+wordstyle onebyone 3
+//
+light misu01
+text よし、とうちゃ～く
+wait
+text あれ？あかない？
+wait
+//
+dark misu01
+light sato01
+text 触手がキーパッドの中に入り込んでいるようだBB除去しなければ中には入れない
+wait
+//
+dark sato01
+light seinen01
+text 触手？生物が中にいるということでしょうか？BB一見、ただのロックがかかっているドアのようですが
+wait 
+//
+dark seinen01
+light sato01
+text ・・・ああ、生物だBB除去するために薬品を調合する必要があるな
+wait
+text 必要な薬品は全部で３つBBこのセクターのどこかにあるはずだBB探し出してくれ
+wait
+//
+dark sato01
+light seinen01
+text ・・・・・・・・・
+wait 
+//
+end

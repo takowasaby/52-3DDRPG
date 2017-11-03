@@ -1,0 +1,14 @@
+addchara sato SATO
+//
+addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png
+//
+drawrequest sato01 sato defaultstand 30 20 0 70
+dark sato01
+//
+wordstyle onebyone 3
+//
+light sato01
+text 目標の部屋をマップで確認してくれBBそこに研究ログがあるはずだ
+wait
+//
+end

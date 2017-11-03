@@ -1,0 +1,58 @@
+addchara josei 女性
+addchara kage 影
+//
+//
+addcharapicture josei defaultstand resource/picture/scenario4/character/josei.png
+addcharapicture kage defaultstand resource/picture/scenario4/character/kage.png
+//
+//
+drawrequest josei01 josei defaultstand 10 20 0 70
+drawrequest kage01 kage defaultstand 60 20 0 70
+turn josei01 0
+dark josei01
+dark kage 01
+//
+wordstyle onebyone 3
+//
+light kage01
+text ・・・・・・・・・
+wait
+//
+dark kage01
+light josei01
+text 私の後をずっと尾けてきたの？
+wait
+//
+dark josei01
+light kage01
+text ワ・・・シ・・・
+wait
+//
+dark kage01
+light josei01
+text ・・・っ！
+wait
+//
+dark josei01
+light kage01
+text ワタ・・・シ・・・ガ
+wait
+//
+dark kage01
+light josei01
+text 黙って
+wait
+//
+dark josei01
+light kage01
+text ワタ・・・シガ・・・BBアノヒトヲ・・・
+wait
+//
+dark kage01
+light josei01
+text やめなさい
+wait
+text もう、それ以上話さないで
+wait
+//
+end

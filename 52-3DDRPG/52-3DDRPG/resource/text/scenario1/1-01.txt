@@ -1,0 +1,69 @@
+//＜イベント：教室の外に出よう＞
+
+
+
+addchara himeno
+addchara yuri
+addchara you
+//
+//
+addcharapicture himeno defaultstand resource/picture/scenario1/character/1-himeno.jpg
+addcharapicture yuri defaultstand resource/picture/scenario1/character/1-yuri.jpg
+addcharapicture you defaultstand resource/picture/scenario1/character/1-you.jpg
+//
+//drawrequest (canvasname charaname picturename x y width height)
+drawrequest himeno01 himeno defaultstand 100 20 0 70
+drawrequest yuri01 yuri defaultstand 10 20 0 70
+drawrequest you01 you defaultstand 60 20 0 70
+
+
+wordstyle onebyone  3 
+
+light you01
+dark yuri01
+text とりあえず、いったん廊下に出てみない？
+wait
+text こんなに真っ暗な校舎を探検できる機会もBそうないしさ
+wait
+light yuri01
+dark you01
+text はいっ喜んでー！
+wait
+move himeno01 100 20 60 20 100 0
+move yuri01 10 20 100 20 100 0
+move you01 60 20 100 20 100 0
+light himeno01
+text （これが私の夢だなんて……）
+wait
+text 実際の本人もはっちゃけてるけどBBここまでじゃないはずBBごめんねユリちゃん（本物）……）
+wait
+move you01 100 20 10 20 100 0
+light you01
+dark himeno01
+text 赤木さんも、それでいい？
+wait
+light hiemno01
+dark you01
+text え、あ、うん？
+wait
+text って、ええ！？BBやだよ、絶対なんかホラゲー的な展開が
+wait
+move you01 10 20 100 20 100 0
+move yuri01 100 20 10 20 100 0
+light himeno01
+dark yuri01
+text （ん……？　ユリちゃんが口パクしてる？）
+wait
+text （お、び、え、る、あ、お、ぴょ、ん、BBが、み、た、い、……？）
+wait
+light yuri01
+dark himeno01
+wait
+light himeno01
+dark yuri01
+text （やっぱり、私のユリちゃんに対するイメージBB偏ってる気がする）
+wait
+move himeno01 60 20 100 20 5 0
+end
+//教室内の探索。廊下に出ようとするとmis52s1_3のイベント発生。
+
