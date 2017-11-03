@@ -35,6 +35,8 @@ private:
 	};
 	RoomData_t roomData[ROOM_MAXSIZE_X][ROOM_MAXSIZE_Y];
 
+	EventList *eventlist;
+
 public:
 	Room_c();
 	Room_c(Data_c* data, int* mode, int* event_scene, int* title_scene, int* game_scene);
@@ -43,6 +45,7 @@ public:
 	void RoomAll();
 	void DataLoad(int scenario, int stage, int room);
 	void GraphLoad(int scenario);
+	void SetEventList(EventList *e);
 	void RoomDraw();
 	void WaitKey();
 	void SetData(Data_c *d);

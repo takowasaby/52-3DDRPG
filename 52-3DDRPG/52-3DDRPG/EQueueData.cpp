@@ -41,22 +41,22 @@ int EventQueuePrototype::getActionType()
 
 int EventQueuePrototype::getCurrentNumber()
 {
-	int number = 0;
+	long long int number = 0;
 	if (m_takeTime == 0)
 	{
 		return m_toNumber;
 	}
 	if (m_actionType & (EVENT_ACTION_POSITION | EVENT_ACTION_SCALE)) 
 	{
-		int n1 = (((m_fromNumber*(m_takeTime - m_currentTime)) + (m_toNumber*m_currentTime)) / m_takeTime);
-		int n2 = (((m_fromNumber2*(m_takeTime - m_currentTime)) + (m_toNumber2*m_currentTime)) / m_takeTime);
+		long long int n1 = (((m_fromNumber*(m_takeTime - m_currentTime)) + (m_toNumber*m_currentTime)) / m_takeTime);
+		long long int n2 = (((m_fromNumber2*(m_takeTime - m_currentTime)) + (m_toNumber2*m_currentTime)) / m_takeTime);
 		number = ((n1 << 16) | n2);
 	}
 	else
 	{
 		number = (((m_fromNumber*(m_takeTime - m_currentTime)) + (m_toNumber*m_currentTime)) / m_takeTime);
 	}
-	return number;
+	return (int)number;
 }
 
 int EventQueuePrototype::getAfterOn()

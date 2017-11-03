@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
+#include <queue>
 #include <algorithm>
 #include "ListAction.h"
 
@@ -19,8 +19,8 @@ public:
 	void Initialize(Event_c*);
 	void readEvent(string filename);
 	void call();
-	int callEvent();
-	void setListFileName(string listfile);
+	int  callEvent();
+	void setListFileName(int listfile);
 	void readList();
 	void addList(ListAction la, int num);
 	void Event(int num);
@@ -30,8 +30,10 @@ private:
 	int m_flag[128];
 	ListAction m_list[128];
 	string m_ListFileName;
+	queue<string> m_eventfile;
 	int m_filelist;
 	int m_callEventFlag;
+	int m_scenario;
 };
 
 #endif // EVENTLIST_H

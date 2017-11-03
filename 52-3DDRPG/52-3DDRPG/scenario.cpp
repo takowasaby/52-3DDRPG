@@ -27,6 +27,7 @@ void Scenario_c::Load()
 	for (int i = 0; i < SCENARIO_SIZE; i++) {
 		sprintf_s(fname, "resource/scenario/%d.png", i);
 		graph[0][i] = LoadGraph(fname);
+//		graph[1][i] = graph[0][i];
 		graph[1][i] = LoadGraph(fname);
 		GraphFilter(graph[1][i], DX_GRAPH_FILTER_MONO, 0, 0);
 	}

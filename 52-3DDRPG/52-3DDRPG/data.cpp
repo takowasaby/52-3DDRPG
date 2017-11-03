@@ -14,10 +14,10 @@ Data_c::Data_c() :
 	dungeonLoadFlag(0),
 	roomLoadFlag(0)
 {
-	controlMode = 1;
+	controlMode = 2;
 	eventScene = 0;
 	titleScene = 2;
-	gameScene = 3;
+	gameScene = 0;
 
 	for (int i = 0; i < MAP_SIZE_X; i++) {
 		for (int j = 0; j < MAP_SIZE_Y; j++) {
@@ -522,10 +522,10 @@ string Data_c::GetItemText(int num, int sort)
 {
 	switch (sort) {
 	case 0:
-		return string(item[num].name);
+		return item[num].name;
 		break;
 	case 1:
-		return string(item[num].explain);
+		return item[num].explain;
 		break;
 	}
 	return 0;
@@ -594,7 +594,7 @@ string Data_c::GetSoubiText(int num, int sort)
 		return soubi[num].name;
 		break;
 	case 1:
-		return string(soubi[num].explain);
+		return soubi[num].explain;
 		break;
 	}
 	return 0;
@@ -657,10 +657,10 @@ string Data_c::GetSkillText(int num, int sort)
 {
 	switch (sort) {
 	case 0:
-		return string(skill[num].name);
+		return skill[num].name;
 		break;
 	case 1:
-		return string(skill[num].explain);
+		return skill[num].explain;
 		break;
 	}
 	return 0;
@@ -776,7 +776,7 @@ int Data_c::GetCharacterSkillCode(int num, int skillNum)
 }
 string Data_c::GetCharacterName(int num)
 {
-	return string(character[num].name);
+	return character[num].name;
 }
 
 characterData Data_c::GetCharacter(int num)
@@ -959,6 +959,11 @@ void Data_c::SetDungeonLoadFlag(int i)
 void Data_c::SetRoomLoadFlag(int i)
 {
 	roomLoadFlag - i;
+}
+
+characterData Data_c::GetCharacterData(int num)
+{
+	return character[num];
 }
 
 void Data_c::CalcItemFlag(int num, int vary)

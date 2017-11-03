@@ -85,7 +85,7 @@ void TextBox::Draw()
 
 	//座標とサイズを元にウィンドウを描画する
 	//DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
-	DrawWindow(x, y, w, h);
+//	DrawWindow(x, y, w, h);
 
 	//ウィンドウにメッセージを描画する
 	if (message.size() > 0) {
@@ -110,6 +110,36 @@ void TextBox::Draw()
 			break;
 		}
 	}
+}
+void TextBox::DrawMessage(int px, int py, int width, int height, string str)
+{
+	int line = 0;
+	int start = 0;
+	double ww = 8.5;
+	for (int i = 0; i < str.size(); i++)
+	{
+		if (str[i] == 'B' && str.size()-1 != i)
+		{
+			if (str[i + 1] != 'B')
+			{
+				continue;
+			}
+			DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, i - start).c_str());
+			i+=2;
+			start = i;
+			line++;
+		}
+		else if (ww*(i - start) > width)
+		{
+			DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, i - start).c_str());
+			start = i-1;
+			line++;
+		}
+	}
+	if(str[str.size()-1] == 'B')
+		DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, str.size() - start-1).c_str());
+	else
+		DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, str.size() - start).c_str());
 }
 
 void TextBox::Activate()
@@ -169,7 +199,9 @@ void TextBox::SetMessage(string text, int index)
 void TextBox::ClearMessage()
 {
 	message.clear();
+	position = 0;
 }
+
 
 void TextBox::ScrollUp()
 {
@@ -218,7 +250,7 @@ void TextBox::LoadWindow()
 }
 void TextBox::DrawWindow(int x, int y, int w, int h)
 {
-	//	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
+//	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
 	DrawExtendGraph(x + 3, y + 3, x + w - 2, y + h - 2, windowBack, TRUE);
 
 	int edgeType = 0;
@@ -241,6 +273,11 @@ void TextBox::DrawWindow(int x, int y, int w, int h)
 string TextBox::Enter()
 {
 	return message[position];
+}
+
+int TextBox::EnterInt()
+{
+	return position;
 }
 
 string TextBox::GetText(int index)

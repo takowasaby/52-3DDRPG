@@ -85,7 +85,9 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 				goto EXFILE;//èIóπ
 			}
 		}
-		wallData[mnum][mn % MAP_SIZE_X].type = atoi(inputc);
+		wallData[mnum][mn % MAP_SIZE_X].type = atoi(inputc) % 10;
+		if (atoi(inputc) < 10) eventNum[mnum][mn % MAP_SIZE_X] = -1;
+		else eventNum[mnum][mn % MAP_SIZE_X] = atoi(inputc) / 10;
 		mnum++;
 		if (mnum == MAP_SIZE_X) {
 			mnum = 0;
@@ -183,6 +185,10 @@ void Dungeon_c::GraphLoad(int scenario, int stage)
 			wall[scenario][i][j] = LoadGraph(gname);
 		}
 	}
+}
+void Dungeon_c::SetEventList(EventList * e)
+{
+	eventList = e;
 }
 /*
 void Dungeon_c::SetData(Data_c *d)
@@ -424,16 +430,32 @@ void Dungeon_c::WaitKey()
 	else if (mKey[KEY_INPUT_Z] == 1) {
 		switch (dir) {
 		case 0:
-			if (wallData[x][y].Nwall == 2) printfDx("open!");
+			if (wallData[x][y].Nwall == 2) {
+				if (eventNum[x][y] != -1) {
+					eventList->Event(eventNum[x][y]);
+				}
+			}
 			break;
 		case 1:
-			if (wallData[x][y].Ewall == 2) printfDx("open!");
+			if (wallData[x][y].Ewall == 2) {
+				if (eventNum[x][y] != -1) {
+					eventList->Event(eventNum[x][y]);
+				}
+			}
 			break;
 		case 2:
-			if (wallData[x][y].Swall == 2) printfDx("open!");
+			if (wallData[x][y].Swall == 2) {
+				if (eventNum[x][y] != -1) {
+					eventList->Event(eventNum[x][y]);
+				}
+			}
 			break;
 		case 3:
-			if (wallData[x][y].Wwall == 2) printfDx("open!");
+			if (wallData[x][y].Wwall == 2) {
+				if (eventNum[x][y] != -1) {
+					eventList->Event(eventNum[x][y]);
+				}
+			}
 			break;
 		}
 	}

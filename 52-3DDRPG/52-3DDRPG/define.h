@@ -45,6 +45,14 @@ const int EVENT_ACTION_DARK = 64;
 const int EVENT_ACTION_TEXTCLEAR = 128;
 const int EVENT_ACTION_WAIT = 256;
 const int EVENT_ACTION_END = 512;
+const int EVENT_ACTION_STYLE = 1024;
+const int EVENT_ACTION_SOUND = 2048;
+const int EVENT_ACTION_LOOPSOUND = 4096;
+const int EVENT_ACTION_STOPSOUND = 8192;
+
+const int EVENT_WRITESTYLE_DEFAULT = 1;
+const int EVENT_WRITESTYLE_ONEBYONE = 2;
+const int EVENT_WRITESTYLE_BLACK = 4;
 //-----------------------------------------------------------------------
 
 //data—p-----------------------------------------------------------------

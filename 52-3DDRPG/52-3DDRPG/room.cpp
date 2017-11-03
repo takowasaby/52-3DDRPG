@@ -211,12 +211,15 @@ void Room_c::WaitKey() {
 		if (selectx >= roomsizex)selectx = roomsizex - 1;
 	}
 	else if (mKey[KEY_INPUT_Z] == 1){
-			printfDx("Room(%d,%d)has been selected Type:%d\nExecute event #%d\n", selectx, selecty, roomData[selectx][selecty].type, roomData[selectx][selecty].event);//Z決定時に動作するアクションをここに書く
-			/*mData->SetDungeonX(x);
-			mData->SetDungeonY(y);
-			mData->SetDir(dir);*/
+		//	printfDx("Room(%d,%d)has been selected Type:%d\nExecute event #%d\n", selectx, selecty, roomData[selectx][selecty].type, roomData[selectx][selecty].event);//Z決定時に動作するアクションをここに書く
+		eventlist->Event(roomData[selectx][selecty].event);
 	}
 	else if (mKey[KEY_INPUT_D] == 1)printfDx("%d", abs(roomData[0][4].type));
+}
+
+void Room_c::SetEventList(EventList *e)
+{
+	eventlist = e;
 }
 
 void Room_c::SetData(Data_c *d)
