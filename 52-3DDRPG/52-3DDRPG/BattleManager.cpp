@@ -309,7 +309,13 @@ void BattleManager::PlayerSelection()
 				}
 				else if (OpinionWindow[0]->Enter() == "スキル") LoadSkill(phase[2]);
 				else if (OpinionWindow[0]->Enter() == "道具") LoadItem();
-				else if (OpinionWindow[0]->Enter() == "防御") aPlayer[phase[2]].commandType = defence;
+				else if (OpinionWindow[0]->Enter() == "防御") {
+					aPlayer[phase[2]].commandType = defence;
+					aPlayer[phase[2]].name = "防御";
+					aPlayer[phase[2]].cost = 0;
+					aPlayer[phase[2]].forParty = false;
+					phase[1] += 2;
+				}
 				OpinionWindow[0]->InActivate();
 				OpinionWindow[1]->Activate();
 			}
@@ -391,6 +397,7 @@ void BattleManager::PlayerCalc()
 		}
 		//メッセージ表示
 		if (aPlayer[phase[2]].commandType == item) MessageWindow->AddMessage(player[phase[2]].name + "は" + aPlayer[phase[2]].name + "を使った");
+		else if (aPlayer[phase[2]].commandType == defence) MessageWindow->AddMessage(player[phase[2]].name + "は身構えている");
 		else MessageWindow->AddMessage(player[phase[2]].name + "の" + aPlayer[phase[2]].name);
 
 		player[phase[2]].mp.calc -= aPlayer[phase[2]].cost;
@@ -534,7 +541,8 @@ void BattleManager::EnemyCalc()
 
 		if (aEnemy.value[attack] > 0) {
 			//攻撃処理
-			player[aEnemy.target].hp.calc -= aEnemy.value[attack];
+			if (aPlayer[aEnemy.target].commandType == defence) player[aEnemy.target].hp.calc -= aEnemy.value[attack] / 2;
+			else player[aEnemy.target].hp.calc -= aEnemy.value[attack];
 
 			if (player[aEnemy.target].hp.calc <= 0) {
 				player[aEnemy.target].hp.calc = 0;
