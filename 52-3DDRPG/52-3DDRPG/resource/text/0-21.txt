@@ -1,0 +1,116 @@
+addchara misu みす
+addchara sato SATO
+addchara seinen 青年
+//
+addcharapicture misu defaultstand picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand picture/scenario0/character/sato.png
+addcharapicture seinen defaultstand picture/scenario0/character/seinen.png
+//
+drawrequest misu01 misu defaultstand 30 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+drawrequest seinen01 seinen defaultstand 70 20 0 70
+turn misu01 0
+dark misu01
+dark sato01
+dark seinen01
+//
+wordstyle onebyone 3
+//
+text ピピピピッBピピポピBピピプペ
+wait
+//
+light misu01 
+text 何か分かった？SATO
+wait
+//
+dark misu01
+light sato01
+text ああ
+wait
+text 電源管理セクターで遭遇した「かぞく」B彼女たちをゾンビにしたのは「博士」だったBその「博士」がこの状況の根元らしいB先ほどの触手も彼の研究の「成果」らしい
+wait
+//
+dark sato01
+light seinen01
+text そして一体あなたは何者なのです？SATOBあなたは「色々と」知っているようではないですか
+wait
+text 一介のAIにセキュリティキーの場所、電源の管理方法や薬品の管理情報がB分かるものなのでしょうかね？
+wait
+text もしかして、あなたこそが元凶なのでは？B情報を入手する「ふり」をして実は書き換えているのでは？B少なくとも、私には今あなたがどういう操作をしたのかB分かりませんでしたけどね
+wait
+text みす、君はどう思いますか？
+wait
+//
+dark seinen01
+light misu01
+text ・・・わたしにはSATOがそんなに悪い人には思えないな
+wait
+text まず、最初にあった時わたしを助けてくれたものB悪い人なら見殺しにするんじゃないかな？
+wait
+//
+dark misu01
+light seinen01
+text それはどうでしょう？Bもしかしたら、あなたに利用価値があったのかもB電源を復旧させたのも、なにかよからぬ目的があって・・・
+wait
+//
+dark seinen01
+light sato01
+text ・・・・・・・・・
+wait
+//
+dark sato01
+light misu01
+text それも・・・ちがうと思う
+wait
+text それだったらもっと別のやり方で私を助けたんじゃないかな？Bわざわざ、お兄ちゃんみたいな障害？を作るとは思えないなBそれに、わたしに特別な利用価値があるとは思えないしね！
+wait
+text ・・・とにかく、わたしはSATOを信じる！
+wait
+//
+dark misu01
+light sato
+text みす・・・・・・
+wait
+//
+dark sato01
+light seinen01
+text フフ、どうやらちゃんと真実なのか、そうではないのかを「見分けようとすることが出来る」だけの智慧は持っているようですね
+wait
+text 申し訳ない、ずいぶんと失礼な疑い方をしましたね
+wait
+//
+dark seinen01
+light sato01
+text いや、疑いを持つのも無理はないBその疑いも半分は、合っていると言えるしな
+wait
+//
+dark sato01
+light misu01
+text ・・・どういうこと？
+wait
+//
+dark misu01
+light sato01
+text AIなどの開発を行っているセクターがあるBそのセクターへ向かってくれBそこで私が何者なのか説明しようBそして、この事件の詳しい原因も分かるはずだ
+wait
+//
+dark sato01
+light seinen01
+text では、私はここでお別れですねBお二人の幸運を祈ってますよ
+wait
+text ・・・っと、それから
+wait
+text みすB君に黒幕にとって利用価値がない、とは限りませんからね
+wait
+//
+dark seinen01
+light misu01
+text ・・・？Bうん！
+wait
+//
+dark misu01
+light sato01
+text それでは、次のセクターへ向かおう
+wait
+//
+end

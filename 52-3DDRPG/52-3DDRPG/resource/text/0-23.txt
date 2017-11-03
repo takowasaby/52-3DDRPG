@@ -1,0 +1,18 @@
+addchara misu みすちゃん
+addchara sato SATO
+//
+addcharapicture misu defaultstand picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand picture/scenario0/character/sato.png
+//
+drawrequest misu01 misu defaultstand 70 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+dark misu01
+dark sato01
+//
+wordstyle onebyone 3
+//
+light sato01
+text ・・・中央コンソールを目指してくれB確かめたいデータがあるんだBそれから話そう
+wait
+//
+end

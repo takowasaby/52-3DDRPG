@@ -1,0 +1,75 @@
+addchara misu みすちゃん
+addchara sato SATO
+addchara otoko 男
+//
+addcharapicture misu defaultstand picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand picture/scenario0/character/sato.png
+addcharapicture otoko defaultstand picture/scenario0/character/motoyuusha_battle.png
+//
+drawrequest misu01 misu defaultstand 30 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+drawrequest otoko01 otoko defaultstand 70 20 0 70
+turn misu01 0
+dark misu01
+dark sato01
+dark otoko01
+//
+wordstyle onebyone 3
+//
+light misu01
+text ・・・よいしょっ
+wait
+//
+dark misu01
+light sato01
+text よし、これで終わりだB電源が戻ってきたようだな
+wait
+//
+dark sato01
+light misu01
+text ・・・・・・・・・
+wait
+text この後は・・・Bどうしたらいいの・・・？
+wait
+//
+dark misu01
+light otoko01
+text やるべきことをやった後はBやりたいことをすればいい
+wait
+//
+dark otoko01
+light misu01
+text やりたいこと・・・
+wait
+text わたし、知りたい！B何が起こってるのか、ここが何なのか、私が何者なのか・・・
+wait
+//
+dark misu01
+light otoko01
+text SATO
+wait
+//
+dark otoko01
+light sato01
+text それならバイオテクノロジーに関するセクターが北にあるBそこへ行こう
+wait
+//
+dark sato01
+light misu01
+text うん！ここまでありがとう！
+wait
+//
+dark misu01
+light otoko01
+text ああ、頑張れよ
+wait
+//
+dark otoko01
+light misu01
+text いこ！SATO
+wait
+move sato01 0 20  -60 20 30 0
+move misu01 30 20  -60 20 30 0
+wait 
+//
+end

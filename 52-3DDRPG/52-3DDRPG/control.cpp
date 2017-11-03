@@ -42,6 +42,10 @@ bool Control_c::All() {
 		switch (GData.GetScene(event)) {
 		case conversation:
 			//立ち絵会話
+			if (GData.GetEventFlag()) {
+				mEventlist->Event(0);
+				GData.SetEventFlag(0);
+			}
 			break;
 		case opening:
 			//オープニング

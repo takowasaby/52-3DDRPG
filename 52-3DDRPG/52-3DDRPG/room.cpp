@@ -2,7 +2,7 @@
 
 Room_c::Room_c() :
 	mscenario(0),
-	mstage(0),
+	mstage(3),
 	mroom(0)
 {
 	// data.GetScenario();
@@ -46,7 +46,7 @@ void Room_c::RoomAll()
 
 void Room_c::DataLoad(int scenario, int stage, int room)
 {
-	sprintf_s(fname, "resource/room/%d_%d_%d.csv", scenario, stage, room);
+	sprintf_s(fname, "resource/room/%d/room%d-%d-%d.csv", scenario, scenario, stage, room);
 
 	mfp = FileRead_open(fname);
 	if (mfp == NULL) {
@@ -95,19 +95,19 @@ EXFILE1:
 
 void Room_c::GraphLoad(int scenario)
 {
-	sprintf_s(gname, "resource/room/wall_%d.png", scenario);
+	sprintf_s(gname, "resource/room/%d/wall_%d.png", scenario, scenario);
 	wall = LoadGraph(gname);
 
-	sprintf_s(gname, "resource/room/floor_%d.png", scenario);
+	sprintf_s(gname, "resource/room/%d/floor_%d.png", scenario, scenario);
 	floor = LoadGraph(gname);
 
-	sprintf_s(gname, "resource/room/select.png");
+	sprintf_s(gname, "resource/room/%d/select.png", scenario);
 	select = LoadGraph(gname);
 
 	for (int j = 0; j < roomsizey; j++) {
 		for (int i = 0; i < roomsizex; i++) {
 			if(roomData[i][j].type > 0){
-				sprintf_s(gname, "resource/room/%d.png", roomData[i][j].type);
+				sprintf_s(gname, "resource/room/%d/%d.png", scenario, roomData[i][j].type);
 				furniture[roomData[i][j].type] = LoadGraph(gname);
 				GetGraphSize(furniture[roomData[i][j].type], &gx, &gy);
 				furniturehight[roomData[i][j].type] = gy * ROOM_RATIO;

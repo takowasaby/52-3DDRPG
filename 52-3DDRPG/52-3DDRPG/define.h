@@ -180,6 +180,7 @@ struct CharacterData {
 	int skillCode[SKILL_CODE_SIZE];
 	int Image;
 };*/
+const int ENEMY_SKILL_SIZE = 4;
 //------------------------------------------------------------------------
 
 #include "control.h"

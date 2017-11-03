@@ -200,6 +200,7 @@ void TextBox::ClearMessage()
 {
 	message.clear();
 	position = 0;
+	topOfPage = 0;
 }
 
 

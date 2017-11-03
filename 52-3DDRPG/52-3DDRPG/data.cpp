@@ -10,14 +10,14 @@ Data_c::Data_c() :
 	playCount(0),
 	BMode(0),
 	BScene(0),
-	EventCallFlag(0),
+	OpeningFlag(0),
 	dungeonLoadFlag(0),
 	roomLoadFlag(0)
 {
-	controlMode = 2;
+	controlMode = 1;
 	eventScene = 0;
-	titleScene = 2;
-	gameScene = 0;
+	titleScene = 1;
+	gameScene = 2;
 
 	for (int i = 0; i < MAP_SIZE_X; i++) {
 		for (int j = 0; j < MAP_SIZE_Y; j++) {
@@ -808,7 +808,7 @@ int Data_c::GetDir()
 
 int Data_c::GetEventFlag()
 {
-	return EventCallFlag;
+	return OpeningFlag;
 }
 
 int Data_c::GetRoom()
@@ -843,7 +843,7 @@ void Data_c::SetDir(int i)
 
 void Data_c::SetEventFlag(int i)
 {
-	EventCallFlag = i;
+	OpeningFlag = i;
 }
 
 void Data_c::SetRoom(int i)
@@ -893,40 +893,37 @@ void Data_c::SetWallType(int x, int y, int type)
 
 void Data_c::SceneRequest(int m, int s)
 {
-	if (EventCallFlag == 0) {
-		BMode = controlMode;
-		controlMode = m;
-		switch (m) {
-		case 0:
-			BScene = eventScene;
-			eventScene = s;
-			break;
-		case 1:
-			BScene = titleScene;
-			titleScene = s;
-			break;
-		case 2:
-			BScene = gameScene;
-			gameScene = s;
-			break;
-		}
+	BMode = controlMode;
+	controlMode = m;
+	switch (m) {
+	case 0:
+		BScene = eventScene;
+		eventScene = s;
+		break;
+	case 1:
+		BScene = titleScene;
+		titleScene = s;
+		break;
+	case 2:
+		BScene = gameScene;
+		gameScene = s;
+		break;
 	}
 }
 void Data_c::SceneBackRequest()
 {
-	if (EventCallFlag == 0) {
-		controlMode = BMode;
-		switch (BMode) {
-		case 0:
-			eventScene = BScene;
-			break;
-		case 1:
-			titleScene = BScene;
-			break;
-		case 2:
-			gameScene = BScene;
-			break;
-		}
+	controlMode = BMode;
+	switch (BMode) {
+	case 0:
+		eventScene = BScene;
+		break;
+	case 1:
+		titleScene = BScene;
+		break;
+	case 2:
+		gameScene = BScene;
+		break;
+
 	}
 }
 

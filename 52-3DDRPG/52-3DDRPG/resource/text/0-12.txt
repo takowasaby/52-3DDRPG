@@ -1,0 +1,14 @@
+addchara otoko íj
+//
+addcharapicture otoko defaultstand picture/scenario0/character/motoyuusha_battle.png
+//
+drawrequest otoko01 otoko defaultstand 40 20 0 70
+dark otoko01
+//
+wordstyle onebyone 3
+//
+light otoko01
+text ÇÊÇµÅAÇ±ÇÍÇ≈Ç¢Ç¢BêÊÇ÷êiÇ‡Ç§
+wait
+//
+end  

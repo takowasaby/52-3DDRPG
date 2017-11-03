@@ -28,6 +28,7 @@ void Scenario_c::Load()
 		sprintf_s(fname, "resource/scenario/%d.png", i);
 		graph[0][i] = LoadGraph(fname);
 //		graph[1][i] = graph[0][i];
+		sprintf_s(fname, "resource/scenario/0%d.png", i);
 		graph[1][i] = LoadGraph(fname);
 		GraphFilter(graph[1][i], DX_GRAPH_FILTER_MONO, 0, 0);
 	}
@@ -48,7 +49,8 @@ void Scenario_c::Update()
 
 		Reset();
 		GData.SetScenario(chooseScenario);
-		GData.SceneRequest(1, 4);
+		GData.SetEventFlag(1);
+		GData.SceneRequest(0, 0);
 	}
 	else if (mKey[KEY_INPUT_UP] == 1) {
 		if (chooseScenario > 0) chooseScenario--;

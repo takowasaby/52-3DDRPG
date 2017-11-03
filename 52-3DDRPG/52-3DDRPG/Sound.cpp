@@ -1,6 +1,8 @@
 #include "define.h"
 
-Sound::Sound() {}
+Sound::Sound() 
+{
+}
 Sound::~Sound() 
 {
 	InitSoundMem();
