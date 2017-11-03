@@ -5,10 +5,11 @@
 class Data_c {
 private:
 	int scenario;
-	int stage;
-	int dir;
-	int room;
-	int dungeonX, dungeonY;
+	int stage[5] = {};
+	int dir[5] = {};
+	int room[5] = {};
+	int dungeonX[5] = {};
+	int	dungeonY[5] = {};
 	int playCount;
 
 	int eventFlag[SCENARIO_SIZE][EVENT_SIZE];

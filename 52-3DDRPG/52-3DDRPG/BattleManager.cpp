@@ -457,7 +457,64 @@ void BattleManager::EnemySelection()
 
 void BattleManager::EffectCalc()
 {
-	
+	SetCalcOrder();
+	for (int i = 0; i < CHARACTER_SIZE + 1; i++) {
+		if (calcOrder[i] == -1) {
+			switch (enemyCommand.type) {
+			case 0:
+				player[enemyCommand.target].hp.calc
+					-= enemy.str.calc - player[enemyCommand.target].vit.calc;
+				break;
+			case 1:
+				switch (enemyCommand.effectType[0]) {
+				case 0:
+					switch (enemyCommand.referStatus) {
+					case 0: 
+
+						break;
+					case 1: 
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					case 4:
+						break;
+					case 5:
+						break;
+					}
+					break;
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+				case 7:
+				}
+				break;
+			case 2:
+
+				break;
+			case 3:
+				enemy.vit.calc *= 2;
+				defending[4] = 1;
+				break;
+			}
+		}
+		else {
+
+		}
+	}
+
+	for (int i = 0; i < CHARACTER_SIZE; i++) {
+		if (defending[i] == 1 && i == 5) {
+			enemy.vit.calc /= 2;
+		}
+		else if(defending[i] == 1) {
+			player[i].vit.calc /= 2;
+		}
+	}
 }
 
 void BattleManager::Judgement()
@@ -510,6 +567,7 @@ void BattleManager::CalcOrderReset()
 void BattleManager::SetCalcOrder()
 {
 	int index;
+	CalcOrderReset();
 
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4 - i; j++) {

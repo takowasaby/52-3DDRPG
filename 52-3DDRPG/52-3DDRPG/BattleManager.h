@@ -18,6 +18,8 @@ private:
 	int phase[3];
 	bool isPause;
 
+	bool defending[5];
+
 	int calcOrder[5];
 
 	vector<vector<int>> enemySkill; //0:攻撃、1:バフ、2:回復、3:MP回復
