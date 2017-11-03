@@ -1,37 +1,21 @@
-addchara motoyuusya
- 元勇者
+addchara motoyuusya 元勇者
 //
-
 //
-
 addpicture motoyuusya defaultstand resource/picture/scenario2/character/motoyuusha_normal.png
 //
 //
-
 //drawrequest(canvasname charaname picturename x y width height)
-
 drawrequest motoyuusya01 motoyuusya defaultstand 20 100 0 70
-
 dark motoyuusya01
 //
-
 wordstyle onebyone 3
 //
-
 move motoyuusya01 20 100 20 40 100 0
-
 light motoyuusya01
-
 text そういえば、この近くの裏山にはBB滅多にお目にかかれない程BB綺麗な花が咲いているとBB風の噂で聞いたことがあるが、BBどうなんだろうな。
-
 wait
-
 text けど、魔物がいてBB滅多に人が寄り付かない山の頂上なら、BB確かに綺麗な花が咲いているかもな。
-
 wait
-
 wait 100
-
 text 花、か。
-
 end
