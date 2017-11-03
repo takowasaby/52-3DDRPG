@@ -111,6 +111,29 @@ void TextBox::Draw()
 		}
 	}
 }
+void TextBox::DrawMessage(int px, int py, int width, int height, string str)
+{
+	int line = 0;
+	int start = 0;
+	double ww = 8.5;
+	for (int i = 0; i < str.size(); i++)
+	{
+		if (str[i] == 'B' && str.size()-1 != i)
+		{
+			DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, i - start).c_str());
+			i++;
+			start = i-1;
+			line++;
+		}
+		else if (ww*(i - start) > width)
+		{
+			DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, i - start).c_str());
+			start = i-1;
+			line++;
+		}
+	}
+	DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, str.size() - start).c_str());
+}
 
 void TextBox::Activate()
 {
@@ -171,6 +194,7 @@ void TextBox::ClearMessage()
 	message.clear();
 	position = 0;
 }
+
 
 void TextBox::ScrollUp()
 {

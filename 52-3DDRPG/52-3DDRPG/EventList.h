@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
+#include <queue>
 #include <algorithm>
 #include "ListAction.h"
 
@@ -30,6 +30,7 @@ private:
 	int m_flag[128];
 	ListAction m_list[128];
 	string m_ListFileName;
+	queue<string> m_eventfile;
 	int m_filelist;
 	int m_callEventFlag;
 	int m_scenario;
