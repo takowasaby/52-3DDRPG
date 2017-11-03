@@ -14,7 +14,7 @@ Data_c::Data_c() :
 	dungeonLoadFlag(0),
 	roomLoadFlag(0)
 {
-	controlMode = 2;
+	controlMode = 1;
 	eventScene = 0;
 	titleScene = 2;
 	gameScene = 0;

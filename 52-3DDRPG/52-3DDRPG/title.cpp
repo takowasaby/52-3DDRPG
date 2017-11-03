@@ -4,10 +4,7 @@ Title_c::Title_c() {
 	SetUseASyncLoadFlag(TRUE);
 	FontTitle = CreateFontToHandle(NULL, 80, 8, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT, 3);
 	FontTitleMain = CreateFontToHandle(NULL, 24, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT);
-	SE[DECISION] = LoadSoundMem("resource/sounds/SE/common/Decision1.ogg");
-	SE[CANCEL] = LoadSoundMem("resource/sounds/SE/common/Cancel2.ogg");
-	SE[CURSOR] = LoadSoundMem("resource/sounds/SE/common/Cursor2.ogg");
-	SE[BUZZER] = LoadSoundMem("resource/sounds/SE/common/Buzzer1.ogg");
+  BGM = LoadSoundMem("resource/sounds/BGM/title.wav");
 	NLGraph = LoadGraph("resource/NOW LOADING.png");
 	TitleGraph = LoadGraph("resource/title.jpg");
 	TempScreen = MakeScreen(640, 480, FALSE);
@@ -17,10 +14,7 @@ Title_c::Title_c() {
 Title_c::~Title_c() {
 	DeleteFontToHandle(FontTitle);
 	DeleteFontToHandle(FontTitleMain);
-	DeleteSoundMem(SE[DECISION]);
-	DeleteSoundMem(SE[CANCEL]);
-	DeleteSoundMem(SE[CURSOR]);
-	DeleteSoundMem(SE[BUZZER]);
+  DeleteSoundMem(BGM);
 	DeleteGraph(NLGraph);
 	DeleteGraph(TitleGraph);
 	DeleteGraph(TempScreen);
@@ -29,9 +23,8 @@ Title_c::~Title_c() {
 bool Title_c::TitleScreen(int* Key) {
 	if (first == true) {
 		first = false;
-		for (int i = 0; i < 4; i++) {
-			ChangeVolumeSoundMem(128, SE[i]);
-		}
+    ChangeVolumeSoundMem(128, BGM);
+    PlaySoundMem(BGM, DX_PLAYTYPE_LOOP);
 	}
 
 	if ((CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(FontTitleMain) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE)) {
@@ -53,14 +46,14 @@ bool Title_c::TitleScreen(int* Key) {
 	DrawFormatStringToHandle(200, Cursor, GetColor(255, 255, 255), FontTitleMain, "œ");
 
 	if (Key[KEY_INPUT_DOWN] == 1) {
-    if (Cursor != 360) { Cursor = Cursor + 30; GMusic.ReserveSound(SE[CURSOR], DX_PLAYTYPE_BACK); }
+    if (Cursor != 360) { Cursor = Cursor + 30; GMusic.ReserveSound(GMusic.CommonSE[GMusic.CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_UP] == 1) {
-		if (Cursor != 300) { Cursor = Cursor - 30; GMusic.ReserveSound(SE[CURSOR], DX_PLAYTYPE_BACK); }
+		if (Cursor != 300) { Cursor = Cursor - 30; GMusic.ReserveSound(GMusic.CommonSE[GMusic.CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
 		if (Cursor == 300) {
-			GMusic.ReserveSound(SE[DECISION], DX_PLAYTYPE_BACK);
+			GMusic.ReserveSound(GMusic.CommonSE[GMusic.DECISION], DX_PLAYTYPE_BACK);
 			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
 			do {
 				bright = bright - 5;
@@ -75,7 +68,7 @@ bool Title_c::TitleScreen(int* Key) {
 			return true;
 		}
 		else if (Cursor == 330) {
-			GMusic.ReserveSound(SE[DECISION], DX_PLAYTYPE_BACK);
+			GMusic.ReserveSound(GMusic.CommonSE[GMusic.DECISION], DX_PLAYTYPE_BACK);
 			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
 			do {
 				bright = bright - 5;
@@ -89,7 +82,7 @@ bool Title_c::TitleScreen(int* Key) {
 			return true;
 		}
 		else {
-			GMusic.ReserveSound(SE[DECISION], DX_PLAYTYPE_BACK);
+			GMusic.ReserveSound(GMusic.CommonSE[GMusic.DECISION], DX_PLAYTYPE_BACK);
 			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
 			do {
 				bright = bright - 5;

@@ -5,18 +5,13 @@ private:
 	int FontTitle;
 	int FontTitleMain;
 
-	const int DECISION = 0;
-	const int CANCEL = 1;
-	const int CURSOR = 2;
-	const int BUZZER = 3;
-
 	int NLGraph;
 	int TitleGraph;
 	
 	int TempScreen;
 
 	int Cursor = 300;
-	int SE[4];
+  int BGM;
 	bool first = true;
 	int bright = 0;
 
