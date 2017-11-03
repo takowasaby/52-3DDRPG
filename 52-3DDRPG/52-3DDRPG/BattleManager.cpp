@@ -7,19 +7,19 @@ BattleManager::BattleManager()
 {
 	for (int i = 0; i < 3; i++) phase[i] = 0;
 	PlayerWindow = new TextBox();
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 3; i++) {
 		OpinionWindow[i] = new TextBox();
 		OpinionWindow[i]->SetWindowMode(pageMode);
 	}
-	OpinionWindow[0]->SetSize(200, 5);
-	OpinionWindow[0]->SetPositon(0, 480 - OpinionWindow[0]->GetHeight());
+	OpinionWindow[0]->SetSize(200, 4);
+	OpinionWindow[0]->SetPositon(72, 480 - OpinionWindow[0]->GetHeight());
 	OpinionWindow[0]->AddMessage("攻撃");
 	OpinionWindow[0]->AddMessage("スキル");
 	OpinionWindow[0]->AddMessage("道具");
 	OpinionWindow[0]->AddMessage("防御");
-	OpinionWindow[0]->AddMessage("逃亡");
-	OpinionWindow[1]->SetSize(640 - OpinionWindow[0]->GetWidth(), 5);
-	OpinionWindow[1]->SetPositon(OpinionWindow[0]->GetWidth(), 480 - OpinionWindow[0]->GetHeight());
+//	OpinionWindow[0]->AddMessage("逃亡");
+	OpinionWindow[1]->SetSize(360, 4);
+	OpinionWindow[1]->SetPositon(240, 480 - OpinionWindow[0]->GetHeight());
 	
 	MessageWindow = new TextBox();
 	MessageWindow->SetWindowMode(logMode);
@@ -50,11 +50,11 @@ void BattleManager::Update()
 	case 2://敵の行動選択
 		EnemySelection();
 		break;
-	case 3://プレイヤーのダメージ計算
-		PlayerCalc();
+	case 3://ダメージ計算＆効果反映
+		EffectCalc();
 		break;
-	case 4://敵のダメージ計算
-		EnemyCalc();
+	case 4://バトル終了処理を行うかの判定
+		Judgement();
 		break;
 	default:
 		break;
@@ -63,6 +63,8 @@ void BattleManager::Update()
 
 void BattleManager::Draw()
 {
+	OpinionWindow[0]->DrawWindow(0, 400, 200, 80);
+	OpinionWindow[0]->DrawWindow(200, 400, 440, 80);
 	//Debug
 	clsDx();
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
@@ -82,7 +84,7 @@ void BattleManager::Draw()
 	printfDx("Phase[0] = %d\t", phase[0]);
 	printfDx("Phase[1] = %d\t", phase[1]);
 	printfDx("Phase[2] = %d\n", phase[2]);
-
+	
 	switch (phase[0])
 	{
 	case 0:
@@ -100,6 +102,7 @@ void BattleManager::Draw()
 void BattleManager::LoadPlayer(int index)
 {
 	//for Debug
+	/*
 	player[index].name = "PLAYER" + to_string(index + 1);
 	player[index].flag = true;
 	player[index].hp.base = GetRand(1000) + 1000;
@@ -114,8 +117,11 @@ void BattleManager::LoadPlayer(int index)
 	player[index].agi.calc = GetRand(500);
 	player[index].intel.base = GetRand(500) + 499;
 	player[index].intel.calc = GetRand(500);
+	*/
 
-	for (int i = 0; i < SKILL_CODE_SIZE; i++) player[index].skillCode[i] = (int)GetRand(1);
+	player[index] = GData.GetCharacterData(index);
+
+	//for (int i = 0; i < SKILL_CODE_SIZE; i++) player[index].skillCode[i] = (int)GetRand(1);
 }
 
 void BattleManager::LoadEnemy()
@@ -140,6 +146,20 @@ void BattleManager::LoadEnemy()
 
 void BattleManager::LoadSkill(int index)
 {
+	OpinionWindow[1]->ClearMessage();
+
+	for (int i = 0; i < SKILL_SIZE; i++) {
+		if (player[index].skillCode[i]) {
+			//for debug
+			OpinionWindow[1]->AddMessage(GData.GetSkillText(i, 0));
+		}
+	}
+}
+
+void BattleManager::LoadItem(int index)
+{
+	OpinionWindow[1]->ClearMessage();
+
 	for (int i = 0; i < SKILL_CODE_SIZE; i++) {
 		if (player[index].skillCode[i]) {
 			//for debug
@@ -148,12 +168,38 @@ void BattleManager::LoadSkill(int index)
 	}
 }
 
+void BattleManager::LoadStatus()
+{
+	OpinionWindow[1]->ClearMessage();
+
+	string str;
+	for (int i = 0; i < CHARACTER_SIZE; i++) {
+		str += player[i].name;
+		str += " HP:";
+		str += to_string(player[i].hp.calc);
+		str += "/";
+		str += to_string(player[i].hp.base);
+		str += " MP:";
+		str += to_string(player[i].mp.calc);
+		str += "/";
+		str += to_string(player[i].mp.base);
+		OpinionWindow[1]->AddMessage(str);
+		str = "";
+	}
+}
+
 void BattleManager::SetSkill(int sIndex, int pIndex)
 {
 	//for debug
-	aPlayer[pIndex].cost = GetRand(100);
-	aPlayer[pIndex].target = 0;
-	for (int i = 0; i < EFFECT_SIZE; i++) if (GetRand(1) == 0) aPlayer[pIndex].value[i] = GetRand(99) + 1;
+	partyCommand[pIndex].cost = GetRand(100);
+	partyCommand[pIndex].target = 0;
+	for (int i = 0; i < EFFECT_SIZE; i++) if (GetRand(1) == 0) partyCommand[pIndex].value[i] = GetRand(99) + 1;
+}
+void BattleManager::SetItem(int sIndex, int pIndex)
+{
+	partyCommand[pIndex].cost = GetRand(100);
+	partyCommand[pIndex].target = 0;
+	for (int i = 0; i < EFFECT_SIZE; i++) if (GetRand(1) == 0) partyCommand[pIndex].value[i] = GetRand(99) + 1;
 }
 
 void BattleManager::BattleInitialize()
@@ -187,23 +233,58 @@ void BattleManager::PlayerSelection()
 			MessageWindow->AddMessage(OpinionWindow[phase[1]-1]->Enter() + "を選択");
 			if (phase[1] == 1) {
 				if (OpinionWindow[0]->Enter() == "攻撃") {
-					aPlayer[phase[2]].forParty = false;
-					aPlayer[phase[2]].value[attack] = GetRand(600);
+					partyCommand[phase[2]].type = 0;
+					partyCommand[phase[2]].forParty = false;
+					partyCommand[phase[2]].target = -1;
+					phase[1] = 4;
+				}
+				else if (OpinionWindow[0]->Enter() == "スキル") {
+					LoadSkill(phase[2]);
 					phase[1]++;
 				}
-				else if (OpinionWindow[0]->Enter() == "スキル") LoadSkill(phase[2]);
-				else if (OpinionWindow[0]->Enter() == "道具");
-				else if (OpinionWindow[0]->Enter() == "防御");
-				else if (OpinionWindow[0]->Enter() == "逃亡") Escape();
+				else if (OpinionWindow[0]->Enter() == "道具") {
+					LoadItem(phase[2]);
+					phase[1]++;
+				}
+				else if (OpinionWindow[0]->Enter() == "防御") {
+					partyCommand[phase[2]].type = 3;
+					partyCommand[phase[2]].forParty = true;
+					partyCommand[phase[2]].target = phase[2];
+					phase[1] = 4;
+				}
+				else if (OpinionWindow[0]->Enter() == "逃亡") {
+					Escape();
+				}
 			}
-			else if (phase[2] == 2) {
-				if (OpinionWindow[0]->Enter() == "スキル") SetSkill(GetRand(SKILL_CODE_SIZE), phase[2]);
-				else if (OpinionWindow[0]->Enter() == "道具");
+			else if (phase[1] == 2) {
+				if (OpinionWindow[0]->Enter() == "スキル") {
+					SetSkill(GData.SkillStringToNum(OpinionWindow[1]->Enter()), phase[2]);
+					LoadStatus();
+					if (GData.GetSkillPoint(GData.SkillStringToNum(OpinionWindow[1]->Enter()), 6)) {
+						partyCommand[phase[2]].target = -1;
+						phase[1] = 4;
+					}
+					else if (GData.GetSkillPoint(GData.SkillStringToNum(OpinionWindow[1]->Enter()), 5)) {
+						partyCommand[phase[2]].target = 4;
+						phase[1] = 4;
+					}
+					else phase[1]++;
+				}
+				else if (OpinionWindow[0]->Enter() == "道具") {
+
+				}
 			}
-			phase[1]++;
 		}
 		break;
 	case 3:
+		if (mKey[KEY_INPUT_W] == 1) OpinionWindow[1]->ScrollUp();
+		else if (mKey[KEY_INPUT_S] == 1) OpinionWindow[1]->ScrollDown();
+		else if (mKey[KEY_INPUT_Z] == 1) {
+			partyCommand[phase[2]].target = (OpinionWindow[0]->EnterInt());
+			phase[1] = 4;
+		}
+		break;
+	case 4:
 		OpinionWindow[1]->ClearMessage();
 		phase[2]++;
 		phase[1] = 0;
@@ -227,12 +308,12 @@ void BattleManager::EnemySelection()
 	else {
 		MessageWindow->AddMessage("ENEMYはスキルを選択");
 	}
-	aEnemy.forParty = false;
-	aEnemy.value[attack] = GetRand(600);
+	enemyCommand.forParty = false;
+	enemyCommand.value[attack] = GetRand(600);
 	phase[0]++;
 }
 
-void BattleManager::PlayerCalc()
+void BattleManager::EffectCalc()
 {
 	switch (phase[1])
 	{
@@ -257,8 +338,34 @@ void BattleManager::PlayerCalc()
 	}
 }
 
-void BattleManager::EnemyCalc()
+void BattleManager::Judgement()
 {
+}
+
+void BattleManager::CommandReset(int num)
+{
+	if (num < 0) {
+		enemyCommand.type = NULL;
+		enemyCommand.forParty = NULL;
+		enemyCommand.magnification = NULL;
+		enemyCommand.num = NULL;
+		enemyCommand.referStatus = NULL;
+		enemyCommand.target = NULL;
+		for (int i = 0; i < EFFECT_SIZE; i++) {
+			enemyCommand.value[i] = NULL;
+		}
+	}
+	else {
+		partyCommand[num].type = NULL;
+		partyCommand[num].forParty = NULL;
+		partyCommand[num].magnification = NULL;
+		partyCommand[num].num = NULL;
+		partyCommand[num].referStatus = NULL;
+		partyCommand[num].target = NULL;
+		for (int i = 0; i < EFFECT_SIZE; i++) {
+			partyCommand[num].value[i] = NULL;
+		}
+	}
 }
 
 void BattleManager::Escape()

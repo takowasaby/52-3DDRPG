@@ -53,14 +53,14 @@ bool Title_c::TitleScreen(int* Key) {
 	DrawFormatStringToHandle(200, Cursor, GetColor(255, 255, 255), FontTitleMain, "Åú");
 
 	if (Key[KEY_INPUT_DOWN] == 1) {
-		if (Cursor != 360) { Cursor = Cursor + 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+    if (Cursor != 360) { Cursor = Cursor + 30; GMusic.ReserveSound(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_UP] == 1) {
-		if (Cursor != 300) { Cursor = Cursor - 30; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+		if (Cursor != 300) { Cursor = Cursor - 30; GMusic.ReserveSound(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
 		if (Cursor == 300) {
-			PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
+			GMusic.ReserveSound(SE[DECISION], DX_PLAYTYPE_BACK);
 			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
 			do {
 				bright = bright - 5;
@@ -75,7 +75,7 @@ bool Title_c::TitleScreen(int* Key) {
 			return true;
 		}
 		else if (Cursor == 330) {
-			PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
+			GMusic.ReserveSound(SE[DECISION], DX_PLAYTYPE_BACK);
 			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
 			do {
 				bright = bright - 5;
@@ -89,7 +89,7 @@ bool Title_c::TitleScreen(int* Key) {
 			return true;
 		}
 		else {
-			PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
+			GMusic.ReserveSound(SE[DECISION], DX_PLAYTYPE_BACK);
 			GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
 			do {
 				bright = bright - 5;

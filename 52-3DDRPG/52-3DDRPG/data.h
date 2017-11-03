@@ -170,6 +170,8 @@ public:
 
 	void SetDungeonLoadFlag(int i);
 	void SetRoomLoadFlag(int i);
+
+	characterData GetCharacterData(int num);
 };
 
 extern Data_c GData;

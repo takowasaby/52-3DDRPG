@@ -46,6 +46,7 @@ public:
 	void AddMessage(string);
 	void SetMessage(string,int);
 	void ClearMessage();
+	void DrawMessage(int x, int y, int w, int h, string str);
 
 	//ƒy[ƒW‚ß‚­‚èŠÖ”
 	void ScrollUp();
@@ -57,6 +58,7 @@ public:
 	void DrawWindow(int x, int y, int w, int h);
 
 	string Enter();
+	int EnterInt();
 
 	string GetText(int);
 };

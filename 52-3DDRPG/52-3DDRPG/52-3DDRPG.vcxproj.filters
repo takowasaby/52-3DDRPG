@@ -64,6 +64,9 @@
     <ClCompile Include="ListAction.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="music.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="control.h">
@@ -118,6 +121,9 @@
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="ListAction.h">
+      <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="music.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
   </ItemGroup>

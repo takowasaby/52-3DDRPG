@@ -16,6 +16,7 @@ Event_c::Event_c():
 	reset();
 
 	textBox = new TextBox;
+	textBox->SetWindowMode(WindowMode(1));
 }
 
 Event_c::~Event_c()
@@ -69,7 +70,7 @@ void Event_c::readDataFromFile(string filename)
 		if (readEach.at(0) == "addchara")
 		{
 			addCharacter(readEach.at(1) , readEach.at(2));
-			printfDx("addchara\n");
+			//printfDx("addchara\n");
 		}
 		else if (readEach.at(0) == "addsound")
 		{
@@ -502,13 +503,15 @@ int Event_c::call()
 		textBox->DrawWindow(0, 360, 640, 120);
 		if (onceStr != "")
 		{
+			textBox->DrawMessage(20, 380, 600, 120, onceStr);
 			if (m_speakerFlag == 1)
 			{
 				textBox->DrawWindow(0, 320, 160, 40);
 				DrawFormatString(22, 332, GetColor(255, 255, 255), "%s\n", m_speaker->getOutName().c_str());
 			}
+			/*
 			DrawFormatString(20, 400, GetColor(255, 255, 255), "%s\n", onceStr.c_str());
-
+			*/
 		}
 	}
 	return 1;
@@ -656,6 +659,8 @@ int Event_c::reset()
 	m_drawData.clear();
 	m_totalID = 0;
 	m_eventList.clear();
+	m_soundData.clear();
+	m_allend = 0;
 	return 0;
 }
 

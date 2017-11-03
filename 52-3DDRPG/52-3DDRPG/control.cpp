@@ -13,9 +13,10 @@ Control_c::Control_c() {
 	battleManager = new BattleManager();
 
 	mRoom->SetEventList(mEventlist);
+	mDungeon->SetEventList(mEventlist);
 
 	mEventlist->Initialize(mEvents);
-	mEventlist->setListFileName("resource/data/eventlist.csv");
+	mEventlist->setListFileName(0);
 	mEventlist->readList();
 //	mEventlist->Event(0);
 //	mEventlist->Event(1);
@@ -128,6 +129,8 @@ bool Control_c::All() {
 		mRoom->DataLoad(GData.GetScenario(), GData.GetStage(), GData.GetRoom());
 		GData.SetRoomLoadFlag(FALSE);
 	}
+
+  GMusic.PlaySounds();
 
 	//mFps->Draw();	//fps•\Ž¦
 	mFps->Wait();	//‘Ò‹@
