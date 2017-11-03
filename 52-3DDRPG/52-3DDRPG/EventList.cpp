@@ -166,7 +166,7 @@ void EventList::readList()
 		count = 30;
 		while (num[count] != 0 && count < 60)
 		{
-			printfDx("%d}", num[count]);
+			//printfDx("%d}", num[count]);
 			action.appendFlag(num[count]);
 			count ++;
 		}
