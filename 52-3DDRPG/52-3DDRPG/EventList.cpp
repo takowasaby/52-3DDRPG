@@ -2,7 +2,8 @@
 #define ABS(x) (x>0?x:-x)
 
 EventList::EventList():
-	m_callEventFlag(0)
+	m_callEventFlag(0),
+	m_scenario(0)
 {
 	for (int i = 0; i < 128; i++)
 	{
@@ -48,6 +49,7 @@ void EventList::setListFileName(int listfile)
 {
 	m_scenario = listfile;
 	string name = "resource/csv/scenario" + to_string(listfile) +"/scenario"+ to_string(listfile) + "_event.csv";
+	printfDx("%s\n", name.c_str());
 	m_ListFileName = name;
 }
 
@@ -166,7 +168,7 @@ void EventList::readList()
 		count = 30;
 		while (num[count] != 0 && count < 60)
 		{
-			printfDx("%d}", num[count]);
+			//printfDx("%d}", num[count]);
 			action.appendFlag(num[count]);
 			count ++;
 		}
