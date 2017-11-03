@@ -11,7 +11,11 @@ Room_c::Room_c() :
 
 	DataLoad(mscenario, mstage, mroom);
 	GraphLoad(mscenario);
-
+  se[cursor] = LoadSoundMem("resource/sounds/SE/room/cursor.mp3");
+  se[decision] = LoadSoundMem("resource/sounds/SE/room/decision.mp3");
+  for (int i = 0; i < 1; i++) {
+    ChangeVolumeSoundMem(64, se[i]);
+  }
 }
 
 Room_c::Room_c(Data_c* data, int * mode, int * event_scene, int * title_scene, int * game_scene) :
@@ -26,7 +30,10 @@ Room_c::Room_c(Data_c* data, int * mode, int * event_scene, int * title_scene, i
 
 Room_c::~Room_c()
 {
-	//delete mData;
+  for (int i = 0; i < 1; i++) {
+    DeleteSoundMem(se[i]);
+  }
+  //delete mData;
 }
 
 void Room_c::KeyUpdate(int Key[256])
@@ -209,24 +216,29 @@ void Room_c::WaitKey() {
 		}
 	}
 	else if (mKey[KEY_INPUT_DOWN] == 1) {
-		selecty++;
+    GMusic.ReserveSound(se[cursor], DX_PLAYTYPE_BACK);
+    selecty++;
 		if (selecty >= roomsizey)selecty = roomsizey - 1;
 	}
 	else if (mKey[KEY_INPUT_UP] == 1) {
-		selecty--;
+    GMusic.ReserveSound(se[cursor], DX_PLAYTYPE_BACK);
+    selecty--;
 		if (selecty < 0)selecty = 0;
 	}
 	else if (mKey[KEY_INPUT_LEFT] == 1) { 
-		selectx--;
+    GMusic.ReserveSound(se[cursor], DX_PLAYTYPE_BACK);
+    selectx--;
 		if (selectx < 0)selectx = 0;
 	}
 	else if (mKey[KEY_INPUT_RIGHT] == 1) { 
-		selectx++; 
+    GMusic.ReserveSound(se[cursor], DX_PLAYTYPE_BACK);
+    selectx++;
 		if (selectx >= roomsizex)selectx = roomsizex - 1;
 	}
 	else if (mKey[KEY_INPUT_Z] == 1){
 		//	printfDx("Room(%d,%d)has been selected Type:%d\nExecute event #%d\n", selectx, selecty, roomData[selectx][selecty].type, roomData[selectx][selecty].event);//ZŒˆ’èŽž‚É“®ì‚·‚éƒAƒNƒVƒ‡ƒ“‚ð‚±‚±‚É‘‚­
-		eventlist->Event(roomData[selectx][selecty].event);
+    GMusic.ReserveSound(se[decision], DX_PLAYTYPE_BACK);
+    eventlist->Event(roomData[selectx][selecty].event);
 	}
 	else if (mKey[KEY_INPUT_D] == 1)printfDx("%d", abs(roomData[0][4].type));
 }

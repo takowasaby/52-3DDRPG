@@ -23,6 +23,10 @@ private:
 	int input[32];
 	char inputc[32];
 
+  int se[2];
+  const int cursor = 0;
+  const int decision = 1;
+
 	int* mMode;
 	int* mEvent_scene;
 	int* mTitle_scene;
