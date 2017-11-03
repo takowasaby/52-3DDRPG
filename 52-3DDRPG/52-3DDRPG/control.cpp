@@ -49,6 +49,9 @@ bool Control_c::All() {
 				mEventlist->Event(0);
 				GData.SetEventFlag(0);
 			}
+			else {
+				GData.SceneRequest(2, 0);
+			}
 			break;
 		case opening:
 			//オープニング

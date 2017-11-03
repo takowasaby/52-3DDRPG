@@ -43,7 +43,7 @@ void Dungeon_c::DungeonAll()
 	BackDraw();
 	WallDrawSet();
 	WallDraw();
-	UIDraw();
+	if (eventList->getCallEventFlag() == 0)UIDraw();
 	MessageDraw();
 	WaitKey();
 }
@@ -58,7 +58,7 @@ void Dungeon_c::DataSet()
 
 void Dungeon_c::DataLoad(int scenario, int stage)
 {
-	sprintf_s(fname, "resource/dungeon/%d/%d_%d.csv", scenario, scenario, stage);
+	sprintf_s(fname, "resource/csv/scenario%d/%d_%d.csv", scenario, scenario, stage);
 
 	mfp = FileRead_open(fname);
 	if (mfp == NULL) {
@@ -176,7 +176,7 @@ EXFILE:
 
 void Dungeon_c::GraphLoad(int scenario, int stage)
 {
-	sprintf_s(gname, "resource/dungeon/%d/%d.png", scenario, scenario);
+	sprintf_s(gname, "resource/picture/scenario%d/dungeon/background.png", scenario, scenario);
 	back = LoadGraph(gname);
 
 	for (int i = 0; i < WALL_SIDE; i++) {

@@ -1,7 +1,7 @@
 #include "define.h"
 
 Menu_c::Menu_c() :
-	depth(0), 
+	depth(0),
 	mode(0), mscenario(0),
 	mdir(0), mx(0), my(0),
 	drawCount(0),
@@ -45,7 +45,7 @@ void Menu_c::KeyUpdate(int Key[256])
 
 void Menu_c::DrawGoal()
 {
-	int drawCount = 0;
+	int drawCount;
 
 	for (int i = 0; i < EVENT_SIZE; i++) {
 		drawCount += GData.GetEventFlag(mscenario, i);
@@ -60,7 +60,7 @@ void Menu_c::MenuAll()
 
 	DrawLeft();
 	DrawRight();
-//	DrawCursor();
+	//	DrawCursor();
 	CheckKey();
 	/*
 	printfDx("\nMode:%d, ", mode);
@@ -120,25 +120,25 @@ void Menu_c::DrawLeft()
 void Menu_c::DrawRight()
 {
 	drawCount = 0;
-/*	for (int i = 0; i < CHARACTER_SIZE; i++) {
-		charaNum[i] = -1;
+	/*	for (int i = 0; i < CHARACTER_SIZE; i++) {
+	charaNum[i] = -1;
 	}
 	for (int i = 0; i < ITEM_SIZE; i++) {
-		itemNum[i] = -1;
+	itemNum[i] = -1;
 	}
 	for (int i = 0; i < SOUBI_SIZE; i++) {
-		soubiNum[i] = -1;
+	soubiNum[i] = -1;
 	}
 	for (int i = 0; i < SKILL_SIZE; i++) {
-		skillNum[i] = -1;
+	skillNum[i] = -1;
 	}
-*/
+	*/
 	switch (depth) {
 	case 0:
 	case 1:
 		switch (mode) {
 		case map:
-//			DrawGoal	
+			//			DrawGoal	
 			textBox->DrawWindow(160, 40, 424, 400);
 
 			mscenario = GData.GetScenario();
@@ -151,7 +151,7 @@ void Menu_c::DrawRight()
 				}
 			}
 
-	//		DrawBox(MENU_MAP_LEFT, MENU_MAP_UP, MENU_MAP_LEFT + (MENU_MAP_SIZE + 2) * MAP_SIZE_X + 2, MENU_MAP_UP + (MENU_MAP_SIZE + 2) * MAP_SIZE_Y + 2, 0, TRUE);
+			//		DrawBox(MENU_MAP_LEFT, MENU_MAP_UP, MENU_MAP_LEFT + (MENU_MAP_SIZE + 2) * MAP_SIZE_X + 2, MENU_MAP_UP + (MENU_MAP_SIZE + 2) * MAP_SIZE_Y + 2, 0, TRUE);
 
 			for (int i = 0; i < 25; i++) {
 				for (int j = 0; j < 25; j++) {
@@ -187,9 +187,9 @@ void Menu_c::DrawRight()
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
 				if (GData.GetCharacterFlag(i)) {
 
-					if (chooseChara == i && depth == 1) DrawFormatString(stringX, stringY + row * i, colorY, "%s HP:%d/%d MP:%d/%d \nSTR:%d VIT:%d AGI:%d INT:%d", 
-						GData.GetCharacterName(i).c_str(), GData.GetCharacterStatus(i, 0, 1), GData.GetCharacterStatus(i, 0, 0), 
-						GData.GetCharacterStatus(i, 1, 1), GData.GetCharacterStatus(i, 1, 0), GData.GetCharacterStatus(i, 2, 1), 
+					if (chooseChara == i && depth == 1) DrawFormatString(stringX, stringY + row * i, colorY, "%s HP:%d/%d MP:%d/%d \nSTR:%d VIT:%d AGI:%d INT:%d",
+						GData.GetCharacterName(i).c_str(), GData.GetCharacterStatus(i, 0, 1), GData.GetCharacterStatus(i, 0, 0),
+						GData.GetCharacterStatus(i, 1, 1), GData.GetCharacterStatus(i, 1, 0), GData.GetCharacterStatus(i, 2, 1),
 						GData.GetCharacterStatus(i, 3, 1), GData.GetCharacterStatus(i, 4, 1), GData.GetCharacterStatus(i, 5, 1));
 					else DrawFormatString(stringX, stringY + row * i, colorW, "%s HP:%d/%d MP:%d/%d \nSTR:%d VIT:%d AGI:%d INT:%d",
 						GData.GetCharacterName(i).c_str(), GData.GetCharacterStatus(i, 0, 1), GData.GetCharacterStatus(i, 0, 0),
@@ -213,10 +213,14 @@ void Menu_c::DrawRight()
 				if (GData.GetCharacterFlag(i)) {
 					DrawFormatString(stringX, stringY + row * drawCount, colorW, "%s ", GData.GetCharacterName(i).c_str());
 
-					if (chooseChara == i && soubiType == 0 && depth == 1) DrawFormatString(stringX + 100, stringY + row * i, colorY, "武器:\n%s", GData.GetSoubiText(GData.GetCharacterSoubi(i, 0), 0).c_str());
+					if (chooseChara == i && soubiType == 0 && depth == 1 && GData.GetCharacterSoubi(i, 0) == -1) DrawFormatString(stringX + 100, stringY + row * i, colorY, "武器:");
+					else if (GData.GetCharacterSoubi(i, 0) == -1) DrawFormatString(stringX + 100, stringY + row * i, colorW, "武器:");
+					else if (chooseChara == i && soubiType == 0 && depth == 1) DrawFormatString(stringX + 100, stringY + row * i, colorY, "武器:\n%s", GData.GetSoubiText(GData.GetCharacterSoubi(i, 0), 0).c_str());
 					else DrawFormatString(stringX + 100, stringY + row * i, colorW, "武器:\n%s", GData.GetSoubiText(GData.GetCharacterSoubi(i, 0), 0).c_str());
-					
-					if (chooseChara == i && soubiType == 1 && depth == 1) DrawFormatString(stringX + 220, stringY + row * i, colorY, "アクセ:\n%s", GData.GetSoubiText(GData.GetCharacterSoubi(i, 1), 0).c_str());
+
+					if (chooseChara == i && soubiType == 1 && depth == 1 && GData.GetCharacterSoubi(i, 1) == -1) DrawFormatString(stringX + 220, stringY + row * i, colorY, "アクセ:");
+					else if (GData.GetCharacterSoubi(i, 1) == -1)DrawFormatString(stringX + 220, stringY + row * i, colorW, "アクセ:");
+					else if (chooseChara == i && soubiType == 1 && depth == 1) DrawFormatString(stringX + 220, stringY + row * i, colorY, "アクセ:\n%s", GData.GetSoubiText(GData.GetCharacterSoubi(i, 1), 0).c_str());
 					else DrawFormatString(stringX + 220, stringY + row * i, colorW, "アクセ:\n%s", GData.GetSoubiText(GData.GetCharacterSoubi(i, 1), 0).c_str());
 
 					drawCount++;
@@ -239,7 +243,7 @@ void Menu_c::DrawRight()
 		case title:
 			textBox->DrawWindow(160, 40, 424, 400);
 			break;
-		default: 
+		default:
 			textBox->DrawWindow(160, 40, 424, 400);
 			break;
 		}
@@ -304,13 +308,13 @@ void Menu_c::DrawRight()
 
 			DrawFormatString(stringX, stringY + row * 0, colorW, "%s", GData.GetCharacterName(chooseChara).c_str());
 
-			row = 20;	
+			row = 20;
 			stringX = 175;
 			stringY = 95;
 
 			for (int i = 0; i < SOUBI_SIZE; i++) {
 				soubiNum[i] = -1;
-				if (GData.GetSoubiPoint(i,5) >= 1) {
+				if (GData.GetSoubiPoint(i, 5) >= 1) {
 					if (soubiType == GData.GetSoubiPoint(i, 1)) {
 						if (i != GData.GetCharacterSoubi(0, soubiType)
 							&& i != GData.GetCharacterSoubi(1, soubiType)
@@ -351,14 +355,14 @@ void Menu_c::DrawRight()
 			else DrawFormatString(stringX, stringY + row * 0, colorW, "消耗品");
 			if (itemType == 1) DrawFormatString(stringX + 210, stringY + row * 0, colorY, "だいじなもの");
 			else DrawFormatString(stringX + 210, stringY + row * 0, colorW, "だいじなもの");
-			
+
 			row = 20;
 			stringX = 175;
 			stringY = 95;
 
 			for (int i = 0; i < ITEM_SIZE; i++) {
 				itemNum[i] = -1;
-				if (GData.GetItemPoint(i,8) >= 1) {
+				if (GData.GetItemPoint(i, 8) >= 1) {
 					if (itemType == GData.GetItemPoint(i, 1)) {
 						if (drawCount == chooseItem) {
 							DrawFormatString(stringX, stringY + row * drawCount, colorY, "%s", GData.GetItemText(i, 0).c_str());
@@ -490,7 +494,7 @@ void Menu_c::DrawRight()
 				if (GData.GetCharacterFlag(i)) {
 					if (targetChara == drawCount) DrawFormatString(stringX, stringY + row * drawCount, colorY, "%s ", GData.GetCharacterName(i).c_str());
 					else DrawFormatString(stringX, stringY + row * drawCount, colorW, "%s ", GData.GetCharacterName(i).c_str());
-				
+
 					drawCount++;
 				}
 			}
@@ -498,7 +502,7 @@ void Menu_c::DrawRight()
 		}
 		break;
 	case 5:
-		DrawGraph(0, 0, menuScreen, TRUE);		
+		DrawGraph(0, 0, menuScreen, TRUE);
 		textBox->DrawWindow(220, 140, 324, 80);
 
 		stringX = 230;
@@ -519,8 +523,7 @@ void Menu_c::CheckKey()
 	if (mKey[KEY_INPUT_DOWN] == 1) {
 		switch (depth) {
 		case 0:
-			if (cursorY != limitDOWN) {
-				cursorY += 20;
+			if (mode < 6) {
 				mode++;
 			}
 			break;
@@ -572,8 +575,7 @@ void Menu_c::CheckKey()
 	else if (mKey[KEY_INPUT_UP] == 1) {
 		switch (depth) {
 		case 0:
-			if (cursorY != limitUP) {
-				cursorY -= 20;
+			if (mode > 0) {
 				mode--;
 			}
 			break;
@@ -676,7 +678,7 @@ void Menu_c::CheckKey()
 			case 1:
 				depth++;
 				break;
-			case 2: 
+			case 2:
 				if (GData.GetSkillPoint(skillNum[chooseSkill], 6) == 0) {
 					DeleteGraph(menuScreen);
 					SaveDrawScreen(0, 0, 640, 480, "resource/MenuScreen.bmp");
@@ -799,7 +801,7 @@ void Menu_c::CheckKey()
 	}
 	else if (mKey[KEY_INPUT_X] == 1) {
 		switch (depth) {
-		case 0: 
+		case 0:
 			GData.SceneBackRequest();
 			break;
 		case 1:
@@ -834,7 +836,7 @@ void Menu_c::CheckKey()
 			GData.SetCharacterSoubi(charaNum[chooseChara], soubiType, -1);
 		}
 	}
-	else if (mKey[KEY_INPUT_V] == 1) {
+	else if (mKey[KEY_INPUT_C] == 1) {
 		GData.SceneBackRequest();
 	}
 }

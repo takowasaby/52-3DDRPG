@@ -270,6 +270,7 @@ void EventList::Event(int num)
 		case 6://move
 			GData.SetDungeonX(m_list[num].index(i).index(0));
 			GData.SetDungeonY(m_list[num].index(i).index(1));
+			GData.SetStage(m_list[num].index(i).index(3));
 			GData.SceneRequest(2, 0);
 			break;
 		case 7://room
