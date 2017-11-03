@@ -328,7 +328,7 @@ void BattleManager::EnemySelection()
 	//for debug
 	aEnemy.name = "BOSS_ATTACK";
 	aEnemy.forParty = false;
-	aEnemy.target = GetRand(CHARACTER_SIZE);
+	aEnemy.target = GetRand(CHARACTER_SIZE-1);
 	aEnemy.value[attack] = GetRand(600);
 	for (int i = 1; i < 7; i++) if (GetRand(100) > 50) aEnemy.value[i] = GetRand(100);
 	phase[0]++;
