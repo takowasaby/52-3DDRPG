@@ -3,8 +3,8 @@
 Title_c::Title_c() {
 	SetUseASyncLoadFlag(TRUE);
   AddFontResourceExA("resource/font/game_over.ttf", FR_PRIVATE, NULL);
-	FontTitleMain = CreateFontToHandle("Game Over", 24, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT);
-  BGM = LoadSoundMem("resource/sounds/BGM/title.wav");
+	FontTitle = CreateFontToHandle("Game Over", 50, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT);
+  BGM = LoadSoundMem("resource/sounds/BGM/title/title.wav");
 	NLGraph = LoadGraph("resource/NOW LOADING.png");
 	TitleGraph = LoadGraph("resource/title.png");
 	TempScreen = MakeScreen(640, 480, FALSE);
@@ -13,7 +13,6 @@ Title_c::Title_c() {
 
 Title_c::~Title_c() {
 	DeleteFontToHandle(FontTitle);
-	DeleteFontToHandle(FontTitleMain);
   DeleteSoundMem(BGM);
 	DeleteGraph(NLGraph);
 	DeleteGraph(TitleGraph);
@@ -27,7 +26,7 @@ bool Title_c::TitleScreen(int* Key) {
     PlaySoundMem(BGM, DX_PLAYTYPE_LOOP);
 	}
 
-	if ((CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(FontTitleMain) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE)) {
+	if ((CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE)) {
 		nowLoading();
 		return false;
 	}
@@ -38,9 +37,7 @@ bool Title_c::TitleScreen(int* Key) {
 	}
 
 	DrawExtendGraph(0, 0, 641, 481, TitleGraph, FALSE);
-	DrawFormatStringToHandle(230, 360, GetColor(255, 255, 255), FontTitleMain, "PRESS ANY KEY");
-
-	DrawFormatStringToHandle(200, Cursor, GetColor(255, 255, 255), FontTitleMain, "Åú");
+	DrawFormatStringToHandle(160, 360, GetColor(255, 255, 255), FontTitle, "PRESS ANY KEY");
 
 	if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
 		GMusic.ReserveSound(GMusic.CommonSE[GMusic.DECISION], DX_PLAYTYPE_BACK);

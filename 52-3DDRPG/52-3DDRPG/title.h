@@ -3,7 +3,6 @@
 class Title_c {
 private:
 	int FontTitle;
-	int FontTitleMain;
 
 	int NLGraph;
 	int TitleGraph;
