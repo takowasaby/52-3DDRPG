@@ -1,4 +1,4 @@
-wordstyle backblack 3
+wordsyle backblack 3
 //
 //
 text ‚í‚½‚µ‚Íu‚İ‚·v‚Æ‚¢‚¢‚Ü‚·B–¼š‚Í‚í‚©‚è‚Ü‚¹‚ñB‚Â‚¯–Ë‚ª‚·‚«‚Å‚·
