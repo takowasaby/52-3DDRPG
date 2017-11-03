@@ -9,10 +9,7 @@ Data_c::Data_c() :
 	dungeonLoadFlag(0),
 	roomLoadFlag(0)
 {
-<<<<<<< HEAD
 	//controlMode = 1;
-=======
->>>>>>> master
 	controlMode = 2;
 	eventScene = 0;
 	titleScene = 2;
@@ -539,7 +536,7 @@ string Data_c::GetItemText(int num, int sort)
 }
 int Data_c::ItemStringToNum(string name)
 {
-	for (int i = 0; i < ITEM_SIZE; i++) {
+	for (int i = 0; i < ITEM_TYPE_NUM; i++) {
 		if (name == item[i].name) {
 			return i;
 		}

@@ -58,6 +58,7 @@ const int EVENT_WRITESTYLE_BLACK = 4;
 //data—p-----------------------------------------------------------------
 const int SCENARIO_SIZE = 5;
 const int STAGE_SIZE = 5;
+const int ITEM_TYPE_NUM = 19;
 const int ITEM_TYPE_SIZE = 3;
 const int ITEM_FLAG_MAX = 99;
 const int NAME_SIZE = 32;
@@ -157,7 +158,13 @@ enum Effect{
 struct Param {
 	int current, base;
 };
-struct Attack {
+enum CommandType {
+	skill,
+	item,
+	defence
+};
+struct Command {
+	CommandType commandType;
 	string name;
 	int cost;
 	bool forParty;
