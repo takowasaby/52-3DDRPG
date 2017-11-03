@@ -61,9 +61,7 @@ bool Title_c::TitleScreen(int* Key) {
     if (bright > 0) {
       bright -= 5;
       SetDrawBright(bright, bright, bright);
-      ClearDrawScreen();
       DrawGraph(0, 0, TempScreen, FALSE);
-      ScreenFlip();
       SetDrawBright(255, 255, 255);
     }
     else {

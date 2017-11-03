@@ -21,7 +21,7 @@ Scenario_c::~Scenario_c()
 void Scenario_c::ScenarioAll()
 {
 	Draw();
-	Update();
+	if (!first) Update();
 }
 
 void Scenario_c::SetEventList(EventList *el)
@@ -39,7 +39,6 @@ void Scenario_c::Load()
 		graph[1][i] = LoadGraph(fname);
 		GraphFilter(graph[1][i], DX_GRAPH_FILTER_MONO, 0, 0);
 	}
-  ScenarioBGM = LoadSoundMem("resource/sounds/BGM/scenario select/SSelect.wav");
 }
 
 void Scenario_c::Update()
@@ -67,9 +66,7 @@ void Scenario_c::Update()
     if (bright > 0) {
       bright -= 5;
       SetDrawBright(bright, bright, bright);
-      ClearDrawScreen();
       DrawGraph(0, 0, tempScreen, FALSE);
-      ScreenFlip();
       SetDrawBright(255, 255, 255);
       return;
     }
@@ -80,11 +77,13 @@ void Scenario_c::Update()
       GData.SetEventFlag(1);
       GData.SceneRequest(0, 0);
       GMusic.StopSound(ScenarioBGM);
+      DeleteSoundMem(ScenarioBGM);
       Reset();
     }
     else {
       GData.SceneBackRequest();
       GMusic.StopSound(ScenarioBGM);
+      DeleteSoundMem(ScenarioBGM);
       Reset();
     }
   }
@@ -96,23 +95,27 @@ void Scenario_c::Draw()
     if (bright < 255) {
       bright += 5;
       SetDrawBright(bright, bright, bright);
-      return;
     }
-    first = false;
-    ChangeVolumeSoundMem(128, ScenarioBGM);
-    GMusic.ReserveSound(ScenarioBGM, DX_PLAYTYPE_LOOP);
+    else {
+      first = false;
+      ScenarioBGM = LoadSoundMem("resource/sounds/BGM/scenario select/SSelect.wav");
+      ChangeVolumeSoundMem(128, ScenarioBGM);
+      GMusic.ReserveSound(ScenarioBGM, DX_PLAYTYPE_LOOP);
+    }
   }
 
-	for (int i = 0; i < SCENARIO_SIZE; i++) {
-		if (i == chooseScenario) DrawGraph(0, 96 * i, graph[0][i], TRUE);
-		else DrawGraph(0, 96 * i, graph[1][i], TRUE);
-	}
+  if (end == 0) {
+    for (int i = 0; i < SCENARIO_SIZE; i++) {
+      if (i == chooseScenario) DrawGraph(0, 96 * i, graph[0][i], TRUE);
+      else DrawGraph(0, 96 * i, graph[1][i], TRUE);
+    }
+  }
 }
 
 void Scenario_c::Reset()
 {
 	chooseScenario = 0;
-	bright = 0;
+  bright = 0;
 }
 
 void Scenario_c::KeyUpdate(int Key[256])
