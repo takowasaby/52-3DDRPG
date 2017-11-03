@@ -9,7 +9,7 @@ Data_c::Data_c() :
 	dungeonLoadFlag(0),
 	roomLoadFlag(0)
 {
-	controlMode = 1;
+	controlMode = 2;
 	eventScene = 0;
 	titleScene = 2;
 	gameScene = 2;
@@ -131,7 +131,7 @@ void Data_c::DeleteAll()
 void Data_c::GoalLoad(int s)
 {
 	int n, i, fp;
-	char fname[32];
+	char fname[64];
 	int input[64];
 	char inputc[64];
 
@@ -169,12 +169,12 @@ EXFILE:
 void Data_c::ItemLoad(int s)
 {
 	int n, num, i, fp;
-	char fname[32];
+	char fname[64];
 	int input[512];
 	char inputc[512];
 	int dataNum = 0;
 
-	sprintf_s(fname, "resource/data/item_%d.csv", s);
+	sprintf_s(fname, "resource/csv/scenario%d/item%d.csv", s, s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
@@ -236,12 +236,12 @@ EXFILE:
 void Data_c::SoubiLoad(int s)
 {
 	int n, num, i, fp;
-	char fname[32];
+	char fname[64];
 	int input[512];
 	char inputc[512];
 	int dataNum;
 
-	sprintf_s(fname, "resource/data/soubi_%d.csv", s);
+	sprintf_s(fname, "resource/csv/scenario%d/soubi%d.csv", s, s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
@@ -293,12 +293,12 @@ EXFILE:
 void Data_c::SkillLoad(int s)
 {
 	int n, num, i, fp;
-	char fname[32];
+	char fname[64];
 	int input[512];
 	char inputc[512];
 	int dataNum;
 
-	sprintf_s(fname, "resource/data/skill_%d.csv", s);
+	sprintf_s(fname, "resource/csv/scenario%d/skill%d.csv", s, s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
@@ -356,11 +356,11 @@ EXFILE:
 void Data_c::CharacterLoad(int s)
 {
 	int n, num, i, fp;
-	char fname[32];
+	char fname[64];
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/data/character_%d.csv", s);
+	sprintf_s(fname, "resource/csv/scenario%d/character%d.csv", s, s);
 
 	fp = FileRead_open(fname);//ファイル読み込み
 	if (fp == NULL) {
