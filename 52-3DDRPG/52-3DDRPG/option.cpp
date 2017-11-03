@@ -34,11 +34,11 @@ void Option_c::ItemDraw()
 
 	DrawFormatString(40, 50, GetColor(255, 255, 255), "BGM");
 	DrawFormatString(120, 50, GetColor(255, 255, 255), "%d", BGMLv);
-	DrawBox(140, 45, 140 + 100 * double(BGMLv) / 5, 55, GetColor(255, 255, 0), true);
+	DrawBox(140, 45, (int)(140 + 100 * (double)BGMLv / 5), 55, GetColor(255, 255, 0), true);
 
 	DrawFormatString(40, 90, GetColor(255, 255, 255), "SE");
 	DrawFormatString(120, 90, GetColor(255, 255, 255), "%d", SELv);
-	DrawBox(140, 85, 140 + 100 * double(SELv) / 5, 95, GetColor(255, 255, 0), true);
+	DrawBox(140, 85, (int)(140 + 100 * (double)SELv / 5), 95, GetColor(255, 255, 0), true);
 
 	DrawFormatString(40, 130, GetColor(255, 255, 255), "BattleMode");
 	DrawFormatString(160, 130, GetColor(255, 255, 255), "%d", BattleType);

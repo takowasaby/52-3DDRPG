@@ -178,7 +178,7 @@ void BattleManager::LoadEnemy()
 		}
 	}
 	for (int i = 0; i < ENEMY_SKILL_SIZE; i++) {
-		enemySkillSize[i] = enemySkill[i].size();
+		enemySkillSize[i] = (int)enemySkill[i].size();
 	}
 
 }

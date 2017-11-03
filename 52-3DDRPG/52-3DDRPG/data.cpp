@@ -337,7 +337,7 @@ void Data_c::SkillLoad(int s)
 			}
 			break;
 		case 4: skill[n].status = atoi(inputc);			break;
-		case 5: skill[n].magnification = atof(inputc);	break;
+		case 5: skill[n].magnification = atoi(inputc);	break;
 		case 6: skill[n].area = atoi(inputc);			break;
 		case 7: skill[n].explain = inputc;				break;
 		}
@@ -938,6 +938,7 @@ int Data_c::GetScene(int mode)
 	case 1: return titleScene; break;
 	case 2: return gameScene; break;
 	}
+  return -1;
 }
 
 int Data_c::GetDungeonLoadFlag()
@@ -955,7 +956,7 @@ void Data_c::SetDungeonLoadFlag(int i)
 }
 void Data_c::SetRoomLoadFlag(int i)
 {
-	roomLoadFlag - i;
+	roomLoadFlag = i;
 }
 
 characterData Data_c::GetCharacterData(int num)

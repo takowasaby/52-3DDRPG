@@ -185,14 +185,14 @@ void Event_c::readDataFromFile(string filename)
 			case EVENT_WRITESTYLE_ONEBYONE:
 				addEventAction(readEach.at(1),
 					EVENT_ACTION_TEXT,
-					0, m_writeTime * readEach.at(1).size(),
-					m_writeTime * readEach.at(1).size(),
+					0, m_writeTime * (int)readEach.at(1).size(),
+					m_writeTime * (int)readEach.at(1).size(),
 					1
 				);
 				addEventAction("NULL",
 					EVENT_ACTION_WAIT,
 					0, 0,
-					m_writeTime * readEach.at(1).size(),
+					m_writeTime * (int)readEach.at(1).size(),
 					0
 				);
 				addEventAction("default",
@@ -215,14 +215,14 @@ void Event_c::readDataFromFile(string filename)
 			case EVENT_WRITESTYLE_BLACK:
 				addEventAction(readEach.at(1),
 					EVENT_ACTION_TEXT,
-					0, m_writeTime * readEach.at(1).size(),
-					m_writeTime * readEach.at(1).size(),
+					0, m_writeTime * (int)readEach.at(1).size(),
+					m_writeTime * (int)readEach.at(1).size(),
 					1
 				);
 				addEventAction("NULL",
 					EVENT_ACTION_WAIT,
 					0, 0,
-					m_writeTime * readEach.at(1).size(), 0
+					m_writeTime * (int)readEach.at(1).size(), 0
 				);
 				addEventAction("default",
 					EVENT_ACTION_STYLE,
@@ -365,14 +365,14 @@ int Event_c::call()
 			{
 				len = m_EQPcall->getCurrentNumber()/ m_writeTime;
 				if (len > m_EQPcall->getName().length())
-					len = m_EQPcall->getName().length();
+					len = (int)m_EQPcall->getName().length();
 				onceStr = m_EQPcall->getName().substr(0, len);
 			}
 			else if (m_writeStyle == EVENT_WRITESTYLE_BLACK)
 			{
 				len = m_EQPcall->getCurrentNumber() / m_writeTime;
 				if (len > m_EQPcall->getName().length())
-					len = m_EQPcall->getName().length();
+					len = (int)m_EQPcall->getName().length();
 				onceStr = m_EQPcall->getName().substr(0, len);
 			}
 			break;
