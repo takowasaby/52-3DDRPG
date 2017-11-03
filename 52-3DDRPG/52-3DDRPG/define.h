@@ -197,7 +197,6 @@ const int ENEMY_SKILL_SIZE = 4;
 #include "title.h"
 #include "menu.h"
 #include "music.h"
-#include "Sound.h"
 #include "room.h"
 #include "BattleManager.h"
 #include "scenario.h"

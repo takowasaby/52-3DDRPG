@@ -10,7 +10,7 @@ private:
 	int TempScreen;
 
 	int Cursor = 300;
-  int BGM;
+  int TitleBGM;
 	bool first = true;
   bool end = false;
   bool flag = true;
