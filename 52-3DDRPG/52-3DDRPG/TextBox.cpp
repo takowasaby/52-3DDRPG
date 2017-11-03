@@ -120,9 +120,13 @@ void TextBox::DrawMessage(int px, int py, int width, int height, string str)
 	{
 		if (str[i] == 'B' && str.size()-1 != i)
 		{
+			if (str[i + 1] != 'B')
+			{
+				continue;
+			}
 			DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, i - start).c_str());
-			i++;
-			start = i-1;
+			i+=2;
+			start = i;
 			line++;
 		}
 		else if (ww*(i - start) > width)
@@ -132,7 +136,10 @@ void TextBox::DrawMessage(int px, int py, int width, int height, string str)
 			line++;
 		}
 	}
-	DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, str.size() - start).c_str());
+	if(str[str.size()-1] == 'B')
+		DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, str.size() - start-1).c_str());
+	else
+		DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, str.size() - start).c_str());
 }
 
 void TextBox::Activate()
