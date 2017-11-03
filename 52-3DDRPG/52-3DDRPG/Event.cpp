@@ -329,6 +329,8 @@ int Event_c::call()
 	clsDx();
 	string onceStr = "";
 	int len;
+	if (m_eventList.empty())
+		return -1;
 	for (m_elit = m_eventList.begin(); m_elit != m_eventList.end();)
 	{
 		m_EQPcall = &(*m_elit);
@@ -494,7 +496,7 @@ int Event_c::call()
 		DrawBox(0, 0, 640, 480, GetColor(0, 0, 0), TRUE);
 		if (onceStr != "")
 		{
-			DrawFormatString(20, 100, GetColor(255, 255, 255), "%s\n", onceStr.c_str());
+			textBox->DrawMessage(20, 80, 600, 120, onceStr);
 		}
 
 	}
@@ -661,6 +663,7 @@ int Event_c::reset()
 	m_eventList.clear();
 	m_soundData.clear();
 	m_allend = 0;
+	m_speakerFlag = 0;
 	return 0;
 }
 
