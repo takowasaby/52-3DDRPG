@@ -25,7 +25,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		ScreenFlip();//— ‰æ–Ê‚ð•\‰æ–Ê‚É”½‰f
 	}
 
-  //delete &control;
+  delete &control;
   delete &GMusic;
   delete &GData;
 
