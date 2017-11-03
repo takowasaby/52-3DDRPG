@@ -158,6 +158,7 @@ struct Param {
 	int current, base;
 };
 struct Attack {
+	string name;
 	int cost;
 	bool forParty;
 	int target;	//敵か味方か,何番目か(マイナス値なら全体)
@@ -181,6 +182,7 @@ struct CharacterData {
 	int Image;
 };*/
 const int ENEMY_SKILL_SIZE = 4;
+const int OPINIONWINDOW_NUM = 3;
 //------------------------------------------------------------------------
 
 #include "control.h"

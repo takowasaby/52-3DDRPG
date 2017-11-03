@@ -2,11 +2,6 @@
 
 Data_c::Data_c() :
 	scenario(0),
-	stage(0),
-	dir(0),
-	room(-1),
-	dungeonX(1),
-	dungeonY(3),
 	playCount(0),
 	BMode(0),
 	BScene(0),
@@ -18,6 +13,14 @@ Data_c::Data_c() :
 	eventScene = 0;
 	titleScene = 2;
 	gameScene = 2;
+
+	for (int i = 0; i < SCENARIO_SIZE; i++) {
+		stage[i] = 0;
+		dir[i] = 0;
+		room[i] = -1;
+		dungeonX[i] = 0;
+		dungeonY[i] = 0;
+	}
 
 	for (int i = 0; i < MAP_SIZE_X; i++) {
 		for (int j = 0; j < MAP_SIZE_Y; j++) {
@@ -790,20 +793,20 @@ int Data_c::GetScenario()
 }
 int Data_c::GetStage()
 {
-	return stage;
+	return stage[scenario];
 }
 int Data_c::GetDungeonX()
 {
-	return dungeonX;
+	return dungeonX[scenario];
 }
 int Data_c::GetDungeonY()
 {
-	return dungeonY;
+	return dungeonY[scenario];
 }
 
 int Data_c::GetDir()
 {
-	return dir;
+	return dir[scenario];
 }
 
 int Data_c::GetEventFlag()
@@ -813,7 +816,7 @@ int Data_c::GetEventFlag()
 
 int Data_c::GetRoom()
 {
-	return room;
+	return room[scenario];
 }
 
 void Data_c::SetScenario(int i)
@@ -824,21 +827,21 @@ void Data_c::SetScenario(int i)
 }
 void Data_c::SetStage(int i)
 {
-	if (stage != i) dungeonLoadFlag = TRUE;
-	stage = i;
+	if (stage[scenario] != i) dungeonLoadFlag = TRUE;
+	stage[scenario] = i;
 }
 void Data_c::SetDungeonX(int i)
 {
-	dungeonX = i;
+	dungeonX[scenario] = i;
 }
 void Data_c::SetDungeonY(int i)
 {
-	dungeonY = i;
+	dungeonY[scenario] = i;
 }
 
 void Data_c::SetDir(int i)
 {
-	dir = i;
+	dir[scenario] = i;
 }
 
 void Data_c::SetEventFlag(int i)
@@ -848,8 +851,8 @@ void Data_c::SetEventFlag(int i)
 
 void Data_c::SetRoom(int i)
 {
-	if (room != i) roomLoadFlag = TRUE;
-	room = i;
+	if (room[scenario] != i) roomLoadFlag = TRUE;
+	room[scenario] = i;
 }
 
 int Data_c::GetMapFlag(int scenario, int stage, int x, int y)
