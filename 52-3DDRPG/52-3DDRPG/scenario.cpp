@@ -116,6 +116,8 @@ void Scenario_c::Reset()
 {
 	chooseScenario = 0;
   bright = 0;
+  first = true;
+  end = 0;
 }
 
 void Scenario_c::KeyUpdate(int Key[256])
