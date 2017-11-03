@@ -27,17 +27,17 @@ bool Title_c::TitleScreen(int* Key) {
     }
     first = false;
     ChangeVolumeSoundMem(128, TitleBGM);
-    GMusic.ReserveSound(TitleBGM, DX_PLAYTYPE_BACK);
+    GMusic.ReserveSound(TitleBGM, DX_PLAYTYPE_LOOP);
   }
 
-	if (end == false && bright < 255) {
-		bright += 5;
-		SetDrawBright(bright, bright, bright);
-	}
-
   if (end == false) {
+    if (bright < 255) {
+      bright += 5;
+      SetDrawBright(bright, bright, bright);
+    }
+
     DrawExtendGraph(0, 0, 641, 481, TitleGraph, FALSE);
-    
+
     if (fade == 255) flag = true;
     else if (fade == 125) flag = false;
 
@@ -49,15 +49,15 @@ bool Title_c::TitleScreen(int* Key) {
       fade += 5;
       DrawFormatStringToHandle(160, 360, GetColor(fade, fade, fade), FontTitle, "PRESS ANY KEY");
     }
+
+    if (CheckHitKeyAll() != 0) {
+      GMusic.ReserveSound(GMusic.CommonSE[GMusic.DECISION], DX_PLAYTYPE_BACK);
+      GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
+      end = true;
+    }
   }
 
-  if (end == false && (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1)) {
-    GMusic.ReserveSound(GMusic.CommonSE[GMusic.DECISION], DX_PLAYTYPE_BACK);
-    GetDrawScreenGraph(0, 0, 640, 480, TempScreen);
-    end = true;
-  }
-
-  if (end == true) {
+  else {
     if (bright > 0) {
       bright -= 5;
       SetDrawBright(bright, bright, bright);
@@ -67,6 +67,7 @@ bool Title_c::TitleScreen(int* Key) {
       SetDrawBright(255, 255, 255);
     }
     else {
+      GMusic.StopSound(TitleBGM);
       GData.SceneRequest(1, 1);//シナリオ選択
       return true;
     }

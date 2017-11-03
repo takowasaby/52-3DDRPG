@@ -25,10 +25,10 @@ public:
 
   void PlaySounds(void); //ÀÛ‚É–Â‚ç‚·ŠÖ”(control‰º‚Å‚Ì‚İg—p)
 
-  void ReserveSound(int SoundHandle, int PlayType, int FadeFlag = FALSE); //Šeˆ—“à‚ÅÄ¶‚ğ‚·‚éŠÖ”
-  void StopSound(int SoundHandle, int FadeFlag = FALSE); //Šeˆ—“à‚ÅÄ¶’†‚Ì‰¹‚ğ’â~‚·‚éŠÖ”
-  void PauseSound(int FadeFlag = FALSE); //Œ»İˆ—’†‚Ì‚ ‚ç‚ä‚é‰¹‚ğ’â~‚·‚éŠÖ”
-  void RestartSound(int FadeFlag = FALSE); //PauseŠÖ”‚Å’â~‚µ‚½‰¹‚ğÄ¶‚·‚éŠÖ”
+  void ReserveSound(int SoundHandle, int PlayType, bool FadeFlag = FALSE); //Šeˆ—“à‚ÅÄ¶‚ğ‚·‚éŠÖ”
+  void StopSound(int SoundHandle, bool FadeFlag = FALSE); //Šeˆ—“à‚ÅÄ¶’†‚Ì‰¹‚ğ’â~‚·‚éŠÖ”
+  void PauseSound(bool FadeFlag = FALSE); //Œ»İˆ—’†‚Ì‚ ‚ç‚ä‚é‰¹‚ğ’â~‚·‚éŠÖ”
+  void RestartSound(bool FadeFlag = FALSE); //PauseŠÖ”‚Å’â~‚µ‚½‰¹‚ğÄ¶‚·‚éŠÖ”
 
 };
 

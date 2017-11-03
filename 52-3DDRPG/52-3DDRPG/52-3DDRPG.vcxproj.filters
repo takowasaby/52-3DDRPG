@@ -37,9 +37,6 @@
     <ClCompile Include="title.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Sound.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="option.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
@@ -97,9 +94,6 @@
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="title.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="room.h">

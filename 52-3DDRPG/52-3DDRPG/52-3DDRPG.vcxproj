@@ -170,7 +170,6 @@
     <ClCompile Include="room.cpp" />
     <ClCompile Include="save_load.cpp" />
     <ClCompile Include="scenario.cpp" />
-    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="title.cpp" />
   </ItemGroup>
@@ -191,7 +190,6 @@
     <ClInclude Include="room.h" />
     <ClInclude Include="save_load.h" />
     <ClInclude Include="scenario.h" />
-    <ClInclude Include="Sound.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="title.h" />
   </ItemGroup>
