@@ -3,7 +3,7 @@
 TextBox::TextBox()
 	: windowMode(readMode),
 	x(0), y(0), w(100), h(100), raw(5),
-	isActivated(false), isVisible(true), isSelected(false),
+	isActivated(false), isVisible(true), isReverse(false),
 	position(0), topOfPage(0)
 {
 	LoadWindow();
@@ -85,7 +85,7 @@ void TextBox::Draw()
 
 	//座標とサイズを元にウィンドウを描画する
 	//DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
-//	DrawWindow(x, y, w, h);
+	DrawWindow(x, y, w, h);
 
 	//ウィンドウにメッセージを描画する
 	if (message.size() > 0) {
@@ -95,22 +95,33 @@ void TextBox::Draw()
 		case pageMode:
 			for (int i = topOfPage; i < topOfPage + raw; i++) {
 				if (i >(message.size() - 1)) break;
-				int color = GetColor(255, 255, 255);
-				if (i == position) color = GetColor(255, 191, 0);
+				int color;
+				if (!isActivated) color = GetColor(204, 204, 204);
+				else if (i == position) color = GetColor(255, 191, 0);
+				else color = GetColor(255, 255, 255);
 				DrawFormatString(x + 5, y + 5 + ((i - topOfPage) * 17), color, message[i].c_str());
 			}
 			break;
 		case scrollMode:
 			break;
 		case logMode:
-			for (int i = 0; i < raw; i++) {
-				if (message.size() - i < 1) break;
-				DrawFormatString(x + 5, y + 5 + (i * 17), GetColor(255, 255, 255), message[message.size() - i - 1].c_str());
+			if (isReverse) {
+				for (int i = 0; i < raw; i++) {
+					if (message.size() - i < 1) break;
+					DrawFormatString(x + 5, y + 5 + (i * 17), GetColor(255, 255, 255), message[message.size() - (i + 1)].c_str());
+				}
+			}
+			else {
+				for (int i = 0; i < raw; i++) {
+					if (message.size() <= i) break;
+					DrawFormatString(x + 5, y + 5 + (i * 17), GetColor(255, 255, 255), message[i].c_str());
+				}
 			}
 			break;
 		}
 	}
 }
+
 void TextBox::DrawMessage(int px, int py, int width, int height, string str)
 {
 	int line = 0;
@@ -118,26 +129,26 @@ void TextBox::DrawMessage(int px, int py, int width, int height, string str)
 	double ww = 8.5;
 	for (int i = 0; i < str.size(); i++)
 	{
-		if (str[i] == 'B' && str.size()-1 != i)
+		if (str[i] == 'B' && str.size() - 1 != i)
 		{
 			if (str[i + 1] != 'B')
 			{
 				continue;
 			}
 			DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, i - start).c_str());
-			i+=2;
+			i += 2;
 			start = i;
 			line++;
 		}
 		else if (ww*(i - start) > width)
 		{
 			DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, i - start).c_str());
-			start = i-1;
+			start = i - 1;
 			line++;
 		}
 	}
-	if(str[str.size()-1] == 'B')
-		DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, str.size() - start-1).c_str());
+	if (str[str.size() - 1] == 'B')
+		DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, str.size() - start - 1).c_str());
 	else
 		DrawFormatString(px, py + line * 17, GetColor(255, 191, 0), str.substr(start, str.size() - start).c_str());
 }
@@ -199,10 +210,14 @@ void TextBox::SetMessage(string text, int index)
 void TextBox::ClearMessage()
 {
 	message.clear();
-	position = 0;
-	topOfPage = 0;
 }
 
+void TextBox::Reset()
+{
+	ClearMessage();
+	topOfPage = 0;
+	position = 0;
+}
 
 void TextBox::ScrollUp()
 {
@@ -219,7 +234,7 @@ void TextBox::ScrollDown()
 
 void TextBox::PageUp()
 {
-	if (topOfPage + raw < message.size() - 1) {
+	if (topOfPage + raw <= message.size() - 1) {
 		topOfPage += raw;
 		if (position + raw < message.size() - 1) position += raw;
 		else position = message.size() - 1;
@@ -251,7 +266,7 @@ void TextBox::LoadWindow()
 }
 void TextBox::DrawWindow(int x, int y, int w, int h)
 {
-//	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
+	//	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255), false);
 	DrawExtendGraph(x + 3, y + 3, x + w - 2, y + h - 2, windowBack, TRUE);
 
 	int edgeType = 0;
@@ -274,11 +289,6 @@ void TextBox::DrawWindow(int x, int y, int w, int h)
 string TextBox::Enter()
 {
 	return message[position];
-}
-
-int TextBox::EnterInt()
-{
-	return position;
 }
 
 string TextBox::GetText(int index)
