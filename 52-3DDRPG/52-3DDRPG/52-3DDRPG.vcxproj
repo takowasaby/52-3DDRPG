@@ -165,6 +165,7 @@
     <ClCompile Include="ListAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="music.cpp" />
     <ClCompile Include="option.cpp" />
     <ClCompile Include="room.cpp" />
     <ClCompile Include="save_load.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="fps.h" />
     <ClInclude Include="ListAction.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="music.h" />
     <ClInclude Include="option.h" />
     <ClInclude Include="room.h" />
     <ClInclude Include="save_load.h" />

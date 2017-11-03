@@ -127,6 +127,8 @@ bool Control_c::All() {
 		GData.SetRoomLoadFlag(FALSE);
 	}
 
+  GMusic.PlaySounds();
+
 	//mFps->Draw();	//fps•\Ž¦
 	mFps->Wait();	//‘Ò‹@
 

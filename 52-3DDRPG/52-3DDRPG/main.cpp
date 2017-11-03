@@ -1,6 +1,7 @@
 #include "define.h"
 
 Data_c GData;
+Music_c GMusic;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
@@ -22,6 +23,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		ScreenFlip();//— ‰æ–Ê‚ð•\‰æ–Ê‚É”½‰f
 	}
+
+  delete &control;
+  delete &GMusic;
+  delete &GData;
 
 	DxLib_End();
 	return 0;
