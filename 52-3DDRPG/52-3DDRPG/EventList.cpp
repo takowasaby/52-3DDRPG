@@ -47,7 +47,7 @@ int EventList::callEvent()
 void EventList::setListFileName(int listfile)
 {
 	m_scenario = listfile;
-	string name = "resource/data/eventlist" + to_string(listfile) + ".csv";
+	string name = "resource/csv/scenario" + to_string(listfile) +"/scenario"+ to_string(listfile) + "_event.csv";
 	m_ListFileName = name;
 }
 
