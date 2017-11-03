@@ -4,7 +4,7 @@ Title_c::Title_c() {
 	SetUseASyncLoadFlag(TRUE);
   AddFontResourceExA("resource/font/game_over.ttf", FR_PRIVATE, NULL);
 	FontTitle = CreateFontToHandle("Game Over", 50, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT);
-  BGM = LoadSoundMem("resource/sounds/BGM/title/Good52ndFriends.wav");
+  TitleBGM = LoadSoundMem("resource/sounds/BGM/title/Good52ndFriends.wav");
 	NLGraph = LoadGraph("resource/NOW LOADING.png");
 	TitleGraph = LoadGraph("resource/title.png");
 	TempScreen = MakeScreen(640, 480, FALSE);
@@ -13,23 +13,22 @@ Title_c::Title_c() {
 
 Title_c::~Title_c() {
 	DeleteFontToHandle(FontTitle);
-  DeleteSoundMem(BGM);
+  DeleteSoundMem(TitleBGM);
 	DeleteGraph(NLGraph);
 	DeleteGraph(TitleGraph);
 	DeleteGraph(TempScreen);
 }
 
 bool Title_c::TitleScreen(int* Key) {
-	if (first == true) {
-		first = false;
-    ChangeVolumeSoundMem(128, BGM);
-    PlaySoundMem(BGM, DX_PLAYTYPE_BACK);
-	}
-
-	if ((CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE)) {
-		nowLoading();
-		return false;
-	}
+  if (first == true) {
+    if ((CheckHandleASyncLoad(FontTitle) != FALSE || CheckHandleASyncLoad(TitleBGM) != FALSE || CheckHandleASyncLoad(TitleGraph) != FALSE)) {
+      nowLoading();
+      return false;
+    }
+    first = false;
+    ChangeVolumeSoundMem(128, TitleBGM);
+    GMusic.ReserveSound(TitleBGM, DX_PLAYTYPE_BACK);
+  }
 
 	if (end == false && bright < 255) {
 		bright += 5;
