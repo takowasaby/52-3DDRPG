@@ -1,0 +1,41 @@
+addchara misu みすちゃん
+addchara sato SATO
+addchara girl 女の子
+//
+addcharapicture misu defaultstand resource/picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png
+addcharapicture girl defaultstand resource/picture/scenario0/character/girl0.png
+//
+drawrequest misu01 misu defaultstand 30 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+drawrequest girl01 girl defaultstand 70 20 0 70
+dark misu01
+dark sato01
+dark girl01
+turn misu01 0
+//
+wordstyle onebyone 3
+//
+light girl01
+text だいじょうぶ？
+wait
+dark girl01
+light misu01
+text うん！だいじょうぶ！BBお姉ちゃんありがと！
+wait
+dark misu01
+light sato01
+text どうやら、やつは停止したようだな・・・
+wait
+text ドアを開けるために必要なBBセキュリティキーの場所はダウンロードしておいた
+wait
+dark sato01
+light girl01　
+text じゃあいこっか、みすちゃん！
+wait
+dark girl01
+light misu01
+text　うん！
+wait
+//
+end

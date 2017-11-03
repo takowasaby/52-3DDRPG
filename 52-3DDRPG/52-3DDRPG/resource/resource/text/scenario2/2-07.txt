@@ -1,0 +1,217 @@
+addchara motoyuusya 元勇者
+addchara syouzyo
+ 少女
+//
+
+//
+
+addcharapicture motoyuusya02 defaultstand resource/picture/scenario2/character/motoyuusha_battle.png
+addcharapicture syouzyo01 defaultstand resource/picture/scenario2/character/shoujo.png
+//
+
+//
+drawrequest(canvasname charaname picturename x y width height)
+
+drawrequest motoyuusya02 motoyuusya defaultstand 10 20 0 70
+
+drawrequest syouzyo01 syouzyo defaultstand 60 20 0 70
+
+//
+turn motoyuusya02
+dark motoyuusya02
+dark syouzyo01
+
+//
+wordstyle onebyone 3
+//
+light motoyuusya02
+text そういえばBBお前の親御さん、どんな人なんだ。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+text うーん、本当のお母さんはBB私がうまれてすぐ死んじゃったの。
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+text …そうか。BBきっと空の上からBBお前を見守ってくれているさ。
+
+wait
+dark motoyuusya02
+
+light syouzyo01
+text え？なんで？
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+text 死んだ命は空に昇って行くからだ。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+text えー、そうなの？BB私、死んだら海に還るんだと思ってた！
+
+wait
+
+dark syouzyo01
+
+light motoyuusya02
+
+text 海？
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text だって、天国と地獄はBBすごい離れているでしょう？BBもし大切な人と離れちゃったらBB悲しいじゃない。
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text そりゃまあな。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text だからね、BBみんな一緒に海へ還ればいいと思うの。
+
+wait
+
+light motoyuusya02
+
+dark syouzyo01
+
+text その原理じゃBB良い人も悪い人も、同じ場所に全員集合だぞ。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text いいじゃない！BB「悪いこと」せずに生きるなんてBB無理だもの。
+
+wait
+
+text だからもし天国と地獄があったらBB今頃みんな地獄行きよ。
+
+wait
+dark syouzyo01
+
+
+light motoyuusya02
+
+text さらっと恐ろしいことを言うな、お前。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text だって、関わったもの全部にBB「善」って思われるようにするなんて無理だもん。
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text まあ、物事を判断する価値観はBBそれぞれだからな。
+
+wait
+
+text それじゃあ将来お前もBB海で母さんと逢うかもな。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text あ、でもね！BBお母さんが死んじゃった後、BB私を拾って代わりに育ててくれた人がBBとっても優しかったの。
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text 優しかった、か。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text うん、あんまりおうちにはいなかったけどBB一緒にいる時は気にかけてくれたの。
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+text その人によくしてもらってるんだな。
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text おじさんだって「話を聞いてくれたやつ」にBB優しくしていたんでしょう？
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+text 俺は…何もできないままだった。
+wait
+
+light syouzyo01
+
+dark motoyuusya02
+
+wait 60
+
+text それも…
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text 少し話すぎたか。先へ進むとしよう。
+wait
+
+dark motoyuusya02
+move motoyuusya02 10 20 10 100 180 0
+wait 60
+
+ligt syouzyo01
+
+text それも、BBおじさんだけが決めることじゃないんだよ。
+
+wait
+
+move syouzyo01 60 20 60 100 120 0
+
+wait
+end

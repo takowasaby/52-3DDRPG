@@ -1,0 +1,117 @@
+addchara misu0 みすちゃん
+addchara misu1 みすちゃん
+addchara robot 警備ロボ
+addchara sato SATO
+addchara girl 女の子
+//
+//
+addcharapicture misu0 defaultstand resource/picture/scenario0/character/misuchan0.png
+addcharapicture misu1 defaultstand resource/picture/scenario0/character/misuchan1.png
+addcharapicture robot defaultstand resource/picture/scenario0/character/keibirobo.png
+addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png
+addcharapicture girl defaultstand resource/picture/scenario0/character/girl0.png
+//
+drawrequest misu01 misu0 defaultstand 10 20 0 70
+drawrequest misu02 misu1 defaultstand 100 20 0 70
+drawrequest robot01 robot defaultstand 100 20 0 70
+drawrequest sato01 sato defaultstand 100 20 0 70
+drawrequest girl01 girl defaultstand 100 20 0 70
+dark misu01
+dark misu02
+dark robot01
+dark sato01
+dark girl01
+//
+wordstyle onebyone 3
+//
+light misu01
+text あれ？ドアが開かない・・・
+wait
+//
+dark misu01
+text きみ！きみ！
+wait
+//
+light misu01
+text え・・・？
+wait
+//
+dark misu01
+text そのドアには非常事態用のロックがかかっているBBロックを開けるには「セキュリティキー」が必要だ
+wait
+//
+light misu01
+text あなたは・・・？BBどこにいるの？しゅえいさんのお部屋？
+wait
+//
+dark misu01
+text 私はSATO（サトー）BB説明するのが難しいんだが・・・AIの親戚みたいなものだ
+wait
+//
+light misu01 
+text わたしは「みす」といいます！BBすごい！ホントの人間かと思っちゃったよ！
+wait
+//
+dark misu01 
+text そうか・・・ホントの人間か・・・
+wait
+text その「セキュリティキー」の場所なんだがBBその君が持っている端末をこの設備と接続してBBくれないか？私を端末にアップロードして道案内BBをさせてもらおう
+wait
+//
+light misu01
+text わかった！BBこれで・・・よし・・・と
+wait
+//
+dark misu01
+text OKBBアップロード開始
+wait
+text ムムム・・・
+wait
+//
+move robot01 100 20 60 20 100 0
+light robot01
+text 状況：９２４BB生命体反応ヲ感知BB生命体反応ヲ感知
+wait
+text セイ命体ハンノウヲ感チBBセ・・・イハ・・・ヲ・・・BBカン・・・カ・・・チ・・・チチBBチチチチチチチチチチチチ
+wait
+//
+dark robot01
+text よし！BBダウンロード完了だ！
+wait
+//
+light misu01
+move misu01 10 20 10 100 60 0
+move misu02 10 100 10 20 60 0
+dark misu02
+move sato01 10 200 10 20 60 0 
+light sato01
+text みす！BBデバイスとヘッドセットをつなぐんだ！
+wait
+text そして・・・君の中の・・・物語を！
+wait
+//
+dark sato01
+light robot01
+text シ・・・シン・・・BBシンニュウシャ・・・ハイジョ・・・
+wait
+//
+dark robot01
+light sato01
+text むっ、まずいっ
+wait
+move sato01 10 20 10 100 60 0
+light misu02
+text SATO！！
+wait
+//
+dark misu02
+light robot01
+text ジョジョジョジョジョジョジョ！！！！
+wait
+//
+dark robot01
+move girl01 30 100 30 20 120 0
+text もう、大丈夫BBまかせて
+wait
+//
+end

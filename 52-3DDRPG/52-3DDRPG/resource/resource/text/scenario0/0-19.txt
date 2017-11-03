@@ -1,0 +1,114 @@
+addchara misu みす
+addchara sato SATO
+addchara seinen 青年
+addchara syokusyu 触手
+//
+addcharapicture misu defaultstand resource/picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png
+addcharapicture seinen defaultstand resource/picture/scenario0/character/seinen.png
+addcharapicture seinen defaultstand resource/picture/scenario0/character/syokusyu.png
+//
+drawrequest misu01 misu defaultstand 30 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+drawrequest seinen01 seinen defaultstand 70 20 0 70
+drawrequest syokusyu01 syokusyu defaultstand 100 20 0 70
+turn misu01 0
+dark misu01
+dark sato01
+dark seinen01
+dark syokusyu01
+//
+wordstyle onebyone 3
+//
+light sato01
+text 薬品はそろったなBBこれから言うとおりに調合してくれ
+wait
+//
+dark sato01
+light seinen01
+text 分かりましたBB私がやりましょう
+wait
+//
+dark seinen01
+move sato01 0 20 -60 20 10 0
+move misu01 30 20 -60 20 10 0
+move seinen01 70 20 100 20 10 0
+text ・・・・・・・・・・・・・・・
+wait
+//
+move misu01 -60 20 30 20 30 0
+move sato01 -60 20 0 20 30 0
+move seinen01 100 20 70 20 30 0
+wait
+//
+light seinen01
+text よし、出来ましたBBこれをどうぞ
+wait
+//
+dark seinen01
+light misu01
+text よ～し・・・
+wait
+//
+dark misu01
+move sato01 0 20 -60 20 10 0
+move misu01 30 20 -60 20 10 0
+move seinen01 70 20 100 20 10 0
+text ・・・・・・・・・・・・・・・
+wait
+//
+move misu01 -60 20 30 20 30 0
+move sato01 -60 20 0 20 30 0
+move seinen01 100 20 70 20 30 0
+wait
+//
+light sato01
+text ん、これで除去できたはずだ
+wait
+//
+dark sato01
+light misu01
+text よし、開けるよ！
+wait
+//
+dark misu01
+light seinen01
+text ！！BB下がってください！
+wait
+//
+dark seinen01
+turn seinen01 5
+move seinen01 70 20 40 20 10 0
+move syokusyu01 100 20 70 20 10 0
+wait
+//
+light syokusyu01
+text グモモモモモモモモ
+wait
+//
+dark syokusyu01
+light seinen01
+text ・・・これがキーパッドに影響を？BB知っていたのですか？
+wait
+//
+dark seinen01
+light sato01
+text ・・・知らなかった
+wait
+//
+dark sato01
+light seinen01
+text キーパッドの中に生物がいることを分かっていてBBこんな脅威がいるとは気づかなかったと？BB本当に何も知らないのですか？
+wait
+//
+dark seinen01
+light misu01
+text ケンカはやめて！BBなんか怒ってるみたいBB襲ってくるよ！
+wait
+//
+dark misu01
+light syokusyu01
+text グモモモモモｵｵｵｵｵｵｵｵ！！！！
+wait
+//
+end

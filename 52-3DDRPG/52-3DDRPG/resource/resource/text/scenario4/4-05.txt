@@ -1,0 +1,12 @@
+wordstyle backblack 3
+//
+text –²‚ðŒ©‚éBB•‚¢–é‚Ì¢ŠEBBŠá‘O‚É‹â‚Ì–î‚ª~‚è’‚®BB–î‚Í–j‚ð”G‚ç‚µA‹¹‚ð—â‚½‚­Žh‚·
+wait
+//
+text Ž„‚ÍŽ‚Á‚Ä‚¢‚éBB‰©“yF‚Ì‰H‚ÉBBÔ‚­‹P‚­–ÚBB—¼Žè‚Å•ø‚¦‚é‘å‚«‚È‰é
+wait
+//
+text Ž„‚ÍBB‚»‚ê‚ðBB‚«‚ê‚¢‚¾‚ÆŽv‚Á‚½
+wait
+//
+end

@@ -1,0 +1,14 @@
+addchara misu みすちゃん
+//
+addcharapicture misu defaultstand resource/picture/scenario0/character/misuchan1.png
+//
+drawrequest misu01 misu defaultstand 40 20 0 70
+dark misu01
+//
+wordstyle onebyone 3
+//
+light misu01
+text やった！発電機は動いてるみたい！BB残りはどこかな？
+wait
+//
+end  

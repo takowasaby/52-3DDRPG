@@ -1,0 +1,109 @@
+//＜イベント：ケルベロス戦後＞
+
+
+
+addchara himeno
+addchara yuri
+addchara you
+addchara yumeto
+//
+//
+addcharapicture himeno defaultstand resource/picture/scenario1/character/1-himeno.jpg
+addcharapicture yuri defaultstand resource/picture/scenario1/character/1-yuri.jpg
+addcharapicture you defaultstand resource/picture/scenario1/character/1-you.jpg
+addcharapicture yumeto defaultstand resource/picture/scenario1/character/1-yumeto.jpg
+//
+//drawrequest (canvasname charaname picturename x y width height)
+drawrequest himeno01 himeno defaultstand 10 20 0 70
+drawrequest yuri01 yuri defaultstand 100 20 0 70
+drawrequest you01 you defaultstand 60 20 0 70
+drawrequest yumeto01 yumeto defaultstand 100 20 0 70
+//
+
+
+wordstyle backblack 3 
+
+dark you01
+dark himeno01
+text 消しゴムやらシャーペンやらが効いたのか、 BBケルベロスはがくりとうなだれて BBしゃがみこんだ。
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text や、やった……！？
+wait
+light you01
+dark himeno01
+text やったんじゃないかな？
+wait
+
+wordstyle backblack 3 
+
+dark you01
+text 青井くんが一歩近づく。
+wait
+text ケルベロスが3つの頭をもたげ、 BB「「「ガアアァ！！！」」」と吠えた。
+wait
+text そして、私たちに飛びかかってくる！
+
+wordstyle onebyone  3 
+
+light himeno01
+wait
+text わあぁっ！？
+move yumeto01 100 20 60 20 100 0
+move you01 60 20 100 20 100 0
+light yumeto01
+dark himeno01
+text っ！
+wait
+
+wordstyle backblack 3 
+
+dark yumeto01
+text 巨大な犬は、ユメトくんを蹴り倒すがいなや、 BBふっときびすを返してしまう。
+wait
+text しりもちをついたユメトくんを置きざりに、 BBチャッチャッチャ……と爪の音が BB廊下の向こうに消えていった。
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text ユメトくん、大丈夫？
+wait
+light yumeto01
+dark himeno01
+text 大丈夫だけど、校舎の鍵を取られたみたいだ。
+wait
+text あれがないと校舎を脱出できないよ
+wait
+dark yumeto01
+//SEにする
+text 　　　　　　　　ﾌﾞｩｩｩﾝ……
+wait 120
+//文字が真ん中に来るよう調整していただきたいです。
+light himeno01
+text あ、そうだった、 BB私たち校舎を脱出するんだったね
+move yumeto01 60 20 100 20 100 0
+move you01 100 20 60 20 100 0
+dark himeno01
+light you01
+text うん、早く魔物を倒して外に出ないと
+move himeno01 10 20 100 20 100 0 
+move you01 60 20 100 20 100 0
+move yumeto01 100 20 10 20 100 0
+move yuri01 100 20 60 20 100 0
+light yumeto01
+dark yuri01
+text さ、僕たちも行こうか。ユリちゃん
+wait
+light yuri01
+dark yumeto01
+text ……うん
+wait
+move yumeto01 10 20 100 20 5 0
+move yuri01 60 20 100 20 5 0
+end
+//廊下に出られるようになる
+

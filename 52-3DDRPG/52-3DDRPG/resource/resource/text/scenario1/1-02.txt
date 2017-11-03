@@ -1,0 +1,72 @@
+//＜イベント：廊下に出る＞
+
+
+
+addchara himeno
+addchara yuri
+addchara you
+//
+//
+addcharapicture himeno defaultstand resource/picture/scenario1/character/1-himeno.jpg
+addcharapicture yuri defaultstand resource/picture/scenario1/character/1-yuri.jpg
+addcharapicture you defaultstand resource/picture/scenario1/character/1-you.jpg
+//
+//drawrequest (canvasname charaname picturename x y width height)
+drawrequest himeno01 himeno defaultstand 10 20 0 70
+drawrequest yuri01 yuri defaultstand 100 20 0 70
+drawrequest you01 you defaultstand 60 20 0 70
+//
+
+wordstyle backblack 3 
+
+dark you01
+dark himeno01
+text 廊下に出ようとすると、 BBどこからともなく小さな犬が現れた。
+wait
+
+wordstyle onebyone  3 
+
+light you01
+text 子犬？　可愛いね、おいでおいで
+wait
+light himeno01
+dark you01
+text いやいやいやそれ絶対怪しいやつじゃん！ BBこのシチュエーションで普通の犬なわけがない！
+wait
+light you01
+dark himeno01
+text 大丈夫大丈夫、ほら全然怖くな
+wait
+
+wordstyle backblack 3 
+
+dark you01
+text そのとたん、「グゥルル……」と BB子犬がうなり始める。
+//SE入れる
+wait
+text うなり声が低くなり、 BBやがて地響きのようになったとき、
+wait
+text そこには天井を突き破りそうなほど大きな BB三つ頭の犬がいた。
+wait
+
+wordstyle onebyone  3 
+
+light you01
+light himeno01
+text へ、変身したー！？
+wait
+move yuri01 100 20 60 20 100 0
+move you01 60 20 100 20 100 0
+light yuri01
+dark himeno01
+text ケルベロスだ！　ケルベロスだよヒメちゃん！
+wait
+light himeno01
+dark yuri01
+text なんでテンション上がってんの！？　あーほらこっちくるー！
+wait
+move himeno01 10 20 100 20 5 0
+move yuri01 60 20 100 20 5 0
+end
+//そのまま戦闘突入
+

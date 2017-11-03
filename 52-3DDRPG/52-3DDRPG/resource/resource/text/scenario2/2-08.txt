@@ -1,0 +1,318 @@
+addchara motoyuusya 元勇者
+addchara syouzyo
+ 少女
+addchara neko
+ 猫
+addchara back 花畑
+//
+
+//
+
+addcharapicture motoyuusya defaultstand resource/picture/scenario2/character/motoyuusha_battle.png
+addcharapicture syouzyo defaultstand resource/picture/scenario2/character/shoujo.png
+addcharapicture neko defaultstand resource/picture/scenario2/character/neko.png
+addcharapicture flowergarden defaultstand resource/picture/scenario2/character/flowergarden.png
+//
+
+//
+drawrequest(canvasname charaname picturename x y width height)
+drawrequest flowergarden01 flowergarden defaultstand 0 0 0 70
+drawrequest motoyuusya02 motoyuusya defaultstand 10 20 0 70 
+
+drawrequest syouzyo01 syouzyo defaultstand 60 20 0 70
+
+//syouzyoの位置(50 30)と同じところに配置したいneko
+
+drawrequest neko01 neko defaultstand 45 30 0 70
+dark motoyuusya02
+dark syouzyo01
+dark neko01
+//
+wordstyle onebyone 3
+//
+
+//暗転　neko01
+
+move syouzy01 60 20 50 30 90 0
+
+dark motoyuusya02
+light syouzyo01
+
+
+text お花だ、きれい！
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+text ああ。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text 反応がうすいよおじさん！BBお花が見たかったんじゃないの？
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+text 見たかったってよりはBB見せたかった、だな。
+
+wait
+
+text 俺が花を好きなんじゃなくて、BB俺が好きなやつが花を好きだったんだ。
+wait
+
+dark motoyuusya02
+
+light syouzyo01
+
+text え？
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text さっき話したろう？BB4日前に死んじまった、大切な家族さ。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text …大切な、家族
+
+wait
+dark syouzyo01
+
+light motoyuusya02
+move motoyuusya02 10 20 40 30 100 0
+
+wait 60
+
+text さっき言ったな、BB物事を判断するのはBBそれぞれの価値観だと。
+
+wait
+
+text 旅の途中でも、家に帰ればBB必ず迎え入れてくれる存在がいる。
+
+wait
+
+text そんな安心感をくれたあいつは、BB俺にとって紛れもなく大切な存在だ。BB間違いない。
+
+wait
+
+turn motoyuusya02
+
+wait 60
+
+text でもその大切な家族に、BB俺は何も与えてやれなかった。
+
+wait
+
+text あいつの墓を飾る花を摘みに来た。BBでももう気づいてるんだ。
+
+wait
+
+text 連れて来て見せてやれよって話だって、BBあいつが生きていた間にさ。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+wait 60
+
+text そんなことないよ。
+
+wait
+
+dark neko01
+light motoyuusya02
+
+
+text いや、悪いな。急にこんな話…
+
+wait
+
+//少女の方を向く
+
+turn motoyuusya02
+wait 120
+
+dark motoyuusya02
+light syouzyo01
+
+
+text 私ね、きっとおじちゃんのBB「大切な家族」と似た状況にいたと思うの。
+
+wait
+
+text だからね、その子の気持ちがBBわかる気がするな。
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text そうか。BBじゃあお前ならBBこんな薄情なやつのこと、どう思う？
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text その子はきっとこう思うはず。
+
+wait
+
+text ねえ、あなたが何と言おうとBB私はあなたに家族と思ってもらえてBB幸せだったよ。
+
+wait
+
+text お母さんが死んじゃって、BB道端にいた私を拾ってBB面倒見てくれたじゃない。
+
+wait
+
+text 旅の話をいっぱいしてくれた。BB家の近くのセラチュームをつんでくれた。
+
+wait
+
+text かまってやれないって言って、BB私にずっと心置いてくれていた。
+
+wait
+
+text　いつかまたあった時に、BBあなたが今のようなしかめっ面じゃBB悲しいな。
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+text 待て。BB何でお前がそんなこと知って…
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text その子のお墓の前でBB悲しい顔ばっかりしてるから、BBその子は不安になったの。
+
+wait
+
+text 「大切な家族」が自分を責めて、BB辛そうな顔ばっかりしているから。
+
+wait
+
+text だからその子は不安になって、BB人間に姿を変えてBBあなたの前に現れたんだわ。
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text 待ってくれ。BBお前、何を言ってるんだ？
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text ねえ、あなたが何と言おうとBBその子は世界一幸せな飼い猫だった。
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+text 俺、お前にあいつが猫だなんて言ったか？まさか…
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text これから私、どこへ行くのかな。BBだって気づいたら人間になってたんだもの。
+
+wait
+
+text でも私はやっぱりBB還れると嬉しいな。
+
+wait
+
+text 魚はいっぱい取れるし、BB青くてキラキラしているんでしょう？
+
+wait
+
+text 何より、あなたが話して聞かせてくれたBB「海」に私は逝きたいもの。
+
+wait
+
+turn syozyo01
+
+turn neko01
+wait
+text 信じてくれなくて良いの、今日のこと。
+
+wait
+
+text 山に入ったら化け猫に化かされた、BBそう思ってくれていいの。
+
+wait
+
+text でも、その猫が優しい飼い主に育てられたBB世界一幸せな化け猫だったことはBB覚えていて欲しいの。
+
+wait
+
+//暗転syouzyo01
+
+dark syouzyo01
+light neko01
+//勇者の方を向く
+
+
+
+turn neko01
+//勇者とキスさせたい（顔を近づけたい）
+move neko01 45 30 40 50 120 0 
+
+text ちゅ
+
+wait
+
+dark neko01
+light motoyuusya02
+
+
+text ！
+
+wait
+
+move syouzyo01 50 30 100 30 90 0
+move neko01 40 50 100 30 90 0
+wait
+dark neko01
+light motoyuusya02
+
+
+text …いや、信じるさ。BBお前やっぱり
+
+wait
+
+text キスだけは上手いんだな。
+
+wait
+end

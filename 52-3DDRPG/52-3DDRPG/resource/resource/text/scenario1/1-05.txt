@@ -1,0 +1,461 @@
+
+addchara himeno 媛乃
+addchara yuri 百合
+addchara you 洋
+addchara yumeto 梦人
+addchara muma 夢魔
+addchara you2
+
+addcharapicture himeno defaultstand resource/picture/scenario1/character/1-himeno.png 
+addcharapicture yuri defaultstand resource/picture/scenario1/character/1-yuri.png
+addcharapicture you defaultstand resource/picture/scenario1/character/1-you.png
+addcharapicture yumeto defaultstand resource/picture/scenario1/character/1-yumeto.png
+addcharapicture muma defaultstand resource/picture/scenario1/character/1-muma.png
+addcharapicture you2 defaultstand resource/picture/scenario1/character/1-you.png
+
+drawrequest himeno01 himeno defaultstand 100 20 0 70
+drawrequest yuri01 yuri defaultstand 100 20 0 70
+drawrequest you01 you defaultstand 100 20 0 70
+drawrequest yumeto01 yumeto defaultstand 100 20 0 70
+drawrequest muma01 muma defaultstand 100 20 0 70
+drawrequest you02 you2 defaultstand 100 20 0 70
+
+
+//addsound
+
+//〈保健室に入る〉
+
+
+//たぶん暗転でいけるのでは？
+
+
+wordstyle backblack 3 
+
+text　闇に押しつぶされたように何も見えない。
+wait
+//playsound
+text　その奥からガタッと聞こえて、BBびくっと肩がはねた。
+wait
+
+wordstyle onebyone  3 
+
+move you01 100 20 10 20 0
+light you01
+text　今、何か聞こえたよね
+wait
+
+wordstyle backblack 3 
+
+dark you01
+text　顔を見合わせてBB――見えないけど雰囲気で――BBうなずく。
+wait
+text　奥にはカーテン付きベッドがあるはずだ。BB手探りでそろそろと進んでいくと、BB何か柔らかいものが手に当たった。
+wait
+
+wordstyle onebyone  3 
+
+move himeno01 100 20 60 20 0
+light himeno01
+text　っ！
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　反射的に手を引っこめようとすると、BB逆に指をつかまれ引っ張られる。
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　っひゃああああ！？
+wait
+dark himeno01
+text　えっ、ええええ！？
+wait
+
+wordstyle backblack 3 
+
+text　思わず叫ぶとBB思いの外顔の近くで悲鳴が上がって、
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　あああああああっ！？
+wait
+dark himeno01
+text　うるさいなぁ
+wait
+
+wordstyle backblack 3 
+
+text　誰かがそう言ったような気がした。
+wait
+text　ぱっ、とあたりが明るくなる。
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　え……？
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　突然の変化に目がしぱしぱする。BB呆然としていると、
+wait
+
+wordstyle onebyone  3 
+
+light you01
+text　あ
+wait
+light himeno01
+dark you01
+text　……あ
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　洋くんの手が、私の指をつかんでいた。
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　なんだ、洋くんだったんだ……BBびっくりしたぁ
+wait
+dark himeno01
+wait you01
+text　ごめん、ついつかんじゃって
+wait
+dark you01
+light himeno01
+text　ううん、私こそ叫んじゃってごめん
+wait
+move you01 10 20 100 20 0
+move yumeto01 100 20 10 20 0
+light yumeto01
+dark himeno01
+text　ちょっと。BBほのぼのした雰囲気出さないでくれないかな
+wait
+move yumeto01 10 20 100 20 0
+move you02 100 20 10 20 0
+light you02
+light himeno01
+text　え
+wait
+
+wordstyle backblack 3 
+
+move you02 10 20 100 20 0
+move you01 100 20 10 20 0
+dark himeno01
+dark you01
+text　横から割り込んできた不機嫌そうな声。BBジャッと音を立てて、ベッドのカーテンが開いた。
+wait
+
+wordstyle onebyone  3 
+
+light you01
+text　ユメト！
+wait
+
+wordstyle backblack 3 
+
+dark you01
+text　ベッドを背に仁王立ちしていたのは、BB探していたはずのユメトくんだった。
+wait
+text　けれど私は、彼の背後に目を奪われた。
+wait
+text　白いカーテン。白い壁。白いシーツ。
+wait
+text　具合が悪くなりそうなほど白いベッドに、BBだらんと、見覚えのありすぎるおさげがBB放り出されている。
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　……ユリちゃん？
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　ユリちゃんがぐったりと横たわって、BB力のない目で私たちを見上げている。
+wait
+text　すると、BBユメトくんが立ちはだかるようにBB一歩近づいてきた。
+wait
+
+wordstyle onebyone  3 
+
+move you01 10 20 100 20 0
+move yumeto01 100 20 10 20 0
+light yumeto01
+text　だめだよ。彼女は僕の獲物だから
+wait
+light himeno01
+dark yumeto01
+text　獲物って……
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　なにその不穏な言い方。
+wait
+text　ユメトくんが笑みを浮かべる。
+wait
+
+wordstyle onebyone  3 
+
+light yumeto01
+text　もう終わったから、BBネタばらししてもいいかな
+wait
+
+wordstyle backblack 3 
+
+dark yumeto01
+text　その姿がだんだんぼやけて、BBふっと再び像を結ぶ。
+wait
+move yumeto01 10 20 100 20 0
+move muma01 100 20 10 20 0
+dark muma01
+text　見知らぬ青年が、私たちを見下していた。
+wait
+
+wordstyle onebyone  3 
+
+light muma01
+text　僕は夢魔。知ってるかな？BB人間の夢を操るのが生業の、BB人ならざるものだよ
+wait
+light himeno01
+dark muma01
+text　え、えっと、つまり……BBユメトくんが私を操って、BBこんな夢を見せてたってこと？
+wait
+move muma01 10 20 100 20 0
+move you01 100 20 10 20 0
+light you01
+text　ん？　これは俺の夢だよね
+wait
+light himeno01
+dark you01
+text　え？
+wait
+move himeno01 60 20 100 20 0
+move yuri01 100 20 60 20 0
+light yuri01
+text　え、ま、まさか……
+wait
+move you01 10 20 100 20 0
+move muma01 100 20 10 20 0
+light muma01
+dark yuri01
+text　誰が正解でもないよ。BB僕は３人の夢をくっつけて、BB同じ夢を見せてただけだ
+wait
+text　『ユリちゃん』が望んだ通りの夢をね
+wait
+dark muma01
+light yuri01
+text　え、じゃ、じゃあ、BB本物の青ぴょ……BB青井くん……？
+wait
+light muma01
+dark yuri01
+text　もちろん
+wait
+light yuri01
+dark muma01
+text　くぁwせdrftgｙふじこlp(^q^)
+wait
+move muma01 10 20 100 20 0
+move himeno01 100 20 10 20 0
+light himeno01
+dark yuri01
+text　ユリちゃんそれ読めないから
+wait
+light yuri01
+dark himeno01
+text　し、知ってたら、BBあんなことこんなこと言わなかったのに！！
+wait
+text（あ、なるほど……BBいつもより５割増しくらい痛いと思ったら、BB本人だと思ってなかったのか……）
+wait
+move himeno01 10 20 100 20 0
+move muma01 100 20 10 20 0
+light muma01
+text　『ユリちゃん』が願ったくせに。BB『夢でいいから友達と好きな人に会いたい』BBって
+wait
+light yuri01
+dark muma01
+text　夢でいいからって言ったもん！BB本人じゃなくていいって言ったもん！
+wait
+move muma01 10 20 100 20 0
+move you01 100 20 10 20 0
+light you01
+dark yuri01
+text　それ、本当に？
+wait
+light yuri01
+dark you01
+text　え……？
+wait
+light you01
+dark yuri01
+text　俺、最初、BBなんで２人が夢に出てきたのか不思議だった。BBそんなに喋ったことなかったし。
+wait
+text　でも、こうやって一緒に歩いて、BB戦って、BBこんなに面白い人たちだったんだって。
+wait
+text　だから、BB２人が俺の夢だけの存在じゃなくて嬉しいよ
+wait
+light yuri01
+dark you01
+text　青ぴょ……青井くん……！
+wait
+light you01
+dark yuri01
+text　洋でいいよ。ね？
+wait
+light yuri01
+dark you01
+text　うん一生ついていきます……！
+move you01 10 20 100 20 0
+move himeno01 100 20 10 20 0
+light himeno01
+dark yuri01
+text　つっこみが追いつかない
+wait
+dark himeno01
+text　でも、女装を苦にしなかったりBB痛発言を受け入れちゃうあたり、
+wait
+text　彼もその手の文化に親和性あるのかも……BBうーん。
+wait
+move himeno01 10 20 100 20 0
+move muma01 100 20 10 20 0
+light muma01
+dark yuri01
+text　一生、ねぇ
+wait
+light yuri01
+dark muma01
+text　……！！
+wait
+move yuri01 60 20 100 20 0 
+move himeno01 100 20 60 20 0
+light himeno01
+dark muma01
+text　え、どうしたの……？
+wait
+light muma01
+dark himeno01
+text　契約通り、BB望みのままの夢を見せてあげたんだから、BBお代をもらわないとね？
+wait
+move yuri01 100 20 60 20 0
+move himeno01 60 20 100 20 0
+light yuri01
+dark muma01
+text　…………
+wait
+move you01 100 20 60 20 0
+move yuri01 60 20 100 20 0
+light you01
+dark muma01
+text　お代……一生……って、まさか魂！？
+wait
+light muma01
+dark you01
+text　やだな、悪魔じゃないんだから。BBちょっと精気をいただくだけ
+wait
+move you01 60 20 100 20 0
+move himeno01 100 20 60 20 0
+light himeno01
+dark muma01
+text　思い出した！BBユリちゃんから聞いたことある……！
+wait
+text　夢魔って、人間の夢に入りこんで、BBその、いろいろ言えないようなことしてBB最後には殺しちゃうんでしょ！
+wait
+light muma01
+dark himeno01
+text　だから殺さないって。BBただちょっとおばあちゃんになっちゃうだけ
+wait
+light himeno01
+dark muma01
+text　……おばあちゃん？
+wait
+light muma01
+dark himeno01
+text　まぁ、見ててよ
+wait
+
+wordstyle backblack 3 
+
+dark muma01
+text　一瞬何が起こったのかと思った。
+wait
+text　がたん、と派手な音がしたと思うと、BBベッドに座っていたユリちゃんがいない。
+wait
+text　……ううん、違う。BB夢魔が、彼女を押し倒して、BB覆い被さっているのだ。
+wait
+
+wordstyle onebyone  3 
+
+light himeno01
+text　ちょ、ちょっと、ええっ！？
+wait
+move himeno01 60 20 100 20 0
+move you01 100 20 60 20 0
+light you01
+text　ユリちゃん！BB……この、おいっ！　どけよっ！
+wait
+light muma01
+dark you01
+text　ほら、見ててよ。BB『ユリちゃん』がおばあちゃんになってくとこ
+wait
+move you01 60 20 100 20 0
+move yuri01 100 20 60 20 0
+light yuri01
+dark muma01
+text　…………イヤッ！
+wait
+
+wordstyle backblack 3 
+
+dark yuri01
+text　またしても、BB何が起こったのかわからなかった。
+wait
+text　ユリちゃんが後に語ったところによると、BBそのときは無我夢中で、BB夢魔の足を蹴り鳩尾を殴ったという。
+wait
+text　……聞いたあと、BBちょっとだけ、BB奴がかわいそうになった。
+wait
+text　とにかく気づいたら、BB息の荒いユリちゃんが立っていて、BB夢魔はベッドに倒れていた。
+wait
+text　奴は何がなんだかわからない様子でBBのろのろ起きあがって、BBユリちゃんに気づくとすごい顔で睨みつけた。
+wait
+
+wordstyle onebyone  3 
+
+light muma01
+text　こ、の……！
+wait
+light yuri01
+dark muma01
+text　悪いけど、おばあちゃんにはなれない。BBだって、親友が２人も待っててくれるから！
+move muma01 10 20 100 20 0
+move himeno01 100 20 10 20 0
+dark yuri01
+light himeno01
+text　ユリちゃん……
+wait
+
+wordstyle backblack 3 
+
+dark himeno01
+text　いいこと言ってる風だけど、BB彼にしたら、BBさんざん働かされて賃金未払いなんじゃ？
+wait
+text　ま、私だって、BB友達がおばあちゃんになるとこなんかBB見たくないけどね。
+
+
+end
+
+//　〈戦闘突入〉

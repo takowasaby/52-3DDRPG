@@ -1,0 +1,132 @@
+addchara motoyuusya 元勇者
+
+addchara syouzyo
+ 少女
+//
+
+//
+
+addcharapicture motoyuusya defaultstand resource/picture/scenario2/character/motoyuusha_battle.png
+addcharapicture syouzyo defaultstand resource/picture/scenario2/character/shoujo.png
+//
+
+//
+drawrequest(canvasname charaname picturename x y width height)
+
+drawrequest motoyuusya02 motoyuusya defaultstand 10 20 0 70
+
+drawrequest syouzyo01 syouzyo defaultstand 60 20 0 70
+
+//
+dark syouzyo01
+dark motoyuusya02
+//
+wordstyle onebyone 3
+//
+light syouzyo01
+
+text おじさん強いのね。
+
+wait
+dark syouzyo01
+
+light motoyuusya02
+
+
+text 昔世界を旅していたから、BB魔物と戦う機会が多かっただけだ。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+text そうなの？BBじゃあいろんな景色とかみてるのね！BBいいなー。
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+text まあな。BBお前は知らないかもしれないが、BB海もよく見たぞ。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+text 知ってるよ！BB海って青くって、大きくって、BBキラキラしているんでしょう？
+
+wait
+dark syouzyo01
+
+light motoyuusya02
+text 海なんて珍しいのに、よく知っているな。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text えへへ。BB私の好物が住んでる場所だしね！BBねえおじさん、ほかのお話もして！
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+text ああ。
+
+wait
+
+move motoyuusya02 10 20 10 30 30 0
+
+text …前は家に帰ればBB必ず話を聞いてくれるやつが居たんだがな。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+text …いいな、楽しそう。
+
+wait
+
+dark syouzyo01
+light motoyuusya02
+
+
+text ああ、楽しかったさ。
+
+wait
+
+text けど、無くしてからじゃないとBB大切さに気づけないってのは本当の話らしい。
+
+wait
+
+dark motoyuusya02
+light syouzyo01
+
+
+text 大切さ…
+
+wait
+
+//少女に向き直る
+
+turn motoyuusya02
+dark syouzyo01
+light motoyuusya02
+
+
+text 悪いな、湿っぽくなっちまった。BB先へ進もう。
+
+wait
+
+//フレームアウト
+move motoyuusya02 10 30 10 100 120 0
+
+wait 60
+
+move syouzyo01 60 20 60 100 100 0
+wait
+end

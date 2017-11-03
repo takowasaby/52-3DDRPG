@@ -1,0 +1,118 @@
+addchara misu みすちゃん
+addchara sato SATO
+addchara josei おねえちゃん
+addchara zonbi ゾンビ
+addchara otoko 男
+//
+addcharapicture misu defaultstand resource/picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png
+addcharapicture josei defaultstand resource/picture/scenario0/character/family0.png
+addcharapicture zonbi defaultstand resource/picture/scenario0/character/family1.png
+addcharapicture otoko defaultstand resource/picture/scenario0/character/motoyuusha_battle.png
+//
+drawrequest misu01 misu defaultstand  -60 20 0 70
+drawrequest sato01 sato defaultstand  -60 20 0 70
+drawrequest josei01 josei defaultstand  -60 20 0 70
+drawrequest zonbi01 zonbi defaultstand  -60 20 0 70
+drawrequest otoko01 otoko defaultstand -60 20 0 70
+dark misu01
+dark sato01
+dark josei01
+dark zonbi01
+dark otoko01
+//
+wordstyle onebyone 3
+//
+wait
+move misu01 -60 20 30 20 45 0
+move sato01  -60 20 0 20 45 0
+wait
+//
+dark misu01
+dark sato01
+light sato01
+text よし、説明しておこう
+wait
+text 電源は発電機を４区画に分け、4つの部屋で管理しているBBそれぞれの部屋で復旧に関する操作をしなければならないわけだが
+wait
+text 復旧操作には「電源キー」が必要になるBBデータによるとこれは中央管理室にあるはずだ
+wait
+//
+dark sato01
+light misu01
+text つまり、「電源キー」を中央管理室に取りに行ってBB４つの部屋で復旧操作をすればいいんだね！
+wait
+//
+dark misu01
+light sato01
+text ああ、そうすれば他のセクターとの出入りも自由になるしBBその・・・「かぞく」もさがせるはずだ
+wait
+text ん？立ち止まってどうした？みす？
+wait
+//
+dark sato01
+light misu01
+text あれは・・・おねえちゃん？
+wait
+//
+move josei01 100 20 70 20 20 0
+dark misu01
+light josei01
+text ・・・・・・・・・
+wait
+//
+dark sato01
+light misu01
+turn misu01 10
+text よかった！無事だったんだね！
+wait
+text えっとね、なかなか部屋に来ないから、外に出たらSATOがいてBBロボットが襲ってきたんだけどね、そこでね、あのね！
+wait
+//
+dark misu01
+light sato01
+text 待て！みす！
+wait
+//
+move josei01 70 20 100 20 10 0
+move zonbi01 100 20 70 20 10 0
+dark misu01
+light zonbi01
+text ヴァァァァァ・・・・・・
+wait
+//
+dark zonbi01
+light sato01
+text みす！
+wait
+//
+turn otoko01 0
+move otoko01 -60 20 50 20 20 0
+move zonbi01 70 20 80 20 5 0
+dark sato01
+light zonbi01
+text ・・・ヴヴェァ！
+wait
+//
+dark zonbi01
+light otoko01
+text ・・・っとBB大丈夫か？
+wait
+//
+dark otoko01
+light misu01
+text ・・・・・・・・・
+wait
+//
+dark misu01
+light otoko01
+text む・・・まだ立つか！
+wait
+//
+dark sato01
+light zonbi01
+move zonbi01 80 20 70 20 10 0
+text ヴゥゥゥゥゥゥッッッッ！！！！
+wait
+//
+end

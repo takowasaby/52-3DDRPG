@@ -1,0 +1,51 @@
+addchara josei 女性
+addchara kage 影
+//
+//
+addcharapicture josei defaultstand resource/picture/scenario4/character/josei.png
+addcharapicture kage defaultstand resource/picture/scenario4/character/kage.png
+//
+//
+drawrequest josei01 josei defaultstand 10 20 0 70
+drawrequest kage01 kage defaultstand 60 20 0 70
+turn josei01 0
+dark josei01
+dark kage 01
+//
+wordstyle onebyone 3
+//
+light josei01
+text はぁ・・・
+wait
+//
+dark josei01
+light kage01
+text ・・・・・・
+wait
+//
+dark kage01
+light josei01
+text 傘は壊れるし、雨に濡れるし、寒いし、疲れてるしで、BBあんまり愉快な気分じゃないの、今
+wait
+//
+dark josei01
+light kage01
+text ・・・・・・・・・
+wait
+//
+dark kage01
+light josei01
+text 私、この先に行かなきゃならないのBBだから、どいてくれる？
+wait
+//
+dark josei01
+light kage01
+text ・・・・・・・・・・・・
+wait
+//
+dark kage01
+light josei01
+text どきなさい！
+wait
+//
+end

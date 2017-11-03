@@ -1,0 +1,30 @@
+addchara josei —«
+addchara dansei ’j«
+//
+//
+addcharapicture josei defaultstand resource/character/4-0.png
+addcharapicture dansei defaultstand resource/character/4-2.png
+//
+//
+drawrequest josei01 josei defaultstand 10 20 0 70
+drawrequest dansei01 dansei defaultstand 60 20 0 70
+dark josei01
+dark dansei 01
+//
+wordstyle onebyone 3
+//
+light josei01
+text ‚à‚¤­‚µ‚¾‚¯A‚¢‚Ä‚à‚¢‚¢‚æ‚Ë
+wait
+//
+dark josei01
+light dansei01
+text ‚¤‚ñ
+wait
+//
+wordstyle backblack 3
+//
+text ‰J‚Ì’†BB‚±‚±‚Ü‚Å•à‚¢‚Ä‚«‚½‚Ì‚¾‚©‚ç
+wait
+//
+end

@@ -1,0 +1,38 @@
+addchara motoyuusya
+ 元勇者
+//
+
+//
+addpicture motoyuusya defaultstand resource/picture/scenario2/character/motoyuusha_normal.png
+//
+
+//drawrequest(canvasname charaname picturename x y width height)
+
+drawrequest motoyuusya01 motoyuusya defaultstand 20 100 0 70
+
+dark motoyuusay01
+//
+wordstyle onebyone 3
+//
+move motoyuusya01 20 100 20 50 100 0 
+
+light motoyuusya01
+
+text そういえばあいつ、BB俺が旅に出る前は必ずじゃれて来たな。
+
+wait
+
+text まぶたの上にキスして来て。
+
+wait
+
+text 甘え下手なくせしてBBキスだけはうまかったよな、あいつ。
+
+wait
+text …俺が甘えさせてやれるほどBBかまえなかったせいか。
+
+wait
+
+text 「忙しい」「時間がない」は、BBなんでも許される魔法の呪文じゃないのにな。
+
+end
