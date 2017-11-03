@@ -1,0 +1,211 @@
+addchara misu みすちゃん
+addchara sato SATO
+addchara hakase 博士
+addchara girl 女の子
+addchara otoko 男
+addchara seinen 青年
+adchara josei 女性
+//
+//
+addcharapicture misu defaultstand picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand picture/scenario0/character/sato.png
+addcharapicture hakase defaultstand picture/scenario0/character/hakase.png
+addcharapicture girl defaultstand picture/scenario0/character/girl0.png
+addcharapicture otoko defaultstand picture/scenario0/character/motoyuusha_battle.png
+addcharapicture seinen defaultstand picture/scenario0/character/seinen.png
+addcharapicture josei defaultstand picture/scenario0/character/josei.png
+//
+drawrequest misu01 misu defaultstand  70 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+drawrequest hakase01 hakase defaultstand 100 20 0 70
+drawrequest girl01 girl defaultstand -60 20 0 70
+drawrequest otoko01 otoko defaultstand 30 -100 0 70
+drawrequest seinen01 seinen defaultstand 50 100 0 70
+drawrequest josei01 josei defaultstand 100 20 0 70
+dark misu01
+dark sato01
+dark hakase01
+dark girl01
+dark otoko01
+dark seinen01
+dark josei01
+//
+wordstyle onebyone 3
+//
+light sato01
+text ここが目的の場所のはずだBサンプル槽が並んでいるな・・・
+wait
+//
+dark sato01
+light misu01
+text う・・・なに・・・これ・・・Bわたし・・・？
+wait
+//
+dark misu01
+light sato01
+text 道中で遭遇した化け物の触手が見えるものB他には機械の骨格が見えるものもいる
+wait
+text これが、私の「残骸」の研究成果、いや失敗作なのか？
+wait
+//
+move misu01 70 20 30 20 10 0
+turn misu01 0
+move hakase01 100 20 70 20 10 0
+dark sato01
+light hakase01
+text ご名答
+wait
+//
+dark hakase01
+light misu01
+text ！？Bあなたがもう一人のSATO？
+wait
+//
+dark misu01 
+light hakase01
+text その問いには正しいとも言えるし、違うとも言える
+wait
+text 見方によっては確かに「もう一人の」という表現は正しいB私は「佐藤」ではあるが、君の持っている端末の中のB彼とは別に独立した自我を持っている
+wait
+//
+dark hakase01
+light misu01
+text 教えて！私は何者？この・・・この「私たち」は何？
+wait
+//
+dark misu01
+light hakase01
+text 結論から言おうB君は「人間」ではない
+wait
+//
+dark hakase01
+light misu01
+text ・・・・・・！
+wait
+//
+dark misu01
+light hakase01
+text 順を追って話そうB君にも分かるようにね
+wait
+text 「もう一人の私」が行った実験、あれは成功だったB無事、彼の人格はプログラムの塊になったBしかし、完全にというわけではなかった
+wait
+text 肉体に、彼の「残滓」とも呼べるものが残ったBそれが「私」だ
+wait
+text 実験終了直後、目覚めた私は絶望したよB実験は失敗だった、とね
+wait
+text 諦められなかった私は必死に実験データをB一人でチェックし続け、そして見つけたB「もう一人の私」を
+wait
+text 私は彼を研究所の膨大なデータの中に封印したBなぜ「私」でなかったのか！Bその思いだけが私を支配していた
+wait
+text けれど、私には人格移植以外にもやらBなければならない研究はあったからねBその一部が、平行世界から取り出すことに成功したB新エネルギー、物質を用いた生物、機械の開発だ
+wait
+text その一環として機械と生物を組み合わせた「人形」の制作BをしていたんだBその中で生まれた失敗作、それが君、「MISS」だ
+wait
+text 失敗作だと思われていた君はB他の「人形」とは違った特徴を持っていたB驚くべきことに自我を持っているらしかった
+wait
+text 直ぐに研究員たちに保護させたB私は君を見てすぐに気が付いたよ！Bこれが答えだ、とね
+wait
+text なぜ私が残ったのか？B「器」がふさわしくなかったのだ！B私は「器」からあぶれた「私」なのだ！
+wait
+text 実験の失敗の後、生物への人格移植もB試みたんだが、うまくいかなかったB「器」が大きすぎて、人格が混乱して暴走し、ゾンビやB触手を振り回す化け物に変化してしまった
+wait
+text 機械では小さすぎた、生物では大きすぎたBではその両方は？B君を再現しようと躍起になったが、失敗続きだったBその成果がここにいる「君たち」だ
+wait
+text だが、君は違う！B君は私の「器」なのだよ！B私に作られた、そこらの失敗作とかわらん「入れ物」なのだよ！
+wait
+//
+dark hakase01
+light misu01
+text う・・・あ・・・
+wait
+//
+dark misu01
+light hakase01
+text さあ！すぐに人格消去と人格移植を行うぞ！
+wait
+//
+dark hakase01
+light sato01
+text しっかりしろ！みす！
+wait
+//
+dark sato01
+light misu01
+text わたし・・・わたしは人間じゃ・・・ない？
+wait
+text あのゾンビとか、触手のお化けとか・・・B水槽の中の「私」と・・・
+wait
+text 同じ・・・？
+wait
+//
+dark misu01
+text  みすちゃん！！
+wait
+//
+light misu01
+text ！？ 
+wait
+//
+dark misu01
+move sato01 0 20 -60 20 10 0
+move misu01 30 20 -60 20 10 0
+move hakase01 70 20 100 20 10 0
+wait
+//
+move girl01 -60 20 0 20 10 0
+light girl01
+text 大丈夫、みすちゃんには「勇気」があるからB誰かを守る勇気が、外の世界に出ていく勇気が
+wait
+dark girl01
+wait 10
+//
+move otoko01 25 -100 25 20 10 0
+light otoko01
+text そして、「強さ」があるB何かを失っても、また立ち上がってB前に進むだけの強さ
+wait
+dark otoko01
+wait 10
+//
+move seinen01 50 100 50 20 10 0
+light seinen01
+text また、君には「知恵」があるB何が真実かを見極めるのにB十分な聡明さを持ち合わせている
+wait
+dark seinen01
+wait 10
+//
+move josei01 100 20 75 20 10 0
+light josei01
+text それから、「優しさ」を持っているB貴女は苦しみを理解し、共感できるB過ちを許し、受け止められるBそういう優しさを持っている
+wait
+dark josei01
+wait 10
+//
+light josei01
+text 貴女には「こころ」があるBそれで十分だとは思わない？B貴女は「人間」よ
+wait
+//
+light seinen01
+text それにしても、心無い言葉でB女性を傷つけるとは・・・まったく・・・・・・
+wait
+//
+move girl01 0 20 0 100 20 0
+move otoko01 25 20 25 100 20 0
+move seinen01 50 20 50 100 20 0
+move josei01 75 20 75 100 20 0
+dark seinen01
+move hakase01 40 100 40 20 10 0
+light hakase01
+text ふははははははは！B平行世界の住人か！Bより一層手に入れたくなったぞ！B私はお前をなんとしても手に入れる！
+wait
+//
+move hakase01 40 20 40 -100 10 0
+dark01 hakase01
+move girl01 0 100 0 20 20 0
+move otoko01 25 100 25 20 20 0
+move seinen01 50 100 50 20 20 0
+move josei01 75 100 75 20 20 0
+light otoko01
+text そうはいくか！いくぞ！
+wait
+//
+end

@@ -1,0 +1,15 @@
+wordstyle backblack 3
+//
+//
+text SATO、この扉の先が外？
+wait
+text ああ
+wait
+text みす、ここから先は、B私のものでも、もう一人の私のものでもB君を助けた４人の物でもBプレイヤーのものでも、製作者の物でも
+wait
+text ほかの誰でもない、正真正銘、本当の
+wait
+text 君の、君だけの、物語だ
+wait
+//
+end

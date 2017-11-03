@@ -1,0 +1,42 @@
+addchara misu みすちゃん
+addchara sato SATO
+//
+addcharapicture misu defaultstand picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand picture/scenario0/character/sato.png
+//
+drawrequest misu01 misu defaultstand 70 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+dark misu01
+dark sato01
+//
+wordstyle onebyone 3
+//
+light sato01
+text よし、 電源管理セクターに着いたな。
+wait
+//
+dark sato01
+light misu01
+text ふー・・・
+wait
+//
+dark misu01
+light sato01
+text 大丈夫か？みす
+wait
+//
+dark sato01
+light misu01
+text うん・・・大丈夫Bちょっと疲れただけ
+wait
+//
+dark misu01
+light sato01
+text （ここは普段の生活圏からは離れているBそれにあんなことがあったんだ、無理もない）
+wait
+text すぐ近くにラウンジがあるBそこで休憩して行こう
+wait
+text そこからセクター内部に入れるし、マップや物資も手に入る
+wait
+//
+end

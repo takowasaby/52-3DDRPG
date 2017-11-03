@@ -17,7 +17,7 @@ private:
 	int mapFlag[SCENARIO_SIZE][STAGE_SIZE][MAP_SIZE_X][MAP_SIZE_Y];
 	string GoalText[SCENARIO_SIZE][EVENT_SIZE];
 	//	int itemFlag[SCENARIO_SIZE][ITEM_TYPE_SIZE][ITEM_SIZE];
-	int EventCallFlag;
+	int OpeningFlag;
 	bool dungeonLoadFlag;
 	bool roomLoadFlag;
 
@@ -28,7 +28,7 @@ private:
 	int titleScene;
 	int gameScene;
 	
-	characterData character[CHARACTER_SIZE];
+	characterData character[CHARACTER_SIZE + 5];
 	skillData skill[SKILL_SIZE];
 	itemData item[ITEM_SIZE];
 	soubiData soubi[SOUBI_SIZE];

@@ -1,10 +1,10 @@
-addchara misu
-addchara sato
-addchara girl
+addchara misu みすちゃん
+addchara sato SATO
+addchara girl 女の子
 //
-addcharapicture misu0 defaultstand resource/character/misuchan0.png
-addcharapicture sato defaultstand resource/character/sato.png
-addcharapicture girl defaultstand resource/character/girl0.png
+addcharapicture misu defaultstand picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand picture/scenario0/character/sato.png
+addcharapicture girl defaultstand picture/scenario0/character/girl0.png
 //
 drawrequest misu01 misu defaultstand 10 20 0 70
 drawrequest sato01 sato defaultstand 30 20 0 70
@@ -13,6 +13,7 @@ dark misu01
 dark sato01
 dark girl01
 //
+wordstyle onebyone 3
 //
 light misu01
 text よし、セキュリティキーを・・・えいっ

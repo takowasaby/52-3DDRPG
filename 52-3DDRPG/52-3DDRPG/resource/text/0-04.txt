@@ -1,25 +1,27 @@
-addchara misu
-addchara sato
-addchara girl
+addchara misu みすちゃん
+addchara sato SATO
+addchara girl 女の子
 //
-addcharapicture misu0 defaultstand resource/character/misuchan0.png
-addcharapicture sato defaultstand resource/character/sato.png
-addcharapicture girl defaultstand resource/character/girl0.png
+addcharapicture misu defaultstand picture/scenario0/character/misuchan1.png
+addcharapicture sato defaultstand picture/scenario0/character/sato.png
+addcharapicture girl defaultstand picture/scenario0/character/girl0.png
 //
-drawrequest misu01 misu defaultstand 
-drawrequest sato01 sato defaultstand
-drawrequest girl01 girl defaultstand
+drawrequest misu01 misu defaultstand 30 20 0 70
+drawrequest sato01 sato defaultstand 0 20 0 70
+drawrequest girl01 girl defaultstand 70 20 0 70
 dark misu01
 dark sato01
 dark girl01
+turn misu01 0
 //
+wordstyle onebyone 3
 //
 light girl01
 text だいじょうぶ？
 wait
 dark girl01
 light misu01
-text うん！だいじょうぶ！B　お姉ちゃんありがと！
+text うん！だいじょうぶ！Bお姉ちゃんありがと！
 wait
 dark misu01
 light sato01

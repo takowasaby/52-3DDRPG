@@ -24,11 +24,11 @@ Control_c::Control_c() {
 }
 
 Control_c::~Control_c() {
-  delete mEvents;
-  delete mFps;
-  delete mMenu;
-  delete mDungeon;
-  delete mRoom;
+	delete mEvents;
+	delete mFps;
+	delete mMenu;
+	delete mDungeon;
+	delete mRoom;
   delete mEventlist;
   delete mScenario;
 }
@@ -44,6 +44,10 @@ bool Control_c::All() {
 		switch (GData.GetScene(event)) {
 		case conversation:
 			//立ち絵会話
+			if (GData.GetEventFlag()) {
+				mEventlist->Event(0);
+				GData.SetEventFlag(0);
+			}
 			break;
 		case opening:
 			//オープニング
