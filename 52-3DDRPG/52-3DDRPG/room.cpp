@@ -38,10 +38,8 @@ void Room_c::KeyUpdate(int Key[256])
 
 void Room_c::RoomAll() 
 {
-	mroom = GData.GetRoom();
 	RoomDraw();
 	WaitKey();
-	GData.SetRoom(mroom);
 }
 
 void Room_c::DataLoad(int scenario, int stage, int room)
@@ -191,6 +189,22 @@ void Room_c::WaitKey() {
 		}
 		else if (mKey[KEY_INPUT_RIGHT] == 1) {
 			scrollx += 50;
+			if (ROOM_POINT_X + ROOM_FLOOR_HALFSIZE_X * roomsizey - scrollx < 0)scrollx = ROOM_POINT_X + (ROOM_FLOOR_HALFSIZE_X * roomsizey) - 30;
+		}
+		else if (mKey[KEY_INPUT_DOWN] >= 60) {
+			scrolly += 5;
+			if (ROOM_POINT_Y + ROOM_FLOOR_HALFSIZE_Y*(roomsizey + roomsizex) - scrolly < 0)scrolly = ROOM_POINT_Y + ROOM_FLOOR_HALFSIZE_Y*(roomsizey + roomsizex) - 30;
+		}
+		else if (mKey[KEY_INPUT_UP] >= 60) {
+			scrolly -= 5;
+			if (480 - ROOM_POINT_Y + ROOM_WALL_SIZE_Y + scrolly < 0)scrolly = -(480 - ROOM_POINT_Y + ROOM_WALL_SIZE_Y) + 30;
+		}
+		else if (mKey[KEY_INPUT_LEFT] >= 60) {
+			scrollx -= 5;
+			if (640 - ROOM_POINT_X + ROOM_FLOOR_HALFSIZE_X * roomsizex + scrollx < 0)scrollx = -(640 - ROOM_POINT_X + ROOM_FLOOR_HALFSIZE_X * roomsizex) + 30;
+		}
+		else if (mKey[KEY_INPUT_RIGHT] >= 60) {
+			scrollx += 5;
 			if (ROOM_POINT_X + ROOM_FLOOR_HALFSIZE_X * roomsizey - scrollx < 0)scrollx = ROOM_POINT_X + (ROOM_FLOOR_HALFSIZE_X * roomsizey) - 30;
 		}
 	}
