@@ -1,0 +1,43 @@
+addchara misu
+addchara sato
+addchara girl
+//
+addcharapicture misu0 defaultstand resource/character/misuchan0.png
+addcharapicture sato defaultstand resource/character/sato.png
+addcharapicture girl defaultstand resource/character/girl0.png
+//
+drawrequest misu01 misu defaultstand 10 20 0 70
+drawrequest sato01 sato defaultstand 30 20 0 70
+drawrequest girl01 girl defaultstand 60 20 0 70
+dark misu01
+dark sato01
+dark girl01
+//
+//
+light misu01
+text よし、セキュリティキーを・・・えいっ
+wait
+dark misu01
+light sato 01
+text セキュリティは解除できたな
+wait
+text データによると他のセクターへ行くにはB電源の復旧が必要なようだ
+wait
+text 電源管理セクターへ行こう
+wait
+dark sato01
+light girl01
+text じゃあ私はここまでね
+wait
+textみすちゃんならきっと大丈夫B　SATOもいるしね
+wait
+dark girl01
+light misu01
+text うん・・・ありがとう、お姉ちゃん
+wait
+dark misu01
+light sato 01
+text よし、行こう
+wait
+//
+end

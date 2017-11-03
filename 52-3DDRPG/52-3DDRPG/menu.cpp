@@ -236,7 +236,7 @@ void Menu_c::DrawRight()
 			if (itemType == 1 && depth == 1) DrawFormatString(stringX + 210, stringY + row * 0, colorY, "‚¾‚¢‚¶‚È‚à‚Ì");
 			else DrawFormatString(stringX + 210, stringY + row * 0, colorW, "‚¾‚¢‚¶‚È‚à‚Ì");
 			break;
-		case scenario:
+		case title:
 			textBox->DrawWindow(160, 40, 424, 400);
 			break;
 		default: 
@@ -382,7 +382,7 @@ void Menu_c::DrawRight()
 			}
 			break;
 
-		case scenario:
+		case title:
 			break;
 		}
 		break;
@@ -786,8 +786,8 @@ void Menu_c::CheckKey()
 				break;
 			}
 			break;
-		case scenario:
-			GData.SceneRequest(1, 1);
+		case title:
+			GData.SceneRequest(1, 2);
 			break;
 		case save:
 			GData.SceneRequest(1, 3);

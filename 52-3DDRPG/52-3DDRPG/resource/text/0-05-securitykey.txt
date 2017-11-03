@@ -1,0 +1,73 @@
+addchara misu
+addchara sato
+addchara girl
+//
+addcharapicture misu0 defaultstand resource/character/misuchan0.png
+addcharapicture sato defaultstand resource/character/sato.png
+addcharapicture girl defaultstand resource/character/girl0.png
+//
+drawrequest misu01 misu defaultstand 10 20 0 70
+drawrequest sato01 sato defaultstand 30 20 0 70
+drawrequest girl01 girl defaultstand 60 20 0 70
+dark misu01
+dark sato01
+dark girl01
+//
+//
+light misu01
+move misu01 10 20 10 5 30 0
+move misu01 10 5 10 20 30 0
+text あった！セキュリティキー！
+wait
+text ・・・・・・・・・・・・
+wait
+dark misu01
+light sato 01
+text どうした？
+wait
+dark sato01
+light misu01
+text　みんなダイジョブかなって・・・Bわたしもロボットに襲われたし・・・B
+wait
+text わたしはお姉ちゃんが助けてくれたからB　良かったけれど、みんなは・・・
+wait
+dark misu01
+light  girl01
+text みすちゃん、その「みんな」って？
+wait
+dark gril 01
+light misu01
+text 「かぞく」だよ！B
+wait
+dark misu01
+light  girl01
+text ・・・みすちゃん学校は？そもそも何歳？ここはどういう場所？
+wait
+dark gril 01
+light misu01
+text え・・・？Bえ、えっと・・・
+wait
+dark misu01
+light  sato01
+text 学校には行っていないB大体中学生くらいBいや小学校高学年くらいか？Bここは研究所だ
+wait
+dark sato01
+light misu01
+text ・・・わたし何も知らない
+wait
+dark misu01
+light  girl01
+text 大丈夫Bきっとこのキーで進む先にあなたのB真実の物語がある
+wait
+dark girl01
+light misu01
+text ウフフBかっこいいセリフだね！
+wait
+dark misu01
+light  girl01
+text えへへB漫画の受け売りだよ～
+wait
+text さ、先にすすもう
+wait
+//
+end

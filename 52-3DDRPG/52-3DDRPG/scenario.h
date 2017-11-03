@@ -2,8 +2,11 @@
 
 const int SCENARIO_HEIGHT = 96;
 
+class EventList;
+
 class Scenario_c {
 private:
+	EventList *eventlist;
 	int chooseScenario;
 	int graph[2][5];
 	char fname[64];
@@ -15,6 +18,7 @@ public:
 	~Scenario_c();
 
 	void ScenarioAll();
+	void SetEventList(EventList*);
 	void Load();
 	void Update();
 	void Draw();
