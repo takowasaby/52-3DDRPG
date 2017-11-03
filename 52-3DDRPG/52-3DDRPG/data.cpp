@@ -16,7 +16,7 @@ Data_c::Data_c() :
 {
 	controlMode = 1;
 	eventScene = 0;
-	titleScene = 1;
+	titleScene = 2;
 	gameScene = 2;
 
 	for (int i = 0; i < MAP_SIZE_X; i++) {

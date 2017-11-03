@@ -13,7 +13,7 @@ void Music_c::InitMusic(void) {
   CommonSE[CURSOR] = LoadSoundMem("resource/sounds/SE/common/Cursor2.ogg");
   CommonSE[BUZZER] = LoadSoundMem("resource/sounds/SE/common/Buzzer1.ogg");
   for (int i = 0; i < CommonSEs; ++i) {
-    ChangeVolumeSoundMem(128, CommonSE[i]);
+    ChangeVolumeSoundMem(64, CommonSE[i]);
   }
 }
 
@@ -52,14 +52,14 @@ void Music_c::PlaySounds(void){
   memset(&ReserveHandle[0][0], 0, sizeof(ReserveHandle));
 }
 
-void Music_c::ReserveSound(int SoundHandle, int PlayType, int FadeFlag) {
+void Music_c::ReserveSound(int SoundHandle, int PlayType, bool FadeFlag) {
   ++ReserveHandle[0][0];
   ReserveHandle[ReserveHandle[0][0]][0] = SoundHandle;
   ReserveHandle[ReserveHandle[0][0]][1] = PlayType;
   ReserveHandle[ReserveHandle[0][0]][2] = FadeFlag;
 }
 
-void Music_c::StopSound(int SoundHandle, int FadeFlag) {
+void Music_c::StopSound(int SoundHandle, bool FadeFlag) {
   StopSoundMem(SoundHandle);
   for (int i = 1; i <= PlaynowHandle[0] && i < 100; ++i) {
     if (SoundHandle == PlaynowHandle[i]) {
@@ -70,7 +70,7 @@ void Music_c::StopSound(int SoundHandle, int FadeFlag) {
   }
 }
 
-void Music_c::PauseSound(int FadeFlag) {
+void Music_c::PauseSound(bool FadeFlag) {
   for (int i = 0; i <= PlaynowHandle[0] && i < 100; ++i) {
     StopSoundMem(PlaynowHandle[i]);
   }
@@ -78,7 +78,7 @@ void Music_c::PauseSound(int FadeFlag) {
   memset(PlaynowHandle, 0, sizeof(PlaynowHandle));
 }
 
-void Music_c::RestartSound(int FadeFlag) {
+void Music_c::RestartSound(bool FadeFlag) {
   for (int i = 0; i <= SaveHandle[0][0] && i < 100; ++i) {
     PlaySoundMem(PlaynowHandle[i], DX_PLAYTYPE_LOOP, FALSE);
   }

@@ -11,6 +11,7 @@ private:
 	int graph[2][5];
 	char fname[64];
 	int mKey[256];
+  int end;
 	int bright;
 	int tempScreen;
 public:

@@ -41,7 +41,8 @@ void Scenario_c::Load()
 
 void Scenario_c::Update()
 {
-	if (mKey[KEY_INPUT_Z] == 1) {
+	if (mKey[KEY_INPUT_Z] == 1 || mKey[KEY_INPUT_RETURN] == 1) {
+    GMusic.ReserveSound(GMusic.CommonSE[GMusic.DECISION], DX_PLAYTYPE_BACK);
 		GetDrawScreenGraph(0, 0, 640, 480, tempScreen);
 		do {
 			bright = bright - 5;
@@ -60,10 +61,10 @@ void Scenario_c::Update()
 		GData.SceneRequest(0, 0);
 	}
 	else if (mKey[KEY_INPUT_UP] == 1) {
-		if (chooseScenario > 0) chooseScenario--;
+    if (chooseScenario > 0) { GMusic.ReserveSound(GMusic.CommonSE[GMusic.CURSOR], DX_PLAYTYPE_BACK); chooseScenario--; }
 	}
 	else if (mKey[KEY_INPUT_DOWN] == 1) {
-		if (chooseScenario < SCENARIO_SIZE - 1) chooseScenario++;
+    if (chooseScenario < SCENARIO_SIZE - 1) { GMusic.ReserveSound(GMusic.CommonSE[GMusic.CURSOR], DX_PLAYTYPE_BACK); chooseScenario++; }
 	}
 	else if (mKey[KEY_INPUT_X] == 1) {
 		GetDrawScreenGraph(0, 0, 640, 480, tempScreen);
