@@ -53,12 +53,12 @@ void Scenario_c::Update()
 		} while (bright > 0);
 		SetDrawBright(255, 255, 255);
 
-		Reset();
 		GData.SetScenario(chooseScenario);
 		eventlist->setListFileName(chooseScenario);
 		eventlist->readList();
 		GData.SetEventFlag(1);
 		GData.SceneRequest(0, 0);
+		Reset();
 	}
 	else if (mKey[KEY_INPUT_UP] == 1) {
     if (chooseScenario > 0) { GMusic.ReserveSound(GMusic.CommonSE[GMusic.CURSOR], DX_PLAYTYPE_BACK); chooseScenario--; }
