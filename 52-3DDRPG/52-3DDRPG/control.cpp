@@ -14,7 +14,6 @@ Control_c::Control_c() {
 
 	mRoom->SetEventList(mEventlist);
 	mDungeon->SetEventList(mEventlist);
-	mScenario->SetEventList(mEventlist);
 
 	mEventlist->Initialize(mEvents);
 	mEventlist->setListFileName(0);
@@ -30,6 +29,8 @@ Control_c::~Control_c() {
 	delete mMenu;
 	delete mDungeon;
 	delete mRoom;
+  delete mEventlist;
+  delete mScenario;
 }
 
 bool Control_c::All() {

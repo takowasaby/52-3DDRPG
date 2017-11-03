@@ -47,7 +47,7 @@ int EventList::callEvent()
 void EventList::setListFileName(int listfile)
 {
 	m_scenario = listfile;
-	string name = "resource/csv/scenario" + to_string(listfile) + "/scenario" + to_string(listfile) + "_event.csv";
+	string name = "resource/data/eventlist" + to_string(listfile) + ".csv";
 	m_ListFileName = name;
 }
 
@@ -286,14 +286,7 @@ void EventList::Event(int num)
 			}
 			break;
 		case 9://scene change
-			if (m_list[num].index(i).index(0) == 1)
-			{
-				GData.SceneRequest(2, 2);
-			}
-			else if (m_list[num].index(i).index(0) == 2)
-			{
-				GData.SceneRequest(0, 2);
-			}
+
 			break;
 		}
 	}

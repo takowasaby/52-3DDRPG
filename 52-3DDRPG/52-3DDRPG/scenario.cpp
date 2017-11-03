@@ -22,11 +22,6 @@ void Scenario_c::ScenarioAll()
 	Update();
 }
 
-void Scenario_c::SetEventList(EventList *el)
-{
-	eventlist = el;
-}
-
 void Scenario_c::Load()
 {
 	for (int i = 0; i < SCENARIO_SIZE; i++) {
@@ -54,8 +49,6 @@ void Scenario_c::Update()
 
 		Reset();
 		GData.SetScenario(chooseScenario);
-		eventlist->setListFileName(chooseScenario);
-		eventlist->readList();
 		GData.SetEventFlag(1);
 		GData.SceneRequest(0, 0);
 	}
