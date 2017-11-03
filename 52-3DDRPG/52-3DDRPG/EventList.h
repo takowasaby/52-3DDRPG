@@ -23,6 +23,10 @@ public:
 	void setListFileName(int listfile);
 	void readList();
 	void addList(ListAction la, int num);
+	int getCallEventFlag()
+	{
+		return m_callEventFlag;
+	}
 	void Event(int num);
 private:
 	Event_c *m_event;
