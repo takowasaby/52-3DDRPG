@@ -1,0 +1,39 @@
+addchara misu
+addchara sato
+addchara girl
+//
+addcharapicture misu0 defaultstand resource/character/misuchan0.png
+addcharapicture sato defaultstand resource/character/sato.png
+addcharapicture girl defaultstand resource/character/girl0.png
+//
+drawrequest misu01 misu defaultstand 
+drawrequest sato01 sato defaultstand
+drawrequest girl01 girl defaultstand
+dark misu01
+dark sato01
+dark girl01
+//
+//
+light girl01
+text だいじょうぶ？
+wait
+dark girl01
+light misu01
+text うん！だいじょうぶ！B　お姉ちゃんありがと！
+wait
+dark misu01
+light sato01
+text どうやら、やつは停止したようだな・・・
+wait
+text ドアを開けるために必要なBセキュリティキーの場所はダウンロードしておいた
+wait
+dark sato01
+light girl01　
+text じゃあいこっか、みすちゃん！
+wait
+dark girl01
+light misu01
+text　うん！
+wait
+//
+end
