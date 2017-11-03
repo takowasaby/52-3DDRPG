@@ -15,6 +15,7 @@ private:
   int end;
 	int bright;
 	int tempScreen;
+  int ScenarioBGM;
 public:
 	Scenario_c();
 	~Scenario_c();
