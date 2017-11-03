@@ -43,7 +43,7 @@ void TextBox::Update()
 		if (key[KEY_INPUT_W] == 1) {
 			if (topOfPage < position) position--;
 			else if (topOfPage + raw < message.size() - 1) position += raw-1;
-			else position = message.size() - 1;
+			else position = (int)message.size() - 1;
 		}
 		if (key[KEY_INPUT_A] == 1) {
 			if (topOfPage > 0) {
@@ -51,10 +51,10 @@ void TextBox::Update()
 				position -= raw;
 			}
 			else {
-				topOfPage += (message.size() - (message.size() % raw));
+				topOfPage += (int)(message.size() - (message.size() % raw));
 				if (topOfPage > message.size() - 1) topOfPage = 0;
 				if (topOfPage + position < message.size() - 1) position += topOfPage;
-				else position = message.size() - 1;
+				else position = (int)message.size() - 1;
 			}
 		}
 		if (key[KEY_INPUT_S] == 1) {
@@ -65,7 +65,7 @@ void TextBox::Update()
 			if (topOfPage + raw < message.size() - 1) {
 				topOfPage += raw;
 				if (position + raw < message.size() - 1) position += raw;
-				else position = message.size() - 1;
+				else position = (int)message.size() - 1;
 			}
 			else {
 				position = position - topOfPage;
@@ -208,7 +208,7 @@ void TextBox::ScrollUp()
 {
 	if (topOfPage < position) position--;
 	else if (topOfPage + raw < message.size() - 1) position += raw - 1;
-	else position = message.size() - 1;
+	else position = (int)message.size() - 1;
 }
 
 void TextBox::ScrollDown()
@@ -222,7 +222,7 @@ void TextBox::PageUp()
 	if (topOfPage + raw < message.size() - 1) {
 		topOfPage += raw;
 		if (position + raw < message.size() - 1) position += raw;
-		else position = message.size() - 1;
+		else position = (int)message.size() - 1;
 	}
 	else {
 		position = position - topOfPage;
@@ -237,10 +237,10 @@ void TextBox::PageDown()
 		position -= raw;
 	}
 	else {
-		topOfPage += (message.size() - (message.size() % raw));
+		topOfPage += (int)(message.size() - (message.size() % raw));
 		if (topOfPage > message.size() - 1) topOfPage = 0;
 		if (topOfPage + position < message.size() - 1) position += topOfPage;
-		else position = message.size() - 1;
+		else position = (int)message.size() - 1;
 	}
 }
 

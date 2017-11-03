@@ -110,7 +110,7 @@ void Room_c::GraphLoad(int scenario)
 				sprintf_s(gname, "resource/room/%d/%d.png", scenario, roomData[i][j].type);
 				furniture[roomData[i][j].type] = LoadGraph(gname);
 				GetGraphSize(furniture[roomData[i][j].type], &gx, &gy);
-				furniturehight[roomData[i][j].type] = gy * ROOM_RATIO;
+				furniturehight[roomData[i][j].type] = gy * (int)ROOM_RATIO;
 			}
 		}
 	}

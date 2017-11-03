@@ -87,7 +87,7 @@ struct characterData {
 struct skillData{
 	int num;						//スキルのナンバリング
 	string name;					//スキルの名前
-	bool target;					//スキルの対象(0:味方、1:敵)
+	int target;					//スキルの対象(0:味方、1:敵)
 	int mp;							//スキルの消費MP	
 	int effect;						//スキルの効果(0:ダメージ、 1:HP回復、2:MP回復、3:STR上昇、4:VIT上昇、5:AGI上昇、6:INT上昇、7:蘇生)
 	int status;						//スキルの効果に依存されるステータス
@@ -99,7 +99,7 @@ struct itemData {
 	int num;						//アイテムのナンバリング
 	string name;					//アイテムの名前
 	int flag;						//アイテムを所持している個数
-	bool target;					//アイテムの対象(0:味方、1:敵)
+	int target;					//アイテムの対象(0:味方、1:敵)
 	int type;						//アイテムの種類(0:消耗品、1:だいじなもの)
 	int effect1, effect2;			//アイテムの効果(0:ダメージ、 1:HP回復、2:MP回復、3:STR上昇、4:VIT上昇、5:AGI上昇、6:INT上昇、7:蘇生)
 	int point1, point2;				//アイテム効果の固定値
@@ -126,16 +126,16 @@ const int ROOM_MAXSIZE_Y = 25;
 //const int ROOM_EVENTTIMELINE = 15;
 
 const float ROOM_RATIO = 0.5;
-const int ROOM_WALL_SIZE_Y = (int)420 * ROOM_RATIO;
-const int ROOM_WALL_SIZE_X = (int)104 * ROOM_RATIO;
-const int ROOM_SHIFT_SIZE_X = (int)104 * ROOM_RATIO;
-const int ROOM_SHIFT_SIZE_Y = (int)60 * ROOM_RATIO;
-const int ROOM_FLOOR_SIZE_X = (int)208 * ROOM_RATIO;
-const int ROOM_FLOOR_SIZE_Y = (int)120 * ROOM_RATIO;
+const int ROOM_WALL_SIZE_Y = 420 * (int)ROOM_RATIO;
+const int ROOM_WALL_SIZE_X = 104 * (int)ROOM_RATIO;
+const int ROOM_SHIFT_SIZE_X = 104 * (int)ROOM_RATIO;
+const int ROOM_SHIFT_SIZE_Y = 60 * (int)ROOM_RATIO;
+const int ROOM_FLOOR_SIZE_X = 208 * (int)ROOM_RATIO;
+const int ROOM_FLOOR_SIZE_Y = 120 * (int)ROOM_RATIO;
 const int ROOM_FLOOR_HALFSIZE_X = (int)ROOM_FLOOR_SIZE_X / 2;
 const int ROOM_FLOOR_HALFSIZE_Y = (int)ROOM_FLOOR_SIZE_Y / 2;
-const int ROOM_SELECT_SIZE_Y = (int)360 * ROOM_RATIO;
-const int ROOM_SELECT_SIZE_X = (int)208 * ROOM_RATIO;
+const int ROOM_SELECT_SIZE_Y = 360 * (int)ROOM_RATIO;
+const int ROOM_SELECT_SIZE_X = 208 * (int)ROOM_RATIO;
 const int ROOM_FURNITURE_MAX = 100;
 const int ROOM_FURNITURE_LENGTH = (int)ROOM_WALL_SIZE_X * 2;
 const int ROOM_POINT_X = 320;

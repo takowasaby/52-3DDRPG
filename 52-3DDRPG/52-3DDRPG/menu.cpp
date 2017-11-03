@@ -45,7 +45,7 @@ void Menu_c::KeyUpdate(int Key[256])
 
 void Menu_c::DrawGoal()
 {
-	int drawCount;
+	int drawCount = 0;
 
 	for (int i = 0; i < EVENT_SIZE; i++) {
 		drawCount += GData.GetEventFlag(mscenario, i);

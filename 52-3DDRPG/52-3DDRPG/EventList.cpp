@@ -198,7 +198,6 @@ void EventList::addList(ListAction la, int num)
 
 void EventList::Event(int num)
 {
-	int i;
 	int flag;
 	string filename;
 	string str;
