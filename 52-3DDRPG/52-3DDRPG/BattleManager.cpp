@@ -149,7 +149,6 @@ void BattleManager::LoadEnemy()
 	enemy.agi.base = GetRand(500) + 499;
 	enemy.agi.calc = enemy.agi.base;
 	enemy.intel.base = GetRand(500) + 499;
-<<<<<<< HEAD
 	enemy.intel.calc = GetRand(500);
 	for (int i = 0; i < SKILL_SIZE; i++) enemy.skillCode[i] = (int)GetRand(1);
 
@@ -186,12 +185,10 @@ void BattleManager::LoadEnemy()
 		enemySkillSize[i] = (int)enemySkill[i].size();
 	}
 
-=======
 	enemy.intel.calc = enemy.intel.base;
 	for (int i = 0; i < SKILL_CODE_SIZE; i++) enemy.skillCode[i] = (int)GetRand(1);
 	*/
 	enemy = GData.GetCharacterData(GData.GetStage() + CHARACTER_SIZE);
->>>>>>> battle
 }
 
 void BattleManager::LoadSkill(int index)
