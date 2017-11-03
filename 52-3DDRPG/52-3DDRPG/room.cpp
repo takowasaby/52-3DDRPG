@@ -1,4 +1,4 @@
-#include"define.h"
+#include "define.h"
 
 Room_c::Room_c() :
 	mscenario(0),
@@ -96,7 +96,7 @@ void Room_c::GraphLoad(int scenario)
 	sprintf_s(gname, "resource/picture/scenario%d/room/wall.png", scenario);
 	wall = LoadGraph(gname);
 
-	sprintf_s(gname, "resource/picture/scenario%d/room/floor.png", scenario);
+  sprintf_s(gname, "resource/picture/scenario%d/room/floor.png", scenario);
 	floor = LoadGraph(gname);
 
 	sprintf_s(gname, "resource/picture/scenario%d/room/select.png", scenario);
@@ -108,7 +108,7 @@ void Room_c::GraphLoad(int scenario)
 				sprintf_s(gname, "resource/picture/scenario%d/room/%d.png", scenario, roomData[i][j].type);
 				furniture[roomData[i][j].type] = LoadGraph(gname);
 				GetGraphSize(furniture[roomData[i][j].type], &gx, &gy);
-				furniturehight[roomData[i][j].type] = gy * ROOM_RATIO;
+				furniturehight[roomData[i][j].type] = (int)(gy * ROOM_RATIO);
 			}
 		}
 	}
@@ -122,7 +122,7 @@ void Room_c::RoomDraw()
 			ROOM_POINT_Y - scrolly - ROOM_WALL_SIZE_Y + (ROOM_SHIFT_SIZE_Y * i), 
 			ROOM_POINT_X - scrollx - ROOM_SHIFT_SIZE_X * i, 
 			ROOM_POINT_Y - scrolly + ROOM_SHIFT_SIZE_Y * i, 
-			wall, true);
+      wall, true);
 	}
 	for (int i = 0; i < roomsizey; i++) {
 		DrawExtendGraph(
