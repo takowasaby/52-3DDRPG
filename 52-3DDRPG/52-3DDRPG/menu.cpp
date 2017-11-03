@@ -799,7 +799,9 @@ void Menu_c::CheckKey()
 	}
 	else if (mKey[KEY_INPUT_X] == 1) {
 		switch (depth) {
-		case 0: break;
+		case 0: 
+			GData.SceneBackRequest();
+			break;
 		case 1:
 			itemType = 0;
 			soubiType = 0;
@@ -831,6 +833,9 @@ void Menu_c::CheckKey()
 		if (mode == soubi && depth == 1) {
 			GData.SetCharacterSoubi(charaNum[chooseChara], soubiType, -1);
 		}
+	}
+	else if (mKey[KEY_INPUT_V] == 1) {
+		GData.SceneBackRequest();
 	}
 }
 

@@ -460,6 +460,7 @@ void Dungeon_c::WaitKey()
 		}
 	}
 	else if (mKey[KEY_INPUT_C] == 1) {
+		GData.SceneRequest(2, 3);
 	}
 
 	GData.SetDungeonX(x);
