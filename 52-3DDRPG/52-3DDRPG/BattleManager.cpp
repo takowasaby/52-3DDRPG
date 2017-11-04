@@ -307,10 +307,10 @@ void BattleManager::PlayerSelection()
 	case 2:
 	case 3:
 		//ƒL[“ü—Í‚Å‘€ì
-		if (mKey[KEY_INPUT_W] == 1) OpinionWindow[phase[1]-1]->ScrollUp();
-		else if (mKey[KEY_INPUT_A] == 1) OpinionWindow[phase[1]-1]->PageDown();
-		else if (mKey[KEY_INPUT_S] == 1) OpinionWindow[phase[1]-1]->ScrollDown();
-		else if (mKey[KEY_INPUT_D] == 1) OpinionWindow[phase[1]-1]->PageUp();
+		if (mKey[KEY_INPUT_UP] == 1) OpinionWindow[phase[1]-1]->ScrollUp();
+		else if (mKey[KEY_INPUT_LEFT] == 1) OpinionWindow[phase[1]-1]->PageDown();
+		else if (mKey[KEY_INPUT_DOWN] == 1) OpinionWindow[phase[1]-1]->ScrollDown();
+		else if (mKey[KEY_INPUT_RIGHT] == 1) OpinionWindow[phase[1]-1]->PageUp();
 		else if (mKey[KEY_INPUT_Z] == 1) {
 			if (phase[1] == 1) {
 				if (OpinionWindow[0]->Enter() == "UŒ‚") {
@@ -670,8 +670,8 @@ bool BattleManager::BattleEnd(bool isWin)
 		}
 		else if (mKey[KEY_INPUT_Z] == 1) {
 			for (int i = 0; i < CHARACTER_SIZE; i++) GData.SetCharacterData(i, player[i]);
-//			GData.SceneBackRequest();
-			GData.SceneRequest(1, 2);
+			GData.SceneBackRequest();
+//			GData.SceneRequest(1, 2);
 			return 1;
 		}
 	}
