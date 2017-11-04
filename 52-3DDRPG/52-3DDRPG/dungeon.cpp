@@ -11,8 +11,11 @@ Dungeon_c::Dungeon_c() :
 	}
 
 	walk = LoadSoundMem("resource/sounds/SE/other/footstep01.mp3");
+	ChangeVolumeSoundMem(64, walk);
 	run = LoadSoundMem("resource/sounds/SE/other/footstep02.mp3");
+	ChangeVolumeSoundMem(64, run);
 	decision = LoadSoundMem("resource/sounds/SE/other/decision22.mp3");
+	ChangeVolumeSoundMem(64, decision);
 
 
 //	DataLoad(mscenario, mstage);
@@ -70,6 +73,17 @@ void Dungeon_c::DataSet()
 
 void Dungeon_c::DataLoad(int scenario, int stage)
 {
+	for (int i = 0; i < MAP_SIZE_X; i++) {
+		for (int j = 0; j < MAP_SIZE_Y; j++) {
+			wallData[i][j].type = 0;
+			wallData[i][j].Nwall = 1;
+			wallData[i][j].Ewall = 1;
+			wallData[i][j].Swall = 1;
+			wallData[i][j].Wwall = 1;
+			eventNum[i][j] = 0;
+		}
+	}
+
 	sprintf_s(fname, "resource/csv/scenario%d/%d_%d.csv", scenario, scenario, stage);
 
 	mfp = FileRead_open(fname);
