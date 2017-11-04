@@ -341,10 +341,10 @@ void Dungeon_c::UIDraw()
 		if (GData.GetCharacterFlag(i) && GData.GetCharacterStatus(i, 0, 0) != 0 && GData.GetCharacterStatus(i, 1, 0) != 0) {
 
 			DrawBox(stringX + 122, stringY + 8 + row * i, stringX + 222, stringY + 17 + row * i, GetColor(0, 0, 0), TRUE);
-			DrawBox(stringX + 125, stringY + 5 + row * i, stringX + 125 + 100 * (GData.GetCharacterStatus(i, 0, 1) / GData.GetCharacterStatus(i, 0, 0)), stringY + 15 + row * i, GetColor(0, 255, 0), TRUE);
+			DrawBox(stringX + 125, stringY + 5 + row * i, stringX + 125 + 100 * ((double)GData.GetCharacterStatus(i, 0, 1) / (double)GData.GetCharacterStatus(i, 0, 0)), stringY + 15 + row * i, GetColor(0, 255, 0), TRUE);
 
 			DrawBox(stringX + 282, stringY + 8 + row * i, stringX + 382, stringY + 17 + row * i, GetColor(0, 0, 0), TRUE);
-			DrawBox(stringX + 285, stringY + 5 + row * i, stringX + 285 + 100 * (GData.GetCharacterStatus(i, 1, 1) / GData.GetCharacterStatus(i, 1, 0)), stringY + 15 + row * i, GetColor(255, 51, 153), TRUE);
+			DrawBox(stringX + 285, stringY + 5 + row * i, stringX + 285 + 100 * ((double)GData.GetCharacterStatus(i, 1, 1) / (double)GData.GetCharacterStatus(i, 1, 0)), stringY + 15 + row * i, GetColor(255, 51, 153), TRUE);
 
 			DrawFormatString(stringX, stringY + row * i, GetColor(255, 255, 255), "%s ", GData.GetCharacterName(i).c_str());
 			DrawFormatString(stringX + 100, stringY + row * i, GetColor(255, 255, 255), "HP:%d/%d ", GData.GetCharacterStatus(i, 0, 1), GData.GetCharacterStatus(i, 0, 0));
