@@ -44,7 +44,7 @@ BattleManager::~BattleManager()
 {
 }
 
-void BattleManager::Update()
+bool BattleManager::Update()
 {
 	switch (phase[0])
 	{
@@ -67,14 +67,15 @@ void BattleManager::Update()
 		ToNextTurn();
 		break;
 	case 6://勝利
-		BattleEnd(true);
+		return BattleEnd(true);
 		break;
 	case 7://敗北
-		BattleEnd(false);
+		return BattleEnd(false);
 		break;
 	default:
 		break;
 	}
+	return 0;
 }
 
 void BattleManager::Draw()
@@ -645,7 +646,7 @@ void BattleManager::ToNextTurn()
 	phase[0] = 1;
 }
 
-void BattleManager::BattleEnd(bool isWin)
+bool BattleManager::BattleEnd(bool isWin)
 {
 	if (isWin) {
 		//勝利処理
@@ -655,7 +656,9 @@ void BattleManager::BattleEnd(bool isWin)
 			MessageWindow->AddMessage(enemy.name + "を倒した！！！");
 		}
 		else if (mKey[KEY_INPUT_Z] == 1) {
-			
+			return 1;
+			for (int i = 0; i < CHARACTER_SIZE; i++) GData.SetCharacterData(i, player[i]);
+			GData.SceneBackRequest();
 		}
 	}
 	else {
@@ -666,9 +669,11 @@ void BattleManager::BattleEnd(bool isWin)
 			MessageWindow->AddMessage("パーティーは全滅した…");
 		}
 		else if (mKey[KEY_INPUT_Z] == 1) {
-
+			return 1;
+			GData.SceneRequest(1, 2);
 		}
 	}
+	return 0;
 }
 
 void BattleManager::Infomation()

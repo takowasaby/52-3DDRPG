@@ -49,7 +49,7 @@ void EventList::setListFileName(int listfile)
 {
 	m_scenario = listfile;
 	string name = "resource/csv/scenario" + to_string(listfile) +"/scenario"+ to_string(listfile) + "_event.csv";
-	printfDx("%s\n", name.c_str());
+//	printfDx("%s\n", name.c_str());
 	m_ListFileName = name;
 }
 
@@ -67,7 +67,7 @@ void EventList::readList()
 	m_filelist = FileRead_open(m_ListFileName.c_str());
 	if (m_filelist == NULL)
 	{
-		printfDx("read error2\n");
+//		printfDx("read error2\n");
 		return;
 	}
 	//m_list.clear();
@@ -295,7 +295,7 @@ void EventList::Event(int num)
 			}
 			else if (m_list[num].index(i).index(0) == 2)
 			{
-				GData.SceneRequest(0, 2);
+				GData.SceneRequest(2, 2);
 			}
 			break;
 		}

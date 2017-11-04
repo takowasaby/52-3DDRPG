@@ -40,6 +40,9 @@ private:
 	bool optionStart = false;
 	bool optionEnd = false;
 
+	bool BattleStart = false;
+	bool BattleEnd = false;
+
 	typedef enum {
 		event,
 		title,

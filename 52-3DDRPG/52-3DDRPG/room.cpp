@@ -46,7 +46,9 @@ void Room_c::KeyUpdate(int Key[256])
 void Room_c::RoomAll() 
 {
 	RoomDraw();
-	WaitKey();
+	if (eventlist->getCallEventFlag() == 0) {
+		WaitKey();
+	}
 }
 
 void Room_c::DataLoad(int scenario, int stage, int room)
@@ -241,6 +243,10 @@ void Room_c::WaitKey() {
     eventlist->Event(roomData[selectx][selecty].event);
 	}
 	else if (mKey[KEY_INPUT_D] == 1)printfDx("%d", abs(roomData[0][4].type));
+	else if (mKey[KEY_INPUT_C] == 1) {
+		GData.SceneRequest(2, 3);
+		GMusic.ReserveSound(decision, DX_PLAYTYPE_BACK);
+	}
 }
 
 void Room_c::SetEventList(EventList *e)
@@ -255,4 +261,12 @@ void Room_c::SetData(Data_c *d)
 
 void Room_c::MessageDraw()
 {
+}
+
+void Room_c::CursorReset()
+{
+	selectx = 0;
+	selecty = 0;
+	scrollx = 0;
+	scrolly = 0;
 }

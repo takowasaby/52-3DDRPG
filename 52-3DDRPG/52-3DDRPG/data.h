@@ -22,6 +22,9 @@ private:
 	bool dungeonLoadFlag;
 	bool roomLoadFlag;
 
+	int dungeon[SCENARIO_SIZE];
+	int battle[SCENARIO_SIZE];
+
 	int BMode;
 	int BScene;
 	int controlMode;
@@ -173,6 +176,7 @@ public:
 	void SetRoomLoadFlag(int i);
 
 	characterData GetCharacterData(int num);
+	void SetCharacterData(int num, characterData chara);
 };
 
 extern Data_c GData;

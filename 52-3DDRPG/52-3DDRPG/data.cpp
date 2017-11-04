@@ -10,7 +10,7 @@ Data_c::Data_c() :
 	roomLoadFlag(0)
 {
 	//controlMode = 1;
-	controlMode = 2;
+	controlMode = 1;
 	eventScene = 0;
 	titleScene = 2;
 	gameScene = 2;
@@ -967,6 +967,11 @@ void Data_c::SetRoomLoadFlag(int i)
 characterData Data_c::GetCharacterData(int num)
 {
 	return character[num];
+}
+
+void Data_c::SetCharacterData(int num, characterData chara)
+{
+	character[num] = chara;
 }
 
 void Data_c::CalcItemFlag(int num, int vary)

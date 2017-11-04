@@ -16,6 +16,9 @@ Menu_c::Menu_c() :
 	colorY = GetColor(255, 191, 0);
 	LoadWindow();
 
+	se[cursor] = LoadSoundMem("resource/sounds/SE/room/cursor.mp3");
+	se[decision] = LoadSoundMem("resource/sounds/SE/room/decision.mp3");
+
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
 		charaNum[i] = -1;
 	}
@@ -61,6 +64,9 @@ void Menu_c::MenuAll()
 	DrawLeft();
 	DrawRight();
 	//	DrawCursor();
+//	if (eventList->getCallEventFlag() == 0) {
+//		CheckKey();
+//	}
 	CheckKey();
 	/*
 	printfDx("\nMode:%d, ", mode);
@@ -571,6 +577,7 @@ void Menu_c::CheckKey()
 			}
 			break;
 		}
+		GMusic.ReserveSound(se[cursor], DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_UP] == 1) {
 		switch (depth) {
@@ -623,6 +630,7 @@ void Menu_c::CheckKey()
 			}
 			break;
 		}
+		GMusic.ReserveSound(se[cursor], DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_LEFT] == 1) {
 		switch (depth) {
@@ -645,6 +653,7 @@ void Menu_c::CheckKey()
 		case 3:
 		case 4: break;
 		}
+		GMusic.ReserveSound(se[cursor], DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_RIGHT] == 1) {
 		switch (depth) {
@@ -667,6 +676,7 @@ void Menu_c::CheckKey()
 		case 3:
 		case 4: break;
 		}
+		GMusic.ReserveSound(se[cursor], DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_Z] == 1) {
 		switch (mode) {
@@ -798,6 +808,7 @@ void Menu_c::CheckKey()
 			GData.SceneRequest(1, 5);
 			break;
 		}
+		GMusic.ReserveSound(se[decision], DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_X] == 1) {
 		switch (depth) {
@@ -830,15 +841,19 @@ void Menu_c::CheckKey()
 			depth = 2;
 			break;
 		}
+		GMusic.ReserveSound(se[decision], DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_V] == 1) {
 		if (mode == soubi && depth == 1) {
 			GData.SetCharacterSoubi(charaNum[chooseChara], soubiType, -1);
 		}
+		GMusic.ReserveSound(se[decision], DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_C] == 1) {
 		GData.SceneBackRequest();
+		GMusic.ReserveSound(se[decision], DX_PLAYTYPE_BACK);
 	}
+
 }
 
 void Menu_c::UseItem(int num, int target)

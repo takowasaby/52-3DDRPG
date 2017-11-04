@@ -10,7 +10,6 @@ Control_c::Control_c() {
 	mScenario = new Scenario_c();
 
 	GData.LoadAll(0);
-	battleManager = new BattleManager();
 
 	mRoom->SetEventList(mEventlist);
 	mDungeon->SetEventList(mEventlist);
@@ -116,9 +115,11 @@ bool Control_c::All() {
 			break;
 		case battle:
 			//ƒoƒgƒ‹
+			if (BattleStart == false) { BattleStart = true; battleManager = new BattleManager; }
 			battleManager->KeyUpdata(Key);
-			battleManager->Update();
+			BattleEnd = battleManager->Update();
 			battleManager->Draw();
+			if (BattleEnd == true) { BattleEnd = false; BattleStart = false; delete battleManager; }
 			break;
 		case menu:
 			mMenu->KeyUpdate(Key);
@@ -137,6 +138,7 @@ bool Control_c::All() {
 	}
 	else if (GData.GetRoomLoadFlag()) {
 		mRoom->DataLoad(GData.GetScenario(), GData.GetStage(), GData.GetRoom());
+		mRoom->CursorReset();
 		GData.SetRoomLoadFlag(FALSE);
 	}
 

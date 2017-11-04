@@ -17,6 +17,8 @@ private:
 	char gname[64];
 	int wallForDraw[10];
 
+	int walk, run, decision;
+
 	int* mMode;
 	int* mEvent_scene;
 	int* mTitle_scene;

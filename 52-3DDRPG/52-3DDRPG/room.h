@@ -55,4 +55,5 @@ public:
 	void SetData(Data_c *d);
 	void MessageDraw();
 
+	void CursorReset();
 };

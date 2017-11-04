@@ -23,7 +23,7 @@ public:
 	BattleManager();
 	~BattleManager();
 
-	void Update();
+	bool Update();
 	void Draw();
 
 	void LoadPlayer(int);
@@ -43,7 +43,7 @@ public:
 	void PlayerCalc();
 	void EnemyCalc();
 	void ToNextTurn();
-	void BattleEnd(bool);
+	bool BattleEnd(bool);
 
 	void Infomation();
 

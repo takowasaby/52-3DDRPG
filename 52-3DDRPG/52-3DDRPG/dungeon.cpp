@@ -10,8 +10,12 @@ Dungeon_c::Dungeon_c() :
 		wallForDraw[i] = 0;
 	}
 
-	DataLoad(mscenario, mstage);
-	GraphLoad(mscenario, mstage);
+	walk = LoadSoundMem("resource/sounds/SE/other/footstep01.mp3");
+	run = LoadSoundMem("resource/sounds/SE/other/footstep02.mp3");
+	decision = LoadSoundMem("resource/sounds/SE/other/decision22.mp3");
+
+//	DataLoad(mscenario, mstage);
+//	GraphLoad(mscenario, mstage);
 
 	textBox = new TextBox;
 }
@@ -43,9 +47,16 @@ void Dungeon_c::DungeonAll()
 	BackDraw();
 	WallDrawSet();
 	WallDraw();
-	if (eventList->getCallEventFlag() == 0)UIDraw();
-	MessageDraw();
-	WaitKey();
+	if (eventList->getCallEventFlag() == 0) {
+		UIDraw();
+		WaitKey();
+	}
+	//MessageDraw();
+	if (GData.GetScenario() == 4) {
+		if (eventNum[x][y] != -1) {
+			eventList->Event(eventNum[x][y]);
+		}
+	}
 }
 
 void Dungeon_c::DataSet()
@@ -172,11 +183,13 @@ EXFILE:
 			GData.SetWallType(i, j, wallData[i][j].type);
 		}
 	}
+
+	GraphLoad(scenario, stage);
 }
 
 void Dungeon_c::GraphLoad(int scenario, int stage)
 {
-	sprintf_s(gname, "resource/picture/scenario%d/dungeon/background.png", scenario, scenario);
+	sprintf_s(gname, "resource/dungeon/%d/%d.png", scenario, scenario);
 	back = LoadGraph(gname);
 
 	for (int i = 0; i < WALL_SIDE; i++) {
@@ -364,6 +377,7 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Ewall == 0) x++;
 			break;
 		}
+		GMusic.ReserveSound(walk, DX_PLAYTYPE_BACK);
 		WallDrawSet();
 	}
 	else if (mKey[KEY_INPUT_UP] == 1) {
@@ -381,6 +395,25 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Wwall == 0) x--;
 			break;
 		}
+		GMusic.ReserveSound(walk, DX_PLAYTYPE_BACK);
+		WallDrawSet();
+	}
+	else if(mKey[KEY_INPUT_UP] > 36 && mKey[KEY_INPUT_UP] % 6 == 0){
+		switch (dir) {
+		case 0:
+			if (wallData[x][y].Nwall == 0) y--;
+			break;
+		case 1:
+			if (wallData[x][y].Ewall == 0) x++;
+			break;
+		case 2:
+			if (wallData[x][y].Swall == 0) y++;
+			break;
+		case 3:
+			if (wallData[x][y].Wwall == 0) x--;
+			break;
+		}
+		GMusic.ReserveSound(run, DX_PLAYTYPE_BACK);
 		WallDrawSet();
 	}
 	else if (mKey[KEY_INPUT_RIGHT] == 1 && mKey[KEY_INPUT_LSHIFT] >= 1) {
@@ -398,6 +431,7 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Nwall == 0) y--;
 			break;
 		}
+		GMusic.ReserveSound(walk, DX_PLAYTYPE_BACK);
 		WallDrawSet();
 	}
 	else if (mKey[KEY_INPUT_LEFT] == 1 && mKey[KEY_INPUT_LSHIFT] >= 1) {
@@ -415,17 +449,20 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Swall == 0) y++;
 			break;
 		}
+		GMusic.ReserveSound(walk, DX_PLAYTYPE_BACK);
 		WallDrawSet();
 	}
 	else if (mKey[KEY_INPUT_LEFT] == 1) {
 		if (dir == 0) dir = 4;
 		dir--;
 		WallDrawSet();
+		GMusic.ReserveSound(walk, DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_RIGHT] == 1) {
 		if (dir == 3) dir = -1;
 		dir++;
 		WallDrawSet();
+		GMusic.ReserveSound(walk, DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_Z] == 1) {
 		switch (dir) {
@@ -458,9 +495,11 @@ void Dungeon_c::WaitKey()
 			}
 			break;
 		}
+		GMusic.ReserveSound(decision, DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_C] == 1) {
 		GData.SceneRequest(2, 3);
+		GMusic.ReserveSound(decision, DX_PLAYTYPE_BACK);
 	}
 
 	GData.SetDungeonX(x);
