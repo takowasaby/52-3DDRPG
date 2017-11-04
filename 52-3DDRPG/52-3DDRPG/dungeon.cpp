@@ -187,12 +187,14 @@ EXFILE:
 
 	GraphLoad(scenario, stage);
 
+	GMusic.StopSound(bgm);
+
 	string str;
 	str += "resource/sounds/BGM/scenario";
 	str += to_string(GData.GetScenario());
 	str += "/dungeon.wav";
 	bgm = LoadSoundMem(str.c_str());
-	ChangeVolumeSoundMem(128, bgm);
+	ChangeVolumeSoundMem(64, bgm);
 
 	GMusic.ReserveSound(bgm, DX_PLAYTYPE_LOOP);
 }

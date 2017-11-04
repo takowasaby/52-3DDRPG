@@ -669,9 +669,10 @@ bool BattleManager::BattleEnd(bool isWin)
 			MessageWindow->AddMessage(enemy.name + "を倒した！！！");
 		}
 		else if (mKey[KEY_INPUT_Z] == 1) {
-			return 1;
 			for (int i = 0; i < CHARACTER_SIZE; i++) GData.SetCharacterData(i, player[i]);
-			GData.SceneBackRequest();
+//			GData.SceneBackRequest();
+			GData.SceneRequest(1, 2);
+			return 1;
 		}
 	}
 	else {
@@ -682,8 +683,8 @@ bool BattleManager::BattleEnd(bool isWin)
 			MessageWindow->AddMessage("パーティーは全滅した…");
 		}
 		else if (mKey[KEY_INPUT_Z] == 1) {
-			return 1;
 			GData.SceneRequest(1, 2);
+			return 1;
 		}
 	}
 	return 0;
