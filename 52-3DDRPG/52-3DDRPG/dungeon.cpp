@@ -11,8 +11,11 @@ Dungeon_c::Dungeon_c() :
 	}
 
 	walk = LoadSoundMem("resource/sounds/SE/other/footstep01.mp3");
+	ChangeVolumeSoundMem(64, walk);
 	run = LoadSoundMem("resource/sounds/SE/other/footstep02.mp3");
+	ChangeVolumeSoundMem(64, run);
 	decision = LoadSoundMem("resource/sounds/SE/other/decision22.mp3");
+	ChangeVolumeSoundMem(64, decision);
 
 
 //	DataLoad(mscenario, mstage);
@@ -70,6 +73,17 @@ void Dungeon_c::DataSet()
 
 void Dungeon_c::DataLoad(int scenario, int stage)
 {
+	for (int i = 0; i < MAP_SIZE_X; i++) {
+		for (int j = 0; j < MAP_SIZE_Y; j++) {
+			wallData[i][j].type = 0;
+			wallData[i][j].Nwall = 1;
+			wallData[i][j].Ewall = 1;
+			wallData[i][j].Swall = 1;
+			wallData[i][j].Wwall = 1;
+			eventNum[i][j] = 0;
+		}
+	}
+
 	sprintf_s(fname, "resource/csv/scenario%d/%d_%d.csv", scenario, scenario, stage);
 
 	mfp = FileRead_open(fname);
@@ -327,10 +341,10 @@ void Dungeon_c::UIDraw()
 		if (GData.GetCharacterFlag(i) && GData.GetCharacterStatus(i, 0, 0) != 0 && GData.GetCharacterStatus(i, 1, 0) != 0) {
 
 			DrawBox(stringX + 122, stringY + 8 + row * i, stringX + 222, stringY + 17 + row * i, GetColor(0, 0, 0), TRUE);
-			DrawBox(stringX + 125, stringY + 5 + row * i, stringX + 125 + 100 * (GData.GetCharacterStatus(i, 0, 1) / GData.GetCharacterStatus(i, 0, 0)), stringY + 15 + row * i, GetColor(0, 255, 0), TRUE);
+			DrawBox(stringX + 125, stringY + 5 + row * i, stringX + 125 + 100 * ((double)GData.GetCharacterStatus(i, 0, 1) / (double)GData.GetCharacterStatus(i, 0, 0)), stringY + 15 + row * i, GetColor(0, 255, 0), TRUE);
 
 			DrawBox(stringX + 282, stringY + 8 + row * i, stringX + 382, stringY + 17 + row * i, GetColor(0, 0, 0), TRUE);
-			DrawBox(stringX + 285, stringY + 5 + row * i, stringX + 285 + 100 * (GData.GetCharacterStatus(i, 1, 1) / GData.GetCharacterStatus(i, 1, 0)), stringY + 15 + row * i, GetColor(255, 51, 153), TRUE);
+			DrawBox(stringX + 285, stringY + 5 + row * i, stringX + 285 + 100 * ((double)GData.GetCharacterStatus(i, 1, 1) / (double)GData.GetCharacterStatus(i, 1, 0)), stringY + 15 + row * i, GetColor(255, 51, 153), TRUE);
 
 			DrawFormatString(stringX, stringY + row * i, GetColor(255, 255, 255), "%s ", GData.GetCharacterName(i).c_str());
 			DrawFormatString(stringX + 100, stringY + row * i, GetColor(255, 255, 255), "HP:%d/%d ", GData.GetCharacterStatus(i, 0, 1), GData.GetCharacterStatus(i, 0, 0));
