@@ -19,9 +19,10 @@ private:
 
 	int windowH, windowW, menuScreen;
 
-	int se[2];
+	int se[3];
 	const int cursor = 0;
 	const int decision = 1;
+	const int bubu = 2;
 
 	int row, stringX, stringY;
 

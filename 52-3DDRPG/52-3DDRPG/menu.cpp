@@ -18,6 +18,7 @@ Menu_c::Menu_c() :
 
 	se[cursor] = LoadSoundMem("resource/sounds/SE/room/cursor.mp3");
 	se[decision] = LoadSoundMem("resource/sounds/SE/room/decision.mp3");
+	se[bubu] = LoadSoundMem("resource/sounds/SE/other/bubu.mp3");
 
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
 		charaNum[i] = -1;
@@ -409,7 +410,7 @@ void Menu_c::DrawRight()
 			DrawFormatString(stringX, stringY + row * 0, colorW, "このスキルを使用しますか？");
 
 			row = 25;
-			stringX = 477;
+			stringX = 470;
 			stringY = 230;
 
 			if (YN == 0) DrawFormatString(stringX, stringY + row * 0, colorY, "はい　");
@@ -428,7 +429,7 @@ void Menu_c::DrawRight()
 			DrawFormatString(stringX, stringY + row * 0, colorW, "%sを装備しますか？", GData.GetSoubiText(soubiNum[chooseSoubi], 0).c_str());
 
 			row = 25;
-			stringX = 477;
+			stringX = 470;
 			stringY = 230;
 
 			if (YN == 0) DrawFormatString(stringX, stringY + row * 0, colorY, "はい　");
@@ -447,7 +448,7 @@ void Menu_c::DrawRight()
 			DrawFormatString(stringX, stringY + row * 0, colorW, "このアイテムを使用しますか？");
 
 			row = 25;
-			stringX = 477;
+			stringX = 470;
 			stringY = 230;
 
 			if (YN == 0) DrawFormatString(stringX, stringY + row * 0, colorY, "はい　");
@@ -471,7 +472,7 @@ void Menu_c::DrawRight()
 			DrawFormatString(stringX, stringY + row * 0, colorW, "このスキルを誰に使用しますか？");
 
 			row = 25;
-			stringX = 477;
+			stringX = 470;
 			stringY = 230;
 
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
@@ -493,7 +494,7 @@ void Menu_c::DrawRight()
 			DrawFormatString(stringX, stringY + row * 0, colorW, "このアイテムを誰に使用しますか？");
 
 			row = 25;
-			stringX = 477;
+			stringX = 470;
 			stringY = 230;
 
 			for (int i = 0; i < CHARACTER_SIZE; i++) {
@@ -689,11 +690,13 @@ void Menu_c::CheckKey()
 				depth++;
 				break;
 			case 2:
-				if (GData.GetSkillPoint(skillNum[chooseSkill], 6) == 0) {
-					DeleteGraph(menuScreen);
-					SaveDrawScreen(0, 0, 640, 480, "resource/MenuScreen.bmp");
-					menuScreen = LoadGraph("resource/MenuScreen.bmp");
-					depth++;
+				if (skillNum[chooseSkill] != -1) {
+					if (GData.GetSkillPoint(skillNum[chooseSkill], 6) == 0) {
+						DeleteGraph(menuScreen);
+						SaveDrawScreen(0, 0, 640, 480, "resource/MenuScreen.bmp");
+						menuScreen = LoadGraph("resource/MenuScreen.bmp");
+						depth++;
+					}
 				}
 				else {
 					//ブー
@@ -739,10 +742,12 @@ void Menu_c::CheckKey()
 				depth++;
 				break;
 			case 2:
-				DeleteGraph(menuScreen);
-				SaveDrawScreen(0, 0, 640, 480, "resource/MenuScreen.bmp");
-				menuScreen = LoadGraph("resource/MenuScreen.bmp");
-				depth++;
+				if (soubiNum[chooseSoubi] != -1) {
+					DeleteGraph(menuScreen);
+					SaveDrawScreen(0, 0, 640, 480, "resource/MenuScreen.bmp");
+					menuScreen = LoadGraph("resource/MenuScreen.bmp");
+					depth++;
+				}
 				break;
 			case 3:
 				if (YN == 0) {
@@ -766,14 +771,16 @@ void Menu_c::CheckKey()
 				depth++;
 				break;
 			case 2:
-				if (GData.GetItemPoint(itemNum[chooseItem], 7) == 0) {
-					DeleteGraph(menuScreen);
-					SaveDrawScreen(0, 0, 640, 480, "resource/MenuScreen.bmp");
-					menuScreen = LoadGraph("resource/MenuScreen.bmp");
-					depth++;
-				}
-				else {
-					//ブー
+				if (itemNum[chooseItem] != -1) {
+					if (GData.GetItemPoint(itemNum[chooseItem], 7) == 0) {
+						DeleteGraph(menuScreen);
+						SaveDrawScreen(0, 0, 640, 480, "resource/MenuScreen.bmp");
+						menuScreen = LoadGraph("resource/MenuScreen.bmp");
+						depth++;
+					}
+					else {
+						//ブー
+					}
 				}
 				break;
 			case 3:
@@ -858,120 +865,126 @@ void Menu_c::CheckKey()
 
 void Menu_c::UseItem(int num, int target)
 {
-	int x = 0;
-	int y = 0;
-	int effect1 = GData.GetItemPoint(num, 2);
-	int effect2 = GData.GetItemPoint(num, 3);
+	if (num != -1) {
+		int x = 0;
+		int y = 0;
+		int effect1 = GData.GetItemPoint(num, 2);
+		int effect2 = GData.GetItemPoint(num, 3);
 
-	if (effect1 < 7 && effect2 < 7 && GData.GetCharacterState(target, 0) == 0) {
-		if (GData.GetItemPoint(num, 6) == 1) {
-			for (int i = 0; i < CHARACTER_SIZE; i++) {
-				if (GData.GetCharacterFlag(i) == 1) {
-					x = GData.GetCharacterStatus(i, effect1 - 1, 1);
-					if (GData.GetItemPoint(num, 3) != -1) {
-						y = GData.GetCharacterStatus(i, effect2 - 1, 1);
-					}
+		if (effect1 < 7 && effect2 < 7 && GData.GetCharacterState(target, 0) == 0) {
+			if (GData.GetItemPoint(num, 6) == 1) {
+				for (int i = 0; i < CHARACTER_SIZE; i++) {
+					if (GData.GetCharacterFlag(i) == 1) {
+						x = GData.GetCharacterStatus(i, effect1 - 1, 1);
+						if (GData.GetItemPoint(num, 3) != -1) {
+							y = GData.GetCharacterStatus(i, effect2 - 1, 1);
+						}
 
-					x += GData.GetItemPoint(num, 4);
-					if (effect1 <= 1 && x > GData.GetCharacterStatus(i, effect1, 0)) {
-						x = GData.GetCharacterStatus(i, effect1 - 1, 0);
-					}
-					y += GData.GetItemPoint(num, 5);
-					if (effect2 <= 1 && y > GData.GetCharacterStatus(i, effect2, 0)) {
-						y = GData.GetCharacterStatus(i, effect2 - 1, 0);
-					}
+						x += GData.GetItemPoint(num, 4);
+						if (effect1 <= 1 && x > GData.GetCharacterStatus(i, effect1, 0)) {
+							x = GData.GetCharacterStatus(i, effect1 - 1, 0);
+						}
+						y += GData.GetItemPoint(num, 5);
+						if (effect2 <= 1 && y > GData.GetCharacterStatus(i, effect2, 0)) {
+							y = GData.GetCharacterStatus(i, effect2 - 1, 0);
+						}
 
-					GData.SetCharacterStatus(i, effect1 - 1, x, 1);
-					if (GData.GetItemPoint(num, 3) != -1) {
-						GData.SetCharacterStatus(i, effect2 - 1, y, 1);
+						GData.SetCharacterStatus(i, effect1 - 1, x, 1);
+						if (GData.GetItemPoint(num, 3) != -1) {
+							GData.SetCharacterStatus(i, effect2 - 1, y, 1);
+						}
 					}
 				}
 			}
+			else {
+				x = GData.GetCharacterStatus(target, effect1 - 1, 1);
+				if (GData.GetItemPoint(num, 3) != -1) {
+					y = GData.GetCharacterStatus(target, effect2 - 1, 1);
+				}
+
+				x += GData.GetItemPoint(num, 4);
+				if (effect1 <= 1 && x > GData.GetCharacterStatus(target, effect1 - 1, 0)) {
+					x = GData.GetCharacterStatus(target, effect1 - 1, 0);
+				}
+				y += GData.GetItemPoint(num, 5);
+				if (effect2 <= 1 && y > GData.GetCharacterStatus(target, effect2 - 1, 0)) {
+					y = GData.GetCharacterStatus(target, effect2 - 1, 0);
+				}
+
+				GData.SetCharacterStatus(target, effect1 - 1, x, 1);
+				if (GData.GetItemPoint(num, 3) != -1) {
+					GData.SetCharacterStatus(target, effect2 - 1, y, 1);
+				}
+			}
+
+			GData.CalcItemFlag(num, -1);
+		}
+		else if (GData.GetCharacterState(target, 0) == 1) {
+			GData.ChangeCharacterState(target, 0);
+			GData.SetCharacterStatus(target, 0, 1, GData.GetCharacterStatus(target, 0, 0));
+			GData.CalcItemFlag(num, -1);
 		}
 		else {
-			x = GData.GetCharacterStatus(target, effect1 - 1, 1);
-			if (GData.GetItemPoint(num, 3) != -1) {
-				y = GData.GetCharacterStatus(target, effect2 - 1, 1);
-			}
-
-			x += GData.GetItemPoint(num, 4);
-			if (effect1 <= 1 && x > GData.GetCharacterStatus(target, effect1 - 1, 0)) {
-				x = GData.GetCharacterStatus(target, effect1 - 1, 0);
-			}
-			y += GData.GetItemPoint(num, 5);
-			if (effect2 <= 1 && y > GData.GetCharacterStatus(target, effect2 - 1, 0)) {
-				y = GData.GetCharacterStatus(target, effect2 - 1, 0);
-			}
-
-			GData.SetCharacterStatus(target, effect1 - 1, x, 1);
-			if (GData.GetItemPoint(num, 3) != -1) {
-				GData.SetCharacterStatus(target, effect2 - 1, y, 1);
-			}
+			//ブー
 		}
-
-		GData.CalcItemFlag(num, -1);
-	}
-	else if (GData.GetCharacterState(target, 0) == 1) {
-		GData.ChangeCharacterState(target, 0);
-		GData.SetCharacterStatus(target, 0, 1, GData.GetCharacterStatus(target, 0, 0));
-		GData.CalcItemFlag(num, -1);
-	}
-	else {
-		//ブー
 	}
 }
 void Menu_c::WearSoubi(int num, int target, int part)
 {
-	GData.SetCharacterSoubi(target, part, num);
+	if (num != -1) {
+		GData.SetCharacterSoubi(target, part, num);
+	}
 }
 bool Menu_c::UseSkill(int num, int target, int user)
 {
-	int x = 0;
-	int mp = GData.GetCharacterStatus(user, 1, 1);
-	int effect = GData.GetSkillPoint(num, 2);
-	if (mp < GData.GetSkillPoint(num, 1)) {
-		return FALSE;
-	}
+	if (num != -1) {
+		int x = 0;
+		int mp = GData.GetCharacterStatus(user, 1, 1);
+		int effect = GData.GetSkillPoint(num, 2);
+		if (mp < GData.GetSkillPoint(num, 1)) {
+			return FALSE;
+		}
 
-	if (effect < 7 && GData.GetCharacterState(target, 0) == 0) {
-		if (GData.GetSkillPoint(num, 6) == 1) {
-			for (int i = 0; i < CHARACTER_SIZE; i++) {
-				if (GData.GetCharacterFlag(i) == 1) {
-					x = GData.GetCharacterStatus(i, effect - 1, 1);
+		if (effect < 7 && GData.GetCharacterState(target, 0) == 0) {
+			if (GData.GetSkillPoint(num, 6) == 1) {
+				for (int i = 0; i < CHARACTER_SIZE; i++) {
+					if (GData.GetCharacterFlag(i) == 1) {
+						x = GData.GetCharacterStatus(i, effect - 1, 1);
 
-					x += GData.GetSkillPoint(num, 4);
-					if (effect <= 1 && x > GData.GetCharacterStatus(i, effect - 1, 0)) {
-						x = GData.GetCharacterStatus(i, effect - 1, 0);
+						x += GData.GetSkillPoint(num, 4);
+						if (effect <= 1 && x > GData.GetCharacterStatus(i, effect - 1, 0)) {
+							x = GData.GetCharacterStatus(i, effect - 1, 0);
+						}
+
+						GData.SetCharacterStatus(i, effect - 1, x, 1);
 					}
-
-					GData.SetCharacterStatus(i, effect - 1, x, 1);
 				}
 			}
+			else {
+				x = GData.GetCharacterStatus(target, effect - 1, 1);
+
+				x += GData.GetSkillPoint(num, 4);
+				if (effect <= 1 && x > GData.GetCharacterStatus(target, effect - 1, 0)) {
+					x = GData.GetCharacterStatus(target, effect - 1, 0);
+				}
+
+				GData.SetCharacterStatus(target, effect - 1, x, 1);
+			}
+			mp -= GData.GetSkillPoint(num, 1);
+			GData.SetCharacterStatus(user, 3, mp, 1);
+		}
+		else if (GData.GetCharacterState(target, 0) == 1) {
+			GData.ChangeCharacterState(target, 0);
+			GData.SetCharacterStatus(target, 0, 1, GData.GetCharacterStatus(target, 0, 0));
+			mp -= GData.GetSkillPoint(num, 1);
+			GData.SetCharacterStatus(user, 3, mp, 1);
 		}
 		else {
-			x = GData.GetCharacterStatus(target, effect - 1, 1);
-
-			x += GData.GetSkillPoint(num, 4);
-			if (effect <= 1 && x > GData.GetCharacterStatus(target, effect - 1, 0)) {
-				x = GData.GetCharacterStatus(target, effect - 1, 0);
-			}
-
-			GData.SetCharacterStatus(target, effect - 1, x, 1);
+			//ブー
 		}
-		mp -= GData.GetSkillPoint(num, 1);
-		GData.SetCharacterStatus(user, 3, mp, 1);
-	}
-	else if (GData.GetCharacterState(target, 0) == 1) {
-		GData.ChangeCharacterState(target, 0);
-		GData.SetCharacterStatus(target, 0, 1, GData.GetCharacterStatus(target, 0, 0));
-		mp -= GData.GetSkillPoint(num, 1);
-		GData.SetCharacterStatus(user, 3, mp, 1);
-	}
-	else {
-		//ブー
-	}
 
-	return TRUE;
+		return TRUE;
+	}
 }
 
 void Menu_c::LoadWindow()

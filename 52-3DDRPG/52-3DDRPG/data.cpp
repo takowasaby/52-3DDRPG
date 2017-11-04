@@ -10,7 +10,7 @@ Data_c::Data_c() :
 	roomLoadFlag(0)
 {
 	//controlMode = 1;
-	controlMode = 1;
+	controlMode = 2;
 	eventScene = 0;
 	titleScene = 2;
 	gameScene = 2;

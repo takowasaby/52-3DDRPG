@@ -13,7 +13,6 @@ BattleManager::BattleManager()
 		PlayerWindow[i]->SetPositon(PlayerWindow[i]->GetWidth() * i, 0);
 	}
 
-
 	for (int i = 0; i < OPINIONWINDOW_NUM; i++) {
 		OpinionWindow[i] = new TextBox();
 		OpinionWindow[i]->SetWindowMode(pageMode);
@@ -81,7 +80,7 @@ bool BattleManager::Update()
 void BattleManager::Draw()
 {
 	//Debug
-	clsDx();
+	//clsDx();
 	/*for (int i = 0; i < CHARACTER_SIZE; i++) {
 		printfDx("[%d] ", i + 1);
 		if (!player[i].flag) printfDx("NONE\n");
@@ -99,6 +98,7 @@ void BattleManager::Draw()
 	printfDx("Phase[0] = %d\t", phase[0]);
 	printfDx("Phase[1] = %d\t", phase[1]);
 	printfDx("Phase[2] = %d\n", phase[2]);*/
+	DrawExtendGraph(240, 60, 401, 301, enemy.image, TRUE);
 
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
 		PlayerWindow[i]->ClearMessage();
@@ -193,6 +193,19 @@ void BattleManager::LoadEnemy()
 	for (int i = 0; i < SKILL_CODE_SIZE; i++) enemy.skillCode[i] = (int)GetRand(1);
 	*/
 	enemy = GData.GetCharacterData(GData.GetStage() + CHARACTER_SIZE);
+	
+	string str = "";
+	str += "resource/picture/scenario";
+	str += to_string(GData.GetScenario());
+	str += "/character/enemy";
+	str += to_string(GData.GetStage());
+	str += ".png";
+	enemy.image = LoadGraph(str.c_str());
+	
+//	enemy.image = LoadGraph("resource/picture/scenario0/character/enemy0.png");
+	if (enemy.image == -1) {
+		printfDx("enemy image read error");
+	}
 }
 
 void BattleManager::LoadSkill(int index)

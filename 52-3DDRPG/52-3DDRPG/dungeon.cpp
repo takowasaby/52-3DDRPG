@@ -10,7 +10,7 @@ Dungeon_c::Dungeon_c() :
 		wallForDraw[i] = 0;
 	}
 
-	walk = LoadSoundMem("resource/sounds/SE/other/footstep01.mp3");
+	walk = LoadSoundMem("resource/sounds/SE/other/walk.mp3");
 	run = LoadSoundMem("resource/sounds/SE/other/footstep02.mp3");
 	decision = LoadSoundMem("resource/sounds/SE/other/decision22.mp3");
 
