@@ -3,7 +3,10 @@
 
 EventList::EventList():
 	m_callEventFlag(0),
-	m_scenario(0)
+	m_scenario(0),
+	m_callBattleFlag(0),
+	m_eventType(0),
+	m_active(-1)
 {
 	for (int i = 0; i < 128; i++)
 	{
@@ -28,7 +31,7 @@ void EventList::call()
 	{
 		m_callEventFlag = callEvent();
 	}
-	if (m_callEventFlag == 0 && !m_eventfile.empty())
+	if (m_callEventFlag != 1 && !m_eventfile.empty())
 	{
 		m_callEventFlag = 1;
 		m_event->readDataFromFile(m_eventfile.front());
@@ -38,6 +41,8 @@ void EventList::call()
 	{
 		//printfDx("%d:%d\n", i, m_flag[i]);
 	}
+	if(m_active != -1)
+		Event(m_eventType);
 }
 
 int EventList::callEvent()
@@ -200,12 +205,22 @@ void EventList::addList(ListAction la, int num)
 
 void EventList::Event(int num)
 {
+	if (m_callEventFlag || m_callBattleFlag)
+		return;
+	if (m_active == m_list[num].size())
+		return;
+	int end = 0;
 	int i;
 	int flag;
 	string filename;
 	string str;
+	if (m_eventType != num)
+	{
+		m_active = 0;
+	}
+	m_eventType = num;
 	//printfDx("event");
-	for (int i = 0; i < m_list[num].size(); i++)
+	for (i = m_active; i < m_list[num].size(); i++)
 	{
 		if (m_list[num].index(i).index(0) <= 9)
 		{
@@ -246,6 +261,7 @@ void EventList::Event(int num)
 			filename = "resource/text/scenario"+to_string(m_scenario)+"/"+ to_string(m_scenario) + "-" + str + ".txt";
 			//printfDx("%s\n", filename.c_str());			
 			readEvent(filename);
+			m_callEventFlag = 2;
 			break;
 		case 2://Item
 			if (m_list[num].index(i).index(2) == -1)
@@ -292,6 +308,7 @@ void EventList::Event(int num)
 			if (m_list[num].index(i).index(0) == 1)
 			{
 				GData.SceneRequest(2, 2);
+				m_callBattleFlag = 2;
 			}
 			else if (m_list[num].index(i).index(0) == 2)
 			{
@@ -299,5 +316,10 @@ void EventList::Event(int num)
 			}
 			break;
 		}
+		m_active++;
+		if (m_callEventFlag || m_callBattleFlag)
+			break;
 	}
+	if (m_active == m_list[num].size())
+		m_active = -1;
 }

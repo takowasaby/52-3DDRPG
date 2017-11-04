@@ -37,7 +37,10 @@ private:
 	queue<string> m_eventfile;
 	int m_filelist;
 	int m_callEventFlag;
+	int m_callBattleFlag;
 	int m_scenario;
+	int m_eventType;
+	int m_active;
 };
 
 #endif // EVENTLIST_H
