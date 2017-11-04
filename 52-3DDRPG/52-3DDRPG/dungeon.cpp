@@ -10,9 +10,10 @@ Dungeon_c::Dungeon_c() :
 		wallForDraw[i] = 0;
 	}
 
-	walk = LoadSoundMem("resource/sounds/SE/other/walk.mp3");
+	walk = LoadSoundMem("resource/sounds/SE/other/footstep01.mp3");
 	run = LoadSoundMem("resource/sounds/SE/other/footstep02.mp3");
 	decision = LoadSoundMem("resource/sounds/SE/other/decision22.mp3");
+
 
 //	DataLoad(mscenario, mstage);
 //	GraphLoad(mscenario, mstage);
@@ -185,6 +186,15 @@ EXFILE:
 	}
 
 	GraphLoad(scenario, stage);
+
+	string str;
+	str += "resource/sounds/BGM/scenario";
+	str += to_string(GData.GetScenario());
+	str += "/dungeon.wav";
+	bgm = LoadSoundMem(str.c_str());
+	ChangeVolumeSoundMem(128, bgm);
+
+	GMusic.ReserveSound(bgm, DX_PLAYTYPE_LOOP);
 }
 
 void Dungeon_c::GraphLoad(int scenario, int stage)
@@ -470,6 +480,7 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Nwall == 2) {
 				if (eventNum[x][y] != -1) {
 					eventList->Event(eventNum[x][y]);
+					GMusic.StopSound(bgm);
 				}
 			}
 			break;
@@ -477,6 +488,7 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Ewall == 2) {
 				if (eventNum[x][y] != -1) {
 					eventList->Event(eventNum[x][y]);
+					GMusic.StopSound(bgm);
 				}
 			}
 			break;
@@ -484,6 +496,7 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Swall == 2) {
 				if (eventNum[x][y] != -1) {
 					eventList->Event(eventNum[x][y]);
+					GMusic.StopSound(bgm);
 				}
 			}
 			break;
@@ -491,6 +504,7 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Wwall == 2) {
 				if (eventNum[x][y] != -1) {
 					eventList->Event(eventNum[x][y]);
+					GMusic.StopSound(bgm);
 				}
 			}
 			break;
