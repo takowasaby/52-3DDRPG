@@ -119,7 +119,7 @@ bool Control_c::All() {
 			battleManager->KeyUpdata(Key);
 			BattleEnd = battleManager->Update();
 			battleManager->Draw();
-			if (BattleEnd == true) { BattleEnd = false; BattleStart = false; delete battleManager; }
+			if (BattleEnd == true) { BattleEnd = false; BattleStart = false; delete battleManager; mEventlist->setBattleFlag(0); }
 			break;
 		case menu:
 			mMenu->KeyUpdate(Key);
