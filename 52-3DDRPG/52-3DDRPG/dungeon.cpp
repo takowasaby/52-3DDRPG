@@ -199,6 +199,7 @@ EXFILE:
 		}
 	}
 
+	GraphDelete();
 	GraphLoad(scenario, stage);
 
 	GMusic.StopSound(bgm);
@@ -222,6 +223,16 @@ void Dungeon_c::GraphLoad(int scenario, int stage)
 		for (int j = 0; j < WALL_TYPE; j++) {
 			sprintf_s(gname, "resource/dungeon/%d/%d_%d_%d.png", scenario, scenario, i, j);
 			wall[scenario][i][j] = LoadGraph(gname);
+		}
+	}
+}
+void Dungeon_c::GraphDelete()
+{
+	for (int i = 0; i < SCENARIO_SIZE; i++) {
+		for (int j = 0; j < WALL_SIDE; j++) {
+			for (int k = 0; k < WALL_TYPE; k++) {
+				DeleteGraph(wall[i][j][k]);
+			}
 		}
 	}
 }

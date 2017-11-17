@@ -71,6 +71,7 @@ const int SKILL_SIZE = 64;
 const int CHARACTER_SIZE = 4;
 const int EVENT_SIZE = 64;
 const int STATE_SIZE = 1;
+const int ENEMY_SIZE = 5;
 
 struct value {
 	int base, calc;
@@ -83,6 +84,15 @@ struct characterData {
 	value hp, mp, str, vit, agi, intel;		//キャラクターのステータス
 	int skillCode[SKILL_SIZE] = {};			//キャラクターがスキルを覚えているかどうか
 	bool state[STATE_SIZE] = {};			//キャラクターの状態異常(0:死亡)
+	int image;								//キャラクターの画像ハンドル
+};
+struct enemyData {
+	int num;								//キャラクターのナンバリング
+	string name;							//キャラクターの名前
+	value hp, mp, str, vit, agi, intel;		//キャラクターのステータス
+	int skillCode[SKILL_SIZE] = {};			//キャラクターがスキルを覚えているかどうか
+	bool state[STATE_SIZE] = {};			//キャラクターの状態異常(0:死亡)
+	int operate;
 	int image;								//キャラクターの画像ハンドル
 };
 struct skillData{

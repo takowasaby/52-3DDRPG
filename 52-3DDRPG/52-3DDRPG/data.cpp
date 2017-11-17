@@ -39,7 +39,7 @@ Data_c::Data_c() :
 	}
 	for (int i = 0; i < SCENARIO_SIZE; i++) {
 		for (int j = 0; j < EVENT_SIZE; j++) {
-			eventFlag[i][j] = 0;
+			eventFlag[i][j] = -1;
 			GoalText[i][j] = "";
 		}
 	}
@@ -388,7 +388,6 @@ void Data_c::CharacterLoad(int s)
 		}
 		switch (num) {
 		case 0:
-			item[n].num = num;
 			character[n].name = inputc;							
 			break;
 		case 1:		
@@ -438,6 +437,94 @@ EXFILE:
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
 		sprintf_s(gname, "resource/picture/%d/%d.png", scenario, i);
 		character[i].image = LoadGraph(gname);
+	}
+}
+void Data_c::EnemyLoad(int s)
+{
+	int n, num, i, fp;
+	char fname[64];
+	int input[64];
+	char inputc[64];
+
+	sprintf_s(fname, "resource/csv/scenario%d/character%d.csv", s, s);
+
+	fp = FileRead_open(fname);//ファイル読み込み
+	if (fp == NULL) {
+		printfDx("read error\n");
+		return;
+	}
+
+	n = 0, num = 0;
+	while (1) {
+		for (i = 0; i<64; i++) {
+			inputc[i] = input[i] = FileRead_getc(fp);//1文字取得する
+			if (inputc[i] == '/') {//スラッシュがあれば
+				while (FileRead_getc(fp) != '\n');//改行までループ
+				i = -1;//カウンタを最初に戻して
+				continue;
+			}
+			if (input[i] == ',' || input[i] == '\n') {//カンマか改行なら
+				inputc[i] = '\0';//そこまでを文字列とし
+				break;
+			}
+			if (input[i] == EOF) {//ファイルの終わりなら
+				goto EXFILE;//終了
+			}
+		}
+		switch (num) {
+		case 0:
+			enemy[n].name = inputc;
+			break;
+		case 1:
+			enemy[n].hp.base = atoi(inputc);
+			enemy[n].hp.calc = atoi(inputc);
+			break;
+		case 2:
+			enemy[n].mp.base = atoi(inputc);
+			enemy[n].mp.calc = atoi(inputc);
+			break;
+		case 3:
+			enemy[n].str.base = atoi(inputc);
+			enemy[n].str.calc = atoi(inputc);
+			break;
+		case 4:
+			enemy[n].vit.base = atoi(inputc);
+			enemy[n].vit.calc = atoi(inputc);
+			break;
+		case 5:
+			enemy[n].agi.base = atoi(inputc);
+			enemy[n].agi.calc = atoi(inputc);
+			break;
+		case 6:
+			enemy[n].intel.base = atoi(inputc);
+			enemy[n].intel.calc = atoi(inputc);
+			break;
+		case 7:
+			enemy[n].num = atoi(inputc);
+			break;
+		case 8:
+			enemy[n].operate = atoi(inputc);
+			break;
+		default:
+			if (atoi(inputc) != -1) {
+				enemy[n].skillCode[atoi(inputc)] = 1;
+			}
+			break;
+		}
+		num++;
+		if (input[i] == '\n') {
+			num = 0;
+			n++;
+		}
+	}
+EXFILE:
+	FileRead_close(fp);
+
+	char gname[64];
+
+	for (int i = 0; i < ENEMY_SIZE; i++) {
+		sprintf_s(gname, "resource/picture/%d/%d.png", scenario, i);
+		enemy[i].image = LoadGraph(gname);
 	}
 }
 

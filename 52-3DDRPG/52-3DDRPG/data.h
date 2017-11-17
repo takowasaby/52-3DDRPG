@@ -33,6 +33,7 @@ private:
 	int gameScene;
 	
 	characterData character[CHARACTER_SIZE + 5];
+	enemyData enemy[ENEMY_SIZE];
 	skillData skill[SKILL_SIZE];
 	itemData item[ITEM_SIZE];
 	soubiData soubi[SOUBI_SIZE];
@@ -98,6 +99,7 @@ public:
 	void SoubiLoad(int s);
 	void SkillLoad(int s);
 	void CharacterLoad(int s);
+	void EnemyLoad(int s);
 
 	int GetItemFlag(int num);
 	int GetSoubiFlag(int num);

@@ -40,9 +40,12 @@ public:
 	~Dungeon_c();
 	void KeyUpdate(int Key[256]);
 	void DungeonAll();
+
 	void DataSet();
 	void DataLoad(int scenario, int stage);
 	void GraphLoad(int scenario, int stage);
+	void GraphDelete();
+
 	void SetEventList(EventList *e);
 	void BackDraw();
 	void WallDrawSet();
