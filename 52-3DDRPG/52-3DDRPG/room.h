@@ -49,6 +49,7 @@ public:
 	void RoomAll();
 	void DataLoad(int scenario, int stage, int room);
 	void GraphLoad(int scenario);
+	void GraphDelete();
 	void SetEventList(EventList *e);
 	void RoomDraw();
 	void WaitKey();

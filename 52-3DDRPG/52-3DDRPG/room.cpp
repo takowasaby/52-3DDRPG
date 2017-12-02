@@ -10,7 +10,7 @@ Room_c::Room_c() :
 	// date.Getroom();
 
 	DataLoad(mscenario, mstage, mroom);
-	GraphLoad(mscenario);
+//	GraphLoad(mscenario);
   se[cursor] = LoadSoundMem("resource/sounds/SE/room/cursor.mp3");
   se[decision] = LoadSoundMem("resource/sounds/SE/room/decision.mp3");
   for (int i = 0; i < 1; i++) {
@@ -98,6 +98,9 @@ void Room_c::DataLoad(int scenario, int stage, int room)
 
 EXFILE1:
 	FileRead_close(mfp);
+
+	GraphDelete();
+	GraphLoad(GData.GetScenario());
 }
 
 void Room_c::GraphLoad(int scenario)
@@ -105,7 +108,7 @@ void Room_c::GraphLoad(int scenario)
 	sprintf_s(gname, "resource/picture/scenario%d/room/wall.png", scenario);
 	wall = LoadGraph(gname);
 
-  sprintf_s(gname, "resource/picture/scenario%d/room/floor.png", scenario);
+	sprintf_s(gname, "resource/picture/scenario%d/room/floor.png", scenario);
 	floor = LoadGraph(gname);
 
 	sprintf_s(gname, "resource/picture/scenario%d/room/select.png", scenario);
@@ -119,6 +122,18 @@ void Room_c::GraphLoad(int scenario)
 				GetGraphSize(furniture[roomData[i][j].type], &gx, &gy);
 				furniturehight[roomData[i][j].type] = (int)(gy * ROOM_RATIO);
 			}
+		}
+	}
+}
+
+void Room_c::GraphDelete()
+{
+	DeleteGraph(wall);
+	DeleteGraph(floor);
+	DeleteGraph(select);
+	for (int j = 0; j < roomsizey; j++) {
+		for (int i = 0; i < roomsizex; i++) {
+			DeleteGraph(furniture[roomData[i][j].type]);
 		}
 	}
 }

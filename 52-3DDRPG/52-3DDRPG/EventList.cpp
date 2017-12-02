@@ -10,8 +10,9 @@ EventList::EventList():
 {
 	for (int i = 0; i < 128; i++)
 	{
-		m_flag[i] = 1;
+		m_flag[i] = 0;
 	}
+	m_flag[1] = 1;
 }
 
 void EventList::Initialize(Event_c *event)
@@ -62,8 +63,9 @@ void EventList::readList()
 {
 	for (int i = 0; i < 128; i++)
 	{
-		m_flag[i] = 1;
+		m_flag[i] = 0;
 	}
+	m_flag[1] = 1;
 	signed int  num[64];
 	int  count;
 	int  counter = 0;
@@ -260,6 +262,7 @@ void EventList::Event(int num)
 		{
 		case 0://Flag
 			m_flag[ABS(m_list[num].index(i).index(0))] = m_list[num].index(i).index(1);
+			GData.SetFlag(ABS(m_list[num].index(i).index(0)), m_list[num].index(i).index(1));
 			break;
 		case 1://Event
 			filename = "resource/text/scenario"+to_string(m_scenario)+"/"+ to_string(m_scenario) + "-" + str + ".txt";

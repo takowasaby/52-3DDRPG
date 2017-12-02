@@ -43,6 +43,14 @@ Data_c::Data_c() :
 			GoalText[i][j] = "";
 		}
 	}
+	for (int i = 0; i < SCENARIO_SIZE; i++)
+	{
+		for (int j = 0; j < 128; j++)
+		{
+			flag[i][j] = 0;
+		}
+		flag[i][0] = 1;
+	}
 }
 /*
 Data_c::Data_c(int * mode, int * event_scene, int * title_scene, int * game_scene) :
@@ -942,6 +950,11 @@ void Data_c::SetRoom(int i)
 {
 	if (room[scenario] != i) roomLoadFlag = TRUE;
 	room[scenario] = i;
+}
+
+void Data_c::SetFlag(int i, int n)
+{
+	flag[GetScenario()][i] = n;
 }
 
 int Data_c::GetMapFlag(int scenario, int stage, int x, int y)

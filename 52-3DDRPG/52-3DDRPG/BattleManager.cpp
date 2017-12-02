@@ -393,11 +393,11 @@ void BattleManager::PlayerSelection()
 void BattleManager::EnemySelection()
 {
 	//for debug
-	aEnemy.name = "BOSS_ATTACK";
-	aEnemy.forParty = false;
-	aEnemy.target = GetRand(CHARACTER_SIZE-1);
-	aEnemy.value[attack] = GetRand(600);
-	for (int i = 1; i < 7; i++) if (GetRand(100) > 50) aEnemy.value[i] = GetRand(100);
+	aPlayer[4].name = "BOSS_ATTACK";
+	aPlayer[4].forParty = false;
+	aPlayer[4].target = GetRand(CHARACTER_SIZE-1);
+	aPlayer[4].value[attack] = GetRand(600);
+	for (int i = 1; i < 7; i++) if (GetRand(100) > 50) aPlayer[4].value[i] = GetRand(100);
 	phase[0]++;
 }
 
@@ -551,16 +551,16 @@ void BattleManager::EnemyCalc()
 	if (!isPause) {
 		isPause = true;
 		//メッセージ表示
-		MessageWindow->AddMessage(enemy.name + "の" + aEnemy.name);
+		MessageWindow->AddMessage(enemy.name + "の" + aPlayer[4].name);
 
-		if (aEnemy.value[attack] > 0) {
+		if (aPlayer[4].value[attack] > 0) {
 			//攻撃処理
-			if (aPlayer[aEnemy.target].commandType == defence) player[aEnemy.target].hp.calc -= aEnemy.value[attack] / 2;
-			else player[aEnemy.target].hp.calc -= aEnemy.value[attack];
+			if (aPlayer[aPlayer[4].target].commandType == defence) player[aPlayer[4].target].hp.calc -= aPlayer[4].value[attack] / 2;
+			else player[aPlayer[4].target].hp.calc -= aPlayer[4].value[attack];
 
-			if (player[aEnemy.target].hp.calc <= 0) {
-				player[aEnemy.target].hp.calc = 0;
-				player[aEnemy.target].state[0] = 1;
+			if (player[aPlayer[4].target].hp.calc <= 0) {
+				player[aPlayer[4].target].hp.calc = 0;
+				player[aPlayer[4].target].state[0] = 1;
 			}
 			if (player[0].state[0] == 1 && player[1].state[0] == 1 && player[2].state[0] == 1 && player[3].state[0] == 1) {
 				phase[0] = 7;
@@ -568,56 +568,56 @@ void BattleManager::EnemyCalc()
 			}
 
 			//メッセージ表示
-			MessageWindow->AddMessage(player[aEnemy.target].name + "に" + to_string(aEnemy.value[attack]) + "のダメージ！！");
+			MessageWindow->AddMessage(player[aPlayer[4].target].name + "に" + to_string(aPlayer[4].value[attack]) + "のダメージ！！");
 		}
-		if (aEnemy.value[healHp] > 0) {
+		if (aPlayer[4].value[healHp] > 0) {
 			//HP回復処理
-			enemy.hp.calc += aEnemy.value[healHp];
+			enemy.hp.calc += aPlayer[4].value[healHp];
 			if (enemy.hp.calc > enemy.hp.base) enemy.hp.calc = enemy.hp.base;
 
 			//メッセージ表示
-			MessageWindow->AddMessage(enemy.name + "は" + to_string(aEnemy.value[healHp]) + "のHP回復！！");
+			MessageWindow->AddMessage(enemy.name + "は" + to_string(aPlayer[4].value[healHp]) + "のHP回復！！");
 		}
-		if (aEnemy.value[healMp] > 0) {
+		if (aPlayer[4].value[healMp] > 0) {
 			//MP回復処理
-			enemy.mp.calc += aEnemy.value[healMp];
+			enemy.mp.calc += aPlayer[4].value[healMp];
 			if (enemy.mp.calc >enemy.mp.base) enemy.mp.calc = enemy.mp.base;
 
 			//メッセージ表示
-			MessageWindow->AddMessage(enemy.name + "は" + to_string(aEnemy.value[healMp]) + "のMP回復！！");
+			MessageWindow->AddMessage(enemy.name + "は" + to_string(aPlayer[4].value[healMp]) + "のMP回復！！");
 		}
-		if (aEnemy.value[buffStr] > 0) {
+		if (aPlayer[4].value[buffStr] > 0) {
 			//バフ処理
-			enemy.str.calc *= (double)aEnemy.value[buffStr] / 100 + 1;
+			enemy.str.calc *= (double)aPlayer[4].value[buffStr] / 100 + 1;
 
 			//メッセージ表示
 			MessageWindow->AddMessage(enemy.name + "の攻撃力が上昇！");
 		}
-		if (aEnemy.value[buffVit] > 0) {
+		if (aPlayer[4].value[buffVit] > 0) {
 			//バフ処理
-			enemy.vit.calc *= (double)aEnemy.value[buffVit] / 100 + 1;
+			enemy.vit.calc *= (double)aPlayer[4].value[buffVit] / 100 + 1;
 
 			//メッセージ表示
 			MessageWindow->AddMessage(enemy.name + "の生命力が上昇！");
 		}
-		if (aEnemy.value[buffAgi] > 0) {
+		if (aPlayer[4].value[buffAgi] > 0) {
 			//バフ処理
-			enemy.agi.calc *= (double)aEnemy.value[buffAgi] / 100 + 1;
+			enemy.agi.calc *= (double)aPlayer[4].value[buffAgi] / 100 + 1;
 
 			//メッセージ表示
 			MessageWindow->AddMessage(enemy.name + "の素早さが上昇！");
 		}
-		if (aEnemy.value[buffInt] > 0) {
+		if (aPlayer[4].value[buffInt] > 0) {
 			//バフ処理
-			enemy.intel.calc *= (double)aEnemy.value[buffInt] / 100 + 1;
+			enemy.intel.calc *= (double)aPlayer[4].value[buffInt] / 100 + 1;
 
 			//メッセージ表示
 			MessageWindow->AddMessage(enemy.name + "の賢さが上昇！");
 		}
-		//if (aEnemy.value[reviv] > 0) {
+		//if (aPlayer[4].value[reviv] > 0) {
 		//	//蘇生処理
 		//	if (enemy.state[0]) {
-		//		if (GetRand(100) <= aEnemy.value[reviv]) {
+		//		if (GetRand(100) <= aPlayer[4].value[reviv]) {
 		//			enemy.hp.calc += enemy.hp.base / 2;
 
 		//			//メッセージ表示
@@ -650,11 +650,11 @@ void BattleManager::ToNextTurn()
 		aPlayer[i].target = 0;
 		for (int j = 0; j < 8; j++) aPlayer[i].value[j] = 0;
 	}
-	aEnemy.cost = 0;
-	aEnemy.forParty = false;
-	aEnemy.name = "";
-	aEnemy.target = 0;
-	for (int j = 0; j < 8; j++) aEnemy.value[j] = 0;
+	aPlayer[4].cost = 0;
+	aPlayer[4].forParty = false;
+	aPlayer[4].name = "";
+	aPlayer[4].target = 0;
+	for (int j = 0; j < 8; j++) aPlayer[4].value[j] = 0;
 
 	phase[0] = 1;
 }

@@ -10,6 +10,7 @@ private:
 	int room[5] = {};
 	int dungeonX[5] = {};
 	int	dungeonY[5] = {};
+	int flag[5][128];
 	int playCount;
 
 	int eventFlag[SCENARIO_SIZE][EVENT_SIZE];
@@ -153,6 +154,7 @@ public:
 	void SetDir(int i);
 	void SetEventFlag(int i);
 	void SetRoom(int i);
+	void SetFlag(int i, int n);
 
 	int GetMapFlag(int scenario, int stage, int x, int y);
 	int GetEventFlag(int scenario, int num);

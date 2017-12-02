@@ -9,9 +9,9 @@ private:
 	int mKey[256]; // 0:“ü—Í‚³‚ê‚Ä‚¢‚È‚¢ 1:“ü—Í‚³‚ê‚½uŠÔ 2:“ü—Í‚³‚ê‚Ä‚¢‚é
 
 	characterData player[CHARACTER_SIZE];
-	Command aPlayer[CHARACTER_SIZE];
+	Command aPlayer[CHARACTER_SIZE + 1];
 	characterData enemy;
-	Command aEnemy;
+//	Command aEnemy;
 
 	TextBox* PlayerWindow[CHARACTER_SIZE];
 	TextBox* OpinionWindow[OPINIONWINDOW_NUM];
