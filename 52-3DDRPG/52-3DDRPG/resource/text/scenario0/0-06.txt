@@ -30,14 +30,14 @@ dark sato01
 light girl01
 text じゃあ私はここまでね
 wait
-text みすちゃんならきっと大丈夫BB　SATOもいるしね
+text みすちゃんならきっと大丈夫BBSATOもいるしね
 wait
 dark girl01
 light misu01
 text うん・・・ありがとう、お姉ちゃん
 wait
 dark misu01
-light sato 01
+light sato01
 text よし、行こう
 wait
 //
