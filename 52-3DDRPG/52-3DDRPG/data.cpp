@@ -231,7 +231,7 @@ void Data_c::ItemLoad(int s)
 		case 9: item[n].explain = inputc;			break;
 		}
 		//
-		item[n].flag = 1;
+		//item[n].flag = 1;
 		//
 		num++;
 		if (input[i] == '\n') {
@@ -288,7 +288,7 @@ void Data_c::SoubiLoad(int s)
 		case 6: soubi[n].explain = inputc;			break;
 		}
 		//
-		soubi[n].flag = 1;
+		//soubi[n].flag = 1;
 		//
 		num++;
 		if (input[i] == '\n') {
@@ -429,7 +429,7 @@ void Data_c::CharacterLoad(int s)
 			break;
 		}
 		//
-		character[n].flag = 1;
+		//character[n].flag = 1;
 		//
 		num++;
 		if (input[i] == '\n') {
@@ -882,6 +882,11 @@ characterData Data_c::GetCharacter(int num)
 {
 	return character[num];
 }
+enemyData Data_c::GetEnemy(int num)
+{
+	return enemy[num];
+}
+
 
 int Data_c::GetScenario()
 {

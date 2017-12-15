@@ -13,6 +13,9 @@ private:
 	int flag[5][128];
 	int playCount;
 
+	int bgmVol, seVol, battleType;
+	bool windowMode;
+
 	int eventFlag[SCENARIO_SIZE][EVENT_SIZE];
 
 	int wallType[MAP_SIZE_X][MAP_SIZE_Y];
@@ -138,6 +141,7 @@ public:
 	string GetCharacterName(int num);
 
 	characterData GetCharacter(int);
+	enemyData GetEnemy(int);
 
 	int GetScenario();
 	int GetStage();

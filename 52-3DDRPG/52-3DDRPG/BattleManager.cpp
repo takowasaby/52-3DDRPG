@@ -133,7 +133,7 @@ void BattleManager::LoadPlayer(int index)
 	player[index].state[0] = 0;
 	for (int i = 0; i < SKILL_CODE_SIZE; i++) player[index].skillCode[i] = (int)GetRand(1);
 	*/
-	player[index] = GData.GetCharacterData(index);
+	player[index] = GData.GetCharacter(index);
 }
 
 void BattleManager::LoadEnemy()
@@ -192,7 +192,7 @@ void BattleManager::LoadEnemy()
 	enemy.intel.calc = enemy.intel.base;
 	for (int i = 0; i < SKILL_CODE_SIZE; i++) enemy.skillCode[i] = (int)GetRand(1);
 	*/
-	enemy = GData.GetCharacterData(GData.GetStage() + CHARACTER_SIZE);
+	enemy = GData.GetEnemy(GData.GetStage());
 	
 	string str = "";
 	str += "resource/picture/scenario";
@@ -399,6 +399,8 @@ void BattleManager::EnemySelection()
 	aPlayer[4].value[attack] = GetRand(600);
 	for (int i = 1; i < 7; i++) if (GetRand(100) > 50) aPlayer[4].value[i] = GetRand(100);
 	phase[0]++;
+
+
 }
 
 void BattleManager::PlayerCalc()

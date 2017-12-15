@@ -10,7 +10,7 @@ private:
 
 	characterData player[CHARACTER_SIZE];
 	Command aPlayer[CHARACTER_SIZE + 1];
-	characterData enemy;
+	enemyData enemy;
 //	Command aEnemy;
 
 	TextBox* PlayerWindow[CHARACTER_SIZE];

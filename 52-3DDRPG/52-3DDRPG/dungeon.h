@@ -12,7 +12,11 @@ private:
 	int input[MAP_SIZE_X * MAP_SIZE_Y];
 	char inputc[MAP_SIZE_X * MAP_SIZE_Y];
 	int wall[SCENARIO_SIZE][WALL_SIDE][WALL_TYPE];
-	int eventNum[MAP_SIZE_X][MAP_SIZE_Y] = {};
+	struct eventNum{
+		int num;
+		int condition;
+	};
+	eventNum eventNum[MAP_SIZE_X][MAP_SIZE_Y];
 	int back;
 	char gname[64];
 	int wallForDraw[10];

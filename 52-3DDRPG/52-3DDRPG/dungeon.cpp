@@ -56,10 +56,8 @@ void Dungeon_c::DungeonAll()
 		WaitKey();
 	}
 	//MessageDraw();
-	if (GData.GetScenario() == 4) {
-		if (eventNum[x][y] != -1) {
-			eventList->Event(eventNum[x][y]);
-		}
+	if (eventNum[x][y].num != -1 && eventNum[x][y].condition == 0) {
+		eventList->Event(eventNum[x][y].num);
 	}
 }
 
@@ -80,7 +78,8 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 			wallData[i][j].Ewall = 1;
 			wallData[i][j].Swall = 1;
 			wallData[i][j].Wwall = 1;
-			eventNum[i][j] = 0;
+			eventNum[i][j].num = 0;
+			eventNum[i][j].condition = 0;
 		}
 	}
 
@@ -111,9 +110,11 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 				goto EXFILE;//èIóπ
 			}
 		}
-		wallData[mnum][mn % MAP_SIZE_X].type = atoi(inputc) % 10;
-		if (atoi(inputc) < 10) eventNum[mnum][mn % MAP_SIZE_X] = -1;
-		else eventNum[mnum][mn % MAP_SIZE_X] = atoi(inputc) / 10;
+		if (atoi(inputc) < 0) eventNum[mnum][mn % MAP_SIZE_X].condition = 0;
+		else eventNum[mnum][mn % MAP_SIZE_X].condition = 1;
+		wallData[mnum][mn % MAP_SIZE_X].type = abs(atoi(inputc)) % 10;
+		if (abs(atoi(inputc)) < 10) eventNum[mnum][mn % MAP_SIZE_X].num = -1;
+		else eventNum[mnum][mn % MAP_SIZE_X].num = abs(atoi(inputc)) / 10;
 		mnum++;
 		if (mnum == MAP_SIZE_X) {
 			mnum = 0;
@@ -505,32 +506,32 @@ void Dungeon_c::WaitKey()
 		switch (dir) {
 		case 0:
 			if (wallData[x][y].Nwall == 2) {
-				if (eventNum[x][y] != -1) {
-					eventList->Event(eventNum[x][y]);
+				if (eventNum[x][y].num != -1 && eventNum[x][y].condition == 1) {
+					eventList->Event(eventNum[x][y].num);
 					GMusic.StopSound(bgm);
 				}
 			}
 			break;
 		case 1:
 			if (wallData[x][y].Ewall == 2) {
-				if (eventNum[x][y] != -1) {
-					eventList->Event(eventNum[x][y]);
+				if (eventNum[x][y].num != -1 && eventNum[x][y].condition == 1) {
+					eventList->Event(eventNum[x][y].num);
 					GMusic.StopSound(bgm);
 				}
 			}
 			break;
 		case 2:
 			if (wallData[x][y].Swall == 2) {
-				if (eventNum[x][y] != -1) {
-					eventList->Event(eventNum[x][y]);
+				if (eventNum[x][y].num != -1 && eventNum[x][y].condition == 1) {
+					eventList->Event(eventNum[x][y].num);
 					GMusic.StopSound(bgm);
 				}
 			}
 			break;
 		case 3:
 			if (wallData[x][y].Wwall == 2) {
-				if (eventNum[x][y] != -1) {
-					eventList->Event(eventNum[x][y]);
+				if (eventNum[x][y].num != -1 && eventNum[x][y].condition == 1) {
+					eventList->Event(eventNum[x][y].num);
 					GMusic.StopSound(bgm);
 				}
 			}

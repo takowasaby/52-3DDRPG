@@ -87,13 +87,13 @@ struct characterData {
 	int image;								//キャラクターの画像ハンドル
 };
 struct enemyData {
-	int num;								//キャラクターのナンバリング
-	string name;							//キャラクターの名前
-	value hp, mp, str, vit, agi, intel;		//キャラクターのステータス
-	int skillCode[SKILL_SIZE] = {};			//キャラクターがスキルを覚えているかどうか
-	bool state[STATE_SIZE] = {};			//キャラクターの状態異常(0:死亡)
-	int operate;
-	int image;								//キャラクターの画像ハンドル
+	int num;								//敵キャラクターのナンバリング
+	string name;							//敵キャラクターの名前
+	value hp, mp, str, vit, agi, intel;		//敵キャラクターのステータス
+	int skillCode[SKILL_SIZE] = {};			//敵キャラクターがスキルを覚えているかどうか
+	bool state[STATE_SIZE] = {};			//敵キャラクターの状態異常(0:死亡)
+	int operate;							//敵キャラクターのAIの行動選択の指向性
+	int image;								//敵キャラクターの画像ハンドル
 };
 struct skillData{
 	int num;						//スキルのナンバリング
