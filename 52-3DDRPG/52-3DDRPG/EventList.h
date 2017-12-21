@@ -23,6 +23,9 @@ public:
 	void setListFileName(int listfile);
 	void readList();
 	void addList(ListAction la, int num);
+	int getCallFlag() {
+		return m_callEventFlag;
+	}
 	void setBattleFlag(int flag)
 	{
 		m_callBattleFlag = flag;

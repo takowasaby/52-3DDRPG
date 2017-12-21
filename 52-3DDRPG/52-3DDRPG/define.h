@@ -2,11 +2,13 @@
 
 #include "DxLib.h"
 
+#include <iostream>
 #include <vector>
 #include <map>
 #include <string>
 #include <list>
 #include <fstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -74,26 +76,26 @@ const int STATE_SIZE = 1;
 const int ENEMY_SIZE = 5;
 
 struct value {
-	int base, calc;
+	int base = 0, calc = 0;
 };
 struct characterData {
-	int num;								//キャラクターのナンバリング
-	string name;							//キャラクターの名前
-	int flag;								//キャラクターがパーティにいるかどうか
+	int num = 0;								//キャラクターのナンバリング
+	string name = "";							//キャラクターの名前
+	int flag = 0;								//キャラクターがパーティにいるかどうか
 	int soubi[2] = {-1, -1};				//キャラクターの装備
 	value hp, mp, str, vit, agi, intel;		//キャラクターのステータス
 	int skillCode[SKILL_SIZE] = {};			//キャラクターがスキルを覚えているかどうか
 	bool state[STATE_SIZE] = {};			//キャラクターの状態異常(0:死亡)
-	int image;								//キャラクターの画像ハンドル
+	int image = 0;								//キャラクターの画像ハンドル
 };
 struct enemyData {
-	int num;								//敵キャラクターのナンバリング
-	string name;							//敵キャラクターの名前
+	int num = 0;								//敵キャラクターのナンバリング
+	string name = "";							//敵キャラクターの名前
 	value hp, mp, str, vit, agi, intel;		//敵キャラクターのステータス
 	int skillCode[SKILL_SIZE] = {};			//敵キャラクターがスキルを覚えているかどうか
 	bool state[STATE_SIZE] = {};			//敵キャラクターの状態異常(0:死亡)
-	int operate;							//敵キャラクターのAIの行動選択の指向性
-	int image;								//敵キャラクターの画像ハンドル
+	int operate = 0;							//敵キャラクターのAIの行動選択の指向性(0:攻撃重視、1:防御重視、2:回復重視、3:バランス)
+	int image = 0;								//敵キャラクターの画像ハンドル
 };
 struct skillData{
 	int num;						//スキルのナンバリング
@@ -167,6 +169,12 @@ enum Effect{
 //BattleScene用-----------------------------------------------------------------
 struct Param {
 	int current, base;
+};
+struct CommandAgi {
+	int who, agi;
+//	bool operator<(const CommandAgi& right) const {
+//		return agi == right.agi ? (who < right.who) : (agi < right.agi);
+//	}
 };
 enum CommandType {
 	skill,

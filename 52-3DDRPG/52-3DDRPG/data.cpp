@@ -64,6 +64,7 @@ Data_c();
 */
 Data_c::~Data_c()
 {
+	DeleteAll();
 }
 
 void Data_c::LoadAll(int s)
@@ -73,6 +74,7 @@ void Data_c::LoadAll(int s)
 	SoubiLoad(s);
 	SkillLoad(s);
 	CharacterLoad(s);
+	EnemyLoad(s);
 }
 void Data_c::DeleteAll()
 {
@@ -349,7 +351,7 @@ void Data_c::SkillLoad(int s)
 			}
 			break;
 		case 4: skill[n].status = atoi(inputc);			break;
-		case 5: skill[n].magnification = atoi(inputc);	break;
+		case 5: skill[n].magnification = atoi(inputc) * 100;	break;
 		case 6: skill[n].area = atoi(inputc);			break;
 		case 7: skill[n].explain = inputc;				break;
 		}
@@ -454,7 +456,7 @@ void Data_c::EnemyLoad(int s)
 	int input[64];
 	char inputc[64];
 
-	sprintf_s(fname, "resource/csv/scenario%d/character%d.csv", s, s);
+	sprintf_s(fname, "resource/csv/scenario%d/enemy%d.csv", s, s);
 
 	fp = FileRead_open(fname);//ÉtÉ@ÉCÉãì«Ç›çûÇ›
 	if (fp == NULL) {
@@ -528,11 +530,19 @@ void Data_c::EnemyLoad(int s)
 EXFILE:
 	FileRead_close(fp);
 
-	char gname[64];
-
 	for (int i = 0; i < ENEMY_SIZE; i++) {
-		sprintf_s(gname, "resource/picture/%d/%d.png", scenario, i);
-		enemy[i].image = LoadGraph(gname);
+		string str = "";
+		str += "resource/picture/scenario";
+		str += to_string(s);
+		str += "/character/enemy";
+		str += to_string(i);
+		str += ".png";
+		enemy[i].image = LoadGraph(str.c_str());
+
+		//	enemy.image = LoadGraph("resource/picture/scenario0/character/enemy0.png");
+		if (enemy[i].image == -1) {
+			printfDx("enemy image read error");
+		}
 	}
 }
 
@@ -815,6 +825,7 @@ void Data_c::SetCharacterStatus(int num, int sort, int point, int value)
 	case 1:
 		if (value == 0) character[num].mp.base = point;
 		else character[num].mp.calc = point;
+		if (character[num].mp.calc > character[num].mp.base) character[num].mp.calc = character[num].mp.base;
 		break;
 	case 2:
 		if (value == 0) character[num].str.base = point;
@@ -1077,6 +1088,16 @@ characterData Data_c::GetCharacterData(int num)
 void Data_c::SetCharacterData(int num, characterData chara)
 {
 	character[num] = chara;
+}
+
+void Data_c::SetDungeonBgm(int i)
+{
+	dungeonBgm = i;
+}
+
+int Data_c::GetDungeonBgm()
+{
+	return dungeonBgm;
 }
 
 void Data_c::CalcItemFlag(int num, int vary)

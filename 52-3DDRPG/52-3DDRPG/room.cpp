@@ -13,7 +13,7 @@ Room_c::Room_c() :
 //	GraphLoad(mscenario);
   se[cursor] = LoadSoundMem("resource/sounds/SE/room/cursor.mp3");
   se[decision] = LoadSoundMem("resource/sounds/SE/room/decision.mp3");
-  for (int i = 0; i < 1; i++) {
+  for (int i = 0; i < 2; i++) {
     ChangeVolumeSoundMem(64, se[i]);
   }
 }
@@ -252,7 +252,7 @@ void Room_c::WaitKey() {
     selectx++;
 		if (selectx >= roomsizex)selectx = roomsizex - 1;
 	}
-	else if (mKey[KEY_INPUT_Z] == 1){
+	else if (mKey[KEY_INPUT_Z] == 1 && eventlist->getCallEventFlag() == 0){
 		//	printfDx("Room(%d,%d)has been selected Type:%d\nExecute event #%d\n", selectx, selecty, roomData[selectx][selecty].type, roomData[selectx][selecty].event);//ZŒˆ’èŽž‚É“®ì‚·‚éƒAƒNƒVƒ‡ƒ“‚ð‚±‚±‚É‘‚­
     GMusic.ReserveSound(se[decision], DX_PLAYTYPE_BACK);
     eventlist->Event(roomData[selectx][selecty].event);

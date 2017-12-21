@@ -183,7 +183,7 @@ void TextBox::SetSize(int pw, int praw)
 {
 	w = pw;	//•‚Ìİ’è
 	raw = praw;	//s”‚Ìİ’è
-	h = 5 + praw*17 + 5;	//‚‚³‚Ìİ’è
+	h = 8 + praw*16 + 8;	//‚‚³‚Ìİ’è
 }
 
 int TextBox::GetHeight()

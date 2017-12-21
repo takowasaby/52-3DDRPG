@@ -203,16 +203,16 @@ EXFILE:
 	GraphDelete();
 	GraphLoad(scenario, stage);
 
-	GMusic.StopSound(bgm);
+	GMusic.StopSound(GData.GetDungeonBgm());
 
 	string str;
 	str += "resource/sounds/BGM/scenario";
 	str += to_string(GData.GetScenario());
 	str += "/dungeon.wav";
-	bgm = LoadSoundMem(str.c_str());
-	ChangeVolumeSoundMem(64, bgm);
+	GData.SetDungeonBgm(LoadSoundMem(str.c_str()));
+	ChangeVolumeSoundMem(64, GData.GetDungeonBgm());
 
-	GMusic.ReserveSound(bgm, DX_PLAYTYPE_LOOP);
+	GMusic.ReserveSound(GData.GetDungeonBgm(), DX_PLAYTYPE_LOOP);
 }
 
 void Dungeon_c::GraphLoad(int scenario, int stage)

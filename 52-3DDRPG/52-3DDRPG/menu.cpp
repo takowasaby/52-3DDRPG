@@ -17,8 +17,11 @@ Menu_c::Menu_c() :
 	LoadWindow();
 
 	se[cursor] = LoadSoundMem("resource/sounds/SE/room/cursor.mp3");
+	ChangeVolumeSoundMem(64, se[cursor]);
 	se[decision] = LoadSoundMem("resource/sounds/SE/room/decision.mp3");
+	ChangeVolumeSoundMem(64, se[decision]);
 	se[bubu] = LoadSoundMem("resource/sounds/SE/other/bubu.mp3");
+	ChangeVolumeSoundMem(64, se[bubu]);
 
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
 		charaNum[i] = -1;

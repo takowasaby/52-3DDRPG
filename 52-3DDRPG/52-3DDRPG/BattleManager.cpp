@@ -5,6 +5,28 @@
 BattleManager::BattleManager()
 	: isPause(false)
 {
+	for (int i = 0; i < CHARACTER_SIZE + 1; i++) {
+		aPlayer[i].cost = 0;
+		aPlayer[i].forParty = 0;
+		aPlayer[i].name = "";
+		aPlayer[i].target - 0;
+		for(int j = 0; j < EFFECT_SIZE; j++) aPlayer[i].value[j] = 0;
+	}
+
+	for (int i = 0; i < CHARACTER_SIZE + 1; i++) {
+		damageCut[i] = 1.0;
+	}
+
+	for (int i = 0; i < 16; i++) {
+		for (int j = 0; j < 4; j++) {
+			enemySkill[j][i] = -1;
+		}
+	}
+
+	for (int i = 0; i < 256; i++) {
+		mKey[i] = 0;
+	}
+
 	for (int i = 0; i < 3; i++) phase[i] = 0;
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
 		PlayerWindow[i] = new TextBox();
@@ -23,7 +45,7 @@ BattleManager::BattleManager()
 	OpinionWindow[0]->AddMessage("スキル");
 	OpinionWindow[0]->AddMessage("道具");
 	OpinionWindow[0]->AddMessage("防御");
-	OpinionWindow[1]->SetSize(300, 4);
+	OpinionWindow[1]->SetSize(304, 4);
 	OpinionWindow[1]->SetPositon(OpinionWindow[0]->GetWidth(), 480 - OpinionWindow[0]->GetHeight() - 20);
 	OpinionWindow[2]->SetSize(640 - OpinionWindow[0]->GetWidth() - OpinionWindow[1]->GetWidth(), 4);
 	OpinionWindow[2]->SetPositon(OpinionWindow[0]->GetWidth() + OpinionWindow[1]->GetWidth(), 480 - OpinionWindow[0]->GetHeight() - 20);
@@ -37,6 +59,23 @@ BattleManager::BattleManager()
 		LoadPlayer(i);
 	}
 	LoadEnemy();
+
+	for (int i = 0; i < CHARACTER_SIZE + 1; i++) {
+		commandAgi[i].who = i;
+		commandAgi[i].agi = 0;
+	}
+	CommandAgiSort(0);
+
+	GMusic.StopSound(GData.GetDungeonBgm());
+
+	string str;
+	str += "resource/sounds/BGM/scenario";
+	str += to_string(GData.GetScenario());
+	str += "/battle.wav";
+	battleBgm = LoadSoundMem(str.c_str());
+	ChangeVolumeSoundMem(64, battleBgm);
+
+	GMusic.ReserveSound(battleBgm, DX_PLAYTYPE_LOOP);
 }
 
 BattleManager::~BattleManager()
@@ -45,6 +84,7 @@ BattleManager::~BattleManager()
 
 bool BattleManager::Update()
 {
+	/*
 	switch (phase[0])
 	{
 	case 0:
@@ -75,6 +115,34 @@ bool BattleManager::Update()
 		break;
 	}
 	return 0;
+	*/
+	switch (phase[0])
+	{
+	case 0:
+		BattleInitialize();
+		break;
+	case 1://プレイヤーの行動選択
+		PlayerSelection();
+		break;
+	case 2://敵の行動選択
+		EnemySelection();
+		break;
+	case 3://ダメージ計算
+		CalcManager();
+		break;
+	case 4:
+		ToNextTurn();
+		break;
+	case 5://勝利
+		return BattleEnd(true);
+		break;
+	case 6://敗北
+		return BattleEnd(false);
+		break;
+	default:
+		break;
+	}
+	return 0;
 }
 
 void BattleManager::Draw()
@@ -91,24 +159,44 @@ void BattleManager::Draw()
 				, player[i].vit.calc, player[i].agi.calc, player[i].intel.calc);
 		}
 	}
+	*/
+	//printfDx("[E] %-8s HP:%4d/%4d MP:%4d/%4d ( %3d %3d %3d %3d )\n"
+	//	, enemy.name.c_str(), enemy.hp.calc, enemy.hp.base
+	//	, enemy.mp.calc, enemy.mp.base, enemy.str.calc
+	//	, enemy.vit.calc, enemy.agi.calc, enemy.intel.calc);
+	/*
 	printfDx("[E] %-8s HP:%4d/%4d MP:%4d/%4d ( %3d %3d %3d %3d )\n"
-		, enemy.name.c_str(), enemy.hp.calc, enemy.hp.base
-		, enemy.mp.calc, enemy.mp.base, enemy.str.calc
-		, enemy.vit.calc, enemy.agi.calc, enemy.intel.calc);
+		, GData.enemy[1].name.c_str(), GData.enemy[1].hp.calc, GData.enemy[1].hp.base
+		, GData.enemy[1].mp.calc, GData.enemy[1].mp.base, GData.enemy[1].str.calc
+		, GData.enemy[1].vit.calc, GData.enemy[1].agi.calc, GData.enemy[1].intel.calc);
+	/*
 	printfDx("Phase[0] = %d\t", phase[0]);
 	printfDx("Phase[1] = %d\t", phase[1]);
 	printfDx("Phase[2] = %d\n", phase[2]);*/
 	DrawExtendGraph(240, 60, 401, 301, enemy.image, TRUE);
 
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
-		PlayerWindow[i]->ClearMessage();
-		PlayerWindow[i]->AddMessage(player[i].name);
-		PlayerWindow[i]->AddMessage("HP : " + to_string(player[i].hp.calc) + " / " + to_string(player[i].hp.base));
-		PlayerWindow[i]->AddMessage("MP : " + to_string(player[i].mp.calc) + " / " + to_string(player[i].mp.base));
-		PlayerWindow[i]->Draw();
+		if (player[i].flag == 1) {
+			PlayerWindow[i]->ClearMessage();
+			PlayerWindow[i]->AddMessage(player[i].name);
+			PlayerWindow[i]->AddMessage("HP : " + to_string(player[i].hp.calc) + " / " + to_string(player[i].hp.base));
+			PlayerWindow[i]->AddMessage("MP : " + to_string(player[i].mp.calc) + " / " + to_string(player[i].mp.base));
+			PlayerWindow[i]->Draw();
+		}
 	}
 	for (int i = 0; i < OPINIONWINDOW_NUM; i++) OpinionWindow[i]->Draw();
 	MessageWindow->Draw();
+
+	//printfDx("%d,%d,%d,%d,%d\n", commandAgi[0].who, commandAgi[1].who, commandAgi[2].who, commandAgi[3].who, commandAgi[4].who);
+	//printfDx("%d,%d,%d,%d,%d", commandAgi[0].agi, commandAgi[1].agi, commandAgi[2].agi, commandAgi[3].agi, commandAgi[4].agi);
+}
+
+int BattleManager::SkillMeasure(int index)
+{
+	for (int i = 0; i < 16; i++) {
+		if(enemySkill[index][i] == -1) return i;
+	}
+	return 0;
 }
 
 void BattleManager::LoadPlayer(int index)
@@ -155,36 +243,6 @@ void BattleManager::LoadEnemy()
 	enemy.intel.base = GetRand(500) + 499;
 	enemy.intel.calc = GetRand(500);
 	for (int i = 0; i < SKILL_SIZE; i++) enemy.skillCode[i] = (int)GetRand(1);
-
-	for (int i = 0; i < SKILL_SIZE; i++) {
-		if (enemy.skillCode[i]) {
-			switch (GData.GetSkillPoint(enemy.skillCode[i], 2)) {
-			case 0:
-				enemySkill[0].push_back(i);
-				break;
-			case 1:
-				enemySkill[2].push_back(i);
-				break;
-			case 2:
-				enemySkill[3].push_back(i);
-				break;
-			case 3:
-				enemySkill[1].push_back(i);
-				break;
-			case 4:
-				enemySkill[1].push_back(i);
-				break;
-			case 5:
-				enemySkill[1].push_back(i);
-				break;
-			case 6:
-				enemySkill[1].push_back(i);
-				break;
-			case 7:
-				break;
-			}
-		}
-	}
 	for (int i = 0; i < ENEMY_SKILL_SIZE; i++) {
 		enemySkillSize[i] = (int)enemySkill[i].size();
 	}
@@ -193,7 +251,50 @@ void BattleManager::LoadEnemy()
 	for (int i = 0; i < SKILL_CODE_SIZE; i++) enemy.skillCode[i] = (int)GetRand(1);
 	*/
 	enemy = GData.GetEnemy(GData.GetStage());
-	
+	for (int i = 0; i < SKILL_SIZE; i++) {
+		if (enemy.skillCode[i]) {
+			switch (GData.GetSkillPoint(i, 2)) {
+			case 0:
+				for (int j = 0; j < 16; j++) {
+					if (enemySkill[0][j] == -1) enemySkill[0][j] = i; break;
+				}
+				break;
+			case 1:
+				for (int j = 0; j < 16; j++) {
+					if (enemySkill[1][j] == -1) enemySkill[1][j] = i; break;
+				}
+				break;
+			case 2:
+				for (int j = 0; j < 16; j++) {
+					if (enemySkill[2][j] == -1) enemySkill[2][j] = i; break;
+				}
+				break;
+			case 3:
+				for (int j = 0; j < 16; j++) {
+					if (enemySkill[3][j] == -1) enemySkill[3][j] = i; break;
+				}
+				break;
+			case 4:
+				for (int j = 0; j < 16; j++) {
+					if (enemySkill[3][j] == -1) enemySkill[3][j] = i; break;
+				}
+				break;
+			case 5:
+				for (int j = 0; j < 16; j++) {
+					if (enemySkill[3][j] == -1) enemySkill[3][j] = i; break;
+				}
+				break;
+			case 6:
+				for (int j = 0; j < 16; j++) {
+					if (enemySkill[3][j] == -1) enemySkill[3][j] = i; break;
+				}
+				break;
+			case 7:
+				break;
+			}
+		}
+	}
+	/*
 	string str = "";
 	str += "resource/picture/scenario";
 	str += to_string(GData.GetScenario());
@@ -206,7 +307,9 @@ void BattleManager::LoadEnemy()
 	if (enemy.image == -1) {
 		printfDx("enemy image read error");
 	}
+	*/
 }
+
 
 void BattleManager::LoadSkill(int index)
 {
@@ -239,16 +342,37 @@ void BattleManager::SetSkill(int sIndex, int pIndex, int tIndex)
 	aPlayer[pIndex].target = tIndex;
 	switch (GData.GetSkillPoint(sIndex, 3)) {
 	case 0:
-		aPlayer[pIndex].value[GData.GetSkillPoint(sIndex, 2)] = player[pIndex].str.calc * (GData.GetSkillPoint(sIndex, 4));
+		aPlayer[pIndex].value[GData.GetSkillPoint(sIndex, 2)] = player[pIndex].str.calc * (GData.GetSkillPoint(sIndex, 4) / 100);
 		break;
 	case 1:
-		aPlayer[pIndex].value[GData.GetSkillPoint(sIndex, 2)] = player[pIndex].vit.calc * (GData.GetSkillPoint(sIndex, 4));
+		aPlayer[pIndex].value[GData.GetSkillPoint(sIndex, 2)] = player[pIndex].vit.calc * (GData.GetSkillPoint(sIndex, 4) / 100);
 		break;
 	case 2:
-		aPlayer[pIndex].value[GData.GetSkillPoint(sIndex, 2)] = player[pIndex].agi.calc * (GData.GetSkillPoint(sIndex, 4));
+		aPlayer[pIndex].value[GData.GetSkillPoint(sIndex, 2)] = player[pIndex].agi.calc * (GData.GetSkillPoint(sIndex, 4) / 100);
 		break;
 	case 3:
-		aPlayer[pIndex].value[GData.GetSkillPoint(sIndex, 2)] = player[pIndex].intel.calc * (GData.GetSkillPoint(sIndex, 4));
+		aPlayer[pIndex].value[GData.GetSkillPoint(sIndex, 2)] = player[pIndex].intel.calc * (GData.GetSkillPoint(sIndex, 4) / 100);
+		break;
+	}
+}
+
+void BattleManager::SetEnemySkill(int sIndex, int tIndex)
+{
+	aPlayer[4].name = GData.GetSkillText(sIndex, 0);
+	aPlayer[4].cost = GData.GetSkillPoint(sIndex, 1);
+	aPlayer[4].target = tIndex;
+	switch (GData.GetSkillPoint(sIndex, 3)) {
+	case 0:
+		aPlayer[4].value[GData.GetSkillPoint(sIndex, 2)] = enemy.str.calc * (GData.GetSkillPoint(sIndex, 4) / 100);
+		break;
+	case 1:
+		aPlayer[4].value[GData.GetSkillPoint(sIndex, 2)] = enemy.vit.calc * (GData.GetSkillPoint(sIndex, 4) / 100);
+		break;
+	case 2:
+		aPlayer[4].value[GData.GetSkillPoint(sIndex, 2)] = enemy.agi.calc * (GData.GetSkillPoint(sIndex, 4) / 100);
+		break;
+	case 3:
+		aPlayer[4].value[GData.GetSkillPoint(sIndex, 2)] = enemy.intel.calc * (GData.GetSkillPoint(sIndex, 4) / 100);
 		break;
 	}
 }
@@ -294,7 +418,7 @@ void BattleManager::PlayerSelection()
 	switch (phase[1])
 	{
 	case 0:
-		if (player[phase[2]].state[0] == 1) {
+		if (player[phase[2]].state[0] == 1 || player[phase[2]].flag == 0) {
 			phase[1] = 4;
 			break;
 		}
@@ -318,7 +442,7 @@ void BattleManager::PlayerSelection()
 					aPlayer[phase[2]].name = "攻撃";
 					aPlayer[phase[2]].cost = 0;
 					aPlayer[phase[2]].forParty = false;
-					aPlayer[phase[2]].value[attack] = GetRand(600);
+					aPlayer[phase[2]].value[attack] = player[phase[2]].str.calc;
 					phase[1]+=2;
 				}
 				else if (OpinionWindow[0]->Enter() == "スキル") LoadSkill(phase[2]);
@@ -392,141 +516,278 @@ void BattleManager::PlayerSelection()
 
 void BattleManager::EnemySelection()
 {
-	//for debug
+	/*for debug
 	aPlayer[4].name = "BOSS_ATTACK";
 	aPlayer[4].forParty = false;
 	aPlayer[4].target = GetRand(CHARACTER_SIZE-1);
 	aPlayer[4].value[attack] = GetRand(600);
 	for (int i = 1; i < 7; i++) if (GetRand(100) > 50) aPlayer[4].value[i] = GetRand(100);
 	phase[0]++;
+	*/
 
-
+	int rand[3] = {};
+	rand[0] = GetRand(99);
+	while (1) {
+		rand[2] = GetRand(3);
+		if (player[rand[2]].flag && player[rand[2]].state[0] == 0) break;
+	}
+	switch (enemy.operate) {
+	case 0:
+		if (rand[0] < 50 && SkillMeasure(0) != 0) {
+			rand[1] = GetRand(SkillMeasure(0) - 1);
+			aPlayer[4].forParty = true;
+			SetEnemySkill(enemySkill[0][rand[1]], rand[2]);
+		}
+		else {
+			aPlayer[4].commandType = skill;
+			aPlayer[4].name = "攻撃";
+			aPlayer[4].cost = 0;
+			aPlayer[4].forParty = true;
+			aPlayer[4].target = rand[2];
+			aPlayer[4].value[attack] = enemy.str.calc;
+		}
+		break;
+	case 1:
+		if (rand[0] < 20 && SkillMeasure(3) != 0) {
+			rand[1] = GetRand(SkillMeasure(3) - 1);
+			aPlayer[4].forParty = false;
+			SetEnemySkill(enemySkill[3][rand[1]], rand[2]);
+		}
+		else if(rand[0] < 50){
+			aPlayer[4].commandType = defence;
+			aPlayer[4].name = "防御";
+			aPlayer[4].cost = 0;
+			aPlayer[4].forParty = false;
+		} 
+		else {
+			aPlayer[4].commandType = skill;
+			aPlayer[4].name = "攻撃";
+			aPlayer[4].cost = 0;
+			aPlayer[4].forParty = true;
+			aPlayer[4].target = rand[2];
+			aPlayer[4].value[attack] = enemy.str.calc;
+		}
+		break;
+	case 2:
+		if ((double) enemy.hp.calc / enemy.hp.base < 0.3 && SkillMeasure(1) != 0) {
+			rand[1] = GetRand(SkillMeasure(1) - 1);
+			aPlayer[4].forParty = false;
+			SetEnemySkill(enemySkill[1][rand[1]], rand[2]);
+		}
+		else if (rand[0] < 20) {
+			aPlayer[4].commandType = defence;
+			aPlayer[4].name = "防御";
+			aPlayer[4].cost = 0;
+			aPlayer[4].forParty = false;
+		}
+		else {
+			aPlayer[4].commandType = skill;
+			aPlayer[4].name = "攻撃";
+			aPlayer[4].cost = 0;
+			aPlayer[4].forParty = true;
+			aPlayer[4].target = rand[2];
+			aPlayer[4].value[attack] = enemy.str.calc;
+		}
+		break;
+	case 3:
+		if ((double)enemy.hp.calc / enemy.hp.base < 0.3 && SkillMeasure(1) != 0) {
+			rand[1] = GetRand(SkillMeasure(1) - 1);
+			aPlayer[4].forParty = false;
+			SetEnemySkill(enemySkill[1][rand[1]], rand[2]);
+		}
+		else if (rand[0] < 20 && SkillMeasure(3) != 0) {
+			rand[1] = GetRand(SkillMeasure(3) - 1);
+			aPlayer[4].forParty = false;
+			SetEnemySkill(enemySkill[3][rand[1]], rand[2]);
+		}
+		else if (rand[0] < 40) {
+			aPlayer[4].commandType = defence;
+			aPlayer[4].name = "防御";
+			aPlayer[4].cost = 0;
+			aPlayer[4].forParty = false;
+		}
+		else {
+			aPlayer[4].commandType = skill;
+			aPlayer[4].name = "攻撃";
+			aPlayer[4].cost = 0;
+			aPlayer[4].forParty = true;
+			aPlayer[4].target = rand[2];
+			aPlayer[4].value[attack] = enemy.str.calc;
+		}
+		break;
+	}
+	phase[0]++;
 }
 
-void BattleManager::PlayerCalc()
+void BattleManager::CalcManager()
 {
+	if (commandAgi[phase[2]].who == CHARACTER_SIZE) {
+		if (EnemyCalc()) CommandAgiSort(phase[2]);
+		//printfDx("P ");
+	}
+	else if(commandAgi[phase[2]].who != CHARACTER_SIZE){
+		if (PlayerCalc(commandAgi[phase[2]].who)) CommandAgiSort(phase[2]);
+	}
+}
+
+bool asc(const CommandAgi& right, const CommandAgi& left) {
+	return left.agi == right.agi ? (left.who < right.who) : (left.agi < right.agi);
+}
+
+void BattleManager::CommandAgiSort(int index)
+{
+	for (int i = 0; i < CHARACTER_SIZE + 1; i++) {
+		if (0 <= commandAgi[i].who < CHARACTER_SIZE) {
+			commandAgi[i].agi = player[commandAgi[i].who].agi.calc;
+		}
+		else {
+			commandAgi[i].agi = enemy.agi.calc;
+		}
+	}
+	commandAgi[CHARACTER_SIZE].agi = enemy.agi.calc;
+
+	sort(&commandAgi[index], &commandAgi[CHARACTER_SIZE + 1], asc);
+}
+
+bool BattleManager::PlayerCalc(int index)
+{
+	//printfDx("P ");
 	switch (phase[1]) {
 	case 0:
-		if (player[phase[2]].state[0] == 1 || aPlayer[phase[2]].name == "") {
-			phase[2]++;
+		if (player[index].state[0] == 1 || aPlayer[index].name == "" || player[index].flag == 0) {
+			if (phase[2] == CHARACTER_SIZE) {
+				phase[2] = 0;
+				phase[0]++;
+				return 0;
+				for (int i = 0; i < CHARACTER_SIZE + 1; i++) {
+					damageCut[i] = 1.0;
+				}
+			}
+			else {
+				phase[2]++;
+				return 0;
+			}
 			break;
 		}
 		//メッセージ表示
-		if (aPlayer[phase[2]].commandType == item) MessageWindow->AddMessage(player[phase[2]].name + "は" + aPlayer[phase[2]].name + "を使った");
-		else if (aPlayer[phase[2]].commandType == defence) MessageWindow->AddMessage(player[phase[2]].name + "は身構えている");
-		else MessageWindow->AddMessage(player[phase[2]].name + "の" + aPlayer[phase[2]].name);
+		if (aPlayer[index].commandType == item) MessageWindow->AddMessage(player[index].name + "は" + aPlayer[index].name + "を使った");
+		else if (aPlayer[index].commandType == defence) {
+			MessageWindow->AddMessage(player[index].name + "は身構えている");
+			damageCut[index] = 0.5;
+		}
+		else MessageWindow->AddMessage(player[index].name + "の" + aPlayer[index].name);
 
-		player[phase[2]].mp.calc -= aPlayer[phase[2]].cost;
+		player[index].mp.calc -= aPlayer[index].cost;
 
-		if (aPlayer[phase[2]].value[attack] > 0) {
+		if (aPlayer[index].value[attack] > 0) {
 			//攻撃処理
-			enemy.hp.calc -= aPlayer[phase[2]].value[attack];
+			enemy.hp.calc -= aPlayer[index].value[attack] * damageCut[CHARACTER_SIZE];
 			if (enemy.hp.calc < 0) {
 				enemy.hp.calc = 0;
-				phase[0] = 6;
+				phase[0] = 5;
 			}
 
 			//メッセージ表示
-			MessageWindow->AddMessage(enemy.name + "に" + to_string(aPlayer[phase[2]].value[attack]) + "のダメージ！！");
+			MessageWindow->AddMessage(enemy.name + "に" + to_string((int) (aPlayer[index].value[attack] * damageCut[CHARACTER_SIZE])) + "のダメージ！！");
 		}
-		if (aPlayer[phase[2]].value[healHp] > 0) {
-			if (player[aPlayer[phase[2]].target].state[0] == 1) {
+		if (aPlayer[index].value[healHp] > 0) {
+			if (player[aPlayer[index].target].state[0] == 1) {
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は死んでいる…");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "は死んでいる…");
 			}
 			else {
 				//HP回復処理
-				player[aPlayer[phase[2]].target].hp.calc += aPlayer[phase[2]].value[healHp];
-				if (player[aPlayer[phase[2]].target].hp.calc > player[aPlayer[phase[2]].target].hp.base) player[aPlayer[phase[2]].target].hp.calc = player[aPlayer[phase[2]].target].hp.base;
+				player[aPlayer[index].target].hp.calc += aPlayer[index].value[healHp];
+				if (player[aPlayer[index].target].hp.calc > player[aPlayer[index].target].hp.base) player[aPlayer[index].target].hp.calc = player[aPlayer[index].target].hp.base;
 
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は" + to_string(aPlayer[phase[2]].value[healHp]) + "のHP回復！！");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "は" + to_string(aPlayer[index].value[healHp]) + "のHP回復！！");
 			}
 		}
-		if (aPlayer[phase[2]].value[healMp] > 0) {
-			if (player[aPlayer[phase[2]].target].state[0] == 1) {
+		if (aPlayer[index].value[healMp] > 0) {
+			if (player[aPlayer[index].target].state[0] == 1) {
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は死んでいる…");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "は死んでいる…");
 			}
 			else {
 				//MP回復処理
-				player[aPlayer[phase[2]].target].mp.calc += aPlayer[phase[2]].value[healMp];
-				if (player[aPlayer[phase[2]].target].mp.calc > player[aPlayer[phase[2]].target].mp.base) player[aPlayer[phase[2]].target].mp.calc = player[aPlayer[phase[2]].target].mp.base;
+				player[aPlayer[index].target].mp.calc += aPlayer[index].value[healMp];
+				if (player[aPlayer[index].target].mp.calc > player[aPlayer[index].target].mp.base) player[aPlayer[index].target].mp.calc = player[aPlayer[index].target].mp.base;
 
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は" + to_string(aPlayer[phase[2]].value[healMp]) + "のMP回復！！");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "は" + to_string(aPlayer[index].value[healMp]) + "のMP回復！！");
 			}
 		}
-		if (aPlayer[phase[2]].value[buffStr] > 0) {
-			if (player[aPlayer[phase[2]].target].state[0] == 1) {
+		if (aPlayer[index].value[buffStr] > 0) {
+			if (player[aPlayer[index].target].state[0] == 1) {
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は死んでいる…");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "は死んでいる…");
 			}
 			else {
 				//バフ処理
-				player[aPlayer[phase[2]].target].str.calc *= (double)aPlayer[phase[2]].value[buffStr] / 100 + 1;
+				player[aPlayer[index].target].str.calc *= (double)aPlayer[index].value[buffStr] / 100 + 1;
 
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "の攻撃力が上昇！");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "の攻撃力が上昇！");
 			}
 		}
-		if (aPlayer[phase[2]].value[buffVit] > 0) {
-			if (player[aPlayer[phase[2]].target].state[0] == 1) {
+		if (aPlayer[index].value[buffVit] > 0) {
+			if (player[aPlayer[index].target].state[0] == 1) {
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は死んでいる…");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "は死んでいる…");
 			}
 			else {
 				//バフ処理
-				player[aPlayer[phase[2]].target].vit.calc *= (double)aPlayer[phase[2]].value[buffVit] / 100 + 1;
+				player[aPlayer[index].target].vit.calc *= (double)aPlayer[index].value[buffVit] / 100 + 1;
 
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "の生命力が上昇！");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "の生命力が上昇！");
 			}
 		}
-		if (aPlayer[phase[2]].value[buffAgi] > 0) {
-			if (player[aPlayer[phase[2]].target].state[0] == 1) {
+		if (aPlayer[index].value[buffAgi] > 0) {
+			if (player[aPlayer[index].target].state[0] == 1) {
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は死んでいる…");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "は死んでいる…");
 			}
 			else {
 				//バフ処理
-				player[aPlayer[phase[2]].target].agi.calc *= (double)aPlayer[phase[2]].value[buffAgi] / 100 + 1;
+				player[aPlayer[index].target].agi.calc *= (double)aPlayer[index].value[buffAgi] / 100 + 1;
 
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "の素早さが上昇！");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "の素早さが上昇！");
 			}
 		}
-		if (aPlayer[phase[2]].value[buffInt] > 0) {
-			if (player[aPlayer[phase[2]].target].state[0] == 1) {
+		if (aPlayer[index].value[buffInt] > 0) {
+			if (player[aPlayer[index].target].state[0] == 1) {
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は死んでいる…");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "は死んでいる…");
 			}
 			else {
 				//バフ処理
-				player[aPlayer[phase[2]].target].intel.calc *= (double)aPlayer[phase[2]].value[buffInt] / 100 + 1;
+				player[aPlayer[index].target].intel.calc *= (double)aPlayer[index].value[buffInt] / 100 + 1;
 
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "の賢さが上昇！");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "の賢さが上昇！");
 			}
 		}
-		if (aPlayer[phase[2]].value[reviv] > 0) {
+		if (aPlayer[index].value[reviv] > 0) {
 			//蘇生処理
-			if (player[aPlayer[phase[2]].target].state[0] == 1) {
-				if (GetRand(100) <= aPlayer[phase[2]].value[reviv]) {
-					player[aPlayer[phase[2]].target].hp.calc += player[aPlayer[phase[2]].target].hp.base / 2;
-					player[aPlayer[phase[2]].target].state[0] = 0;
+			if (player[aPlayer[index].target].state[0] == 1) {
+				if (GetRand(100) <= aPlayer[index].value[reviv]) {
+					player[aPlayer[index].target].hp.calc += player[aPlayer[index].target].hp.base / 2;
+					player[aPlayer[index].target].state[0] = 0;
 
 					//メッセージ表示
-					MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は息を吹き返した！");
+					MessageWindow->AddMessage(player[aPlayer[index].target].name + "は息を吹き返した！");
 				}
 				else {
 					//メッセージ表示
-					MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は息を吹き返さなかった…");
+					MessageWindow->AddMessage(player[aPlayer[index].target].name + "は息を吹き返さなかった…");
 				}
 			}
 			else {
 				//メッセージ表示
-				MessageWindow->AddMessage(player[aPlayer[phase[2]].target].name + "は生きている");
+				MessageWindow->AddMessage(player[aPlayer[index].target].name + "は生きている");
 			}
 		}
 		phase[1]++;
@@ -540,37 +801,51 @@ void BattleManager::PlayerCalc()
 			isPause = false;
 			phase[2]++;
 			phase[1] = 0;
-			if (phase[2] >= CHARACTER_SIZE) {
+			if (phase[2] > CHARACTER_SIZE) {
 				phase[2] = 0;
 				phase[0]++;
+				for (int i = 0; i < CHARACTER_SIZE + 1; i++) {
+					damageCut[i] = 1.0;
+				}
 			}
+			return 1;
 		}
 	}
+	return 0;
 }
 
-void BattleManager::EnemyCalc()
+bool BattleManager::EnemyCalc()
 {
 	if (!isPause) {
 		isPause = true;
 		//メッセージ表示
-		MessageWindow->AddMessage(enemy.name + "の" + aPlayer[4].name);
+		if (aPlayer[4].commandType == defence) {
+			MessageWindow->AddMessage(enemy.name + "は身構えている");
+			damageCut[4] = 0.5;
+		}
+		else {
+			MessageWindow->AddMessage(enemy.name + "の" + aPlayer[4].name);
+		}
 
 		if (aPlayer[4].value[attack] > 0) {
 			//攻撃処理
 			if (aPlayer[aPlayer[4].target].commandType == defence) player[aPlayer[4].target].hp.calc -= aPlayer[4].value[attack] / 2;
-			else player[aPlayer[4].target].hp.calc -= aPlayer[4].value[attack];
+			else player[aPlayer[4].target].hp.calc -= aPlayer[4].value[attack] * damageCut[aPlayer[4].target];
 
 			if (player[aPlayer[4].target].hp.calc <= 0) {
 				player[aPlayer[4].target].hp.calc = 0;
 				player[aPlayer[4].target].state[0] = 1;
 			}
-			if (player[0].state[0] == 1 && player[1].state[0] == 1 && player[2].state[0] == 1 && player[3].state[0] == 1) {
-				phase[0] = 7;
-				return;
+			if ((player[0].state[0] == 1 ||  player[0].flag == 0)
+				&& (player[1].state[0] == 1 || player[1].flag == 0)
+				&& (player[2].state[0] == 1 || player[2].flag == 0)
+				&& (player[3].state[0] == 1 || player[3].flag == 0)) {
+				phase[0] = 6;
+				return 0;
 			}
 
 			//メッセージ表示
-			MessageWindow->AddMessage(player[aPlayer[4].target].name + "に" + to_string(aPlayer[4].value[attack]) + "のダメージ！！");
+			MessageWindow->AddMessage(player[aPlayer[4].target].name + "に" + to_string((int)(aPlayer[4].value[attack] * damageCut[aPlayer[4].target])) + "のダメージ！！");
 		}
 		if (aPlayer[4].value[healHp] > 0) {
 			//HP回復処理
@@ -639,8 +914,14 @@ void BattleManager::EnemyCalc()
 	else if (mKey[KEY_INPUT_Z] == 1) {
 		MessageWindow->ClearMessage();
 		isPause = false;
-		phase[0]++;
+		if (phase[2] != CHARACTER_SIZE) phase[2]++;
+		else {
+			phase[2] = 0;
+			phase[0]++;
+		}
+		return 1;
 	}
+	return 0;
 }
 
 void BattleManager::ToNextTurn()
@@ -674,6 +955,8 @@ bool BattleManager::BattleEnd(bool isWin)
 			for (int i = 0; i < CHARACTER_SIZE; i++) GData.SetCharacterData(i, player[i]);
 			GData.SceneBackRequest();
 //			GData.SceneRequest(1, 2);
+			GMusic.StopSound(battleBgm);
+			GMusic.ReserveSound(GData.GetDungeonBgm(), DX_PLAYTYPE_LOOP);
 			return 1;
 		}
 	}
@@ -686,6 +969,8 @@ bool BattleManager::BattleEnd(bool isWin)
 		}
 		else if (mKey[KEY_INPUT_Z] == 1) {
 			GData.SceneRequest(1, 2);
+			GMusic.StopSound(battleBgm);
+			GMusic.ReserveSound(GData.GetDungeonBgm(), DX_PLAYTYPE_LOOP);
 			return 1;
 		}
 	}

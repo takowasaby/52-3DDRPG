@@ -35,12 +35,14 @@ private:
 	int eventScene;
 	int titleScene;
 	int gameScene;
+
+	int dungeonBgm;
 	
 	characterData character[CHARACTER_SIZE + 5];
-	enemyData enemy[ENEMY_SIZE];
 	skillData skill[SKILL_SIZE];
 	itemData item[ITEM_SIZE];
 	soubiData soubi[SOUBI_SIZE];
+	enemyData enemy[ENEMY_SIZE];
 	
 	/*
 	struct Skill_t {
@@ -185,6 +187,9 @@ public:
 
 	characterData GetCharacterData(int num);
 	void SetCharacterData(int num, characterData chara);
+
+	void SetDungeonBgm(int i);
+	int GetDungeonBgm();
 };
 
 extern Data_c GData;
