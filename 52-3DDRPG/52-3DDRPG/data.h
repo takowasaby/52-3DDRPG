@@ -11,7 +11,7 @@ private:
 	int dungeonX[5] = {};
 	int	dungeonY[5] = {};
 	int flag[5][128];
-	int playCount;
+	int playCountF, playCountS, playCountM, playCountH;
 
 	int bgmVol, seVol, battleType;
 	bool windowMode;
@@ -25,6 +25,7 @@ private:
 	int OpeningFlag;
 	bool dungeonLoadFlag;
 	bool roomLoadFlag;
+	bool CountFlag;
 
 	int dungeon[SCENARIO_SIZE];
 	int battle[SCENARIO_SIZE];
@@ -190,6 +191,16 @@ public:
 
 	void SetDungeonBgm(int i);
 	int GetDungeonBgm();
+
+	void ClockCount();
+	void ResetCount();
+	void SetCount(int *i);
+	void GetCount(int *i);
+
+	void CountStart();
+	void CountStop();
+
+	bool GetCountFlag();
 };
 
 extern Data_c GData;

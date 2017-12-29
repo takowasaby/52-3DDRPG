@@ -2,7 +2,10 @@
 
 Data_c::Data_c() :
 	scenario(0),
-	playCount(0),
+	playCountF(0),
+	playCountS(0),
+	playCountM(0),
+	playCountH(0),
 	BMode(0),
 	BScene(0),
 	OpeningFlag(0),
@@ -981,10 +984,6 @@ int Data_c::GetEventFlag(int scenario, int num)
 {
 	return eventFlag[scenario][num];
 }
-int Data_c::GetPlayCount()
-{
-	return playCount;
-}
 
 int Data_c::GetWallType(int x, int y)
 {
@@ -998,14 +997,6 @@ void Data_c::SetMapFlag(int scenario, int stage, int x, int y, int i)
 void Data_c::SetEventFlag(int scenario, int num, int i)
 {
 	eventFlag[scenario][num] = i;
-}
-void Data_c::SetPlayCount(int i)
-{
-	playCount = i;
-}
-void Data_c::AddPlayCount()
-{
-	playCount++;
 }
 void Data_c::SetWallType(int x, int y, int type)
 {
@@ -1098,6 +1089,61 @@ void Data_c::SetDungeonBgm(int i)
 int Data_c::GetDungeonBgm()
 {
 	return dungeonBgm;
+}
+
+void Data_c::ClockCount()
+{
+	if (!(playCountM == 59 && playCountH == 99 && playCountS == 59)) {
+		playCountF++;
+	}
+	if (playCountF == 60) {
+		playCountS++;
+		playCountF = 0;
+	}
+	if (playCountS == 60) {
+		playCountM++;
+		playCountS = 0;
+	}
+	if (playCountM == 60) {
+		playCountH++;
+		playCountM = 0;
+	}
+}
+void Data_c::ResetCount()
+{
+	playCountF = 0;
+	playCountS = 0;
+	playCountM = 0;
+	playCountH = 0;
+}
+void Data_c::SetCount(int *i)
+{
+	playCountF = *i;
+	playCountS = *(i + 1);
+	playCountM = *(i + 2);
+	playCountH = *(i + 3);
+
+}
+void Data_c::GetCount(int * i)
+{
+	*i = playCountF;
+	*(i + 1) = playCountS;
+	*(i + 2) = playCountM;
+	*(i + 3) = playCountH;
+}
+
+void Data_c::CountStart()
+{
+	CountFlag = 1;
+}
+void Data_c::CountStop()
+{
+	CountFlag = 0;
+}
+
+bool Data_c::GetCountFlag()
+{
+	return CountFlag;
 }
 
 void Data_c::CalcItemFlag(int num, int vary)

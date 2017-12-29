@@ -132,6 +132,8 @@ bool Control_c::All() {
 
 	mEventlist->call();
 
+	if (GData.GetCountFlag()) GData.ClockCount();
+
 	if (GData.GetDungeonLoadFlag()) {
 		mDungeon->DataLoad(GData.GetScenario(), GData.GetStage());
 		GData.SetDungeonLoadFlag(FALSE);

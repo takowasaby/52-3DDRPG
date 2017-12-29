@@ -125,7 +125,13 @@ void Menu_c::DrawLeft()
 	stringY = 330;
 
 	DrawFormatString(stringX, stringY + row * 0, colorW, "プレイ時間");
+
+	GData.GetCount(count);
+	DrawFormatString(stringX + 5, stringY + 25, colorW, "%2d:%2d:%2d", count[3], count[2], count[1]);
+
+
 	DrawFormatString(stringX, stringY + row * 1, colorW, "シナリオ");
+	DrawFormatString(stringX + 25, stringY + row * 1 + 25, colorW, "%d", GData.GetScenario());
 }
 void Menu_c::DrawRight()
 {
@@ -810,6 +816,7 @@ void Menu_c::CheckKey()
 			break;
 		case title:
 			GData.SceneRequest(1, 2);
+
 			break;
 		case save:
 			GData.SceneRequest(1, 3);
@@ -824,6 +831,7 @@ void Menu_c::CheckKey()
 		switch (depth) {
 		case 0:
 			GData.SceneBackRequest();
+			mode = 0;
 			break;
 		case 1:
 			itemType = 0;
@@ -861,6 +869,7 @@ void Menu_c::CheckKey()
 	}
 	else if (mKey[KEY_INPUT_C] == 1) {
 		GData.SceneBackRequest();
+		mode = 0;
 		GMusic.ReserveSound(se[decision], DX_PLAYTYPE_BACK);
 	}
 

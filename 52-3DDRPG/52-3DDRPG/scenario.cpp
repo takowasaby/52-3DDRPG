@@ -75,6 +75,7 @@ void Scenario_c::Update()
     }
     else if (end == 1) {
       GData.SetScenario(chooseScenario);
+	  GData.CountStart();
       eventlist->setListFileName(chooseScenario);
       eventlist->readList();
       GData.SetEventFlag(1);

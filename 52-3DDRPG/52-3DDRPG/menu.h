@@ -44,6 +44,8 @@ private:
 	const int limitUP = 20;
 	const int limitDOWN = 140;
 
+	int count[4] = {};
+
 	typedef enum {
 		map,
 		status,
