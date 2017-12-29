@@ -1,6 +1,6 @@
 addchara misu ‚İ‚·‚¿‚á‚ñ
 addchara sato SATO
-addchara girl —‚Ìq
+addchara girl •Q”T
 //
 addcharapicture misu defaultstand resource/picture/scenario0/character/misuchan1.png
 addcharapicture sato defaultstand resource/picture/scenario0/character/sato.png

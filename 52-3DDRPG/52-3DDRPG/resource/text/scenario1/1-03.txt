@@ -8,10 +8,10 @@ addchara you
 addchara yumeto
 //
 //
-addcharapicture himeno defaultstand resource/picture/scenario1/character/1-himeno.jpg
-addcharapicture yuri defaultstand resource/picture/scenario1/character/1-yuri.jpg
-addcharapicture you defaultstand resource/picture/scenario1/character/1-you.jpg
-addcharapicture yumeto defaultstand resource/picture/scenario1/character/1-yumeto.jpg
+addcharapicture himeno defaultstand resource/picture/scenario1/character/1-himeno.png
+addcharapicture yuri defaultstand resource/picture/scenario1/character/1-yuri.png
+addcharapicture you defaultstand resource/picture/scenario1/character/1-you.png
+addcharapicture yumeto defaultstand resource/picture/scenario1/character/1-yumeto.png
 //
 //drawrequest (canvasname charaname picturename x y width height)
 drawrequest himeno01 himeno defaultstand 10 20 0 70

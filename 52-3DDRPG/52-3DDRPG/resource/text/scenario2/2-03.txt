@@ -1,16 +1,16 @@
 addchara motoyuusya 元勇者
 //
 //
-addpicture motoyuusya defaultstand resource/picture/scenario2/character/motoyuusha_normal.png
+addcharapicture motoyuusya defaultstand resource/picture/scenario2/character/motoyuusha_normal.png
 /
 //
 //drawrequest(canvasname charaname picturename x y width height)
-drawrequest motoyuusya01 motoyuusya defaultstand 20 100 0 70
+drawrequest motoyuusya01 motoyuusya defaultstand 80 20 0 70
 dark motoyuusya01
 //
 wordstyle onebyone 3
 //
-move motoyuusya01 20 100 20 60 100 0
+move motoyuusya01 80 20 40 20 100 0
 light motoyuusya01
 text もうすぐセラスチュームが咲く季節だなBB早いもんだ。
 wait

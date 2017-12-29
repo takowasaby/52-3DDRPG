@@ -1,0 +1,6 @@
+wordstyle backblack 3
+//
+text debug
+wait
+//
+end

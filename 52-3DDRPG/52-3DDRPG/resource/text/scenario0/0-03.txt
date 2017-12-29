@@ -2,7 +2,7 @@ addchara misu0 ‚İ‚·‚¿‚á‚ñ
 addchara misu1 ‚İ‚·‚¿‚á‚ñ
 addchara robot Œx”õƒƒ{
 addchara sato SATO
-addchara girl —‚Ìq
+addchara girl •Q”T
 //
 //
 addcharapicture misu0 defaultstand resource/picture/scenario0/character/misuchan0.png

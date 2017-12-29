@@ -1,11 +1,12 @@
 addchara motoyuusya Œ³—EÒ
 //
 //
-addpicture motoyuusya defaultstand resource/picture/scenario2/character/motoyuusha_normal.png
+addcharapicture motoyuusya defaultstand resource/picture/scenario2/character/motoyuusha_normal.png
 //
 //
 //drawrequest (canvasname charaname picturename x y width height)
 drawrequest motoyuusya01 motoyuusya defaultstand 10 20 0 70
+turn motoyuusya01
 dark motoyuusya01
 //
 wordstyle onebyone 3
@@ -21,7 +22,7 @@ text ‚æ‚¤‚â‚Á‚Æ—‚¿’…‚¢‚½‚Æv‚Á‚½‚çBB¡“x‚Í‚ ‚¢‚Â‚ª‹ó‚Ìã‚És‚Á‚ÄBB‰´‚É‚©‚Ü‚Á‚Ä‚
 wait
 text c‚¢‚È‚­‚È‚Á‚½Œã‚É‚±‚ñ‚È‚±‚ÆŒ¾‚Á‚½‚Á‚ÄBB‚ ‚¢‚Â‚ª¢‚é‚¾‚¯‚©B
 wait
-move motoyuusya01 10 20 30 40 100 0
+move motoyuusya01 10 20 30 20 100 0
 text ‚ ‚¢‚Â‚Ì‚±‚Æv‚¢o‚µ‚È‚ª‚çABB­‚µU•à‚Å‚à‚·‚é‚©B
 wait
 text “ª‚ğ—â‚â‚µ‚Ä‚é“à‚ÉBB‚Í‚È‚Ş‚¯‚Ìˆê‚Â‚â“ñ‚ÂAŒ©‚Â‚©‚ê‚Î‚¢‚¢‚ñ‚¾‚ª‚ÈB

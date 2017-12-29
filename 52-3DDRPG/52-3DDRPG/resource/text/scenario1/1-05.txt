@@ -4,7 +4,7 @@ addchara yuri •S‡
 addchara you —m
 addchara yumeto šël
 addchara muma –²–‚
-addchara you2
+addchara you2 —m
 
 addcharapicture himeno defaultstand resource/picture/scenario1/character/1-himeno.png 
 addcharapicture yuri defaultstand resource/picture/scenario1/character/1-yuri.png
