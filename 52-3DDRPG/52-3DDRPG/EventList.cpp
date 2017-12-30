@@ -18,6 +18,7 @@ EventList::EventList():
 void EventList::Initialize(Event_c *event)
 {
 	m_event = event;
+	m_active = -1;
 }
 
 void EventList::readEvent(string filename)
@@ -38,10 +39,11 @@ void EventList::call()
 		m_event->readDataFromFile(m_eventfile.front());
 		m_eventfile.pop();
 	}
-	for (int i = 0; i < 3; i++)
+	/*
+	for (int i = 0; i < 10; i++)
 	{
-		//printfDx("%d:%d\n", i, m_flag[i]);
-	}
+		printfDx("%d:%d\n", i, m_flag[i]);
+	}*/
 	if(m_active != -1)
 		Event(m_eventType);
 }
@@ -222,9 +224,11 @@ void EventList::Event(int num)
 	string str;
 	if (m_eventType != num)
 	{
+		if (m_active != -1)
+			return;
+		m_eventType = num;
 		m_active = 0;
 	}
-	m_eventType = num;
 	//printfDx("event");
 	for (i = m_active; i < m_list[num].size(); i++)
 	{
@@ -256,6 +260,7 @@ void EventList::Event(int num)
 		//printfDx("\n");
 		if(!flag)
 		{
+			m_active++;
 			continue;
 		}
 		switch (m_list[num].index(i).getType())
