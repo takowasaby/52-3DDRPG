@@ -186,6 +186,8 @@ void EventList::readList()
 		case 9:
 			action.setAction( 9, num[26], num[27], 0, 0);
 			break;
+		case 10:
+			action.setAction(10, 0, 0, 0, 0);
 		}
 		count = 30;
 		while (num[count] != 0 && count < 60)
@@ -336,6 +338,10 @@ void EventList::Event(int num)
 				GData.SceneRequest(2, 2);
 				m_callBattleFlag = 2;
 			}
+			break;
+		case 10:
+			GData.DeleteData(GData.GetScenario());
+			GData.SceneRequest(1, 0);
 			break;
 		}
 		m_active++;
