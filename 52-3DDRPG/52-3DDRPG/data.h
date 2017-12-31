@@ -104,6 +104,7 @@ public:
 
 	void LoadAll(int s);
 	void DeleteAll();
+	void DeleteData(int i);
 
 	void GoalLoad(int s);
 	void ItemLoad(int s);

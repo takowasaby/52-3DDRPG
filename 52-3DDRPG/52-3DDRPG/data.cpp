@@ -142,6 +142,17 @@ void Data_c::DeleteAll()
 		soubi[i].explain = "";
 	}
 }
+void Data_c::DeleteData(int i)
+{
+	GData.SetStageNum(i, 0);
+	GData.SetDungeonXNum(i, 0);
+	GData.SetDungeonYNum(i, 0);
+	GData.SetDirNum(i, 0);
+	GData.SetRoomNum(i, 0);
+	for (int j = 0; j < 128; j++) {
+		GData.SetFlagNum(i, j, 0);
+	}
+}
 void Data_c::GoalLoad(int s)
 {
 	int n, i, fp;
