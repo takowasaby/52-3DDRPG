@@ -15,7 +15,7 @@ Data_c::Data_c() :
 	//controlMode = 1;
 	controlMode = 1;
 	eventScene = 0;
-	titleScene = 2;
+	titleScene = 0;
 	gameScene = 2;
 
 	for (int i = 0; i < SCENARIO_SIZE; i++) {
@@ -144,14 +144,15 @@ void Data_c::DeleteAll()
 }
 void Data_c::DeleteData(int i)
 {
-	GData.SetStageNum(i, 0);
-	GData.SetDungeonXNum(i, 0);
-	GData.SetDungeonYNum(i, 0);
-	GData.SetDirNum(i, 0);
-	GData.SetRoomNum(i, 0);
+	stage[i] = 0;
+	dungeonX[i] = 0;
+	dungeonY[i] = 0;
+	dir[i] =  0;
+	room[i] = 0;
 	for (int j = 0; j < 128; j++) {
-		GData.SetFlagNum(i, j, 0);
+		flag[i][j] = 0;
 	}
+	flag[i][1] = 1;
 }
 void Data_c::SetClearFlag(int i, int n)
 {
@@ -1083,7 +1084,7 @@ void Data_c::SetWallType(int x, int y, int type)
 
 void Data_c::SceneRequest(int m, int s)
 {
-	if (!((m == 1 || m == 2) && s == 3)) BMode = controlMode;
+	BMode = controlMode;
 	controlMode = m;
 	switch (m) {
 	case 0:
@@ -1091,11 +1092,11 @@ void Data_c::SceneRequest(int m, int s)
 		eventScene = s;
 		break;
 	case 1:
-		if (s != 3) BScene = titleScene;
+		BScene = titleScene;
 		titleScene = s;
 		break;
 	case 2:
-		if (s != 3) BScene = gameScene;
+		BScene = gameScene;
 		gameScene = s;
 		break;
 	}
@@ -1140,6 +1141,11 @@ int Data_c::GetRoomLoadFlag()
 	return roomLoadFlag;
 }
 
+int Data_c::GetGameOverFlag()
+{
+	return gameOverFlag;
+}
+
 void Data_c::SetDungeonLoadFlag(int i)
 {
 	dungeonLoadFlag = i;
@@ -1147,6 +1153,11 @@ void Data_c::SetDungeonLoadFlag(int i)
 void Data_c::SetRoomLoadFlag(int i)
 {
 	roomLoadFlag = i;
+}
+
+void Data_c::SetGameOverFlag(int i)
+{
+	gameOverFlag = i;
 }
 
 characterData Data_c::GetCharacterData(int num)

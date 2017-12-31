@@ -2,7 +2,7 @@
 
 Room_c::Room_c() :
 	mscenario(0),
-	mstage(3),
+	mstage(0),
 	mroom(0)
 {
 	// data.GetScenario();

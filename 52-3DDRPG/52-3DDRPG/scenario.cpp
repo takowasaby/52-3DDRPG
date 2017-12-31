@@ -79,7 +79,8 @@ void Scenario_c::Update()
       eventlist->setListFileName(chooseScenario);
       eventlist->readList();
       GData.SetEventFlag(1);
-      GData.SceneRequest(0, 0);
+	  eventlist->Event(0);
+      GData.SceneRequest(2, 0);
       GMusic.StopSound(ScenarioBGM);
       Reset();
     }

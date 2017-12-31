@@ -348,6 +348,9 @@ void SaveLoad_c::Save(const int SlotNum) {
 void SaveLoad_c::Load(const int SlotNum) {
 	char filename[] = "0.save";
 	snprintf(filename, 7, "%d.save", SlotNum);
+	for (int i = 0; i < 5; i++) {
+		GData.DeleteData(i);
+	}
 	if (fopen_s(&sdfp, filename, "rb") == 0) {
 		fread(&Data, sizeof(Data), 1, sdfp);
 		fclose(sdfp);
@@ -362,6 +365,11 @@ void SaveLoad_c::Load(const int SlotNum) {
 			for (int j = 0; j < 128; j++) {
 				GData.SetFlagNum(i, j, Data.flag[i][j]);
 			}
+			/*
+			if (dataCheck[SlotNum - 1] == 1) {
+				GData.SetFlagNum(i, 0, 1);
+			}
+			*/
 		}
 		GData.SetCount(Data.playCount);
 	}

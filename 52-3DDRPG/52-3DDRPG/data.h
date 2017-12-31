@@ -207,9 +207,11 @@ public:
 
 	int GetDungeonLoadFlag();
 	int GetRoomLoadFlag();
+	int GetGameOverFlag();
 
 	void SetDungeonLoadFlag(int i);
 	void SetRoomLoadFlag(int i);
+	void SetGameOverFlag(int i);
 
 	characterData GetCharacterData(int num);
 	void SetCharacterData(int num, characterData chara);

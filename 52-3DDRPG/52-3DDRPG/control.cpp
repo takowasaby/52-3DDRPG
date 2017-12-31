@@ -17,8 +17,8 @@ Control_c::Control_c() {
 	mScenario->SetEventList(mEventlist);
 
 	mEventlist->Initialize(mEvents);
-	mEventlist->setListFileName(0);
-	mEventlist->readList();
+//	mEventlist->setListFileName(0);
+//	mEventlist->readList();
 //	mEventlist->Event(0);
 //	mEventlist->Event(1);
 //	mEventlist->Event(2);

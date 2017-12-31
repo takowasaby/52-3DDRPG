@@ -832,7 +832,7 @@ void Menu_c::CheckKey()
 	else if (mKey[KEY_INPUT_X] == 1) {
 		switch (depth) {
 		case 0:
-			GData.SceneBackRequest();
+			GData.SceneRequest(2, 0);
 			mode = 0;
 			break;
 		case 1:
@@ -870,7 +870,7 @@ void Menu_c::CheckKey()
 		GMusic.ReserveSound(se[decision], DX_PLAYTYPE_BACK);
 	}
 	else if (mKey[KEY_INPUT_C] == 1) {
-		GData.SceneBackRequest();
+		GData.SceneRequest(2, 0);
 		mode = 0;
 		GMusic.ReserveSound(se[decision], DX_PLAYTYPE_BACK);
 	}
