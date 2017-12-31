@@ -8,8 +8,8 @@ GameOver::GameOver() :
 	font[0] = 0;
 	font[1] = 0;
 
-	font[0] = CreateFontToHandle(-1, 25, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT);
-	font[1] = CreateFontToHandle(-1, 100, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT);
+	font[0] = CreateFontToHandle(NULL, 25, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT);
+	font[1] = CreateFontToHandle(NULL, 100, 1, DX_FONTTYPE_ANTIALIASING_EDGE_4X4, DX_CHARSET_DEFAULT);
 
 	bgm = LoadSoundMem("resource/sounds/BGM/scenario2/talk2.wav");
 	SetDrawBright(bright, bright, bright);

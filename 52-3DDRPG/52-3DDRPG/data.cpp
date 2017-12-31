@@ -15,7 +15,7 @@ Data_c::Data_c() :
 	//controlMode = 1;
 	controlMode = 1;
 	eventScene = 0;
-	titleScene = 0;
+	titleScene = 2;
 	gameScene = 2;
 
 	for (int i = 0; i < SCENARIO_SIZE; i++) {
