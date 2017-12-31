@@ -106,6 +106,9 @@ public:
 	void DeleteAll();
 	void DeleteData(int i);
 
+	void SetClearFlag(int i, int n);
+	int GetClearFlag(int i);
+
 	void GoalLoad(int s);
 	void ItemLoad(int s);
 	void SoubiLoad(int s);

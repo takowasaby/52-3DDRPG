@@ -153,6 +153,14 @@ void Data_c::DeleteData(int i)
 		GData.SetFlagNum(i, j, 0);
 	}
 }
+void Data_c::SetClearFlag(int i, int n)
+{
+	clearFlag[i] = n;
+}
+int Data_c::GetClearFlag(int i)
+{
+	return clearFlag[i];
+}
 void Data_c::GoalLoad(int s)
 {
 	int n, i, fp;
