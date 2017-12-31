@@ -80,6 +80,7 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 			wallData[i][j].Wwall = 1;
 			eventNum[i][j].num = 0;
 			eventNum[i][j].condition = 0;
+			eventNum[i][j].doorNum = 0;
 		}
 	}
 
@@ -114,7 +115,10 @@ void Dungeon_c::DataLoad(int scenario, int stage)
 		else eventNum[mnum][mn % MAP_SIZE_X].condition = 1;
 		wallData[mnum][mn % MAP_SIZE_X].type = abs(atoi(inputc)) % 10;
 		if (abs(atoi(inputc)) < 10) eventNum[mnum][mn % MAP_SIZE_X].num = -1;
-		else eventNum[mnum][mn % MAP_SIZE_X].num = abs(atoi(inputc)) / 10;
+		else { 
+			eventNum[mnum][mn % MAP_SIZE_X].num = (abs(atoi(inputc)) % 1000 - abs(atoi(inputc)) % 10) / 10;
+			eventNum[mnum][mn % MAP_SIZE_X].doorNum = abs(atoi(inputc)) / 1000;
+		}
 		mnum++;
 		if (mnum == MAP_SIZE_X) {
 			mnum = 0;
@@ -508,6 +512,7 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Nwall == 2) {
 				if (eventNum[x][y].num != -1 && eventNum[x][y].condition == 1) {
 					eventList->Event(eventNum[x][y].num);
+					GData.SetDoorNum(eventNum[x][y].doorNum);
 					GMusic.StopSound(bgm);
 				}
 			}
@@ -516,6 +521,7 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Ewall == 2) {
 				if (eventNum[x][y].num != -1 && eventNum[x][y].condition == 1) {
 					eventList->Event(eventNum[x][y].num);
+					GData.SetDoorNum(eventNum[x][y].doorNum);
 					GMusic.StopSound(bgm);
 				}
 			}
@@ -524,6 +530,7 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Swall == 2) {
 				if (eventNum[x][y].num != -1 && eventNum[x][y].condition == 1) {
 					eventList->Event(eventNum[x][y].num);
+					GData.SetDoorNum(eventNum[x][y].doorNum);
 					GMusic.StopSound(bgm);
 				}
 			}
@@ -532,6 +539,7 @@ void Dungeon_c::WaitKey()
 			if (wallData[x][y].Wwall == 2) {
 				if (eventNum[x][y].num != -1 && eventNum[x][y].condition == 1) {
 					eventList->Event(eventNum[x][y].num);
+					GData.SetDoorNum(eventNum[x][y].doorNum);
 					GMusic.StopSound(bgm);
 				}
 			}

@@ -15,6 +15,7 @@ private:
 	struct eventNum{
 		int num;
 		int condition;
+		int doorNum;
 	};
 	eventNum eventNum[MAP_SIZE_X][MAP_SIZE_Y];
 	int back;

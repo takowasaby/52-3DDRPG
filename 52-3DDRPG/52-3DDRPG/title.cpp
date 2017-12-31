@@ -66,7 +66,7 @@ bool Title_c::TitleScreen(int* Key) {
     }
     else {
       GMusic.StopSound(TitleBGM);
-      GData.SceneRequest(1, 1);//シナリオ選択
+      GData.SceneRequest(1, 4);//シナリオ選択
       return true;
     }
   }

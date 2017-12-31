@@ -228,3 +228,4 @@ const int OPINIONWINDOW_NUM = 3;
 #include "BattleManager.h"
 #include "scenario.h"
 #include "EventList.h"
+#include "GameOver.h"

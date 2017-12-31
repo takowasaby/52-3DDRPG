@@ -934,6 +934,31 @@ int Data_c::GetRoom()
 	return room[scenario];
 }
 
+int Data_c::GetStageNum(int i)
+{
+	return stage[i];
+}
+int Data_c::GetDungeonXNum(int i)
+{
+	return dungeonX[i];
+}
+int Data_c::GetDungeonYNum(int i)
+{
+	return dungeonY[i];
+}
+int Data_c::GetDirNum(int i)
+{
+	return dir[i];
+}
+int Data_c::GetFlagNum(int i, int j)
+{
+	return flag[i][j];
+}
+int Data_c::GetRoomNum(int i)
+{
+	return room[i];
+}
+
 void Data_c::SetScenario(int i)
 {
 	GData.DeleteAll();
@@ -976,6 +1001,40 @@ void Data_c::SetFlag(int i, int n)
 	flag[GetScenario()][i] = n;
 }
 
+void Data_c::SetStageNum(int i, int n)
+{
+	stage[i] = n;
+}
+void Data_c::SetDungeonXNum(int i, int n)
+{
+	dungeonX[i] = n;
+}
+void Data_c::SetDungeonYNum(int i, int n)
+{
+	dungeonY[i] = n;
+}
+void Data_c::SetDirNum(int i, int n)
+{
+	dir[i] = n;
+}
+void Data_c::SetFlagNum(int i, int j, int n)
+{
+	flag[i][j] = n;
+}
+void Data_c::SetRoomNum(int i, int n)
+{
+	room[i] = n;
+}
+
+void Data_c::SetDoorNum(int i)
+{
+	doorNum = i;
+}
+int Data_c::GetDoorNum()
+{
+	return doorNum;
+}
+
 int Data_c::GetMapFlag(int scenario, int stage, int x, int y)
 {
 	return mapFlag[scenario][stage][x][y];
@@ -1005,7 +1064,7 @@ void Data_c::SetWallType(int x, int y, int type)
 
 void Data_c::SceneRequest(int m, int s)
 {
-	BMode = controlMode;
+	if (!((m == 1 || m == 2) && s == 3)) BMode = controlMode;
 	controlMode = m;
 	switch (m) {
 	case 0:
@@ -1013,11 +1072,11 @@ void Data_c::SceneRequest(int m, int s)
 		eventScene = s;
 		break;
 	case 1:
-		BScene = titleScene;
+		if (s != 3) BScene = titleScene;
 		titleScene = s;
 		break;
 	case 2:
-		BScene = gameScene;
+		if (s != 3) BScene = gameScene;
 		gameScene = s;
 		break;
 	}

@@ -8,8 +8,9 @@ Control_c::Control_c() {
 	mRoom = new Room_c();
 	mEventlist = new EventList();
 	mScenario = new Scenario_c();
+//	mGameOver = new GameOver();
 
-	GData.LoadAll(0);
+//	GData.LoadAll(0);
 
 	mRoom->SetEventList(mEventlist);
 	mDungeon->SetEventList(mEventlist);
@@ -31,6 +32,7 @@ Control_c::~Control_c() {
   delete mRoom;
   delete mEventlist;
   delete mScenario;
+//  delete mGameOver;
 }
 
 bool Control_c::All() {
@@ -65,6 +67,9 @@ bool Control_c::All() {
 		switch (GData.GetScene(title)) {
 		case gameover:
 			//ゲームオーバー
+			if (GameOverStart == false) { GameOverStart = true; mGameOver = new GameOver; }
+			GameOverEnd = mGameOver->GameOverAll(Key);
+			if (GameOverEnd == true) { GameOverEnd = false; GameOverStart = false; delete mGameOver; }
 			break;
 		case scenario: 
 			//シナリオ選択画面
@@ -81,14 +86,14 @@ bool Control_c::All() {
 		case save: {
 			//セーブ
 			if (SaveLoadStart == false) { SaveLoadStart = true; mSaveLoad = new SaveLoad_c; }
-			SaveLoadEnd = mSaveLoad->SaveScreen(Key, CharX, CharY, Status, 10);
+			SaveLoadEnd = mSaveLoad->SaveScreen(Key);
 			if (SaveLoadEnd == true) { SaveLoadEnd = false; SaveLoadStart = false; delete mSaveLoad; }
 			}
 			break;
 		case load: {
 			//ロード
 			if (SaveLoadStart == false) { SaveLoadStart = true; mSaveLoad = new SaveLoad_c; }
-			SaveLoadEnd = mSaveLoad->LoadScreen(Key, CharX, CharY, Status, 10);
+			SaveLoadEnd = mSaveLoad->LoadScreen(Key);
 			if (SaveLoadEnd == true) { SaveLoadEnd = false; SaveLoadStart = false; delete mSaveLoad; }
 			}
 			break;
@@ -139,8 +144,8 @@ bool Control_c::All() {
 		GData.SetDungeonLoadFlag(FALSE);
 	}
 	else if (GData.GetRoomLoadFlag()) {
-		mRoom->DataLoad(GData.GetScenario(), GData.GetStage(), GData.GetRoom());
 		mRoom->CursorReset();
+		mRoom->DataLoad(GData.GetScenario(), GData.GetStage(), GData.GetRoom());
 		GData.SetRoomLoadFlag(FALSE);
 	}
 

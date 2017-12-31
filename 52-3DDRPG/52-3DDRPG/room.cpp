@@ -9,7 +9,14 @@ Room_c::Room_c() :
 	// data.stage();
 	// date.Getroom();
 
+	CursorReset();
+	for (int i = 0; i < 16; i++) {
+		doorData[i].x = 0;
+		doorData[i].y = 0;
+		doorData[i].flag = 0;
+	}
 	DataLoad(mscenario, mstage, mroom);
+
 //	GraphLoad(mscenario);
   se[cursor] = LoadSoundMem("resource/sounds/SE/room/cursor.mp3");
   se[decision] = LoadSoundMem("resource/sounds/SE/room/decision.mp3");
@@ -45,6 +52,8 @@ void Room_c::KeyUpdate(int Key[256])
 
 void Room_c::RoomAll() 
 {
+	//clsDx();
+	//printfDx("%d %d %d %d", selectx, selecty, scrollx, scrolly);
 	RoomDraw();
 	if (eventlist->getCallEventFlag() == 0) {
 		WaitKey();
@@ -53,6 +62,12 @@ void Room_c::RoomAll()
 
 void Room_c::DataLoad(int scenario, int stage, int room)
 {
+	for (int i = 0; i < 16; i++) {
+		doorData[i].x = 0;
+		doorData[i].y = 0;
+		doorData[i].flag = 0;
+	}
+
 	sprintf_s(fname, "resource/csv/scenario%d/room/room%d-%d-%d.csv", scenario, scenario, stage, room);
 
 	mfp = FileRead_open(fname);
@@ -63,7 +78,7 @@ void Room_c::DataLoad(int scenario, int stage, int room)
 
 	/*for (i = 0; i<1; i++)//Å‰‚Ì2s“Ç‚Ý”ò‚Î‚·
 	while (FileRead_getc(mfp) != '\n');*/
-
+	clsDx();
 	datay = 0, datax = 0;
 	roomsizex = 0, roomsizey = 0;
 	while (1) {
@@ -85,6 +100,17 @@ void Room_c::DataLoad(int scenario, int stage, int room)
 			}
 		}
 		roomData[datax][datay].type = atoi(inputc) % 100;
+		if (atoi(inputc) % 100 == 1 || atoi(inputc) % 100 == 2 || atoi(inputc) % 100 == 98 || atoi(inputc) % 100 == 99) {
+			for (int i = 0; i < 16; i++) {
+				if (!(doorData[i].flag)) {
+					doorData[i].x = datax;
+					doorData[i].y = datay;
+					doorData[i].flag = 1;
+//					printfDx("%d %d\n",datax, datay);
+					break;
+				}
+			}
+		}
 		roomData[datax][datay].event = abs(atoi(inputc) / 100);
 		datax++;
 		if (cflag == true) {
@@ -101,6 +127,13 @@ EXFILE1:
 
 	GraphDelete();
 	GraphLoad(GData.GetScenario());
+
+	selectx = doorData[GData.GetDoorNum()].x;
+	selecty = doorData[GData.GetDoorNum()].y;
+	scrollx = doorData[GData.GetDoorNum()].x * 20;
+	scrolly = doorData[GData.GetDoorNum()].y * 10;
+
+//	printfDx("%d %d %d %d %d", selectx, selecty, scrollx, scrolly, GData.GetDoorNum());
 }
 
 void Room_c::GraphLoad(int scenario)

@@ -12,6 +12,7 @@ class Scenario_c;
 
 class BattleManager;
 class EventList;
+class GameOver;
 
 class Control_c {
 private:
@@ -26,6 +27,7 @@ private:
 	BattleManager* battleManager;
 	EventList* mEventlist;
 	Scenario_c* mScenario;
+	GameOver* mGameOver;
 
 	int Key[256];
 
@@ -42,6 +44,9 @@ private:
 
 	bool BattleStart = false;
 	bool BattleEnd = false;
+
+	bool GameOverStart = false;
+	bool GameOverEnd = false;
 
 	typedef enum {
 		event,

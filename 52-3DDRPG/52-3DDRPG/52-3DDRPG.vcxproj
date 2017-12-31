@@ -162,6 +162,7 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventList.cpp" />
     <ClCompile Include="fps.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="ListAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventList.h" />
     <ClInclude Include="fps.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="ListAction.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="music.h" />

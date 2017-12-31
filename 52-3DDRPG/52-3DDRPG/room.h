@@ -22,6 +22,11 @@ private:
 	int furniturehight[ROOM_FURNITURE_MAX];
 	int input[32];
 	char inputc[32];
+	struct Door {
+		int x, y;
+		bool flag;
+	};
+	Door doorData[16];
 
   int se[2];
   const int cursor = 0;

@@ -816,13 +816,15 @@ void Menu_c::CheckKey()
 			break;
 		case title:
 			GData.SceneRequest(1, 2);
-
+			GMusic.StopSound(GData.GetDungeonBgm());
 			break;
 		case save:
 			GData.SceneRequest(1, 3);
+			GMusic.StopSound(GData.GetDungeonBgm());
 			break;
 		case option:
 			GData.SceneRequest(1, 5);
+			GMusic.StopSound(GData.GetDungeonBgm());
 			break;
 		}
 		GMusic.ReserveSound(se[decision], DX_PLAYTYPE_BACK);

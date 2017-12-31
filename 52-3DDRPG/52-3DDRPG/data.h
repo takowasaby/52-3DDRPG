@@ -27,6 +27,8 @@ private:
 	bool roomLoadFlag;
 	bool CountFlag;
 
+	int doorNum;
+
 	int dungeon[SCENARIO_SIZE];
 	int battle[SCENARIO_SIZE];
 
@@ -154,6 +156,13 @@ public:
 	int GetEventFlag();
 	int GetRoom();
 
+	int GetStageNum(int i);
+	int GetDungeonXNum(int i);
+	int GetDungeonYNum(int i);
+	int GetDirNum(int i);
+	int GetFlagNum(int i, int j);
+	int GetRoomNum(int i);
+
 	void SetScenario(int i);
 	void SetStage(int i);
 	void SetDungeonX(int i);
@@ -163,15 +172,25 @@ public:
 	void SetRoom(int i);
 	void SetFlag(int i, int n);
 
+	void SetStageNum(int i, int n);
+	void SetDungeonXNum(int i, int n);
+	void SetDungeonYNum(int i, int n);
+	void SetDirNum(int i, int n);
+	void SetFlagNum(int i, int j, int n);
+	void SetRoomNum(int i, int n);
+
+	void SetDoorNum(int i);
+	int GetDoorNum();
+
 	int GetMapFlag(int scenario, int stage, int x, int y);
 	int GetEventFlag(int scenario, int num);
-	int GetPlayCount();
+//	int GetPlayCount();
 	int GetWallType(int x, int y);
 
 	void SetMapFlag(int scenario, int stage, int x, int y, int i);
 	void SetEventFlag(int scenario, int num, int i);
-	void SetPlayCount(int i);
-	void AddPlayCount();
+//	void SetPlayCount(int i);
+//	void AddPlayCount();
 	void SetWallType(int x, int y, int type);
 
 	void SceneRequest(int m, int s);
