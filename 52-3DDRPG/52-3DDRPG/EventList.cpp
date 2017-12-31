@@ -48,6 +48,15 @@ void EventList::call()
 		Event(m_eventType);
 }
 
+void EventList::SetFlagfromData(int num)
+{
+	int i;
+	for (i = 0; i < 128; i++)
+	{
+		m_flag[i] = GData.GetFlagNum(num, i);
+	}
+}
+
 int EventList::callEvent()
 {
 	return m_event->call();

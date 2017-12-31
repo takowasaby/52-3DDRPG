@@ -35,6 +35,7 @@ public:
 		return m_callEventFlag;
 	}
 	void Event(int num);
+	void SetFlagfromData(int num);
 private:
 	Event_c *m_event;
 	Data_c  *m_data;
