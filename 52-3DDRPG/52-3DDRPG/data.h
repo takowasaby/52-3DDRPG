@@ -10,7 +10,8 @@ private:
 	int room[5] = {};
 	int dungeonX[5] = {};
 	int	dungeonY[5] = {};
-	int flag[5][128];
+	int flag[5][128] = {};
+	bool clearFlag[5] = {};
 	int playCountF, playCountS, playCountM, playCountH;
 
 	int bgmVol, seVol, battleType;
@@ -26,6 +27,7 @@ private:
 	bool dungeonLoadFlag;
 	bool roomLoadFlag;
 	bool CountFlag;
+	bool gameOverFlag;
 
 	int doorNum;
 

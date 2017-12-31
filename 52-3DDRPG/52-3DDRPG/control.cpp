@@ -47,6 +47,7 @@ bool Control_c::All() {
 		case conversation:
 			//—§‚¿ŠG‰ï˜b
 			if (GData.GetEventFlag()) {
+				mEventlist->SetFlagfromData(GData.GetScenario());
 				mEventlist->Event(0);
 				GData.SetEventFlag(0);
 			}
