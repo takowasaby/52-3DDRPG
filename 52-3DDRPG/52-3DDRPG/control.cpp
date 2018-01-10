@@ -48,8 +48,6 @@ bool Control_c::All() {
 			//—§‚¿ŠG‰ï˜b
 			if (GData.GetEventFlag()) {
 				mEventlist->SetFlagfromData(GData.GetScenario());
-				mEventlist->Event(0);
-				GData.SetEventFlag(0);
 			}
 			else {
 				GData.SceneRequest(2, 0);
@@ -150,7 +148,20 @@ bool Control_c::All() {
 		GData.SetRoomLoadFlag(FALSE);
 	}
 
-  GMusic.PlaySounds();
+	GMusic.PlaySounds();
+
+	/*
+	if (Key[KEY_INPUT_F]) {
+		if (windowMode) {
+			ChangeWindowMode(1);
+			windowMode = 0;
+		}
+		else {
+			ChangeWindowMode(0);
+			windowMode = 1;
+		}
+	}
+	*/
 
 	//mFps->Draw();	//fps•\Ž¦
 	mFps->Wait();	//‘Ò‹@

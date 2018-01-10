@@ -39,11 +39,11 @@ void EventList::call()
 		m_event->readDataFromFile(m_eventfile.front());
 		m_eventfile.pop();
 	}
-	/*
+	
 	for (int i = 0; i < 10; i++)
 	{
-		printfDx("%d:%d\n", i, m_flag[i]);
-	}*/
+//		printfDx("%d:%d\n", i, m_flag[i]);
+	}
 	if(m_active != -1)
 		Event(m_eventType);
 }
@@ -341,6 +341,7 @@ void EventList::Event(int num)
 			break;
 		case 10:
 			GData.DeleteData(GData.GetScenario());
+			GData.CountStop();
 			GData.SceneRequest(1, 0);
 			break;
 		}

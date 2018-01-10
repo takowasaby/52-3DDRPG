@@ -40,8 +40,9 @@ void Scenario_c::Load()
 		graph[1][i] = LoadGraph(fname);
 		GraphFilter(graph[1][i], DX_GRAPH_FILTER_MONO, 0, 0);
 	}
-  ScenarioBGM = LoadSoundMem("resource/sounds/BGM/scenario select/SSelect.wav");
-  ChangeVolumeSoundMem(128, ScenarioBGM);
+	clear = LoadGraph("resource/picture/other/clear.png");
+    ScenarioBGM = LoadSoundMem("resource/sounds/BGM/scenario select/SSelect.wav");
+    ChangeVolumeSoundMem(128, ScenarioBGM);
 }
 
 void Scenario_c::Update()
@@ -79,8 +80,10 @@ void Scenario_c::Update()
       eventlist->setListFileName(chooseScenario);
       eventlist->readList();
       GData.SetEventFlag(1);
+	  eventlist->SetFlagfromData(GData.GetScenario());
 	  eventlist->Event(0);
       GData.SceneRequest(2, 0);
+	  GData.SetStage(GData.GetStage());
       GMusic.StopSound(ScenarioBGM);
       Reset();
     }
@@ -109,6 +112,7 @@ void Scenario_c::Draw()
     for (int i = 0; i < SCENARIO_SIZE; i++) {
       if (i == chooseScenario) DrawGraph(0, 96 * i, graph[0][i], TRUE);
       else DrawGraph(0, 96 * i, graph[1][i], TRUE);
+	  if (GData.GetClearFlag(i)) DrawGraph(480, 96 * i, clear, TRUE);
     }
   }
 }

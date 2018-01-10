@@ -74,13 +74,13 @@ bool SaveLoad_c::SaveScreen(const int* Key) {
 	DrawFormatStringToHandle(5, Cursor, GetColor(255, 255, 255), FontTitleMain, "œ");
 	*/
 	if (Key[KEY_INPUT_DOWN] == 1) {
-		if (Cursor != 3) { Cursor++; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+		if (Cursor != 3) { Cursor++; GMusic.ReserveSound(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_UP] == 1) {
-		if (Cursor != 0) { Cursor--; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+		if (Cursor != 0) { Cursor--; GMusic.ReserveSound(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
-		PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
+		GMusic.ReserveSound(SE[DECISION], DX_PLAYTYPE_BACK);
 		Save(Cursor + 1);
 		end = 1;
 		/*
@@ -146,6 +146,10 @@ bool SaveLoad_c::SaveScreen(const int* Key) {
 		}
 		*/
 	}
+	else if (Key[KEY_INPUT_BACK] == 1) {
+		GMusic.ReserveSound(GMusic.CommonSE[GMusic.DECISION], DX_PLAYTYPE_BACK);
+		DeleteData(Cursor);
+	}
 	if (end == 1) {
 		if (bright > 0) {
 			bright -= 5;
@@ -154,6 +158,7 @@ bool SaveLoad_c::SaveScreen(const int* Key) {
 		else {
 			SetDrawBright(255, 255, 255);
 			GData.SceneRequest(2, 3);
+			GMusic.ReserveSound(GData.GetDungeonBgm(), DX_PLAYTYPE_LOOP);
 			return true;
 		}
 	}
@@ -214,16 +219,16 @@ bool SaveLoad_c::LoadScreen(const int* Key) {
 	DrawFormatStringToHandle(5, Cursor, GetColor(255, 255, 255), FontTitleMain, "œ");
 	*/
 	if (Key[KEY_INPUT_DOWN] == 1) {
-		if (Cursor != 3) { Cursor++; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+		if (Cursor != 3) { Cursor++; GMusic.ReserveSound(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_UP] == 1) {
-		if (Cursor != 0) { Cursor--; PlaySoundMem(SE[CURSOR], DX_PLAYTYPE_BACK); }
+		if (Cursor != 0) { Cursor--; GMusic.ReserveSound(SE[CURSOR], DX_PLAYTYPE_BACK); }
 	}
 	else if (Key[KEY_INPUT_X] == 1) {
 		end = 2;
 	}
 	else if (Key[KEY_INPUT_RETURN] == 1 || Key[KEY_INPUT_Z] == 1) {
-		PlaySoundMem(SE[DECISION], DX_PLAYTYPE_BACK);
+		GMusic.ReserveSound(SE[DECISION], DX_PLAYTYPE_BACK);
 		Load(Cursor + 1);
 		end = 1;
 		/*
@@ -301,6 +306,10 @@ bool SaveLoad_c::LoadScreen(const int* Key) {
 		}
 		*/
 	}
+	else if (Key[KEY_INPUT_BACK] == 1) {
+		GMusic.ReserveSound(GMusic.CommonSE[GMusic.DECISION], DX_PLAYTYPE_BACK);
+		DeleteData(Cursor);
+	}
 	if (end != 0) {
 		if (bright > 0) {
 			bright -= 5;
@@ -364,6 +373,8 @@ void SaveLoad_c::Load(const int SlotNum) {
 			GData.SetRoomNum(i, Data.room[i]);
 			for (int j = 0; j < 128; j++) {
 				GData.SetFlagNum(i, j, Data.flag[i][j]);
+				//if(i == 0)
+					//printfDx("%d:%d///", j, Data.flag[i][j]);
 			}
 			/*
 			if (dataCheck[SlotNum - 1] == 1) {
@@ -373,6 +384,14 @@ void SaveLoad_c::Load(const int SlotNum) {
 		}
 		GData.SetCount(Data.playCount);
 	}
+}
+
+void SaveLoad_c::DeleteData(const int index)
+{
+	char filename[] = "0.save";
+	snprintf(filename, 7, "%d.save", index + 1);
+	remove(filename);
+	FileCheck();
 }
 
 void SaveLoad_c::LoadTime(const int index)

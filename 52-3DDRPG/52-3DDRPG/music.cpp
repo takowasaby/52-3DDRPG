@@ -53,6 +53,7 @@ void Music_c::PlaySounds(void){
 }
 
 void Music_c::ReserveSound(int SoundHandle, int PlayType, bool FadeFlag) {
+  ChangeVolumeSoundMem(128, SoundHandle);
   ++ReserveHandle[0][0];
   ReserveHandle[ReserveHandle[0][0]][0] = SoundHandle;
   ReserveHandle[ReserveHandle[0][0]][1] = PlayType;

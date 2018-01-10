@@ -11,11 +11,8 @@ Dungeon_c::Dungeon_c() :
 	}
 
 	walk = LoadSoundMem("resource/sounds/SE/other/footstep01.mp3");
-	ChangeVolumeSoundMem(64, walk);
 	run = LoadSoundMem("resource/sounds/SE/other/footstep02.mp3");
-	ChangeVolumeSoundMem(64, run);
 	decision = LoadSoundMem("resource/sounds/SE/other/decision22.mp3");
-	ChangeVolumeSoundMem(64, decision);
 
 
 //	DataLoad(mscenario, mstage);

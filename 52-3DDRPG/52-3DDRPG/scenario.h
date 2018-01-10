@@ -9,13 +9,14 @@ private:
 	EventList *eventlist;
 	int chooseScenario;
 	int graph[2][5];
+	int clear;
 	char fname[64];
 	int mKey[256];
-  bool first;
-  int end;
+    bool first;
+    int end;
 	int bright;
 	int tempScreen;
-  int ScenarioBGM;
+    int ScenarioBGM;
 public:
 	Scenario_c();
 	~Scenario_c();

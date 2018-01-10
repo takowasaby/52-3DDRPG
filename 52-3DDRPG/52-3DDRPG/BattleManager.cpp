@@ -173,7 +173,7 @@ void BattleManager::Draw()
 	printfDx("Phase[0] = %d\t", phase[0]);
 	printfDx("Phase[1] = %d\t", phase[1]);
 	printfDx("Phase[2] = %d\n", phase[2]);*/
-	DrawExtendGraph(240, 60, 401, 301, enemy.image, TRUE);
+	if(enemy.state[0] == 0)DrawExtendGraph(240, 60, 401, 301, enemy.image, TRUE);
 
 	for (int i = 0; i < CHARACTER_SIZE; i++) {
 		if (player[i].flag == 1) {
@@ -956,6 +956,7 @@ bool BattleManager::BattleEnd(bool isWin)
 			GData.SceneBackRequest();
 //			GData.SceneRequest(1, 2);
 			GMusic.StopSound(battleBgm);
+			GData.CountStop();
 			GMusic.ReserveSound(GData.GetDungeonBgm(), DX_PLAYTYPE_LOOP);
 			return 1;
 		}
@@ -970,6 +971,8 @@ bool BattleManager::BattleEnd(bool isWin)
 		else if (mKey[KEY_INPUT_Z] == 1) {
 			GData.SceneRequest(1, 2);
 			GMusic.StopSound(battleBgm);
+			GData.SetGameOverFlag(1);
+			GData.CountStop();
 			GMusic.ReserveSound(GData.GetDungeonBgm(), DX_PLAYTYPE_LOOP);
 			return 1;
 		}

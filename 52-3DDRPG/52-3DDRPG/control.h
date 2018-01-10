@@ -30,6 +30,7 @@ private:
 	GameOver* mGameOver;
 
 	int Key[256];
+	bool windowMode;
 
 	int *CharX, *CharY, Status[10];//‰¼’u‚«—p
 

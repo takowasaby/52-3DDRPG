@@ -58,6 +58,7 @@ public:
 	bool LoadScreen(const int*);
 	void Save(const int);
 	void Load(const int);
+	void DeleteData(const int);
 	void LoadTime(const int);
 	void FileCheck(void);
 };
